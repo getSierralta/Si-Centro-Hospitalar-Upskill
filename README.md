@@ -2,4 +2,4 @@
 Java Turma B 
 - L. Sierralta 
 - Gabriel Warmann 
-- Joao Aries 
+- João Aires 
