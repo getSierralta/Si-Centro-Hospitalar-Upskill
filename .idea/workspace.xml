@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c09314-39f5-4425-9a20-80f91d52dc3f" name="Default Changelist" comment="">
+    <list default="true" id="e9c09314-39f5-4425-9a20-80f91d52dc3f" name="Default Changelist" comment="ver 5. loop quando a consulta acaba modificado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiagramaDeSequencia.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/DiagramaDeSequencia.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +47,21 @@
       <option name="presentableId" value="Default" />
       <updated>1610965744904</updated>
     </task>
+    <task id="LOCAL-00001" summary="ver 4. Declarar presencia automaticamente, correcçao no medico">
+      <created>1610972066320</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610972066320</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ver 5. loop quando a consulta acaba modificado">
+      <created>1610974495001</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610974495001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -61,10 +75,19 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ver 4. Declarar presencia automaticamente, correcçao no medico" />
+    <MESSAGE value="ver 5. loop quando a consulta acaba modificado" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 5. loop quando a consulta acaba modificado" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610969397171">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1610974503460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610969397171" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610974503460" />
+    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610972613636">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610972613636" />
   </component>
 </project>
