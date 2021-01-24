@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c09314-39f5-4425-9a20-80f91d52dc3f" name="Default Changelist" comment="ver 5. loop quando a consulta acaba modificado">
+    <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 3. Calendario, lista de espera, options and loops">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1nEqkqG6uQLKCOKk5tN9u3ZgK5S" />
+  <component name="ProjectId" id="1nA17csnoZ04cgfo4nlleUMN92O" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,27 +41,153 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e9c09314-39f5-4425-9a20-80f91d52dc3f" name="Default Changelist" comment="" />
-      <created>1610965744904</created>
+      <changelist id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="" />
+      <created>1610817914744</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1610965744904</updated>
+      <updated>1610817914744</updated>
     </task>
-    <task id="LOCAL-00001" summary="ver 4. Declarar presencia automaticamente, correcçao no medico">
-      <created>1610972066320</created>
+    <task id="LOCAL-00001" summary="3.1">
+      <created>1611137985049</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1610972066320</updated>
+      <updated>1611137985049</updated>
     </task>
-    <task id="LOCAL-00002" summary="ver 5. loop quando a consulta acaba modificado">
-      <created>1610974495001</created>
+    <task id="LOCAL-00002" summary="3.1 pus as sugerencias que tinham feito">
+      <created>1611140564534</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1610974495001</updated>
+      <updated>1611140564534</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3.1 pus as sugerencias que tinham feito">
+      <created>1611140579409</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611140579409</updated>
+    </task>
+    <task id="LOCAL-00004" summary="3.1 pus as sugerencias que tinham feito">
+      <created>1611141084499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611141084499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="3.3">
+      <created>1611142546689</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611142546689</updated>
+    </task>
+    <task id="LOCAL-00006" summary="3.1">
+      <created>1611145221719</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611145221719</updated>
+    </task>
+    <task id="LOCAL-00007" summary="3.3">
+      <created>1611145227801</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1611145227801</updated>
+    </task>
+    <task id="LOCAL-00008" summary="3.1.2">
+      <created>1611146127802</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1611146127802</updated>
+    </task>
+    <task id="LOCAL-00009" summary="3.2.1">
+      <created>1611157915413</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611157915413</updated>
+    </task>
+    <task id="LOCAL-00010" summary="3.2.2">
+      <created>1611160016430</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611160016430</updated>
+    </task>
+    <task id="LOCAL-00011" summary="3.2.1">
+      <created>1611160224124</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611160224124</updated>
+    </task>
+    <task id="LOCAL-00012" summary="3.2 vers 1">
+      <created>1611223434260</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1611223434260</updated>
+    </task>
+    <task id="LOCAL-00013" summary="3.2 vers 2">
+      <created>1611224132494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1611224132494</updated>
+    </task>
+    <task id="LOCAL-00014" summary="apagado">
+      <created>1611224262644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1611224262644</updated>
+    </task>
+    <task id="LOCAL-00015" summary="3.2 vers 3">
+      <created>1611226148754</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1611226148754</updated>
+    </task>
+    <task id="LOCAL-00016" summary="3.2">
+      <created>1611226161524</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1611226161524</updated>
+    </task>
+    <task id="LOCAL-00017" summary="3.2 vers 4">
+      <created>1611226478518</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1611226478518</updated>
+    </task>
+    <task id="LOCAL-00018" summary="pequenas alteraçoes">
+      <created>1611232288528</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1611232288528</updated>
+    </task>
+    <task id="LOCAL-00019" summary="vers 1">
+      <created>1611321708423</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1611321708423</updated>
+    </task>
+    <task id="LOCAL-00020" summary="vers 1">
+      <created>1611321714298</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1611321714298</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -74,20 +200,37 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ver 4. Declarar presencia automaticamente, correcçao no medico" />
-    <MESSAGE value="ver 5. loop quando a consulta acaba modificado" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 5. loop quando a consulta acaba modificado" />
+    <MESSAGE value="3.1 pus as sugerencias que tinham feito" />
+    <MESSAGE value="3.1" />
+    <MESSAGE value="3.3" />
+    <MESSAGE value="3.1.2" />
+    <MESSAGE value="3.2.2" />
+    <MESSAGE value="3.2.1" />
+    <MESSAGE value="3.2 vers 1" />
+    <MESSAGE value="3.2 vers 2" />
+    <MESSAGE value="apagado" />
+    <MESSAGE value="3.2 vers 3" />
+    <MESSAGE value="3.2" />
+    <MESSAGE value="3.2 vers 4" />
+    <MESSAGE value="pequenas alteraçoes" />
+    <MESSAGE value="vers 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="vers 1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1610974503460">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1611251322675">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610974503460" />
-    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610972613636">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1611251322675" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1611321718241">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="774" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610972613636" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1611321718241" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611329858330">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1611329858330" />
   </component>
 </project>
