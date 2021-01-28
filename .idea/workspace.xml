@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 3. Calendario, lista de espera, options and loops">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiagramaDeClasses.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diagrama de Estados - Calendario.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Diagrama de Estados - Calendario.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Desktop/FinanceManager_UPskill2020_v4_Nome_Completo" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/FinanceManager_UPskill2020_v4_Nome_Completo" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -224,7 +224,49 @@
       <option name="project" value="LOCAL" />
       <updated>1611583223301</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="vers 1">
+      <created>1611596689645</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1611596689645</updated>
+    </task>
+    <task id="LOCAL-00026" summary="vers 2.- fix the arrows">
+      <created>1611748517713</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1611748517713</updated>
+    </task>
+    <task id="LOCAL-00027" summary="vers 1">
+      <created>1611748539836</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1611748539836</updated>
+    </task>
+    <task id="LOCAL-00028" summary="vers 2">
+      <created>1611754454368</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1611754454368</updated>
+    </task>
+    <task id="LOCAL-00029" summary="apagado">
+      <created>1611764130026</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1611764130026</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1">
+      <created>1611773490197</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1611773490197</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,17 +290,20 @@
     <MESSAGE value="3.2.1" />
     <MESSAGE value="3.2 vers 1" />
     <MESSAGE value="3.2 vers 2" />
-    <MESSAGE value="apagado" />
     <MESSAGE value="3.2 vers 3" />
     <MESSAGE value="3.2" />
     <MESSAGE value="3.2 vers 4" />
     <MESSAGE value="pequenas alteraçoes" />
-    <MESSAGE value="vers 1" />
     <MESSAGE value="Apagado por Sierralta" />
     <MESSAGE value="Nova vers. Cores, Melhor Organiçazao,GUI" />
     <MESSAGE value="Refactor" />
     <MESSAGE value="Inclui notificar responsavel quando nao há vagas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inclui notificar responsavel quando nao há vagas" />
+    <MESSAGE value="vers 2.- fix the arrows" />
+    <MESSAGE value="vers 1" />
+    <MESSAGE value="vers 2" />
+    <MESSAGE value="apagado" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1611251322675">
@@ -273,13 +318,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1611568434653" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1611583227386">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1611773496288">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1611583227386" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611596635065">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1611773496288" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611788188614">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1611596635065" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1611788188614" />
   </component>
 </project>
