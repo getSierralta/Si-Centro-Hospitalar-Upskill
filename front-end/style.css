@@ -6,7 +6,11 @@
     margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
 	font: inherit;
     font-family: 'Lato', sans-serif;
 }
@@ -22,6 +26,7 @@
     --color-white: #FFFFFF;
     --color-dirty-white: #FFFFFF7E;
     --box-shadow: 5px 0px 20px var(--color-grey-light);
+    --line: 1px var(--color-grey-lightest) solid;
 }
 
 /* Layout */
@@ -48,54 +53,101 @@ ul{
     list-style-type: none;
 }
 
+
 /* fonts */
 
 .light{
     font: normal normal 300 14px/17px Lato;
-    letter-spacing: -0.1px;
     color: var(--color-grey);
-    opacity: 1;
+    letter-spacing: -0.1px;
 }
 
 .medium{
     font: normal normal medium 17px/21px Lato;
-    letter-spacing: -0.12px;
     color: var(--color-grey);
-    opacity: 1;
+    letter-spacing: -0.12px;
 }
 
 .dark{
     font: normal normal bold 29px/35px Lato;
     letter-spacing: 0.23px;
     color: var(--color-darkest);
-    opacity: 1;
 }
 
 .name{
     font-size: 1.5rem;
 }
 
+.small{
+    font-size: small;
+}
+
 /* Nav */
 
-.up >* {
-    margin: 25px 0px 25px 0px;
-}
 
 .up{
     padding: 1rem;
 }
 
+.up >* {
+    margin: 25px 0px 25px 0px;
+}
+
 .nav__logo{
+    margin-top: 0px;
     margin-bottom: 1rem;
 }
 
-.up2 >*{
-    margin-bottom: 2rem;
+.up2 >* {
+    margin-bottom: 1rem;
     font-size: small;
 }
 
-.up2 >* img{
+.up2 .icon{
     width: 15%;
+    margin-right: .3rem;
+}
+
+.up2 li{
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+  padding: .25rem;
+}
+
+li::before{
+    width: 10px;
+    height: 10px;
+    background-color: #98C33E;
+    z-index: 100000;
+}
+
+
+.up2 li:hover:not(.nonehover){
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+}
+
+.up2 li:hover .icon{
+    background-color: var(--color-white);
+}
+
+.nav__down--logo img{
+    width: 40%;
+    margin-left: .5rem;
+}
+
+.nav__down--logout{
+    display: flex;
+    padding: 1rem;
+    border-top: var(--line);
+    display: flex;
+    align-items: center;
+}
+
+.nav__down--logout img{
+    width: 15%;
+    margin-right: .3rem;
 }
 
 /* Main */
@@ -105,5 +157,48 @@ ul{
     background-image: url("img/Bg_ap.png");
     background-size: cover;
     z-index: 10;
+}
+
+
+/* Icons */
+
+.icon{
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 20px;
+    height: 30px;
+    background-color: var(--color-grey);
+}
+
+.icon.home{    
+    -webkit-mask-image: url("img/home.svg");
+}
+
+.icon.utente{    
+    -webkit-mask-image: url("img/pessoa.svg");
+}
+
+.icon.medico{    
+    -webkit-mask-image: url("img/doctor.svg");
+}
+
+.icon.consulta{    
+    -webkit-mask-image: url("img/consultas.svg");
+}
+
+.icon.informacao{    
+    -webkit-mask-image: url("img/information.svg");
+}
+
+.icon.calendario{    
+    -webkit-mask-image: url("img/calendar.svg");
+}
+
+.icon.contactos{    
+    -webkit-mask-image: url("img/phone.svg");
 }
 
