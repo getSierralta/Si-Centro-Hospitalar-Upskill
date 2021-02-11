@@ -1,0 +1,56 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+}
+
+:root{
+    --color-primary: #31ADE0;
+    --color-secondary: #98C33E;
+    --color-darkest: #2C363E;
+    --color-dark: #707070;
+    --color-grey: #7E7E7E;
+    --color-grey-light: #ABABAB; 
+    --color-grey-lightest: #DCDCDC;
+    --color-white: #FFFFFF;
+    --color-dirty-white: #FFFFFF7E;
+}
+
+/* Layout */
+
+.container{
+    display: flex;
+}
+
+.nav{
+    max-width: 30%;
+    min-height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: 1px 5px 15px var(--color-grey-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Common */
+
+ul{
+    list-style-type: none;
+}
+
+/* Nav */
+
+.up{
+    padding: 1rem;
+}
+
+.nav__logo{
+    margin-bottom: 1rem;
+}
+
