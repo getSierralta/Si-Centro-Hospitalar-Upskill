@@ -3,3 +3,4 @@ Java Turma B
 - L. Sierralta 
 - Gabriel Warmann 
 - João Aires 
+- Thiago Hipólito 
