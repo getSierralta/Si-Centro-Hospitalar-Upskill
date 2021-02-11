@@ -8,6 +8,7 @@
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+    font-family: 'Lato', sans-serif;
 }
 
 :root{
@@ -20,6 +21,7 @@
     --color-grey-lightest: #DCDCDC;
     --color-white: #FFFFFF;
     --color-dirty-white: #FFFFFF7E;
+    --box-shadow: 5px 0px 20px var(--color-grey-light);
 }
 
 /* Layout */
@@ -29,13 +31,15 @@
 }
 
 .nav{
-    max-width: 30%;
+    max-width: 40%;
     min-height: 100vh;
     background-color: var(--color-white);
-    box-shadow: 1px 5px 15px var(--color-grey-light);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: var(--box-shadow);
+    opacity: 1;
+    z-index: 11;
 }
 
 /* Common */
@@ -44,7 +48,38 @@ ul{
     list-style-type: none;
 }
 
+/* fonts */
+
+.light{
+    font: normal normal 300 14px/17px Lato;
+    letter-spacing: -0.1px;
+    color: var(--color-grey);
+    opacity: 1;
+}
+
+.medium{
+    font: normal normal medium 17px/21px Lato;
+    letter-spacing: -0.12px;
+    color: var(--color-grey);
+    opacity: 1;
+}
+
+.dark{
+    font: normal normal bold 29px/35px Lato;
+    letter-spacing: 0.23px;
+    color: var(--color-darkest);
+    opacity: 1;
+}
+
+.name{
+    font-size: 1.5rem;
+}
+
 /* Nav */
+
+.up >* {
+    margin: 25px 0px 25px 0px;
+}
 
 .up{
     padding: 1rem;
@@ -52,5 +87,23 @@ ul{
 
 .nav__logo{
     margin-bottom: 1rem;
+}
+
+.up2 >*{
+    margin-bottom: 2rem;
+    font-size: small;
+}
+
+.up2 >* img{
+    width: 15%;
+}
+
+/* Main */
+
+.main{
+    width: 100%;
+    background-image: url("img/Bg_ap.png");
+    background-size: cover;
+    z-index: 10;
 }
 
