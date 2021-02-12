@@ -18,7 +18,7 @@ html{
 :root{
     --color-primary: #31ADE0;
     --color-secondary: #98C33E;
-    --color-darkest: #2C363E;
+    --color-darkest: #2C363E; /* preto */
     --color-dark: #707070;
     --color-grey: #7E7E7E;
     --color-grey-light: #ABABAB; 
@@ -200,19 +200,18 @@ li::before{
 
     /* Div do meio - Consultas e Check-in */
 .middle {
-    height: 37%;
+    /* height: 37%; */
     background: transparent linear-gradient(90deg, #FFFFFFB9 0%, #FFFFFF7E 100%) 0% 0% no-repeat padding-box;
-    padding: 2.25rem 2.25rem 2.25rem 2.25rem;
+    padding: 2rem;
     border-radius: 0.375px;
     opacity: 1;
     display: flex;
     flex-direction: row;
-    line-height: 3rem;
 }
 
 .consultas {
     text-align: center;
-    padding: 2.25rem 2.25rem 2.25rem 2.25rem;
+    padding: 1.5rem;
 }
 
 .check-in {
@@ -223,10 +222,29 @@ li::before{
     opacity: 1;
 }
 
+/* News */
+.news {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .news img {
-    align: center;
-    width: 70%;
-    height: auto;
+    width: 80%;
+}
+
+/* Buttons */
+
+.button {
+    color: var(--color-darkest);
+    border: 0.1rem solid var(--color-grey);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    letter-spacing: 0.01rem;
+}
+
+.button:hover {
+  background-color: var(--color-grey);
+  color: var(--color-white);
 }
 
 /* Icons */
