@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 3. Calendario, lista de espera, options and loops">
-      <change beforePath="$PROJECT_DIR$/front-end/img/Grupo 7.svg" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/img/header.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FinanceManager_UPskill2020_v4_Nome_Completo" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/demo" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -320,10 +318,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1611251322675" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1611587956192">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1613129472025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1611587956192" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1613129472025" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1611568434653">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
