@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 4. mudei as especificacoes dos tipos de letra, diminui imagem das news">
+    <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 5. alterei a margin-top e a max-width dp main__titulo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/style.css" afterDir="false" />
@@ -275,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613045765682</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="ver 5. alterei a margin-top e a max-width dp main__titulo">
+      <created>1613123789004</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1613123789004</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,6 +320,7 @@
     <MESSAGE value="apagado" />
     <MESSAGE value="1" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="ver 5. alterei a margin-top e a max-width dp main__titulo" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 5. alterei a margin-top e a max-width dp main__titulo" />
   </component>
 </project>
