@@ -36,8 +36,7 @@
 }
 
 .cards {
-    grid-template-rows: repeat(auto-fill, 2.3rem);
-    grid-auto-rows: 15rem;
+    grid-auto-rows: 2.3rem;
 }
 
 .card_placeholder_text {
@@ -54,20 +53,21 @@
     align-items: center;
 }
 
-.card.big {
-    background: var(--color-primary);
-    grid-column-end: span 2;
+.card.small {
+    background: var(--color-secondary);
     grid-row-end: span 5;
 }
 
 .card.medium {
     background: var(--color-dark);
-    grid-column-end: span 5;
+    grid-column-end: span 2;
+    grid-row-end: span 5;
 }
 
-.card.small {
-    background: var(--color-secondary);
-    grid-column-end: span 3;
+.card.big {
+    background: var(--color-primary);
+    grid-column-end: span 2;
+    grid-row-end: span 10;
 }
 
 .card.butt {
