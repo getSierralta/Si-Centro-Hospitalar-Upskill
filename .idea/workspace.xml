@@ -20,9 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c439d01c-071e-480f-8ab0-eefb9dc4b4a4" name="Default Changelist" comment="ver 6. polishing middle. add padding">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/getnumber.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/html/getnumber.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/payments.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/html/payments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/html/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/style_.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/css/style_.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\front-end\css" />
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\front-end\html" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sierr\B-grupo4" />
     </key>
@@ -329,6 +337,21 @@
     <MESSAGE value="refactor" />
     <MESSAGE value="ver 5. alterei a margin-top e a max-width dp main__titulo" />
     <MESSAGE value="ver 6. polishing middle. add padding" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 6. polishing middle. add padding" />
+    <MESSAGE value="Fixed Organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Organization" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1613132167611">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1613132167611" />
+    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1613132176232">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1613132176232" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613299389815">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1613299389815" />
   </component>
 </project>
