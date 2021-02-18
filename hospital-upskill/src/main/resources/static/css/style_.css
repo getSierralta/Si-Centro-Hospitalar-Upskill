@@ -52,6 +52,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .card.small {
@@ -59,11 +60,16 @@
     grid-row-end: span 5;
 }
 
+.card.small.elongated {
+    grid-row-end: span 10;
+}
+
 .card.medium {
     background: var(--color-dark);
     grid-column-end: span 2;
     grid-row-end: span 5;
 }
+
 
 .card.big {
     background: var(--color-primary);
