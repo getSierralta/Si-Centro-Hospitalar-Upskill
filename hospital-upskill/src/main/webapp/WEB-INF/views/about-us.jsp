@@ -96,19 +96,19 @@
                     </div>
                 </div>
 
-                <div class="section_tab">
-                    <div class="cards">
-                        <div class="photo"><img src="img/imgdog.jpg" alt="img"> </div>
-                        <div class="photo"><img src="img/imgbear.jpg" alt="img"> </div>
-                        <div class="photo"><img src="img/imggroup.jpg" alt="img"> </div>
-                        <div class="photo"><img src="img/imgpills.jpg" alt="img"> </div>
-                        <div class="photo"><img src="img/imggloves.jpg" alt="img"> </div>
+                    <div class="section_tab cards">
+                        <div class="photo card big"><img src="img/imgdog.jpg" alt="img"> </div>                        
+                        <div class="photo card small elongated"><img  src="img/imgpills.jpg" alt="img"> </div>
+                        <div class="photo card big"><img src="img/imggloves.jpg" alt="img"> </div>                   
                     </div>
-                </div>
+                    <div class="section_tab cards">
+                        <div class="photo card small"></div>
+                        <div class="photo card small"></div>
+                        <div class="photo card small"><img src="img/imgbear.jpg" alt="img"> </div>
+                        <div class="photo card small"></div>
+                        <div class="photo card small"></div>
+                    </div>
 
-                <div class="section_tab cards">
-
-                </div>
             </div>
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
