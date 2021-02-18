@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HospitalUpskillApplication {
 
 	public static void main(String[] args) {
+		System.out.println("test");
 		SpringApplication.run(HospitalUpskillApplication.class, args);
 	}
 
