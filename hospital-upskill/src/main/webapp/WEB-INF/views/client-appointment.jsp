@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style_.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_.css">
     <title>Upskill</title>
 </head>
 
@@ -87,7 +88,7 @@
                     </div>
                 </header>
                 <!-- FIM - Header - Div Horizontal de cima-->
-                
+
                 <div id="appointments-summary" class="section_tab">
                     <h3 class="section_title light small">IMPORTANT INFO</h3>
                     <div class="section_text_box">

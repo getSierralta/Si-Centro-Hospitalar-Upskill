@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PersonController {
 
+    @GetMapping(value = "/log-in")
+    public String showLogIn(){
+        return "log-in";
+    }
 
     @GetMapping(value = "/profile")
     public String showProfile(){
