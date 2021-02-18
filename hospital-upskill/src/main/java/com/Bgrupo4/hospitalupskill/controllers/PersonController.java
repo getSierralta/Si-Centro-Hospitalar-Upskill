@@ -25,4 +25,14 @@ public class PersonController {
     public String showCheckIn(){
         return "check-in";
     }
+
+    @GetMapping(value = "/settings")
+    public String showSettings(){
+        return "settings";
+    }
+
+    @GetMapping(value = "/services")
+    public String showServices(){
+        return "services";
+    }
 }

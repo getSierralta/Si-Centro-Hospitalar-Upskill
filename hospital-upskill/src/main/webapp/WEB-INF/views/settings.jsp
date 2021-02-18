@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_.css">
     <title>Upskill</title>
 </head>
 
@@ -75,48 +75,37 @@
                 </div>
             </div>
         </nav>
+        <!-- MAIN - Div horizontal central -->
 
         <!-- MAIN - Div horizontal central -->
         <main class="main">
 
             <!-- Inicio Main Container -->
             <div class="main__container">
+
                 <!-- Header - Div Horizontal de cima-->
                 <header class="header">
 
                     <div class="main__titulo">
-                        <h3 class="page_title">PAYMENTS</h3>
+                        <h3 class="page_title">SETTINGS</h3>
                     </div>
                 </header>
                 <!-- FIM - Header - Div Horizontal de cima-->
 
-                <div id="payments-summary" class="section_tab">
-                    <h3 class="section_title light small">TITLE</h3>
-                    <div class="section_text_box">
-                        <p>Gimme attention gimme attention gimme attention gimme attention gimme attention gimme attention just kidding i don't want it anymore meow bye poop on the floor, break a planter, sprint, eat own hair, vomit hair, hiss, chirp at birds, eat a squirrel, hide from fireworks, lick toe beans, attack christmas tree so drink from the toilet but where is it?</p>
+                <div id="profile-cards" class="section_tab cards">
+                    <div class="card big">
+                        <h3 class="card_placeholder_text">SETTINGS LIST</h3>
+                    </div>
+
+                    <div class="card big">
+                        <h3 class="card_placeholder_text">SETTINGS OPTIONS</h3>
                     </div>
                 </div>
 
-                <div id="payments-cards" class="section_tab cards">
-                    <div id="unpaid" class="card small">
-                        <h3 class="card_placeholder_text">UNPAID</h3>
-                    </div>
-                    <div id="unpaid" class="card small">
-                        <h3 class="card_placeholder_text">UNPAID</h3>
-                    </div>
-                    <div id="unpaid" class="card small">
-                        <h3 class="card_placeholder_text">UNPAID</h3>
-                    </div>
-                    <div id="paid" class="card small">
-                        <h3 class="card_placeholder_text">PAID</h3>
-                    </div>
-                    <div id="paid" class="card small">
-                        <h3 class="card_placeholder_text">PAID</h3>
-                    </div>
-                </div>
-            </div>
+            </div> </-- /main__container -->
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
+
     </div>
 </body>
 
