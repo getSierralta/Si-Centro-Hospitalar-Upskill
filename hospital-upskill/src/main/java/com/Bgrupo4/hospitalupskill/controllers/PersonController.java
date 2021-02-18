@@ -15,10 +15,12 @@ public class PersonController {
     public String showProfile(){
         return "profile";
     }
+
     @GetMapping(value = "/about-us")
     public String showAboutUs(){
         return "about-us";
     }
+
     @GetMapping(value = "/check-in")
     public String showCheckIn(){
         return "check-in";

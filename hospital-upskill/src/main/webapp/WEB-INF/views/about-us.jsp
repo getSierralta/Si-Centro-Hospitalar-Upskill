@@ -97,10 +97,13 @@
                 </div>
 
                 <div class="section_tab">
-                    <div class="photo"> <img src="" alt=""> </div>
-                    <div class="photo"></div>
-                    <div class="photo"></div>
-                    <div class="photo"></div>
+                    <div class="cards">
+                        <div class="photo"><img src="img/imgdog.jpg" alt="img"> </div>
+                        <div class="photo"><img src="img/imgbear.jpg" alt="img"> </div>
+                        <div class="photo"><img src="img/imggroup.jpg" alt="img"> </div>
+                        <div class="photo"><img src="img/imgpills.jpg" alt="img"> </div>
+                        <div class="photo"><img src="img/imggloves.jpg" alt="img"> </div>
+                    </div>
                 </div>
 
                 <div class="section_tab cards">
