@@ -140,7 +140,7 @@ body.full_body {
     margin-bottom: 3rem;
 }
 
-input, textarea{
+input:not([type = checkbox]), textarea{
     margin: auto;
     display: block;
     width: 70%;
@@ -152,14 +152,25 @@ input, textarea{
 
 .form-label{
     width: 70%;
-    display: block;
     margin: auto;
     padding: 0.5rem;
     margin-bottom: 0.4rem;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8rem;
+}
+.form-label input[type = checkbox]{
+    justify-self: center;
+}
+.form-label a {
+    margin-left: 15px;
+    color: var(--color-secondary);
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.white_box p {
+.white_box p{
     font-size: 0.8rem;
     color: var(--color-secondary);
     margin: auto;

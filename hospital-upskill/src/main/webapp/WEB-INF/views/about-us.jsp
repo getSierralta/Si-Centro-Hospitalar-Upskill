@@ -97,16 +97,16 @@
                 </div>
 
                     <div class="section_tab cards">
-                        <div class="photo card big"><img src="img/imgdog.jpg" alt="img"> </div>                        
-                        <div class="photo card small elongated"><img  src="img/imgpills.jpg" alt="img"> </div>
-                        <div class="photo card big"><img src="img/imggloves.jpg" alt="img"> </div>                   
+                        <div class="card big"><img class="photo" src="img/imgdog.jpg" alt="img"> </div>                        
+                        <div class="card small elongated"><img class="photo"  src="img/imgpills.jpg" alt="img"> </div>
+                        <div class="card big"><img class="photo" src="img/imggloves.jpg" alt="img"> </div>                   
                     </div>
                     <div class="section_tab cards">
-                        <div class="photo card small"></div>
-                        <div class="photo card small"></div>
-                        <div class="photo card small"><img src="img/imgbear.jpg" alt="img"> </div>
-                        <div class="photo card small"></div>
-                        <div class="photo card small"></div>
+                        <div class="card small"></div>
+                        <div class="card small"></div>
+                        <div class="card small"><img class="photo" src="img/imgbear.jpg" alt="img"> </div>
+                        <div class="card small"></div>
+                        <div class="card small"></div>
                     </div>
 
             </div>

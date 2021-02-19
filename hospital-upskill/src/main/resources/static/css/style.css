@@ -54,6 +54,7 @@ html{
 
 /* Common */
 
+
 .column{
     display: flex;
     flex-direction: column;
@@ -63,7 +64,7 @@ ul{
     list-style-type: none;
 }
 
-img{
+.photo{
     height: 100%;
     width: auto;
     object-fit: cover;
@@ -337,7 +338,6 @@ li::before{
     background-color: rgba(49, 173, 224, .8);
     background-size: cover;
 }
-
 
 /*              Icons                */
 
