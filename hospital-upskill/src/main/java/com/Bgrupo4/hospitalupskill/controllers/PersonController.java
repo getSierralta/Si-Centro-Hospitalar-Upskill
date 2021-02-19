@@ -11,6 +11,11 @@ public class PersonController {
         return "log-in";
     }
 
+    @GetMapping(value = "/register")
+    public String showRegister(){
+        return "register";
+    }
+
     @GetMapping(value = "/profile")
     public String showProfile(){
         return "profile";

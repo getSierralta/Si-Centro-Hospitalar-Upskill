@@ -10,4 +10,9 @@ public class ClientController {
     public String showPayments(){
         return "payments";
     }
+
+    @GetMapping(value = "/getnumber")
+    public String showGetNumber(){
+        return "getnumber";
+    }
 }

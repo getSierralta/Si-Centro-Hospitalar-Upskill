@@ -305,6 +305,7 @@ li::before{
 }
 
 /*          Buttons             */
+
 .check-in-btn{
     background-color: var(--color-white);
 }
@@ -327,6 +328,15 @@ li::before{
     background-color: var(--color-dirty-white);
 }
 
+/* Register */
+
+.bodyimg{
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/Bg_ap.png");
+    background-color: rgba(49, 173, 224, .8);
+    background-size: cover;
+}
 
 
 /*              Icons                */

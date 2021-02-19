@@ -55,6 +55,10 @@
     overflow: hidden;
 }
 
+.card.showoverflow{
+    overflow: visible;
+}
+
 .card.small {
     background: var(--color-secondary);
     grid-row-end: span 5;
@@ -62,6 +66,11 @@
 
 .card.small.elongated {
     grid-row-end: span 10;
+}
+
+.card.big-elongated {
+    grid-column-end: span 2;
+    grid-row-end: span 13;
 }
 
 .card.medium {
@@ -95,14 +104,7 @@
     justify-content: flex-start;
 }
 
-.card:hover {
-    opacity: 0.6;
-}
 
-.card:active {
-    background: var(--color-white);
-    /* check why gray cards don't change on click */
-}
 
 /* full pages */
 /* need to reogranize everything down here. it's a mess. just like my life */
@@ -138,7 +140,7 @@ body.full_body {
     margin-bottom: 3rem;
 }
 
-input[type=text], input[type=password] {
+input, textarea{
     margin: auto;
     display: block;
     width: 70%;
@@ -148,10 +150,20 @@ input[type=text], input[type=password] {
     margin-bottom: 0.4rem;
 }
 
+.form-label{
+    width: 70%;
+    display: block;
+    margin: auto;
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+}
+
 .white_box p {
     font-size: 0.8rem;
     color: var(--color-secondary);
     margin: auto;
+    cursor: pointer;
 }
 
 .greenbutt {
