@@ -79,11 +79,23 @@
     grid-row-end: span 5;
 }
 
+.card.medium.flat {
+    background: var(--color-dirty-white);
+    grid-column-end: span 3;
+    grid-row-end: span 5;
+}
 
 .card.big {
     background: var(--color-primary);
     grid-column-end: span 2;
     grid-row-end: span 10;
+}
+
+.card.big.flat {
+    background: var(--color-dirty-white);
+    grid-column-end: span 3;
+    grid-row-end: span 10;
+    flex-direction: column;
 }
 
 .card.butt {
@@ -150,13 +162,17 @@ input:not([type = checkbox]), textarea{
     margin-bottom: 0.4rem;
 }
 
+textarea#message{
+    height: 12rem;
+}
+
 .form-label{
     width: 70%;
     margin: auto;
     padding: 0.5rem;
     margin-bottom: 0.4rem;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 0.8rem;
 }
@@ -175,6 +191,7 @@ input:not([type = checkbox]), textarea{
     color: var(--color-secondary);
     margin: auto;
     cursor: pointer;
+    justify-content: center;
 }
 
 .greenbutt {

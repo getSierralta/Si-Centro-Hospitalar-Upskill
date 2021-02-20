@@ -40,4 +40,9 @@ public class PersonController {
     public String showServices(){
         return "services";
     }
+
+    @GetMapping(value = "/contacts")
+    public String showContacts(){
+        return "contacts";
+    }
 }
