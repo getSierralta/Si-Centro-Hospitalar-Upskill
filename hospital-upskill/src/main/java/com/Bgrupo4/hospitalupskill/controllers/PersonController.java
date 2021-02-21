@@ -1,10 +1,16 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
+import com.Bgrupo4.hospitalupskill.services.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PersonController {
+
+    @Autowired
+    FileService fileService;
 
     @GetMapping(value = "/log-in")
     public String showLogIn(){
@@ -42,7 +48,12 @@ public class PersonController {
     }
 
     @GetMapping(value = "/contacts")
-    public String showContacts(){
-        return "contacts";
+    public String showContacts(){ return "contacts"; }
+
+    @GetMapping(value = "/files-history")
+    public String showFiles(ModelMap map){
+        map.put("fileList", fileService.getFiles());
+        return "files-history";
     }
+
 }
