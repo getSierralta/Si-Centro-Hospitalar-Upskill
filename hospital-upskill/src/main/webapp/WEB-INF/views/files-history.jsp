@@ -95,6 +95,23 @@
                     <div class="section_text_box">
                         <p>Aqui poderá encontar todos os ficheiros relativos ás suas consultas</p>
                     </div>
+                    <form class="section_title light small" id="searchFile" action="#" method="POST">
+                        <input type="text" name="seguro" placeholder="nome">
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="date" placeholder="data" >
+                        <button class="greenbutt" type="submit">Pesquisar</button>
+                    </form>
+                    <div class="section_title_right light small">
+                        <form id="orderFile" action="#" method="POST">
+                            <select class="dark font-medium check-in-btn" id="ordenarFicheiros" placeholder="Ordenar por:">
+                                <option value="nomeASC" select disabled>Nome ascendente </option>
+                                <option value="nomeDESC" select disabled>Nome descendente </option>
+                                <option value="dateASC" select disabled>Data ascendente  </option>
+                                <option value="dateDESC" select disabled>Data descendente </option>
+                            </select>
+                        </form>
+                        <img src="../img/sort.png" height=30px alt="sort">
+                    </div>
                 </div>
                 <div class="section_tab cards">
                     <c:forEach var="file" items="${fileList}">

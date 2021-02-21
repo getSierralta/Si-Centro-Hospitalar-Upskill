@@ -18,6 +18,14 @@
 
 .section_title {
     display: flex;
+    grid-column-end: span 2;
+    gap: 1rem;
+}
+
+.section_title_right {
+    display: flex;
+    flex-direction: row;
+    grid-column-start: 5;
 }
 
 .section_text_box {
