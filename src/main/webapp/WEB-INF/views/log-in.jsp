@@ -12,7 +12,32 @@
 </head>
 
 <body class="full_body">
-    <div class="container">
+                <div class="fixed-container">
+                    <nav class="nav-row">
+                        <div class="medium">
+                            <div class="icon home"></div>
+                            <a href="/">Inicio</a>
+                        </div>
+                        <div class="medium ">
+                            <div class="icon informacao"></div>
+                            <a href="/about-us">Sobre Nós</a>
+                        </div>
+
+                        <div class="medium">
+                            <div class="icon medico"></div>
+                            <a href="/services">Serviços</a>
+                        </div>
+                        <div class="medium ">
+                            <div class="icon contactos"></div>
+                            <a href="/contacts">Contactos</a>
+                        </div>
+                        <div class="medium">
+                            <div class="icon utente"></div>
+                            <a href="/log-in">Log-In</a>
+                        </div>
+                    </nav>
+                </div>
+    <div class="container main">
         <main class="full_main">
             <div class="white_box">
                 <img class="log-in_logo" src="../img/logo.svg" alt="logo">
@@ -24,7 +49,7 @@
                 <div class="greenbutt">
                     <h3 class="medium">Log in</h3>
                 </div>
-                <p style="font-weight: bolder;">Create account</p>
+                <p style="font-weight: bolder;"><a href="/register">Create account</a></p>
             </div>
         </main>
     </div>

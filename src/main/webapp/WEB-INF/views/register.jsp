@@ -36,7 +36,7 @@
                         </div>
                         <button class="greenbutt medium" type="submit">Register</button>
                     </form>                    
-                    <p style="font-weight: bolder;">Log In</p>
+                    <p style="font-weight: bolder;"><a href="/log-in">Log In</a></p>
                 </div>
             </div>
     </div>
