@@ -17,6 +17,7 @@ html {
 :root {
     --color-primary: #31ADE0;
     --color-secondary: #98C33E;
+    --color-ternary: #ed7828;
     --color-darkest: #2C363E;
     /* preto */
     --color-dark: #707070;
@@ -376,6 +377,50 @@ li::before {
     max-height: 70px;
     border-radius: 500px;
     overflow: hidden;
+}
+
+/* Message */
+
+.box{
+    max-width: 30rem;
+    min-height: 12rem;
+    border-radius: .2rem;
+    box-shadow: 5px 5px 35px var(--color-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-white);
+    z-index: 500000;
+}
+
+.box.box-error{
+    background-color: var(--color-ternary);
+}
+.box.box-success{
+    background-color: var(--color-secondary);
+}
+.box.box-info{
+    background-color: var(--color-white);
+}
+
+.box-title{
+    font-weight: 300;
+    font-size: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.box-msg{
+    padding: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: small;
+    font-weight: 300;
+}
+.box-msg p{
+    margin-bottom: .5rem;
 }
 
 

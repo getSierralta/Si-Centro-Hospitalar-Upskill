@@ -8,19 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style_.css">
-    <title>Error</title>
+    <title>Success</title>
 </head>
 
 <body class="bodyimg">
     <div class="container">
         <main class="full_main">
-            <div class="box box-error">
+            <div class="box box-success">
                 <div class="box-title">
-                    ERROR
+                    success
                 </div>
-                <div class="box-msg">
-                    <p>Side-eyes your "jerk" other hand while being petted meowing non stop for food</p>
-                </div>
+               <div class="box-msg">
+                <p>Cat jumps and falls onto the couch purrs and wakes up in a new dimension
+                    filled with kitty litter meow meow yummy</p>
+               </div>
             </div>
         </main>
     </div>

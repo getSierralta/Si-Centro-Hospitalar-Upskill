@@ -45,7 +45,7 @@ public class PersonController {
     }
 
 
-    //todo max
+
     @GetMapping(value = "/bills")
     public String showBills(){
         return "bills";
@@ -57,19 +57,23 @@ public class PersonController {
         return "calendar";
     }
 
-    //todo max
+
     @GetMapping(value = "/error")
     public String showError(){
         return "error";
     }
 
-    //todo max
+
     @GetMapping(value = "/info")
-    public String showSuccess(){
+    public String showInfo(){
         return "info";
     }
 
 
+    @GetMapping(value = "/success")
+    public String showSuccess(){
+        return "success";
+    }
 
     @GetMapping(value = "/files-history")
     public String showFiles(ModelMap map){
