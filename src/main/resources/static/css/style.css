@@ -57,6 +57,12 @@ html {
 /* Common */
 
 
+a, a:active{
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -80,11 +86,6 @@ img.inversed {
 
 .flex {
     display: flex;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
 }
 
 /* fonts */
@@ -181,33 +182,30 @@ img.inversed {
     padding: .25rem;
 }
 
-li::before {
-    width: 10px;
-    height: 10px;
-    background-color: #98C33E;
-    z-index: 100000;
-}
 
 
 .up2>* ::before {
     content: "";
     background-color: var(--color-secondary);
     font-weight: bold;
-    height: 30px;
+    height: 0px;
     width: 5px;
     border-radius: 10px;
     left: -1.2rem;
     position: relative;
     visibility: hidden;
+    transition: height .3s ease-in-out;
 }
 
 .up2 li:hover:not(.nonehover)::before {
     visibility: visible;
+    height: 30px;
 }
 
 .up2 li:hover:not(.nonehover) {
     color: var(--color-secondary);
 }
+
 
 .up2 li:hover .icon {
     background-color: var(--color-secondary);
@@ -230,6 +228,65 @@ li::before {
     width: 15%;
     margin-right: .3rem;
 }
+
+/* Nav Row */
+
+.nav-row-padding-top{
+    padding-top: 1.5rem;
+}
+
+.fixed-container{
+    position: fixed;
+    z-index: 1000;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    min-width: 100%;
+    top: 0px;
+}
+
+.nav-row{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.nav-row >*{
+    display: flex;
+    align-items: center;
+}
+.nav-row .icon{
+    margin-right: .7rem;
+}
+.nav-row .medium{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.nav-row .medium:hover .icon{
+    background-color: var(--color-secondary);
+}
+.nav-row .medium:hover{
+    color: var(--color-secondary);
+    border-left: 1.5px solid var(--color-secondary);
+    border-right: 1.5px solid var(--color-secondary);
+}
+
+.nav-row .medium::after {
+    content: "";
+    background-color: var(--color-secondary);
+    font-weight: bold;
+    height: 5px;
+    width: 0px;
+    top: 1.8rem;
+    left: -3.5rem;
+    border-radius: 10px;
+    position: relative;
+    transition: width .3s ease-in-out;
+}
+
+.nav-row .medium:hover::after{
+    width: 50px;
+}
+
 
 /* Main */
 
