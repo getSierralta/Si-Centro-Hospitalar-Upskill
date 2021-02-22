@@ -39,7 +39,7 @@
               </nav>
           </div>
 
-        <main class="main">
+        <main class="main nav-row-padding-top">
 
             <div class="main__container">
 
