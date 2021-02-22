@@ -31,14 +31,15 @@
 .section_text_box {
     /* height: 37%; */
     grid-column: 1 / 6;
-    background: transparent linear-gradient(90deg, #FFFFFFB9 0%, #FFFFFF7E 100%) 0% 0% no-repeat padding-box;
+    background:  var(--grey-background);
     padding: 2rem;
     border-radius: 0.2rem;
     text-align: left;
 }
 
+
 .section_inner_text_box {
-    background: transparent linear-gradient(90deg, #FFFFFFB9 0%, #FFFFFF7E 100%) 0% 0% no-repeat padding-box;
+    background:  var(--grey-background);
     margin-top: 3rem;
     margin-left: 3rem;
     padding: 3rem;
@@ -105,6 +106,12 @@
 .card.big {
     background: var(--color-primary);
     grid-column-end: span 2;
+    grid-row-end: span 10;
+}
+
+.card.biggest {
+    background: var(--color-primary);
+    grid-column-end: span 15;
     grid-row-end: span 10;
 }
 

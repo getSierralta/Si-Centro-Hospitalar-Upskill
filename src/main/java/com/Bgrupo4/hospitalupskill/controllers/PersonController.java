@@ -12,6 +12,12 @@ public class PersonController {
     @Autowired
     FileService fileService;
 
+    //todo max
+    @GetMapping(value = "/")
+    public String showIndex(){
+        return "index";
+    }
+
     @GetMapping(value = "/log-in")
     public String showLogIn(){
         return "log-in";
@@ -32,23 +38,38 @@ public class PersonController {
         return "about-us";
     }
 
-    @GetMapping(value = "/check-in")
-    public String showCheckIn(){
-        return "check-in";
-    }
 
     @GetMapping(value = "/settings")
     public String showSettings(){
         return "settings";
     }
 
-    @GetMapping(value = "/services")
-    public String showServices(){
-        return "services";
+
+    //todo max
+    @GetMapping(value = "/bills")
+    public String showBills(){
+        return "bills";
     }
 
-    @GetMapping(value = "/contacts")
-    public String showContacts(){ return "contacts"; }
+    //todo max
+    @GetMapping(value = "/calendar")
+    public String showCalendar(){
+        return "calendar";
+    }
+
+    //todo max
+    @GetMapping(value = "/error")
+    public String showError(){
+        return "error";
+    }
+
+    //todo max
+    @GetMapping(value = "/info")
+    public String showSuccess(){
+        return "info";
+    }
+
+
 
     @GetMapping(value = "/files-history")
     public String showFiles(ModelMap map){
