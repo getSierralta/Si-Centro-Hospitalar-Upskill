@@ -33,6 +33,11 @@ html {
 
 /* Layout */
 
+body{
+    background-image: url("../img/Bg_ap.png");
+    background-size: cover;
+}
+
 .container {
     display: flex;
 }
@@ -45,7 +50,6 @@ html {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: var(--box-shadow);
-    opacity: 1;
     z-index: 11;
 }
 
@@ -158,11 +162,12 @@ img.inversed {
 
 
 .up {
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.up>* {
-    margin: 25px 0px 25px 0px;
+.nav__hello, .up2 {
+    margin-top: 25px;
 }
 
 .nav__logo {
@@ -234,6 +239,25 @@ img.inversed {
     margin-right: .3rem;
 }
 
+/* Toggle nav*/
+
+.btn-toggle-nav{
+    width: 40px;
+    height: 40px;
+    margin-left: -.7rem;
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    cursor: pointer;
+}
+.nav-sidebar{
+    transition: width 0.3s ease-out;
+}
+.nav-sidebar ul li span, .nav-sidebar ul li a{
+    transition: opacity 0.3s ease-in-out;
+}
+
 /* Nav Row */
 
 .nav-row-padding-top{
@@ -297,9 +321,6 @@ img.inversed {
 
 .main {
     width: 100%;
-    background-image: url("../img/Bg_ap.png");
-    background-size: cover;
-    z-index: 10;
 }
 
 .main__container {

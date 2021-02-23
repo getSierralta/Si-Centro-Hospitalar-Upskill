@@ -23,8 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/menu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/toggle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/check-in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/check-in.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="geralCalendar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,12 +67,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/img" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/js" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\resources\static\js" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\resources\static\img" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views" />
     </key>
@@ -90,6 +94,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
       </list>
@@ -181,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614097915472</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Index">
+      <created>1614098300998</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1614098300998</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,26 +220,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="Index" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1478" height="90" key="GridCell.Tab.0.bottom" timestamp="1614085849226">
+    <state width="650" height="240" key="GridCell.Tab.0.bottom" timestamp="1614105488577">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="90" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
-    <state width="1478" height="90" key="GridCell.Tab.0.center" timestamp="1614085849226">
+    <state width="650" height="240" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614105488577" />
+    <state width="650" height="240" key="GridCell.Tab.0.center" timestamp="1614105488577">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="90" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
-    <state width="1478" height="90" key="GridCell.Tab.0.left" timestamp="1614085849226">
+    <state width="650" height="240" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614105488577" />
+    <state width="650" height="240" key="GridCell.Tab.0.left" timestamp="1614105488576">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="90" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
-    <state width="1478" height="90" key="GridCell.Tab.0.right" timestamp="1614085849226">
+    <state width="650" height="240" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614105488576" />
+    <state width="650" height="240" key="GridCell.Tab.0.right" timestamp="1614105488577">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="90" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
-    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614097663242">
+    <state width="650" height="240" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614105488577" />
+    <state x="365" y="157" key="Vcs.Push.Dialog.v2" timestamp="1614098305582">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614097663242" />
+    <state x="365" y="157" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614098305582" />
+    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614105166201">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614105166201" />
     <state x="554" y="137" key="git4idea.branch.GitSmartOperationDialog" timestamp="1614097698147">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
