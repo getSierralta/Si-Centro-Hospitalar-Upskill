@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
+import com.Bgrupo4.hospitalupskill.services.CalendarService;
 import com.Bgrupo4.hospitalupskill.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,9 @@ public class PersonController {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    CalendarService calendarService;
 
     @GetMapping(value = "/log-in")
     public String showLogIn(){
@@ -54,6 +58,12 @@ public class PersonController {
     public String showFiles(ModelMap map){
         map.put("fileList", fileService.getFiles());
         return "files-history";
+    }
+
+    @GetMapping(value = "/personal-calendar")
+    public String showEvents(ModelMap map){
+        map.put("calendarList", calendarService.getMarcacoes());
+        return "calendar";
     }
 
 }

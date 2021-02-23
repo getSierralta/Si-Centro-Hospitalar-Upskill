@@ -102,21 +102,22 @@
                         <button class="greenbutt" type="submit">Pesquisar</button>
                     </form>
                     <div class="section_title_right light small">
-                        <form id="orderFile" action="#" method="POST">
-                            <select class="dark font-medium check-in-btn" id="ordenarFicheiros" placeholder="Ordenar por:">
-                                <option value="nomeASC" select disabled>Nome ascendente </option>
-                                <option value="nomeDESC" select disabled>Nome descendente </option>
-                                <option value="dateASC" select disabled>Data ascendente  </option>
-                                <option value="dateDESC" select disabled>Data descendente </option>
+                        <div class="custom-select" style="width:200px;">
+                            <select>
+                                <option value="ordenar">Ordenar por:</option>
+                                <option value="nomeASC">Nome ascendente </option>
+                                <option value="nomeDESC">Nome descendente </option>
+                                <option value="dateASC">Data ascendente  </option>
+                                <option value="dateDESC">Data descendente </option>
                             </select>
-                        </form>
-                        <img src="../img/sort.png" height=30px alt="sort">
+                        </div>
+                        <img src="../img/sort.png" height=20px alt="sort">
                     </div>
                 </div>
                 <div class="section_tab cards">
                     <c:forEach var="file" items="${fileList}">
                         <div class="card small">
-                           <embed src=${file} height="100%" width="100%"></embed>
+                            <embed class="card small" src=${file} height="100%" width="100%"></embed>
                         </div>
                     </c:forEach>
                 </div>

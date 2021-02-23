@@ -20,12 +20,14 @@
     display: flex;
     grid-column-end: span 2;
     gap: 1rem;
+    max-height: 1,5rem;
 }
 
 .section_title_right {
     display: flex;
     flex-direction: row;
     grid-column-start: 5;
+    height: 1,5rem;
 }
 
 .section_text_box {
@@ -39,9 +41,7 @@
 
 .section_inner_text_box {
     background: transparent linear-gradient(90deg, #FFFFFFB9 0%, #FFFFFF7E 100%) 0% 0% no-repeat padding-box;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    padding: 3rem;
+    padding: 10%;
     border-radius: 0.2rem;
     text-align: left;
     width: 100%;
@@ -77,8 +77,14 @@
 }
 
 .card.small {
-    background: var(--color-secondary);
+    background: var(--color-dirty-white);
     grid-row-end: span 5;
+}
+
+.card.small.extraflat {
+    background: var(--color-dirty-white);
+    grid-column-end: span 3;
+    grid-row-end: span 3;
 }
 
 .card.small.elongated {
@@ -102,6 +108,12 @@
     grid-row-end: span 5;
 }
 
+.card.medium.extraflat {
+    background: var(--color-dirty-white);
+    grid-column-end: span 3;
+    grid-row-end: span 7;
+}
+
 .card.big {
     background: var(--color-primary);
     grid-column-end: span 2;
@@ -113,6 +125,10 @@
     grid-column-end: span 3;
     grid-row-end: span 10;
     flex-direction: column;
+}
+
+.card.big.flat.right {
+    grid-column-start: 3;
 }
 
 .card.butt {
@@ -161,7 +177,27 @@ body.full_body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
+
+.white_box p{
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    margin: auto;
+    cursor: pointer;
+}
+
+.form_box{
+    background: var(--color-white);
+    border-radius: 0.2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
 
 .log-in_logo {
     width: 55%;
@@ -203,14 +239,6 @@ textarea#message{
     text-decoration: none;
 }
 
-.white_box p{
-    font-size: 0.8rem;
-    color: var(--color-secondary);
-    margin: auto;
-    cursor: pointer;
-    justify-content: center;
-}
-
 .greenbutt {
     margin: auto;
     display: block;
@@ -230,4 +258,98 @@ textarea#message{
 
 .greenbutt:hover {
     opacity: 0.6;
+}
+
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color:  var(--color-primary);
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.select-hide {
+  display: none;
+}
+
+
+ul {list-style-type: none;}
+
+calendar {
+  font-family: Verdana, sans-serif;
+  width: 100%;
+}
+
+.month {
+  width: 100%;
+  background: var(--color-primary);
+  text-align: center;
+  padding. 2rem;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: var(--color-secondary);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
 }

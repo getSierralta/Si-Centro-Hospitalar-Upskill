@@ -82,45 +82,65 @@
             <div class="main__container">
                 <!-- Header - Div Horizontal de cima-->
                 <header class="header">
-                        <div class="main__titulo">
-                        <h3 class="page_title">CONTACTOS</h3>
+
+                    <div class="main__titulo">
+                        <h3 class="page_title">About Us</h3>
                     </div>
                 </header>
                 <!-- FIM - Header - Div Horizontal de cima-->
 
-               <div class="section_tab">
-                    <h3 class="section_title light small">ENTRE EM CONTACTO</h3>
-               </div>
-
-                <div class="section_tab cards">
-                    <div class="card small extraflat">
-                        <div class="section_inner_text_box">
-                            <p><b>Morada:</b> Rua do Mar, nº 31, Telheiras, LISBOA</p>     <br>
-                            <p><b>E-mail:</b> geral@upskillmed.com</p>                     <br>
-                            <p><b>Telefone:</b> 234567890 </p>                             <br>
-                        </div>
-                    </div>
-                    <div class="card big">
-                        <div class="form_box">
-                            
-                                <img class="form-label" src="../img/centro_hospitalar_upskill_contacto.png" alt="contacto">
-
-                            <form>
-                               <input type="text" name="name" placeholder="Nome">
-                               <input type="email" name="email" placeholder="E-Mail">
-                               <input type="text" name="assunto" placeholder="Assunto">
-                               <textarea id="message" name="message" placeholder="A sua mensagem"></textarea>
-                               <button class="greenbutt">
-                                   <h3 class="medium">Submit</h3>
-                               </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card medium extraflat">
-                        <img class="photo" src="img/map.png" alt="map">
+                <div class="section_tab">
+                    <h3 class="section_title light small">IMPORTANT INFO</h3>
+                    <div class="section_text_box">
+                        <p>Annoy the old grumpy cat, start a fight and then retreat to wash when i lose hey! you there, with the hands for stare at wall turn and meow stare at wall some more meow again continue staring for give attitude bite off human's toes and bird bird bird bird bird bird human why take bird out i could have eaten that. Steal raw zucchini off kitchen counter sleep in the bathroom sink for i heard this rumor where the humans are our owners, pfft, what do they know?!</p>
                     </div>
                 </div>
-        </div>
+                    <div class="section_tab cards">
+                        <c:if test="${calendarList.size() >= 1}">
+                            <div class="card small">
+
+                            </div>
+                        </c:if>
+                        <c:if test="${calendarList.size() >= 2}">
+                            <div class="card small">
+
+                            </div>
+                        </c:if>
+                        <div class="card big flat right">
+                        <div class="calendar">
+                            <div class="month">
+                                <ul>
+                                    <li class="prev">&#10094;</li>
+                                    <li class="next">&#10095;</li>
+                                    <li>
+                                        August<br>
+                                        <span style="font-size:18px">2021</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="weekdays">
+                                <li>Mo</li> <li>Tu</li> <li>We</li> <li>Th</li> <li>Fr</li> <li>Sa</li> <li>Su</li>
+                            </ul>
+                            <ul class="days">
+                              <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> <li>6</li> <li>7</li>
+                              <li>8</li> <li>9</li> <li><span class="active">10</span></li> <li>11</li> <li>12</li> <li>13</li> <li>14</li>
+                              <li>15</li> <li>16</li> <li>17</li> <li>18</li> <li>19</li> <li>20</li> <li>21</li> <li>22</li> <li>23</li>
+                              <li>24</li> <li>25</li> <li>26</li> <li>27</li> <li>28</li> <li>29</li> <li>30</li> <li>31</li>
+                            </ul>
+                        </div>
+                        </div>
+                        <c:if test="${calendarList.size() >= 3}">
+                            <div class="card small">
+
+                            </div>
+                        </c:if>
+                        <c:if test="${calendarList.size() >= 4}">
+                            <div class="card small">
+
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>

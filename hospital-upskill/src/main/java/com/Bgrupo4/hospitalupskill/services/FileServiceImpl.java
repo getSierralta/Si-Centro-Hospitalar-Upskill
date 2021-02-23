@@ -14,7 +14,7 @@ public class FileServiceImpl implements  FileService{
     public List<String> getFiles() {
         List<String> fileNames = new ArrayList<>();
         for(File file: files){
-            fileNames.add("../files/" + file.getName() + ".pdf");
+            fileNames.add("../files/" + file.getName());
         }
         return fileNames;
     }
