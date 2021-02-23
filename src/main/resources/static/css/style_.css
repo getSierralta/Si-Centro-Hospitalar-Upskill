@@ -82,7 +82,7 @@
     grid-row-end: span 5;
 }
 
-.card.small.extraflat {
+.card.small.flat {
     background: var(--color-dirty-white);
     grid-column-end: span 3;
     grid-row-end: span 3;
@@ -107,6 +107,12 @@
     background: var(--color-dirty-white);
     grid-column-end: span 3;
     grid-row-end: span 5;
+}
+
+.card.mediumbig.flat {
+    background: var(--color-dirty-white);
+    grid-column-end: span 3;
+    grid-row-end: span 7;
 }
 
 .card.big {

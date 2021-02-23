@@ -146,23 +146,6 @@
                         </c:if>
                     </div>
                 </div>
-=======
-
-                    <div class="section_tab cards">
-                        <div class="card big"><img class="photo" src="img/imgdog.jpg" alt="img"> </div>                        
-                        <div class="card small elongated"><img class="photo"  src="img/imgpills.jpg" alt="img"> </div>
-                        <div class="card big"><img class="photo" src="img/imggloves.jpg" alt="img"> </div>                   
-                    </div>
-                    <div class="section_tab cards">
-                        <div class="card small"></div>
-                        <div class="card small"></div>
-                        <div class="card small"><img class="photo" src="img/imgbear.jpg" alt="img"> </div>
-                        <div class="card small"></div>
-                        <div class="card small"></div>
-                    </div>
-
-            </div>
->>>>>>> origin/dev
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>

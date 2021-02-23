@@ -56,7 +56,7 @@
                </div>
 
                 <div class="section_tab cards">
-                    <div class="card small extraflat">
+                    <div class="card small flat">
                         <div class="section_inner_text_box">
                             <p><b>Morada:</b> Rua do Mar, nº 31, Telheiras, LISBOA</p>     <br>
                             <p><b>E-mail:</b> geral@upskillmed.com</p>                     <br>
@@ -79,7 +79,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card medium extraflat">
+                    <div class="card mediumbig flat">
                         <img class="photo" src="img/map.png" alt="map">
                     </div>
                 </div>
