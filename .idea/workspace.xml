@@ -23,11 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/img1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/img2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/img3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contacts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contacts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\sierr\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1oeMBvV13n18eT0AvKjMCyAoIRJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -55,13 +69,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/img" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\resources\static\img" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
@@ -81,6 +95,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
       </list>
     </recent_temporary>
@@ -188,5 +203,31 @@
     <MESSAGE value="Messages" />
     <MESSAGE value="New Nav" />
     <option name="LAST_COMMIT_MESSAGE" value="New Nav" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1478" height="90" key="GridCell.Tab.0.bottom" timestamp="1614085849226">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="90" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
+    <state width="1478" height="90" key="GridCell.Tab.0.center" timestamp="1614085849226">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="90" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
+    <state width="1478" height="90" key="GridCell.Tab.0.left" timestamp="1614085849226">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="90" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
+    <state width="1478" height="90" key="GridCell.Tab.0.right" timestamp="1614085849226">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="90" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614085849226" />
+    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614097663242">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="590" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614097663242" />
+    <state x="554" y="137" key="git4idea.branch.GitSmartOperationDialog" timestamp="1614097698147">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="554" y="137" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1614097698147" />
   </component>
 </project>
