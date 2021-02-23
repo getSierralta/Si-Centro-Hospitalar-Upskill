@@ -39,6 +39,7 @@
     text-align: left;
 }
 
+
 .section_inner_text_box {
     background: transparent linear-gradient(90deg, #FFFFFFB9 0%, #FFFFFF7E 100%) 0% 0% no-repeat padding-box;
     padding: 10%;
@@ -77,7 +78,7 @@
 }
 
 .card.small {
-    background: var(--color-dirty-white);
+    background: var(--color-secondary);
     grid-row-end: span 5;
 }
 
@@ -108,15 +109,15 @@
     grid-row-end: span 5;
 }
 
-.card.medium.extraflat {
-    background: var(--color-dirty-white);
-    grid-column-end: span 3;
-    grid-row-end: span 7;
-}
-
 .card.big {
     background: var(--color-primary);
     grid-column-end: span 2;
+    grid-row-end: span 10;
+}
+
+.card.biggest {
+    background: var(--color-primary);
+    grid-column-end: span 15;
     grid-row-end: span 10;
 }
 
@@ -237,6 +238,14 @@ textarea#message{
     color: var(--color-secondary);
     cursor: pointer;
     text-decoration: none;
+}
+
+.white_box p{
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    margin: auto;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .greenbutt {

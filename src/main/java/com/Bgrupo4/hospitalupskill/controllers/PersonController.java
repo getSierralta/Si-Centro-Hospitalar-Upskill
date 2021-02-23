@@ -1,6 +1,5 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
-import com.Bgrupo4.hospitalupskill.services.CalendarService;
 import com.Bgrupo4.hospitalupskill.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,12 @@ public class PersonController {
 
     @Autowired
     FileService fileService;
+
+    //todo max
+    @GetMapping(value = "/")
+    public String showIndex(){
+        return "index";
+    }
 
     @Autowired
     CalendarService calendarService;
@@ -36,23 +41,42 @@ public class PersonController {
         return "about-us";
     }
 
-    @GetMapping(value = "/check-in")
-    public String showCheckIn(){
-        return "check-in";
-    }
 
     @GetMapping(value = "/settings")
     public String showSettings(){
         return "settings";
     }
 
-    @GetMapping(value = "/services")
-    public String showServices(){
-        return "services";
+
+
+    @GetMapping(value = "/bills")
+    public String showBills(){
+        return "bills";
     }
 
-    @GetMapping(value = "/contacts")
-    public String showContacts(){ return "contacts"; }
+    //todo max
+    @GetMapping(value = "/calendar")
+    public String showCalendar(){
+        return "calendar";
+    }
+
+
+    @GetMapping(value = "/error")
+    public String showError(){
+        return "error";
+    }
+
+
+    @GetMapping(value = "/info")
+    public String showInfo(){
+        return "info";
+    }
+
+
+    @GetMapping(value = "/success")
+    public String showSuccess(){
+        return "success";
+    }
 
     @GetMapping(value = "/files-history")
     public String showFiles(ModelMap map){

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_.css">
-    <title>Upskill</title>
+    <title>Clients Bills</title>
 </head>
 
 <body>
@@ -80,47 +80,33 @@
 
             <!-- Inicio Main Container -->
             <div class="main__container">
-                <!-- Header - Div Horizontal de cima-->
-                <header class="header">
-                        <div class="main__titulo">
-                        <h3 class="page_title">CONTACTOS</h3>
-                    </div>
-                </header>
-                <!-- FIM - Header - Div Horizontal de cima-->
 
-               <div class="section_tab">
-                    <h3 class="section_title light small">ENTRE EM CONTACTO</h3>
-               </div>
+                <div class="section_tab">
+                    <h3 class="section_title light small">{utente.nome} bills</h3>
+                </div>
 
-                <div class="section_tab cards">
-                    <div class="card small extraflat">
-                        <div class="section_inner_text_box">
-                            <p><b>Morada:</b> Rua do Mar, nº 31, Telheiras, LISBOA</p>     <br>
-                            <p><b>E-mail:</b> geral@upskillmed.com</p>                     <br>
-                            <p><b>Telefone:</b> 234567890 </p>                             <br>
+                <div class="client-bills_info-box">
+                    <div class="client-bills_info-box_inner">
+                        <div class="client-photo">
+                            <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                         </div>
-                    </div>
-                    <div class="card big">
-                        <div class="form_box">
-                            
-                                <img class="form-label" src="../img/centro_hospitalar_upskill_contacto.png" alt="contacto">
-
-                            <form>
-                               <input type="text" name="name" placeholder="Nome">
-                               <input type="email" name="email" placeholder="E-Mail">
-                               <input type="text" name="assunto" placeholder="Assunto">
-                               <textarea id="message" name="message" placeholder="A sua mensagem"></textarea>
-                               <button class="greenbutt">
-                                   <h3 class="medium">Submit</h3>
-                               </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card medium extraflat">
-                        <img class="photo" src="img/map.png" alt="map">
+                        <p>Diverse information here!</p>
                     </div>
                 </div>
-        </div>
+                <div class="section_tab cards">
+                    <div class="card small"></div>
+                    <div class="card small"></div>
+                    <div class="card small"></div>
+                    <div class="card small"></div>
+                    <div class="card small"></div>
+                </div>
+                <div class="section_tab cards">
+                    <div class="card biggest">
+                        Payment details
+                    </div>
+                </div>
+
+            </div>
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>

@@ -10,4 +10,9 @@ public class EmployeeController {
     public String showClientAppointment(){
         return "client-appointment";
     }
+
+    @GetMapping(value = "/check-in")
+    public String showCheckIn(){
+        return "check-in";
+    }
 }

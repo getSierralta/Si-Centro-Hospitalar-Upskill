@@ -15,4 +15,12 @@ public class ClientController {
     public String showGetNumber(){
         return "getnumber";
     }
+
+    @GetMapping(value = "/services")
+    public String showServices(){
+        return "services";
+    }
+
+    @GetMapping(value = "/contacts")
+    public String showContacts(){ return "contacts"; }
 }
