@@ -172,6 +172,33 @@
     justify-content: flex-start;
 }
 
+/* SERVICES SERVICES SERVICES SERVICES SERVICES SERVICES SERVICES SERVICES */
+
+.section_tab_services {
+    display: flex;
+    margin: 1rem 1rem 1rem 1rem;
+    gap: 1rem;
+}
+
+.card.butt#services {
+    max-width: 38%
+    background: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    }
+
+#services-desc{
+    max-width: 70%;
+    background: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    }
+
+
 
 
 /* full pages */
