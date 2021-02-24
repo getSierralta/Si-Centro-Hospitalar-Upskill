@@ -22,11 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="calendario jsp needs atention&#10;nicer calendar">
+    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="changed register">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contacts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contacts.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +176,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614126396909</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="calendario jsp needs atention&#10;nicer calendar">
+      <created>1614130535862</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1614130535862</updated>
+    </task>
+    <task id="LOCAL-00014" summary="changed register">
+      <created>1614130566080</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1614130566080</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +215,7 @@
     <MESSAGE value="New Nav" />
     <MESSAGE value="files working&#10;shitty calendar" />
     <MESSAGE value="calendario jsp needs atention&#10;nicer calendar" />
-    <option name="LAST_COMMIT_MESSAGE" value="calendario jsp needs atention&#10;nicer calendar" />
+    <MESSAGE value="changed register" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed register" />
   </component>
 </project>
