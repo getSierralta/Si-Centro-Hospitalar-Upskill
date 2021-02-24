@@ -12,9 +12,10 @@ public class Marcacao {
     @Id
     @GeneratedValue
     private Long id;
-    private String numUtente;
+    private String utente;
     private String estado;
     private String comentario;
+    private String especialidade;
     private Date data;
     private Time hora;
 
@@ -26,9 +27,9 @@ public class Marcacao {
 
     public void setId(Long id) { this.id = id; }
 
-    public String getNumUtente() { return numUtente; }
+    public String getUtente() { return utente; }
 
-    public void setNumUtente(String numUtente) { this.numUtente = numUtente; }
+    public void setUtente(String numUtente) { this.utente = numUtente; }
 
     public String getEstado() { return estado; }
 
@@ -37,6 +38,10 @@ public class Marcacao {
     public String getComentario() { return comentario; }
 
     public void setComentario(String comentario) { this.comentario = comentario; }
+
+    public String getEspecialidade() { return especialidade; }
+
+    public void setEspecialidade(String especialidade) { this.especialidade = especialidade; }
 
     public Date getData() { return data; }
 

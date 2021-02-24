@@ -84,31 +84,32 @@
                 <header class="header">
 
                     <div class="main__titulo">
-                        <h3 class="page_title">About Us</h3>
+                        <h3 class="page_title">Calendario Pessoal</h3>
                     </div>
                 </header>
                 <!-- FIM - Header - Div Horizontal de cima-->
 
                 <div class="section_tab">
-<<<<<<< HEAD
-                    <h3 class="section_title light small">IMPORTANT INFO</h3>
-=======
                     <h3 class="section_title light small">INFO</h3>
->>>>>>> origin/dev
                     <div class="section_text_box">
-                        <p>Annoy the old grumpy cat, start a fight and then retreat to wash when i lose hey! you there, with the hands for stare at wall turn and meow stare at wall some more meow again continue staring for give attitude bite off human's toes and bird bird bird bird bird bird human why take bird out i could have eaten that. Steal raw zucchini off kitchen counter sleep in the bathroom sink for i heard this rumor where the humans are our owners, pfft, what do they know?!</p>
+                        <p>Aqui poderá encontrar as suas proximas consultas, assim como um calendario para o ajudar a gerir as suas marcações.</p>
                     </div>
                 </div>
-<<<<<<< HEAD
                     <div class="section_tab cards">
                         <c:if test="${calendarList.size() >= 1}">
                             <div class="card small">
-
+                                <p><b>Dia: </b>${calendarList.get(0).getData()}</p>
+                                <p><b>Hora: </b>${calendarList.get(0).getHora()}</p>
+                                <p><b>Utente: </b>${calendarList.get(0).getUtente()}</p>
+                                <p><b>Especialidade: </b>${calendarList.get(0).getEspecialidade()}</p>
                             </div>
                         </c:if>
                         <c:if test="${calendarList.size() >= 2}">
                             <div class="card small">
-
+                                <p><b>Dia: </b>${calendarList.get(1).getData()}</p>
+                                <p><b>Hora: </b>${calendarList.get(1).getHora()}</p>
+                                <p><b>Utente: </b>${calendarList.get(1).getUtente()}</p>
+                                <p><b>Especialidade: </b>${calendarList.get(1).getEspecialidade()}</p>
                             </div>
                         </c:if>
                         <div class="card big flat right">
@@ -117,14 +118,13 @@
                                 <ul>
                                     <li class="prev">&#10094;</li>
                                     <li class="next">&#10095;</li>
-                                    <li>
-                                        August<br>
-                                        <span style="font-size:18px">2021</span>
+                                    <li><b>Agosto</b>
+                                    <br>2021
                                     </li>
                                 </ul>
                             </div>
                             <ul class="weekdays">
-                                <li>Mo</li> <li>Tu</li> <li>We</li> <li>Th</li> <li>Fr</li> <li>Sa</li> <li>Su</li>
+                                <li>Seg</li> <li>Ter</li> <li>Qua</li> <li>Qui</li> <li>Sex</li> <li>Sab</li> <li>Dom</li>
                             </ul>
                             <ul class="days">
                               <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> <li>6</li> <li>7</li>
@@ -136,12 +136,18 @@
                         </div>
                         <c:if test="${calendarList.size() >= 3}">
                             <div class="card small">
-
+                                <p><b>Dia: </b>${calendarList.get(2).getData()}</p>
+                                <p><b>Hora: </b>${calendarList.get(2).getHora()}</p>
+                                <p><b>Utente: </b>${calendarList.get(2).getUtente()}</p>
+                                <p><b>Especialidade: </b>${calendarList.get(2).getEspecialidade()}</p>
                             </div>
                         </c:if>
                         <c:if test="${calendarList.size() >= 4}">
                             <div class="card small">
-
+                                <p><b>Dia: </b>${calendarList.get(3).getData()}</p>
+                                <p><b>Hora: </b>${calendarList.get(3).getHora()}</p>
+                                <p><b>Utente: </b>${calendarList.get(3).getUtente()}</p>
+                                <p><b>Especialidade: </b>${calendarList.get(3).getEspecialidade()}</p>
                             </div>
                         </c:if>
                     </div>
