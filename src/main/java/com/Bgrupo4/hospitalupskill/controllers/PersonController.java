@@ -12,14 +12,13 @@ public class PersonController {
 
     @Autowired
     FileService fileService;
+    @Autowired
+    CalendarService calendarService;
 
     @GetMapping(value = "/")
     public String showIndex(){
         return "index";
     }
-
-    @Autowired
-    CalendarService calendarService;
 
     @GetMapping(value = "/log-in")
     public String showLogIn(){
@@ -53,7 +52,7 @@ public class PersonController {
     }
 
 
-    @GetMapping(value = "/gearlCalendar")
+    @GetMapping(value = "/geralCalendar")
     public String showCalendar(){
         return "geralCalendar";
     }
@@ -79,7 +78,7 @@ public class PersonController {
         return "files-history";
     }
 
-    @GetMapping(value = "/personal-calendar")
+    @GetMapping(value = "/calendar")
     public String showEvents(ModelMap map){
         map.put("calendarList", calendarService.getMarcacoes());
         return "calendar";

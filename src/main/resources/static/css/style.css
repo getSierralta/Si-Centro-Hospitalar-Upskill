@@ -99,10 +99,6 @@ img.inversed {
     justify-content: center;
 }
 
-button, button:focus, button:active, button:visited, button:hover{
-    all: unset;
-}
-
 /* fonts */
 
 .green {
@@ -524,23 +520,32 @@ button, button:focus, button:active, button:visited, button:hover{
 .calendar{
     min-width: 100%;
     min-height: 100%;
+    flex-direction:column;
+}
+.card.small.elongated2, .card.morebig.color-blue.calendar{
+    background-color: transparent;
 }
 
-
 .calendar__search{
-    display: flex;
     margin: .5rem;
+    min-height:100%;
+    min-width:100%;
+    background: var(--grey-background);
+}
+#calendar__search-form{
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 .calendar__month{
     width: 100%;
     background: var(--grey-background);
-    color: var(--color-darkest);
-    font-weight: lighter;
-    font-size: 3rem;
     text-align: center;
 }
 .calendar__title{
+    color: var(--color-darkest);
+    font-weight: lighter;
+    font-size: 3rem;
     padding: 1.5rem;
 }
 .calendar__week{
@@ -551,10 +556,15 @@ button, button:focus, button:active, button:visited, button:hover{
 }
 .calendar__day{
     background-color: #ed7828;
-    padding: 1rem;
-    padding-bottom: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 }
 
+.search_button{
+    all: unset;
+}
+button.search_button{
+    cursor: pointer;
+}
 
 /* Message */
 

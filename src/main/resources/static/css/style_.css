@@ -78,6 +78,15 @@
     align-items: center;
     overflow: hidden;
 }
+.color-green{
+    background: var(--color-secondary);
+}
+.color-blue{
+    background: var(--color-primary);
+}
+.color-medium{
+    background: var(--color-dark);
+}
 
 .card.showoverflow{
     overflow: visible;
@@ -96,6 +105,9 @@
 
 .card.small.elongated {
     grid-row-end: span 10;
+}
+.card.small.elongated2 {
+    grid-row-end: span 12;
 }
 
 .card.medium {
@@ -119,6 +131,14 @@
 .card.big {
     background: var(--color-primary);
     grid-column-end: span 2;
+    grid-row-end: span 10;
+}
+.card.morebig {
+    grid-column-end: span 3;
+    grid-row-end: span 12;
+}
+.card.biggest {
+    grid-column-end: span 5;
     grid-row-end: span 10;
 }
 

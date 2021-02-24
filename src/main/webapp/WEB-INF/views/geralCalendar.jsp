@@ -79,9 +79,17 @@
                     </div>
                 </header>
                 <div class="section_tab cards">
+                    <div class="card small elongated2">
+                        <div class="calendar__search">
+                           <form action="#" method="get" class="flex log-in" id="calendar__search-form">
+                                <button type="submit" class="search_button">🔍</button>
+                                 <input type="text" placeholder="search">
+                           </form>
+                        </div>
+                     </div>
                     <div class="card morebig color-blue calendar">
                         <div class="calendar__month">
-                           <div class="calendar__title"> Fevereiro</div>
+                           <div class="calendar__title">Fevereiro</div>
                         </div>
                         <div class="calendar__days">
                             <div class="calendar__week">
@@ -130,14 +138,6 @@
                                 <div class="calendar__day">0</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card small elongated2 calendar__searchbar">
-                       <div class="calendar__search">
-                            <form action="#" method="get" class="flex log-in">
-                                <button type="submit">🔍</button>
-                                <input type="text" placeholder="search">
-                            </form>
-                       </div>
                     </div>
                 </div>
             </div>
