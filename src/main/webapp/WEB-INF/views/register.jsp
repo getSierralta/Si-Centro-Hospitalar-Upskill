@@ -18,7 +18,6 @@
             </div>
             <div class="card big-elongated right">
                 <div class="form_box">
-                    <img class="register_logo" src="../img/logo.svg" alt="logo">
                     <form class="log-in" id="register" action="#" method="POST">
                         <input type="text" name="nome" placeholder="Nome" required>
                         <input type="text" name="contribuinte" placeholder="Contribuinte" required>
@@ -35,7 +34,7 @@
                             <a href="#"><span class="light small">Aceita os</span> termos e condições?</a>
                         </div>
                         <button class="greenbutt medium" type="submit">Register</button>
-                    </form>                    
+                    </form>
                     <p style="font-weight: bolder;"><a href="/log-in">Log In</a></p>
                 </div>
             </div>
