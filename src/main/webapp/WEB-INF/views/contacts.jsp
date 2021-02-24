@@ -66,13 +66,13 @@
                     <div class="card big">
                         <div class="form_box">
                             
-                                <img class="form-label" src="../img/centro_hospitalar_upskill_contacto.png" alt="contacto">
+                                <img class="log-in_logo" src="../img/centro_hospitalar_upskill_contacto.png" alt="contacto">
 
                             <form>
-                               <input type="text" name="name" placeholder="Nome">
-                               <input type="email" name="email" placeholder="E-Mail">
-                               <input type="text" name="assunto" placeholder="Assunto">
-                               <textarea id="message" name="message" placeholder="A sua mensagem"></textarea>
+                               <input type="text" name="name" placeholder="Nome" required>
+                               <input type="email" name="email" placeholder="E-Mail" required>
+                               <input type="text" name="assunto" placeholder="Assunto" required>
+                               <textarea id="message" name="message" placeholder="A sua mensagem"></textarea required>
                                <button class="greenbutt">
                                    <h3 class="medium">Submit</h3>
                                </button>

@@ -12,13 +12,13 @@
 </head>
 
 <body class="bodyimg">
-    <div class="section_tab cards ">
-            <div class="card big-elongated">
+    <div class="section_tabblue cards ">
+            <div class="card big-elongated left">
                 <img class="photo" src="../img/imgregister.jpg" alt="img doctora">
             </div>
-            <div class="card big-elongated">
-                <div class="white_box">
-                    <img class="log-in_logo" src="../img/logo.svg" alt="logo">
+            <div class="card big-elongated right">
+                <div class="form_box">
+                    <img class="register_logo" src="../img/logo.svg" alt="logo">
                     <form class="log-in" id="register" action="#" method="POST">
                         <input type="text" name="nome" placeholder="Nome" required>
                         <input type="text" name="contribuinte" placeholder="Contribuinte" required>
