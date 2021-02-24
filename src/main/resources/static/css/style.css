@@ -33,6 +33,11 @@ html {
 
 /* Layout */
 
+body{
+    background-image: url("../img/Bg_ap.png");
+    background-size: cover;
+}
+
 .container {
     display: flex;
 }
@@ -45,7 +50,6 @@ html {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: var(--box-shadow);
-    opacity: 1;
     z-index: 11;
 }
 
@@ -158,11 +162,12 @@ img.inversed {
 
 
 .up {
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.up>* {
-    margin: 25px 0px 25px 0px;
+.nav__hello, .up2 {
+    margin-top: 25px;
 }
 
 .nav__logo {
@@ -234,6 +239,25 @@ img.inversed {
     margin-right: .3rem;
 }
 
+/* Toggle nav*/
+
+.btn-toggle-nav{
+    width: 40px;
+    height: 40px;
+    margin-left: -.7rem;
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    cursor: pointer;
+}
+.nav-sidebar{
+    transition: width 0.3s ease-out;
+}
+.nav-sidebar ul li span, .nav-sidebar ul li a{
+    transition: opacity 0.3s ease-in-out;
+}
+
 /* Nav Row */
 
 .nav-row-padding-top{
@@ -297,9 +321,6 @@ img.inversed {
 
 .main {
     width: 100%;
-    background-image: url("../img/Bg_ap.png");
-    background-size: cover;
-    z-index: 10;
 }
 
 .main__container {
@@ -403,6 +424,57 @@ img.inversed {
 .btn-white:hover {
     background-color: var(--color-dirty-white);
 }
+
+/* Index*/
+.index{
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/img1.jpg);
+    background-position: center;
+    background-size: cover;
+    animation-name: imgs;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+}
+.index__logo{
+    justify-self: flex-start;
+    padding: 1rem;
+    left: 0rem;
+    top: 4rem;
+    position: absolute;
+    z-index: 100;
+}
+
+.index__arrow--left{
+    position: absolute;
+    z-index: 100;
+    left: 1rem;
+}
+.index__arrow--right{
+    position: absolute;
+    z-index: 100;
+    right: 1rem;
+}
+.index__img{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.index__img--img{
+    width: 100%;
+}
+
+@keyframes imgs {
+    0%  {background-image: url(../img/img1.jpg);}
+    33.3%  {background-image: url(../img/img2.jpg);}
+    66.6%    {background-image: url(../img/img3.jpg);}
+    100%  {background-image: url(../img/img1.jpg);}
+  }
 
 /* Register */
 
@@ -548,4 +620,18 @@ img.inversed {
     mask-image: url("../img/expand-arrow.svg");
     transform: rotate(90deg);
     background-color: var(--color-primary);
+}
+.icon.left-arrow:hover, .icon.right-arrow:hover {
+    background-color: var(--color-ternary);
+}
+
+.icon.left-arrow:active {
+    margin-left: 1.5rem;
+    background-color: var(--color-secondary);
+    transition: all .2s;
+}
+.icon.right-arrow:active {
+    margin-right: 1.5rem;
+    background-color: var(--color-secondary);
+    transition: all .2s;
 }
