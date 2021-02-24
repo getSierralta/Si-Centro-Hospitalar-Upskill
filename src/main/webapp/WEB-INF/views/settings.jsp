@@ -13,68 +13,64 @@
 
 <body>
     <div class="container">
-        <nav class="nav">
-            <div class="up">
-                <div class="nav__logo">
-                    <img src="../img/logo.svg" alt="logo">
-                </div>
-                <div class="nav__hello">
-                    <ul>
-                        <li class="medium">Olá de novo,</li>
-                        <li class="bold"><span class="name">{pessoa.nome}</span></li>
-                        <li class="light small">{pessoa.funçao}</li>
-                    </ul>
-                </div>
-                <div class="up2">
-                    <div class="nav__index">
-                        <ul>
-                            <li class="medium ">
-                                <div class="icon home"></div>
-                                Inicio
-                            </li>
-                            <li class="medium ">
-                                <div class="icon utente"></div>
-                                Utentes
-                            </li>
-                            <li class="medium ">
-                                <div class="icon medico"></div>
-                                Medicos
-                            </li>
-                            <li class="medium ">
-                                <div class="icon consulta"></div>
-                                Consultas
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nav__easyAccess">
-                        <ul>
-                            <li class="medium nonehover"><span class="light small">Acessos Rápidos</span></li>
-                            <li class="medium ">
-                                <div class="icon informacao"></div>
-                                Informações Gerais
-                            </li>
-                            <li class="medium ">
-                                <div class="icon calendario"></div>
-                                Calendario de vagas
-                            </li>
-                            <li class="medium ">
-                                <div class="icon contactos"></div>
-                                Contactos
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="down">
-                <div class="nav__down--logo">
-                    <img src="../img/upskill.png" alt="logo upskill">
-                </div>
-                <div class="nav__down--logout medium">
-                    <img src="../img/logout.svg" alt="log out icon">
-                    <p>Terminar Sessão</p>
-                </div>
-            </div>
-        </nav>
+        <nav class="nav nav-sidebar">
+                            <div class="up">
+                                <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+                                <div class="nav__logo">
+                                    <img src="../img/logo.svg" alt="logo">
+                                </div>
+                                <div class="nav__hello">
+                                    <ul>
+                                        <li class="medium">Olá de novo,</li>
+                                        <li class="bold"><span class="name">{pessoa.nome}</span></li>
+                                        <li class="light small">{pessoa.funçao}</li>
+                                    </ul>
+                                </div>
+                                <div class="up2">
+                                    <div class="nav__index">
+                                        <ul>
+                                            <li class="medium ">
+                                                <div class="icon utente"></div>
+                                                <a href="/check-in">Profile</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon informacao"></div>
+                                                <a href="/notifications">Notificações</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon consulta"></div>
+                                                <a href="/utentes">Utentes</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon home"></div>
+                                                <a href="/check-in">Check-in</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon medico"></div>
+                                                <a href="/waitingList">Lista de Espera</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon calendario"></div>
+                                                <a href="/geralCalendar">Calendario Geral</a>
+                                            </li>
+                                            <li class="medium ">
+                                                <div class="icon calendario"></div>
+                                                <a href="/calendar">Calendario Pessoal</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="down">
+                                <div class="nav__down--logo">
+                                    <img src="../img/upskill.png" alt="logo upskill">
+                                </div>
+                                <div class="nav__down--logout medium">
+                                    <img src="../img/logout.svg" alt="log out icon">
+                                    <a href="/log-out">Terminar Sessão</a>
+                                </div>
+                            </div>
+                        </nav>
         <!-- MAIN - Div horizontal central -->
 
         <!-- MAIN - Div horizontal central -->
@@ -107,6 +103,7 @@
         <!-- FIM - MAIN - Div horizontal central -->
 
     </div>
+    <script src="js/toggle.js"></script>
 </body>
 
 </html>
