@@ -34,11 +34,11 @@ public class PersonController {
 
     @GetMapping(value = "/services")
     public String showServices(){
-        return "services";
+        return "/pessoa/services";
     }
 
     @GetMapping(value = "/contacts")
-    public String showContacts(){ return "contacts"; }
+    public String showContacts(){ return "/pessoa/contacts"; }
 
     //geral
 
