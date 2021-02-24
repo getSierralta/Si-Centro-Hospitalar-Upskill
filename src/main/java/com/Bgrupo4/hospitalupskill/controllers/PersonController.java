@@ -13,7 +13,6 @@ public class PersonController {
     @Autowired
     FileService fileService;
 
-    //todo max
     @GetMapping(value = "/")
     public String showIndex(){
         return "index";
@@ -48,31 +47,26 @@ public class PersonController {
         return "settings";
     }
 
-
-
     @GetMapping(value = "/bills")
     public String showBills(){
         return "bills";
     }
 
-    //todo max
-    @GetMapping(value = "/calendar")
-    public String showCalendar(){
-        return "calendar";
-    }
 
+    @GetMapping(value = "/gearlCalendar")
+    public String showCalendar(){
+        return "geralCalendar";
+    }
 
     @GetMapping(value = "/error")
     public String showError(){
         return "error";
     }
 
-
     @GetMapping(value = "/info")
     public String showInfo(){
         return "info";
     }
-
 
     @GetMapping(value = "/success")
     public String showSuccess(){

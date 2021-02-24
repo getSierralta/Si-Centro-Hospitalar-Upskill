@@ -56,6 +56,7 @@ body{
 .main {
     display: flex;
     flex-direction: column;
+     width: 100%;
 }
 
 /* Common */
@@ -86,9 +87,20 @@ ul {
     width: 100%;
     object-fit: cover;
 }
+img.inversed {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
 
 .flex {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button, button:focus, button:active, button:visited, button:hover{
+    all: unset;
 }
 
 /* fonts */
@@ -507,6 +519,43 @@ ul {
     overflow: hidden;
 }
 
+/* Geral Calendar */
+
+.calendar{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+.calendar__search{
+    display: flex;
+    margin: .5rem;
+}
+
+.calendar__month{
+    width: 100%;
+    background: var(--grey-background);
+    color: var(--color-darkest);
+    font-weight: lighter;
+    font-size: 3rem;
+    text-align: center;
+}
+.calendar__title{
+    padding: 1.5rem;
+}
+.calendar__week{
+    display: grid;
+    grid-template-columns: repeat(7, 5fr);
+    padding: 1rem 1rem 1rem 1rem;
+    gap: 1rem;
+}
+.calendar__day{
+    background-color: #ed7828;
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+
 /* Message */
 
 .box{
@@ -628,4 +677,10 @@ ul {
     margin-right: 1.5rem;
     background-color: var(--color-secondary);
     transition: all .2s;
+}
+.icon.calendario.iconbig{
+    width: 50px;
+    height: 40px;
+    margin: 1.2rem;
+    background: var(--color-secondary);
 }
