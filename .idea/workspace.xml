@@ -23,14 +23,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/DoctorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/medico/files-history.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/utente/check-in-utente.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/bills.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/bills.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/client-appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/client-appointment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/files-history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/files-history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/getnumber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/getnumber.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/payments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/payments.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/about-us.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/about-us.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/bills.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/utente/bills.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/utente/calendar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/check-in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/employee/check-in.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/client-appointment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/employee/client-appointment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contacts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/contacts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/error.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/files-history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/employee/files-history-employee.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/geralCalendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/geralCalendar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/getnumber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/utente/getnumber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/info.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/log-in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/log-in.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/payments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/employee/payments.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/services.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/services.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/success.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +76,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\employee" />
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\pessoa" />
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\utente" />
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\medico" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
@@ -195,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614168714596</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New nav">
+      <created>1614169288558</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1614169288558</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,25 +251,26 @@
     <MESSAGE value="files working&#10;shitty calendar" />
     <MESSAGE value="calendario jsp needs atention&#10;nicer calendar" />
     <MESSAGE value="Calendaro Geral" />
-    <option name="LAST_COMMIT_MESSAGE" value="Calendaro Geral" />
+    <MESSAGE value="New nav" />
+    <option name="LAST_COMMIT_MESSAGE" value="New nav" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="100" key="GridCell.Tab.0.bottom" timestamp="1614168660150">
+    <state width="671" height="100" key="GridCell.Tab.0.bottom" timestamp="1614170516937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="100" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614168660150" />
-    <state width="1493" height="100" key="GridCell.Tab.0.center" timestamp="1614168660149">
+    <state width="671" height="100" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614170516937" />
+    <state width="671" height="100" key="GridCell.Tab.0.center" timestamp="1614170516937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="100" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614168660149" />
-    <state width="1493" height="100" key="GridCell.Tab.0.left" timestamp="1614168660149">
+    <state width="671" height="100" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614170516937" />
+    <state width="671" height="100" key="GridCell.Tab.0.left" timestamp="1614170516937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="100" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614168660149" />
-    <state width="1493" height="100" key="GridCell.Tab.0.right" timestamp="1614168660149">
+    <state width="671" height="100" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614170516937" />
+    <state width="671" height="100" key="GridCell.Tab.0.right" timestamp="1614170516937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="100" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614168660149" />
+    <state width="671" height="100" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614170516937" />
     <state x="294" y="77" key="MergeDialog" timestamp="1614166032812">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -248,13 +279,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="795" y="186" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1614166032821" />
-    <state x="722" y="157" key="Vcs.Push.Dialog.v2" timestamp="1614166039429">
+    <state x="722" y="157" key="Vcs.Push.Dialog.v2" timestamp="1614169300777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="722" y="157" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614166039429" />
-    <state x="974" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614168728289">
+    <state x="722" y="157" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1614169300777" />
+    <state x="974" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614169293915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="974" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614168728289" />
+    <state x="974" y="338" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1614169293915" />
   </component>
 </project>

@@ -10,78 +10,70 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PersonController {
 
-    @Autowired
-    FileService fileService;
-    @Autowired
-    CalendarService calendarService;
+    // Landing Page
 
     @GetMapping(value = "/")
     public String showIndex(){
-        return "index";
+        return "/pessoa/index";
     }
 
     @GetMapping(value = "/log-in")
     public String showLogIn(){
-        return "log-in";
+        return "/pessoa/log-in";
     }
 
     @GetMapping(value = "/register")
     public String showRegister(){
-        return "register";
-    }
-
-    @GetMapping(value = "/profile")
-    public String showProfile(){
-        return "profile";
+        return "/pessoa/register";
     }
 
     @GetMapping(value = "/about-us")
     public String showAboutUs(){
-        return "about-us";
+        return "/pessoa/about-us";
     }
 
+    @GetMapping(value = "/services")
+    public String showServices(){
+        return "services";
+    }
+
+    @GetMapping(value = "/contacts")
+    public String showContacts(){ return "contacts"; }
+
+    //geral
+
+    @GetMapping(value = "/geralCalendar")
+    public String showCalendar(){
+        return "/pessoa/geralCalendar";
+    }
 
     @GetMapping(value = "/settings")
     public String showSettings(){
         return "settings";
     }
 
-    @GetMapping(value = "/bills")
-    public String showBills(){
-        return "bills";
-    }
+    @GetMapping(value = "/profile")
+    public String showProfile(){return "profile";}
 
-
-    @GetMapping(value = "/geralCalendar")
-    public String showCalendar(){
-        return "geralCalendar";
-    }
+    //Messages
 
     @GetMapping(value = "/error")
     public String showError(){
-        return "error";
+        return "/pessoa/error";
     }
 
     @GetMapping(value = "/info")
     public String showInfo(){
-        return "info";
+        return "/pessoa/info";
     }
 
     @GetMapping(value = "/success")
     public String showSuccess(){
-        return "success";
+        return "/pessoa/success";
     }
 
-    @GetMapping(value = "/files-history")
-    public String showFiles(ModelMap map){
-        map.put("fileList", fileService.getFiles());
-        return "files-history";
-    }
 
-    @GetMapping(value = "/calendar")
-    public String showEvents(ModelMap map){
-        map.put("calendarList", calendarService.getMarcacoes());
-        return "calendar";
-    }
+
+
 
 }
