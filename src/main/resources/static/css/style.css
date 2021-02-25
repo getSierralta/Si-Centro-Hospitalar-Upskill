@@ -488,6 +488,11 @@ img.inversed {
     background-size: cover;
 }
 
+.imgregister{
+    background-image: url("../img/imgregister.jpg");
+    background-size: cover;
+}
+
 /* clients bills */
 
 .client-bills_info-box {
