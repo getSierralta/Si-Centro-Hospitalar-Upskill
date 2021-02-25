@@ -59,7 +59,7 @@ public class PersonController {
 
     @GetMapping(value = "/error")
     public String showError(){
-        return "/pessoa/error";
+        return "error";
     }
 
     @GetMapping(value = "/info")

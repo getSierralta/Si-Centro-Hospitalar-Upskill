@@ -19,7 +19,7 @@ out
 *.iws
 *.iml
 *.ipr
-.idea/workspace.xml
+workspace.xml
 
 ### NetBeans ###
 /nbproject/private/
