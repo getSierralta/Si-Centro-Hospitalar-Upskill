@@ -90,38 +90,44 @@
                     </div> <!-- /section_button_list -->
 
                     <div id="services-desc">
-                        <p>Como devo preparar-me para análises?</p>
-                        <p>Recomendações para a generalidade das pessoas e em grande parte das análises:</p>
-
-                        <p>Deve cumprir um período de jejum de alimentos sólidos de 8 horas. Se as análises incluírem estudos de lípidos (por exemplo, triglicéridos, colesterol, entre outros), o período de jejum ideal é, se possível, de 12 horas;</p>
-                        <p>Pode beber água, desde que em quantidade moderada;</p>
-                        <p>Não deve suspender a toma de medicação habitual, exceto se tiver sido especificamente indicado.</p>
-                        <p>Pessoas com doenças crónicas (por exemplo, diabetes) e grávidas devem aconselhar-se com o seu médico sobre necessidades específicas de preparação para as análises que lhes são prescritas.</p>
-
-                        <p>Em caso de dúvida, não deixe de nos contactar através do nosso número de telefone geral 217 104 400.</p>
-
-                        <p>As colheitas para análise são efetuadas por ordem de chegada.</p>
-
-                        <p>Como marcar análises?</p>
-                        <p>Este hospital não faz análises por marcação. No entanto, se a sua prescrição de análises for interna:</p>
-
-                        <p>Peça presencialmente o seu carregamento prévio no sistema;</p>
-                        <p>No dia da colheita, escolha a senha de análises com agendamento.</p>
-                        <p>Resultados das análises</p>
-                        <p>Os resultados das análises clínicas ficam disponíveis na sua área no MY LUZ. Poderá descarregar o ficheiro para guardar ou imprimir.</p>
-
-                        <p>Se ainda não tem acesso, veja como aderir ao MY LUZ.</p>
-
-                        <p>Onde posso levantar os resultados?</p>
-                        <p>Junto à central de colheitas no Piso -1.</p>
-
-                        <p>Os resultados de análises clínicas são entregues ao próprio mediante apresentação:</p>
-
-                        <p>Do talão de levantamento de exames;</p>
-                        <p>Do cartão de identificação com fotografia.</p>
-                        <p>Podem ser entregues a terceiros desde que estes sejam portadores de documento de identificação civil e do talão de levantamento assinado pela pessoa que fez as análises.</p>
-
-                        <p>O laboratório funciona em regime de outsourcing com a General Lab Portugal, parceiro estratégico rigorosamente selecionado para prestar este serviço. Está certificado em conformidade com a Norma ISO 9001:2000 / Boas Práticas Laboratoriais.</p>
+                        <p class="medium"><b>Como devo preparar-me para análises?</b></p>
+                        <p class="medium">Recomendações para a generalidade das pessoas e em grande parte das análises:</p>
+                        <br>
+                        <ul>
+                            <li><p class="medium">Deve cumprir um período de jejum de alimentos sólidos de 8 horas. Se as análises incluírem estudos de lípidos (por exemplo, triglicéridos, colesterol, entre outros), o período de jejum ideal é, se possível, de 12 horas;</p></li>
+                            <li><p class="medium">Pode beber água, desde que em quantidade moderada;</p></li>
+                            <li><p class="medium">Não deve suspender a toma de medicação habitual, exceto se tiver sido especificamente indicado.</p></li>
+                            <li><p class="medium">Pessoas com doenças crónicas (por exemplo, diabetes) e grávidas devem aconselhar-se com o seu médico sobre necessidades específicas de preparação para as análises que lhes são prescritas.</p></li>
+                        </ul>
+                        <br>
+                        <p class="medium">Em caso de dúvida, não deixe de nos contactar através do nosso número de telefone geral <b>234 567 890</b>.</p>
+                        <br>
+                        <p class="medium">As colheitas para análise são efetuadas por ordem de chegada.</p>
+                        <br>
+                        <p class="medium"><b>Como marcar análises?</b></p>
+                        <p class="medium">Este hospital não faz análises por marcação. No entanto, se a sua prescrição de análises for interna:</p>
+                        <br>
+                        <ul>
+                            <li><p class="medium">Peça presencialmente o seu carregamento prévio no sistema;</p></li>
+                            <li><p class="medium">No dia da colheita, escolha a senha de análises com agendamento.</p></li>
+                            <li><p class="medium">Resultados das análises</p></li>
+                            <li><p class="medium">Os resultados das análises clínicas ficam disponíveis na sua área no <b>MY CH</b>. Poderá descarregar o ficheiro para guardar ou imprimir.</p></li>
+                        <ul>
+                        <br>
+                        <p class="medium">Se ainda não tem acesso, veja como aderir ao <b>MY CH</b>.</p>
+                        <br>
+                        <p class="medium"><b>Onde posso levantar os resultados?</b></p>
+                        <p class="medium">Junto à central de colheitas no Piso -1.</p>
+                        <br>
+                        <p class="medium">Os resultados de análises clínicas são entregues ao próprio mediante apresentação:</p>
+                        <br>
+                        <ul>
+                            <li><p class="medium">Do talão de levantamento de exames;</p></li>
+                            <li><p class="medium">Do cartão de identificação com fotografia.</p></li>
+                            <li><p class="medium">Podem ser entregues a terceiros desde que estes sejam portadores de documento de identificação civil e do talão de levantamento assinado pela pessoa que fez as análises.</p></li>
+                        </ul>
+                        <br>
+                        <p class="medium">O laboratório funciona em regime de outsourcing com a General Lab Portugal, parceiro estratégico rigorosamente selecionado para prestar este serviço. Está certificado em conformidade com a Norma ISO 9001:2000 / Boas Práticas Laboratoriais.</p>
                     </div>
 
                 </div> <!-- appointment-cards -->

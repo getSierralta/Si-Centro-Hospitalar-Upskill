@@ -196,7 +196,7 @@
 
 .section_tab_services {
     display: flex;
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem 0rem 1rem 1rem;
     gap: 1rem;
 }
 
@@ -210,14 +210,22 @@
     }
 
 #services-desc{
-    max-width: 70%;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    max-width: 71.5%;
     background: var(--color-white);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
     }
 
+#services-desc li {
+    color: var(--color-grey);
+    list-style: disc outside none;
+    display: list-item;
+    margin-left: 3em;
+    padding-left: 0em;
+}
 
 
 
