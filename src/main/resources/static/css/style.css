@@ -493,6 +493,10 @@ img.inversed {
     background-size: cover;
 }
 
+.imgregistersuccess{
+    background-image: url("../img/borat.gif");
+}
+
 /* clients bills */
 
 .client-bills_info-box {
