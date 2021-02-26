@@ -336,7 +336,7 @@ img.inversed {
 
 /* nav row media */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1100px) {
     .nav-row .medium .none{
         display: none;
     }
