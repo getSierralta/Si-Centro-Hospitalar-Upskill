@@ -12,8 +12,12 @@ public class ClientController {
     @Autowired
     CalendarService calendarService;
 
+    @GetMapping(value = "/profileutente")
+    public String showProfile(){
+        return "/utente/profileutente";
+    }
 
-    @GetMapping(value = "/check-in-utente")
+    @GetMapping(value = "/checkinutente")
     public String showCheckIn(){
         return "/utente/check-in-utente";
     }
@@ -23,13 +27,18 @@ public class ClientController {
         return "/utente/getnumber";
     }
 
-    @GetMapping(value = "/bills")
+    @GetMapping(value = "/billsutente")
     public String showBills(){
         return "/utente/bills";
     }
 
+    @GetMapping(value = "/filesutente")
+    public String showFiles(){
+        return "/utente/files";
+    }
 
-    @GetMapping(value = "/calendar")
+
+    @GetMapping(value = "/calendarutente")
     public String showEvents(ModelMap map){
         map.put("calendarList", calendarService.getMarcacoes());
         return "/utente/calendar";

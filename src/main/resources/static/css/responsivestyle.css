@@ -295,7 +295,7 @@ img.inversed {
     top: 0px;
 }
 
-.nav-row >*{
+.nav-row a{
     display: flex;
     align-items: center;
 }
@@ -305,6 +305,7 @@ img.inversed {
 .nav-row .medium{
     padding-left: 1rem;
     padding-right: 1rem;
+    transition: all .3s ease-in-out;
 }
 .nav-row .medium:hover .icon{
     background-color: var(--color-secondary);
@@ -315,7 +316,7 @@ img.inversed {
     border-right: 1.5px solid var(--color-secondary);
 }
 
-.nav-row .medium::after {
+.nav-row .medium a::after {
     content: "";
     background-color: var(--color-secondary);
     font-weight: bold;
@@ -328,10 +329,29 @@ img.inversed {
     transition: width .3s ease-in-out;
 }
 
-.nav-row .medium:hover::after{
+.nav-row .medium a:hover::after{
     width: 50px;
 }
 /* end nav row */
+
+/* nav row media */
+
+@media screen and (max-width: 900px) {
+    .nav-row .medium .none{
+        display: none;
+    }
+    .nav-row .medium a:hover::after{
+        width: 0px;
+    }
+    .nav-row .medium:hover{
+        border-left: none;
+        border-right: none;
+        transform: scale(1.4, 1.4);
+    }
+}
+
+/* end nav row media */
+
 /* end nav */
 
 /* header and info */
@@ -767,7 +787,7 @@ textarea#message{
 
 ul {list-style-type: none;}
 
-calendar {
+.calendar {
   font-family: Verdana, sans-serif;
   width: 100%;
 }
@@ -776,7 +796,7 @@ calendar {
   width: 100%;
   background: var(--color-primary);
   text-align: center;
-  padding. 2rem;
+  padding: 2rem;
 }
 
 .month ul {
@@ -884,6 +904,18 @@ calendar {
     -webkit-mask-image: url("../img/phone.svg");
     mask-image: url("../img/phone.svg");
 }
+.icon.logout{
+    -webkit-mask-image: url("../img/logout.svg");
+    mask-image: url("../img/logout.svg");
+}
+.icon.support{
+    -webkit-mask-image: url("../img/support.svg");
+    mask-image: url("../img/support.svg");
+}
+.icon.tools{
+    -webkit-mask-image: url("../img/technical-support.svg");
+    mask-image: url("../img/technical-support.svg");
+}
 
 .icon.left-arrow {
     -webkit-mask-image: url("../img/expand-arrow.svg");
@@ -898,4 +930,4 @@ calendar {
     transform: rotate(90deg);
     background-color: var(--color-primary);
 }
-/* end icons */}
+/* end icons */
