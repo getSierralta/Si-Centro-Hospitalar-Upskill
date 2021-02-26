@@ -51,21 +51,6 @@ public class PersonController {
     @GetMapping(value = "/contacts")
     public String showContacts(){ return "/pessoa/contacts"; }
 
-    //geral
-
-    @GetMapping(value = "/geralCalendar")
-    public String showCalendar(){
-        return "/pessoa/geralCalendar";
-    }
-
-    @GetMapping(value = "/settings")
-    public String showSettings(){
-        return "settings";
-    }
-
-    @GetMapping(value = "/profile")
-    public String showProfile(){return "profile";}
-
     //Messages
 
     @GetMapping(value = "/error")

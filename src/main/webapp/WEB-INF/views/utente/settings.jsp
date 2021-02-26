@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,50 +84,32 @@
 
             <!-- Inicio Main Container -->
             <div class="main__container">
+
                 <!-- Header - Div Horizontal de cima-->
                 <header class="header">
 
                     <div class="main__titulo">
-                        <h3 class="page_title">FILES HISTORY</h3>
+                        <h3 class="page_title">SETTINGS</h3>
                     </div>
                 </header>
                 <!-- FIM - Header - Div Horizontal de cima-->
 
-                <div class="section_tab">
-                    <h3 class="section_title light small">INFO</h3>
-                    <div class="section_text_box">
-                        <p>Aqui poderá encontar todos os ficheiros relativos ás suas consultas</p>
+                <div id="profile-cards" class="section_tab cards">
+                    <div class="card big">
+                        <h3 class="card_placeholder_text">SETTINGS LIST</h3>
                     </div>
-                    <form class="section_title light small" id="searchFile" action="#" method="POST">
-                        <input type="text" name="seguro" placeholder="nome">
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="date" placeholder="data" >
-                        <button class="greenbutt" type="submit">Pesquisar</button>
-                    </form>
-                    <div class="section_title_right light small">
-                        <div class="custom-select" style="width:200px;">
-                            <select>
-                                <option value="ordenar">Ordenar por:</option>
-                                <option value="nomeASC">Nome ascendente </option>
-                                <option value="nomeDESC">Nome descendente </option>
-                                <option value="dateASC">Data ascendente  </option>
-                                <option value="dateDESC">Data descendente </option>
-                            </select>
-                        </div>
-                        <img src="../img/sort.png" height=20px alt="sort">
+
+                    <div class="card big">
+                        <h3 class="card_placeholder_text">SETTINGS OPTIONS</h3>
                     </div>
                 </div>
-                <div class="section_tab cards">
-                    <c:forEach var="file" items="${fileList}">
-                        <div class="card small">
-                            <embed class="card small" src=${file} height="100%"></embed>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
+
+            </div> </-- /main__container -->
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
+
     </div>
     <script src="js/toggle.js"></script>
 </body>
+
 </html>

@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class EmployeeController {
 
-    @Autowired
-    FileService fileService;
+
 
 
     @GetMapping(value = "/check-in")
@@ -29,10 +28,5 @@ public class EmployeeController {
         return "/employee/payments";
     }
 
-    //todo especificar utente
-    @GetMapping(value = "/files-history")
-    public String showFiles(ModelMap map){
-        map.put("fileList", fileService.getFiles());
-        return "/medico/files-history";
-    }
+
 }

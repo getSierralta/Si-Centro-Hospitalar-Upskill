@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
 import com.Bgrupo4.hospitalupskill.services.CalendarService;
+import com.Bgrupo4.hospitalupskill.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,8 @@ public class ClientController {
 
     @Autowired
     CalendarService calendarService;
+    @Autowired
+    FileService fileService;
 
     @GetMapping(value = "/profileutente")
     public String showProfile(){
@@ -20,6 +23,11 @@ public class ClientController {
     @GetMapping(value = "/checkinutente")
     public String showCheckIn(){
         return "/utente/check-in-utente";
+    }
+
+    @GetMapping(value = "/tracknumberutente")
+    public String showTrackNumber(){
+        return "/utente/tracknumberutente";
     }
 
     @GetMapping(value = "/getnumber")
@@ -33,8 +41,24 @@ public class ClientController {
     }
 
     @GetMapping(value = "/filesutente")
-    public String showFiles(){
+    public String showFiles(ModelMap map){
+        map.put("fileList", fileService.getFiles());
         return "/utente/files";
+    }
+
+    @GetMapping(value = "/contactsutente")
+    public String showContacts(){
+        return "/utente/contactsutente";
+    }
+
+    @GetMapping(value = "/settings")
+    public String showSettings(){
+        return "/utente/settings";
+    }
+
+    @GetMapping(value = "/calendariogeralutente")
+    public String showCalendar(){
+        return "/utente/calendariogeralutente";
     }
 
 

@@ -13,68 +13,72 @@
 
 <body>
     <div class="container">
-        <nav class="nav">
-            <div class="up">
-                <div class="nav__logo">
-                    <img src="../img/logo.svg" alt="logo">
-                </div>
-                <div class="nav__hello">
-                    <ul>
-                        <li class="medium">Olá de novo,</li>
-                        <li class="bold"><span class="name">{pessoa.nome}</span></li>
-                        <li class="light small">{pessoa.funçao}</li>
-                    </ul>
-                </div>
-                <div class="up2">
-                    <div class="nav__index">
-                        <ul>
+        <nav class="nav nav-sidebar">
+           <div class="up">
+               <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+               <div class="nav__logo">
+                   <img src="../img/logo.svg" alt="logo">
+               </div>
+               <div class="nav__hello">
+                   <ul>
+                       <li class="medium">Olá de novo,</li>
+                       <li class="bold"><span class="name">{pessoa.nome}</span></li>
+                       <li class="light small">{pessoa.funçao}</li>
+                   </ul>
+               </div>
+               <div class="up2">
+                   <div class="nav__index">
+                       <ul>
+                           <li class="medium ">
+                               <div class="icon utente"></div>
+                               <a href="/profileutente">Profile</a>
+                           </li>
+                           <li class="medium">
+                               <div class="icon medico"></div>
+                               <a href="/checkinutente">Check-in</a>
+                           </li>
+                           <li class="medium ">
+                               <div class="icon consulta"></div>
+                               <a href="/tracknumberutente">Track Numbers</a>
+                           </li>
+                           <li class="medium ">
+                               <div class="icon calendario"></div>
+                               <a href="/calendariogeralutente">Calendario Geral</a>
+                           </li>
+                           <li class="medium ">
+                              <div class="icon calendario"></div>
+                              <a href="/calendarutente">Calendario Pessoal</a>
+                           </li>
                             <li class="medium ">
-                                <div class="icon home"></div>
-                                Inicio
+                                 <div class="icon informacao"></div>
+                                 <a href="/billsutente">Faturas</a>
                             </li>
                             <li class="medium ">
-                                <div class="icon utente"></div>
-                                Utentes
+                                 <div class="icon informacao"></div>
+                                 <a href="/filesutente">Ficheiros</a>
                             </li>
-                            <li class="medium ">
-                                <div class="icon medico"></div>
-                                Medicos
-                            </li>
-                            <li class="medium ">
-                                <div class="icon consulta"></div>
-                                Consultas
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nav__easyAccess">
-                        <ul>
-                            <li class="medium nonehover"><span class="light small">Acessos Rápidos</span></li>
-                            <li class="medium ">
-                                <div class="icon informacao"></div>
-                                Informações Gerais
-                            </li>
-                            <li class="medium ">
-                                <div class="icon calendario"></div>
-                                Calendario de vagas
-                            </li>
-                            <li class="medium ">
-                                <div class="icon contactos"></div>
-                                Contactos
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="down">
-                <div class="nav__down--logo">
-                    <img src="../img/upskill.png" alt="logo upskill">
-                </div>
-                <div class="nav__down--logout medium">
-                    <img src="../img/logout.svg" alt="log out icon">
-                    <p>Terminar Sessão</p>
-                </div>
-            </div>
-        </nav>
+                           <li class="medium ">
+                               <div class="icon contactos"></div>
+                               <a href="/contactsutente">Contact</a>
+                           </li>
+                           <li class="medium ">
+                               <div class="icon tools"></div>
+                               <a href="/settings">Settings</a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="down">
+               <div class="nav__down--logo">
+                   <img src="../img/upskill.png" alt="logo upskill">
+               </div>
+               <div class="nav__down--logout medium">
+                   <img src="../img/logout.svg" alt="log out icon">
+                   <a href="/log-out">Terminar Sessão</a>
+               </div>
+           </div>
+       </nav>
         <!-- MAIN - Div horizontal central -->
         <main class="main">
 
@@ -154,6 +158,7 @@
                 </div>
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
+        <script src="js/toggle.js"></script>
     </div>
 </body>
 

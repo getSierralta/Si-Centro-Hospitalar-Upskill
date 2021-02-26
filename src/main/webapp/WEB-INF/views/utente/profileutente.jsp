@@ -21,6 +21,12 @@
                 </a>
             </div>
             <div class="medium ">
+                <a href="/calendariogeralutente">
+                    <div class="icon calendario"></div>
+                    <span class="none">Calendario geral</span>
+                </a>
+            </div>
+            <div class="medium ">
                 <a href="/checkinutente">
                     <div class="icon medico"></div>
                     <span class="none">Check-in</span>
@@ -35,7 +41,7 @@
             <div class="medium ">
                 <a href="/calendarutente">
                     <div class="icon calendario"></div>
-                    <span class="none">Calendario</span>
+                    <span class="none">Calendario Pessoal</span>
                 </a>
             </div>
             <div class="medium ">

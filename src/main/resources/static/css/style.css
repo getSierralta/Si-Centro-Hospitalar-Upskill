@@ -670,6 +670,19 @@ button.search_button{
     mask-image: url("../img/phone.svg");
 }
 
+.icon.logout{
+    -webkit-mask-image: url("../img/logout.svg");
+    mask-image: url("../img/logout.svg");
+}
+.icon.support{
+    -webkit-mask-image: url("../img/support.svg");
+    mask-image: url("../img/support.svg");
+}
+.icon.tools{
+    -webkit-mask-image: url("../img/technical-support.svg");
+    mask-image: url("../img/technical-support.svg");
+}
+
 .icon.left-arrow {
     -webkit-mask-image: url("../img/expand-arrow.svg");
     mask-image: url("../img/expand-arrow.svg");

@@ -31,31 +31,39 @@
                        <ul>
                            <li class="medium ">
                                <div class="icon utente"></div>
-                               <a href="/check-in">Profile</a>
+                               <a href="/profileutente">Profile</a>
                            </li>
-                           <li class="medium ">
-                               <div class="icon informacao"></div>
-                               <a href="/notifications">Notificações</a>
+                           <li class="medium">
+                               <div class="icon medico"></div>
+                               <a href="/checkinutente">Check-in</a>
                            </li>
                            <li class="medium ">
                                <div class="icon consulta"></div>
-                               <a href="/utentes">Utentes</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon home"></div>
-                               <a href="/check-in">Check-in</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon medico"></div>
-                               <a href="/waitingList">Lista de Espera</a>
+                               <a href="/tracknumberutente">Track Numbers</a>
                            </li>
                            <li class="medium ">
                                <div class="icon calendario"></div>
-                               <a href="/geralCalendar">Calendario Geral</a>
+                               <a href="/calendariogeralutente">Calendario Geral</a>
                            </li>
                            <li class="medium ">
-                               <div class="icon calendario"></div>
-                               <a href="/calendar">Calendario Pessoal</a>
+                              <div class="icon calendario"></div>
+                              <a href="/calendarutente">Calendario Pessoal</a>
+                           </li>
+                            <li class="medium ">
+                                 <div class="icon informacao"></div>
+                                 <a href="/billsutente">Faturas</a>
+                            </li>
+                            <li class="medium ">
+                                 <div class="icon informacao"></div>
+                                 <a href="/filesutente">Ficheiros</a>
+                            </li>
+                           <li class="medium ">
+                               <div class="icon contactos"></div>
+                               <a href="/contactsutente">Contact</a>
+                           </li>
+                           <li class="medium ">
+                               <div class="icon tools"></div>
+                               <a href="/settings">Settings</a>
                            </li>
                        </ul>
                    </div>
