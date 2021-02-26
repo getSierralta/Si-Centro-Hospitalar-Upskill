@@ -84,25 +84,17 @@
 
             <!-- Inicio Main Container -->
             <div class="main__container">
-
-                <div class="section_tab">
-                    <h3 class="section_title light small">{utente.nome} bills</h3>
-                </div>
-
-                <div class="client-bills_info-box">
-                    <div class="client-bills_info-box_inner">
-                        <div class="client-photo">
-                            <img class="inversed" src="../img/imgclient.jpeg" alt="client">
-                        </div>
-                        <p>Diverse information here!</p>
+                <header class="header">
+                    <div class="main__titulo">
+                        <h3 class="page_title">Bills</h3>
                     </div>
-                </div>
+                </header>
                 <div class="section_tab cards">
-                    <div class="card small"></div>
-                    <div class="card small"></div>
-                    <div class="card small"></div>
-                    <div class="card small"></div>
-                    <div class="card small"></div>
+                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
+                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
+                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
+                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
+                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
                 </div>
                 <div class="section_tab cards">
                     <div class="card biggest">
@@ -114,7 +106,142 @@
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>
-    <script src="js/toggle.js"></script>
+    <div class="popup" id="popup">
+        <div class="popup__content">
+            <a href="#" class="popup__close">&times;</a>
+           <div class="popup__header">
+                <div class="popup__titulo__logo">
+                <img class="inversed" src="../img/logo.svg" alt="logo">
+            </div>
+           </div>
+            <div class="popup__info">
+                <div class="popup__info__content">
+                    <p><b>Numero da Fatura</b></p>
+                    <p>0000001</p>
+                </div>
+                <div class="popup__info__content">
+                    <p><b>Data de Emissão</b></p>
+                    <p>26/02/21</p>
+                </div>
+            </div>
+            <div class="popup__info">
+                <div class="popup__info__content">
+                    <p><b>Faturado</b></p>
+                    <p>Nome do cliente</p>
+                    <p>Adereço do cliente</p>
+                </div>
+                <div class="popup__info__content">
+                    <p><b>centro hospitalar upskill</b></p>
+                    <p>Rua do Mar, nº 31, Telheiras, LISBOA</p>
+                    <p>geral@upskillmed.com</p>
+                    <p>234567890 </p>
+                </div>
+            </div>
+            <div class="popup__description">
+                <div class="popup__description--up header">
+                    <div class="popup__description--text left">
+                        <p><b>Descripção</b></p>
+                    </div>
+                    <div class="right">
+                        <div class="popup__description--text">
+                            <p><b>Costo</b></p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p><b>Unidades</b></p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p><b>Valor</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__description--up">
+                    <div class="popup__description--text left">
+                        <p>Centro hospitalar upskill</p>
+                    </div>
+                    <div class="right">
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>1</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__description--up">
+                    <div class="popup__description--text left">
+                        <p>Centro hospitalar upskill</p>
+                    </div>
+                    <div class="right">
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>1</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__description--up">
+                    <div class="popup__description--text left">
+                        <p>Centro hospitalar upskill</p>
+                    </div>
+                    <div class="right">
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>1</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__description--up header padding-bottom">
+                    <div class="popup__description--text left">
+                        <p>Centro hospitalar upskill</p>
+                    </div>
+                    <div class="right">
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>1</p>
+                        </div>
+                        <div class="popup__description--text">
+                            <p>500$</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__description--down">
+                    <div class="popup__description--text">
+                        <p><b>Subtotal</b></p>
+                        <p><b>Desconto</b></p>
+                        <p><b>Tax</b></p>
+                    </div>
+                    <div class="popup__description--text">
+                        <p><b>0$</b></p>
+                        <p><b>0$</b></p>
+                        <p><b>0$</b></p>
+                    </div>
+                </div>
+            </div>
+           <div class="popup__total__caixa">
+            <div class="popup__total">
+                <p>Total: <span>$2,000</span></p>
+            </div>
+           </div>
+            <div class="popup__pagar__caixa">
+                <button class="green-btn">PAGAR</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/toggle.js"></script>
 </body>
 
 </html>
