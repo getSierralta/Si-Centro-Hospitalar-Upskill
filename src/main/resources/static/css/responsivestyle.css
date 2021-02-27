@@ -430,9 +430,13 @@ img.inversed {
     align-items: center;
 }
 
+.butts.active {
+    background-color: var(--color-white);
+    color: var(--color-darkest)
+}
+
 .butts a {
     color: var(--color-white);
-    color: var(--color-darkest)
     cursor: pointer;
 }
 .greenbutt form:button{
