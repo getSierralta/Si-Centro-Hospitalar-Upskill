@@ -772,10 +772,46 @@ button.search_button{
 
 
 
-@media screen and (max-width: 900px) {
+
+@media screen and (max-width: 990px) {
 
     .popup__content{
         position: absolute;
+        font-size: .6rem;
+        width: 50%;
+    }
+    .green-btn{
+        padding: .5rem 2rem;
+        letter-spacing: .2rem;
+    }
+    .popup__total span{
+        font-size: 1rem;
+     }
+     .popup__total{
+        margin: .5rem;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .popup__description--up .right p, .popup__description--up .right p b{
+        min-width: 2rem;
+    }
+    .popup__description--up .right p, .popup__description--text.left{
+        padding: 0 .2rem .2rem .2rem;
+    }
+
+}
+@media screen and (max-width: 450px) {
+
+    .popup__content{
+        width: 100vw;
+        font-size: .6rem;
+    }
+
+    .popup__titulo__logo{
+        width: 0px;
+        padding: 0px;
+        margin-right: 0px;
     }
 }
 
