@@ -1,115 +1,133 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style_.css">
+    <link rel="stylesheet" href="../css/responsivestyle.css">
     <title>Upskill</title>
 </head>
 
-<body>
-    <div class="container">
-        <nav class="nav nav-sidebar">
-           <div class="up">
-               <div class="btn-toggle-nav" onclick="toggleNav()"></div>
-               <div class="nav__logo">
-                   <img src="../img/logo.svg" alt="logo">
-               </div>
-               <div class="nav__hello">
-                   <ul>
-                       <li class="medium">Olá de novo,</li>
-                       <li class="bold"><span class="name">{pessoa.nome}</span></li>
-                       <li class="light small">{pessoa.funçao}</li>
-                   </ul>
-               </div>
-               <div class="up2">
-                   <div class="nav__index">
-                       <ul>
-                           <li class="medium ">
-                               <div class="icon utente"></div>
-                               <a href="/profileutente">Profile</a>
-                           </li>
-                           <li class="medium">
-                               <div class="icon medico"></div>
-                               <a href="/checkinutente">Check-in</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon consulta"></div>
-                               <a href="/tracknumberutente">Track Numbers</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon calendario"></div>
-                               <a href="/calendariogeralutente">Calendario Geral</a>
-                           </li>
-                           <li class="medium ">
-                              <div class="icon calendario"></div>
-                              <a href="/calendarutente">Calendario Pessoal</a>
-                           </li>
-                            <li class="medium ">
-                                 <div class="icon informacao"></div>
-                                 <a href="/billsutente">Faturas</a>
-                            </li>
-                            <li class="medium ">
-                                 <div class="icon informacao"></div>
-                                 <a href="/filesutente">Ficheiros</a>
-                            </li>
-                           <li class="medium ">
-                               <div class="icon contactos"></div>
-                               <a href="/contactsutente">Contact</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon tools"></div>
-                               <a href="/settings">Settings</a>
-                           </li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <div class="down">
-               <div class="nav__down--logo">
-                   <img src="../img/upskill.png" alt="logo upskill">
-               </div>
-               <div class="nav__down--logout medium">
-                   <img src="../img/logout.svg" alt="log out icon">
-                   <a href="/log-out">Terminar Sessão</a>
-               </div>
-           </div>
-        </nav>
-        <!-- MAIN - Div horizontal central -->
-        <main class="main">
-
-            <!-- Inicio Main Container -->
-            <div class="main__container">
-
-                <!-- Header - Div Horizontal de cima-->
-                <header class="header">
-
-                    <div class="main__titulo">
-                        <h3 class="page_title">SETTINGS</h3>
+<body class="container">
+        <!--Horizontal Nav-->
+    <!--side nav ignored for now due to incompatibility issues-->
+    <nav class="nav-row">
+        <div class="medium">
+            <a href="/profileutente">
+                <div class="icon home"></div>
+                <span class="none">Perfil</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/checkinutente">
+                <div class="icon medico"></div>
+                <span class="none">Check-in</span>
+            </a>
+        </div>
+        <div class="medium">
+            <a href="/tracknumberutente">
+                <div class="icon consulta"></div>
+                <span class="none">Track Numbers</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/calendariogeralutente">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario geral</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/calendarutente">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario Pessoal</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/contactsutente">
+                <div class="icon contactos"></div>
+                <span class="none">Support</span>
+            </a>
+        </div>
+        <div class="medium">
+            <a href="/settings">
+                <div class="icon tools"></div>
+                <span class="none">Settings</span>
+            </a>
+        </div>
+        <div class="medium">
+            <a href="/logout">
+                <div class="icon logout"></div>
+                <span class="none">LogOut</span>
+            </a>
+        </div>
+    </nav>
+    <!--Main-->
+    <main class="main">
+        <!--Info Box-->
+        <div class="object_container full_info">
+            <div class="flex">
+                 <div class="client_photo">
+                     <img class="inversed" src="/img/imgclient.jpeg" alt="client">
+                 </div>
+                 <div class="client_details">
+                     <p><b>{client.name}</b></p>
+                     <p><b>{client.dataDeNascimento}</b></p>
+                     <p><b>{client.nUtente}</b></p>
+                 </div>
+            </div>
+             <div class="client_info">
+                <p><b>Morada: </b> {client.morada}</p>
+                <p><b>E-mail: </b> {client.email}</p>
+                <p><b>Localidade: </b> {client.localidade} </p>
+                <p><b>Telemovel: </b> {client.telemovel} </p>
+             </div>
+         </div>
+        <!--/Info Box-->
+        <!--Cards-->
+        <div class="card medium settings">
+            <img class="settings_logo" src="/img/logo.svg" alt="logo">
+            <form action="#" class="log-in">
+                <input type="text" path="userName" placeholder="{client.userName}"/>
+                <input type="text" path="nome" placeholder="{client.name}"/>
+                <textarea name="message" rows="2" cols="30" path="morada" placeholder="{client.morada}"></textarea>
+                <input type="text" path="localidade" placeholder="{client.localidade}" />
+                <input type="text" path="telemovel" placeholder="{client.telemovel}"  />
+                <input type="password" path="password" placeholder="Password" required />
+                <input type="file" id="img" name="img">
+                <button class="greenbutt" type="submit">Salvar</button>
+            </form>
+        </div>
+        <div class="card medium settings img">
+        </div>
+        <div class="card medium settings">
+            <div class="password ">
+                <p>Trocar Palavra Passe</p>
+                <form action="#">
+                    <input type="password" path="password" placeholder="Old Password" required />
+                    <input type="password" path="password" placeholder="Password"  />
+                    <input type="password" path="password" placeholder="Repeat Password"  />
+                    <button class="greenbutt" type="submit">Salvar</button>
+                </form>
+                <a href="#" class="green">Forgot password?</a>
+            </div>
+            <div class="password">
+                <p>Eliminar conta</p>
+                <form action="#">
+                    <input type="password" path="password" placeholder="Password"  />
+                    <div class="form-label">
+                        <input type="checkbox" value="element" path="condicao" required="required" />
+                        <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
                     </div>
-                </header>
-                <!-- FIM - Header - Div Horizontal de cima-->
+                    <button class="apagar" type="submit">Apagar Conta</button>
+                </form>
+            </div>
+        </div>
 
-                <div id="profile-cards" class="section_tab cards">
-                    <div class="card big">
-                        <h3 class="card_placeholder_text">SETTINGS LIST</h3>
-                    </div>
 
-                    <div class="card big">
-                        <h3 class="card_placeholder_text">SETTINGS OPTIONS</h3>
-                    </div>
-                </div>
-
-            </div> </-- /main__container -->
-        </main>
-        <!-- FIM - MAIN - Div horizontal central -->
-
-    </div>
-    <script src="js/toggle.js"></script>
+        <!--/Cards-->
+    </main>
+    <!--/Main-->
 </body>
 
 </html>

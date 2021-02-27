@@ -938,6 +938,62 @@ div.active {
     }
 }
 
+/* settings */
+
+.client_photo.settings{
+    cursor: pointer;
+}
+.client_details.settings p{
+    cursor: text;
+}
+.client_info.settings p{
+    cursor: text;
+}
+.card.medium.settings{
+    background-color: var(--color-white);
+    background-image: url(../img/Bg_ap.png);
+    background-size: cover;
+    flex-direction: column;
+    min-height: 70vh;
+}
+.settings_logo{
+    width: 40%;
+    padding: 2rem;
+}
+input[type=file]{
+    background-color: var(--color-white);
+}
+.card.medium.settings .password{
+    padding: 1rem;
+    text-align: center;
+}
+.card.medium.settings .password p{
+    padding: 10px;
+    text-transform: uppercase;
+}
+.card.medium.settings .password .green{
+    font-size: .8rem;
+}
+.card.medium.settings .password .apagar{
+    background-color: var(--color-grey);
+    color: var(--color-grey-lightest);
+    padding: .5rem 1.5rem;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+.card.medium.settings.img{
+    background-image: url(../img/imgdoc.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+@media screen and (max-width: 768px) {
+    .card.medium.settings.img{
+        display: none;
+    }
+
+}
+
 /* extra */
 .white_box {
     background: var(--color-white);
