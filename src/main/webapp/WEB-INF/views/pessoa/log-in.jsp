@@ -50,14 +50,12 @@
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <form:form class="log-in" action"/login" method="post" modelAttribute="user">
+            <form:form class="log-in" id="login" action="login" method="POST" modelAttribute="user">
                 <form:input type="text" name="userName" path="userName" placeholder="kitty" />
                 <form:input type="password" name="password" path="password" placeholder="********" />
+                <form:button class="greenbutt medium" type="submit">Log in</form:button>
             </form:form>
             <p>Forgot your password?</p>
-            <div class="greenbutt">
-                <h3 class="medium">Log in</h3>
-            </div>
             <p style="font-weight: bolder;"><a href="/register">Create account</a></p>
         </div>
     </main>

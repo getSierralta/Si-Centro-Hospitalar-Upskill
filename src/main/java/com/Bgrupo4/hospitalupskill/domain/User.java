@@ -6,11 +6,11 @@ import java.sql.Date;
 public class User {
     private String nome;
     private String userName;
-    private int nif;
+    private int nUtente;
     private String morada;
+    private String localidade;
     private String email;
     private int telemovel;
-    private String apolice;
     private Date dataDeNascimento;
     private String password;
     private String passwordRepeat;
@@ -40,14 +40,6 @@ public class User {
         this.userName = userName;
     }
 
-    public int getNif() {
-        return nif;
-    }
-
-    public void setNif(int nif) {
-        this.nif = nif;
-    }
-
     public String getMorada() {
         return morada;
     }
@@ -70,14 +62,6 @@ public class User {
 
     public void setTelemovel(int telemovel) {
         this.telemovel = telemovel;
-    }
-
-    public String getApolice() {
-        return apolice;
-    }
-
-    public void setApolice(String apolice) {
-        this.apolice = apolice;
     }
 
     public Date getDataDeNascimento() {
@@ -112,15 +96,32 @@ public class User {
         this.condicao = condicao;
     }
 
+    public int getnUtente() {
+        return nUtente;
+    }
+
+    public void setnUtente(int nUtente) {
+        this.nUtente = nUtente;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "nome='" + nome + '\'' +
-                ", nif=" + nif +
+                ", userName='" + userName + '\'' +
+                ", nUtente=" + nUtente +
                 ", morada='" + morada + '\'' +
+                ", localidade='" + localidade + '\'' +
                 ", email='" + email + '\'' +
                 ", telemovel=" + telemovel +
-                ", apolice='" + apolice + '\'' +
                 ", dataDeNascimento=" + dataDeNascimento +
                 ", password='" + password + '\'' +
                 ", passwordRepeat='" + passwordRepeat + '\'' +

@@ -432,6 +432,15 @@ img.inversed {
 
 .butts a {
     color: var(--color-white);
+    cursor: pointer;
+}
+.greenbutt form:button{
+    color: var(--color-white);
+    cursor: pointer;
+}
+.green{
+    color: var(--color-secondary);
+    font-weight: bolder;
 }
 /* end button lists */
 

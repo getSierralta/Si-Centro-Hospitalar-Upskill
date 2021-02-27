@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,12 +16,13 @@
             <div class="card big-elongated">
                 <div class="white_box">
                     <img class="log-in_logo" src="../img/logo.svg" alt="logo">
+                    <span>${user.userName}</span><br>
                     <span>${user.nome}</span><br>
-                    <span>${user.nif}</span><br>
+                    <span>${user.nUtente}</span><br>
                     <span>${user.morada}</span><br>
                     <span>${user.email}</span><br>
                     <span>${user.telemovel}</span><br>
-                    <span>${user.apolice}</span><br>
+                    <span>${user.localidade}</span><br>
                     <span>${user.dataDeNascimento}</span><br>
                     <span>${user.password}</span><br>
                 </div>
