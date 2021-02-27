@@ -432,6 +432,7 @@ img.inversed {
 
 .butts a {
     color: var(--color-white);
+    color: var(--color-darkest)
     cursor: pointer;
 }
 .greenbutt form:button{
@@ -442,6 +443,38 @@ img.inversed {
     color: var(--color-secondary);
     font-weight: bolder;
 }
+
+div[class*="content-"] {
+    display:none;
+}
+
+div.active {
+    display: flex;
+    position: absolute;
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 0.2rem;
+    text-align: left;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .button_group {
+        grid-column-end: span 2;
+    }
+
+    .butts {
+        text-align: center;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+}
+
 /* end button lists */
 
 /* cards */
