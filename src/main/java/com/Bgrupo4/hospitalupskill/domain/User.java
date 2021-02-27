@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class User {
     private String nome;
+    private String userName;
     private int nif;
     private String morada;
     private String email;
@@ -15,12 +16,28 @@ public class User {
     private String passwordRepeat;
     private boolean condicao;
 
+    public User() {
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getNif() {

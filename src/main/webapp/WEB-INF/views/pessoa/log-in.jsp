@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=ISO=8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,10 +50,10 @@
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <form class="log-in">
-                <input type="text" name="username" placeholder="kitty@meow.com">
-                <input type="password" name="password" placeholder="********">
-            </form>
+            <form:form class="log-in" action"/login" method="post" modelAttribute="user">
+                <form:input type="text" name="userName" path="userName" placeholder="kitty" />
+                <form:input type="password" name="password" path="password" placeholder="********" />
+            </form:form>
             <p>Forgot your password?</p>
             <div class="greenbutt">
                 <h3 class="medium">Log in</h3>
