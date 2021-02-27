@@ -844,6 +844,100 @@ div.active {
 /* end client media */
 /* end client profile */
 
+/* Track Numbers*/
+
+.object_container.full_info.numbers{
+    overflow-x: scroll;
+    display: flex;
+}
+.object_container.full_info.numbers .number{
+    padding: .5rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.card.big.tracknumberutente{
+    background-color: var(--color-white);
+    background-image: url(../img/Bg_ap.png);
+    background-size: cover;
+    flex-direction: column;
+    min-height: 70vh;
+    text-transform: uppercase;
+}
+.tracknumberutente__category{
+    color: var(--color-grey-light);
+    font-size: 2rem;
+    font-weight: lighter;
+}
+.tracknumberutente__number{
+    color: var(--color-grey);
+    font-size: 12rem;
+    font-weight: 250;
+}
+.tracknumberutente__tempo{
+    color: var(--color-grey);
+    font-size: 1rem;
+    font-weight: lighter;
+    text-align: center;
+}
+.tracknumberutente__tempo span{
+    font-weight: 300;
+    font-size: 2rem;
+}
+.tracknumberutente__ecra{
+    color: var(--color-grey);
+    font-weight: 300;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.tracknumberutente__ecra span{
+    padding: .5rem 2rem;
+    margin: .3rem;
+    background:var(--grey-background);
+    border-radius: 5px;
+}
+.tracknumberutente__tetris{
+    margin-top: 2.5rem;
+    background-color: var(--color-grey);
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    color: var(--color-grey-lightest);
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all .2s;
+    cursor: pointer;
+}
+.tracknumberutente__tetris:hover{
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    letter-spacing: 5px;
+    transition: all .2s ease-in-out;
+}
+.tetris{
+    color: var(--color-darkest);
+    text-align: center;
+    padding: 2px;
+    display: none;
+    flex-direction: column;
+}
+.tetris__close{
+    background: transparent;
+}
+.tetris canvas{
+    border: solid .2em #FFF;
+    background: var(--color-darkest);
+}
+@media screen and (max-width: 768px) {
+    .object_container.full_info.numbers {
+        flex-direction: row;
+    }
+}
+
 /* extra */
 .white_box {
     background: var(--color-white);
