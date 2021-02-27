@@ -22,7 +22,7 @@
                         <div class="nav__hello">
                             <ul>
                                 <li class="medium">Olá de novo,</li>
-                                <li class="bold"><span class="name">{pessoa.nome}</span></li>
+                                <li class="bold"><span class="name">${email}</span></li>
                                 <li class="light small">{pessoa.funçao}</li>
                             </ul>
                         </div>
