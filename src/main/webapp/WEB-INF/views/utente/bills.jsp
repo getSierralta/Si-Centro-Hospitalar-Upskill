@@ -225,7 +225,7 @@
                         <p><b>Tax</b></p>
                     </div>
                     <div class="popup__description--text">
-                        <p><b>0$</b></p>
+                        <p><b>2000$</b></p>
                         <p><b>0$</b></p>
                         <p><b>0$</b></p>
                     </div>

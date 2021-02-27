@@ -336,7 +336,7 @@ img.inversed {
 
 /* nav row media */
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
     .nav-row .medium .none{
         display: none;
     }
@@ -349,6 +349,18 @@ img.inversed {
         transform: scale(1.4, 1.4);
     }
 }
+
+@media screen and (max-width: 500px) {
+    .nav-row .icon{
+        margin-right: .1rem;
+    }
+    .nav-row .medium{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
+
 
 /* end nav row media */
 
@@ -636,10 +648,63 @@ img.inversed {
 }
 
 .client_photo {
-    max-width: 70px;
-    max-height: 70px;
-    border-radius: 500px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 10px;
     overflow: hidden;
+}
+
+.card.big.profileutente__consulta{
+    background-image: url(../img/Bg_ap.png);
+    background-size: cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.profileutente__consulta--img{
+    width: 30%;
+    max-height: 90%;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 1rem;
+}
+.profileutente__consulta__header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+.profileutente__consulta__header .title{
+    padding: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+.btn-green-small{
+    background-color: var(--color-secondary);
+    margin: 1rem;
+    padding: .5rem 1rem;
+    color: var(--color-white);
+    font-weight: lighter;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.profileutente__consulta__header .padding{
+    padding: .5rem;
+}
+.profileutente__consulta__header .smallpadding{
+    padding: .5rem;
+}
+.profileutente__consulta__header .middle{
+    justify-self: center;
+}
+.card.big.profileutente__consulta.scroll{
+    overflow-y: scroll;
+}
+
+.card.medium.dog{
+    background-image: url(../img/imgdog.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 /* client media */
@@ -654,9 +719,81 @@ img.inversed {
         padding: 0.5rem;
     }
 }
+@media screen and (max-width: 720px) {
+    .client_details {
+        text-align: center;
+        padding: 0.5rem;
+    }
 
+    .client_info {
+        text-align: center;
+        padding: 0.5rem;
+    }
+    .profileutente__consulta__header .smallpadding{
+        padding: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    .card.big.profileutente__consulta{
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-green-small{
+        margin: 2rem;
+        padding: 1rem 1rem;
+    }
+    .profileutente__consulta--img{
+        width: 0px;
+        margin: 0px;
+    }
+
+}
 @media screen and (max-width: 640px) {
+    .card.big.profileutente__consulta{
+        flex-direction: row;
+        align-items: center;
+    }
+    .btn-green-small{
+        margin: 2rem;
+        padding: 2rem 2rem;
+    }
+    .profileutente__consulta--img{
+        width: 30%;
+        margin: 1rem;
+    }
+    .profileutente__consulta__header{
+        justify-content: space-around;
+    }
+    .profileutente__consulta__header .smallpadding{
+        padding: 5rem;
+    }
 
+}
+
+@media screen and (max-width: 1090px) {
+    .btn-green-small{
+        margin: .5rem;
+        padding: .2rem 1rem;
+    }
+    .profileutente__consulta__header .smallpadding{
+        padding: .05rem;
+    }
+
+}
+@media screen and (max-width: 447px) {
+    .profileutente__consulta--img{
+        width: 0px;
+        margin: 0px;
+    }
+    .card.big.profileutente__consulta{
+        flex-direction: column;
+        align-items: center;
+    }
+    .profileutente__consulta__header .smallpadding{
+        padding: .5rem;
+    }
 }
 /* end client media */
 /* end client profile */
