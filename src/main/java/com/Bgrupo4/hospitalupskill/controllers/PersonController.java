@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
 import com.Bgrupo4.hospitalupskill.domain.User;
+import com.Bgrupo4.hospitalupskill.repositories.UserRepository;
 import com.Bgrupo4.hospitalupskill.services.CalendarService;
 import com.Bgrupo4.hospitalupskill.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PersonController {
+
+    @Autowired
+    UserRepository userRepository;
 
     // Landing Page
 
@@ -28,6 +32,7 @@ public class PersonController {
     @GetMapping(value ="/register")
     public String showRegister(Model model){
         User user = new User();
+        userRepository.save(user);
         model.addAttribute("user", user);
 
         return "/pessoa/register";
