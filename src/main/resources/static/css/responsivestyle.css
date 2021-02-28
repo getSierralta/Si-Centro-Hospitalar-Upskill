@@ -1011,6 +1011,19 @@ input[type=file]{
     margin-left: -1rem;
     margin-top: -.5rem;
 }
+.calendar__search--form.especialidade{
+    background-color: var(--color-white);
+    padding: .4rem 1.2rem .4rem 0rem;
+    border-radius: 2px;
+    text-align: left;
+    color: var(--color-grey);
+    border: 1px var(--color-dark) solid;
+    margin-left: 1.5rem;
+    margin-top: -.5rem;
+}
+.icon.search.especialidade{
+    margin-left: 1.5rem;
+}
 .calendar__search--form button .icon.search{
     background: var(--color-dark);
     transition: all .3s ease-in-out;

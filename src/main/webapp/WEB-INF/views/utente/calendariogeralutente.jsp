@@ -76,9 +76,14 @@
                 <button type="submit"><div class="icon search"></div></button>
             </form>
             <form action="#" method="get" class="calendar__search--form" id="calendar__search-form">
-                <input placeholder="Data" type="text" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" id="date" required>
-                <button type="submit"><div class="icon search"></div></button>
+                <select id="especialidade" name="especialidade" class="calendar__search--form especialidade">
+                    <option class="calendar__search--form especialidade" value="1">Especialidade</option>
+                    <option value="1">Anatomia Patológica</a>
+                    <option value="1">Angiologia e Cirurgia Vascular</option>
+                    <option value="1">Cardiologia</option>
+                    <option value="1">Cardiologia Pediatrica</option>
+                </select>
+                <button type="submit"><div class="icon search especialidade"></div></button>
             </form>
 
         </div>
