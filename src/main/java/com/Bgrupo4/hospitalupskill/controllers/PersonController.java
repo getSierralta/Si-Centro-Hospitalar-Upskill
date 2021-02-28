@@ -24,20 +24,11 @@ public class PersonController {
         return "/pessoa/log-in";
     }
 
-
-    @GetMapping(value ="/register")
-    public String showRegister(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
-
+    @GetMapping(value = "/register")
+    public String showRegister(){
         return "/pessoa/register";
     }
 
-    @PostMapping("/register")
-    public String submitRegister(@ModelAttribute("user") User user) {
-        System.out.println(user);
-        return "/pessoa/register_success";
-    }
 
     @GetMapping(value = "/about-us")
     public String showAboutUs(){
