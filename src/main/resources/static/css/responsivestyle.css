@@ -1513,6 +1513,11 @@ ul {list-style-type: none;}
     -webkit-mask-image: url("../img/phone.svg");
     mask-image: url("../img/phone.svg");
 }
+
+.icon.search {
+    -webkit-mask-image: url("../img/loupe.svg");
+    mask-image: url("../img/loupe.svg");
+}
 .icon.logout{
     -webkit-mask-image: url("../img/logout.svg");
     mask-image: url("../img/logout.svg");

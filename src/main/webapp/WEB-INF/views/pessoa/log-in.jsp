@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO=8859-1" pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,49 +12,41 @@
 
 <body class="container blue">
     <!--Horizontal Nav-->
-        <nav class="nav-row">
-            <div class="medium">
-                <a href="/">
-                    <div class="icon home"></div>
-                    <span class="none">Inicio</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="/about-us">
-                    <div class="icon informacao"></div>
-                    <span class="none">Sobre Nós</span>
-                </a>
-            </div>
-            <div class="medium">
-                <a href="/services">
-                    <div class="icon medico"></div>
-                    <span class="none">Serviços</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="/contacts">
-                    <div class="icon calendario"></div>
-                    <span class="none">Calendario</span>
-                </a>
-            </div>
-            <div class="medium">
-                <a href="/log-in">
-                    <div class="icon utente"></div>
-                    <span class="none">Log-In</span>
-                </a>
-            </div>
-        </nav>
-        <!--/Horizontal Nav-->
+    <nav class="nav-row">
+        <div class="medium">
+            <div class="icon home"></div>
+            <a href="/">Inicio</a>
+        </div>
+        <div class="medium ">
+            <div class="icon informacao"></div>
+            <a href="/about-us">Sobre Nós</a>
+        </div>
+        <div class="medium">
+            <div class="icon medico"></div>
+            <a href="/services">Serviços</a>
+        </div>
+        <div class="medium ">
+            <div class="icon contactos"></div>
+            <a href="/contacts">Contactos</a>
+        </div>
+        <div class="medium">
+            <div class="icon utente"></div>
+            <a href="/log-in">Log-In</a>
+        </div>
+    </nav>
+    <!--/Horizontal Nav-->
     <!--Main-->
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <form:form class="log-in" id="login" action="login" method="POST" modelAttribute="user">
-                <form:input type="text" name="userName" path="userName" placeholder="kitty" />
-                <form:input type="password" name="password" path="password" placeholder="********" />
-                <form:button class="greenbutt medium" type="submit">Log in</form:button>
-            </form:form>
+            <form class="log-in">
+                <input type="text" name="username" placeholder="Jenipurr Lopez">
+                <input type="password" name="password" placeholder="********">
+            </form>
             <p>Forgot your password?</p>
+            <div class="greenbutt">
+                <h3 class="medium">Log in</h3>
+            </div>
             <p style="font-weight: bolder;"><a href="/register">Create account</a></p>
         </div>
     </main>

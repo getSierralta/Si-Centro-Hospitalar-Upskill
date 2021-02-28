@@ -19,11 +19,11 @@ public class PersonController {
         return "/pessoa/index";
     }
 
-    @RequestMapping(value = "/log-in", method = RequestMethod.GET)
-    public String showLogIn(@RequestParam("userName") String userName,
-                            @RequestParam("password") String password) {
-        return "redirect:/utente/check-in-utente";
+    @GetMapping(value = "/log-in")
+    public String showLogIn(){
+        return "/pessoa/log-in";
     }
+
 
     @GetMapping(value ="/register")
     public String showRegister(Model model){
