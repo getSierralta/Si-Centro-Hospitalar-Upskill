@@ -423,7 +423,8 @@ img.inversed {
 .butts {
     border-radius: 0.2rem;
     height: 2rem;
-    background: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-white);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -433,19 +434,6 @@ img.inversed {
 .butts.active {
     background-color: var(--color-white);
     color: var(--color-darkest)
-}
-
-.butts a {
-    color: var(--color-white);
-    cursor: pointer;
-}
-.greenbutt form:button{
-    color: var(--color-white);
-    cursor: pointer;
-}
-.green{
-    color: var(--color-secondary);
-    font-weight: bolder;
 }
 
 div[class*="content-"] {
@@ -462,6 +450,22 @@ div.active {
     height: inherit;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+div.active ul {
+    list-style-type: disc;
+}
+
+.button_group select {
+    display: none;
+    border-radius: 0.2rem;
+    height: 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -476,7 +480,17 @@ div.active {
 }
 
 @media screen and (max-width: 640px) {
+    .button_group {
+        grid-column-end: span 4;
+    }
 
+    .button_group .butts {
+        display: none;
+    }
+
+    .button_group select {
+        display: flex;
+    }
 }
 
 /* end button lists */
@@ -568,8 +582,12 @@ div.active {
         font-size: 4vw;
      }
 
-     .card.small .card_text {
+    .card.small .card_text {
         font-size: 3vw;
+    }
+
+    .card.info#toggle_info {
+        grid-column-end: span 6;
     }
 }
 
@@ -590,8 +608,12 @@ div.active {
         font-size: 6vw;
      }
 
-     .card.small .card_text {
+    .card.small .card_text {
         font-size: 4vw;
+    }
+
+    .card.info#toggle_info {
+        grid-column-end: span 4;
     }
 }
 /* end cards media */
