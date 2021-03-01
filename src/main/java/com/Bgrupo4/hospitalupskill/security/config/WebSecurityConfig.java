@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //If this gives error probably you dont have the lombok plugin
+    //If this gives error probably you don't have the lombok plugin
     private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
