@@ -22,10 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="services.jsp">
+    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="changed register">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/notification.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/FileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style_.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/services.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pessoa/services.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -64,18 +73,21 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\employee" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\pessoa" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\utente" />
       <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views\medico" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF" />
-      <recent name="C:\Users\sierr\Desktop\B-grupo4\src\main\webapp\WEB-INF\views" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.Bgrupo4.hospitalupskill.services" />
     </key>
   </component>
   <component name="RunManager">
