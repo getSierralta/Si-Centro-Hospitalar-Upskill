@@ -18,6 +18,11 @@ public class PersonController {
         return "/pessoa/log-in";
     }
 
+    @GetMapping(value = "/registration")
+    public String showRegistration(){
+        return "/pessoa/register";
+    }
+
 
     @GetMapping(value = "/about-us")
     public String showAboutUs(){

@@ -50,7 +50,7 @@
             </div>
             <div class="object_container forms">
                 <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-                <form class="log-in column" id="register" action="register" method="POST">
+                <form class="log-in column" id="register" action="/register" method="POST">
                     <input type="text" path="userName" placeholder="User Name" required="required" />
                     <input type="text" path="nome" placeholder="Nome Completo" required="required" />
                     <input type="text" path="nUtente" placeholder="Numero de Utente" required="required" />

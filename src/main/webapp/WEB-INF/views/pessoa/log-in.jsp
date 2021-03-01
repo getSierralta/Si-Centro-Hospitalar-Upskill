@@ -57,7 +57,7 @@
             <div class="greenbutt">
                 <h3 class="medium">Log in</h3>
             </div>
-            <p style="font-weight: bolder;"><a href="/register">Create account</a></p>
+            <p style="font-weight: bolder;"><a href="/registration">Create account</a></p>
         </div>
     </main>
     <!--/Main-->

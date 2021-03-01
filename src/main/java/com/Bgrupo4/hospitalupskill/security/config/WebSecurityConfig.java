@@ -33,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/log-in",
                             "/about-us",
                             "/services",
-                            "/contacts"
+                            "/contacts",
+                            "/registration"
                 ).permitAll()
                     .anyRequest().authenticated().and().formLogin();
     }
