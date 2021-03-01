@@ -75,7 +75,7 @@
                </div>
                <div class="nav__down--logout medium">
                    <img src="../img/logout.svg" alt="log out icon">
-                   <a href="/log-out">Terminar Sessão</a>
+                   <a href="/logout">Terminar Sessão</a>
                </div>
            </div>
         </nav>
