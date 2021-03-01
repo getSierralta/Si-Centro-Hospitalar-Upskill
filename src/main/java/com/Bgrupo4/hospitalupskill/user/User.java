@@ -20,49 +20,59 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity
+@Entity(name = "user")
 public class User implements UserDetails {
 
     @Id
-    private Integer nUtente;
+    private Integer utente;
     private String name;
     private String username;
     private String email;
     private String password;
     private String morada;
     private String localidade;
-    private int phone;
-    private Date birthDay;
-    private String profilePicture = "";
+    private String phone;
+    private Date birthday;
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
-    private Boolean locked;
-    private Boolean enabled;
+    private UserRole userRole = UserRole.USER;
+    private Boolean locked = false;
+    private Boolean enabled = false;
+    private String profilePicture = "";
 
-    public User(Integer nUtente,
+
+    //Test purposes
+    public User(Integer utente,
+                String name,
+                String username,
+                String email,
+                String password) {
+        this.utente = utente;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(Integer utente,
                 String name,
                 String username,
                 String email,
                 String password,
                 String morada,
                 String localidade,
-                int phone,
-                Date birthDay,
-                UserRole userRole,
-                Boolean locked,
-                Boolean enabled) {
-        this.nUtente = nUtente;
+                String phone,
+                Date birthday,
+                UserRole userRole) {
+        this.utente = utente;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userRole = userRole;
         this.morada = morada;
         this.localidade = localidade;
         this.phone = phone;
-        this.birthDay = birthDay;
-        this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
+        this.birthday = birthday;
     }
 
     @Override

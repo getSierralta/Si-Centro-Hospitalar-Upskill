@@ -1,12 +1,6 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
-import com.Bgrupo4.hospitalupskill.domain.User;
-import com.Bgrupo4.hospitalupskill.services.CalendarService;
-import com.Bgrupo4.hospitalupskill.services.FileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -22,11 +16,6 @@ public class PersonController {
     @GetMapping(value = "/log-in")
     public String showLogIn(){
         return "/pessoa/log-in";
-    }
-
-    @GetMapping(value = "/register")
-    public String showRegister(){
-        return "/pessoa/register";
     }
 
 
