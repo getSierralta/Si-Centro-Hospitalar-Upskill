@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @AllArgsConstructor
@@ -23,20 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers(
-                "/register",
-                            "/register/**",
-                            "/css/**",
-                            "/img/**",
-                            "/js/**",
-                            "/files/**",
-                            "/",
-                            "/log-in",
-                            "/about-us",
-                            "/services",
-                            "/contacts",
-                            "/registration"
-                ).permitAll()
-                    .anyRequest().authenticated().and().formLogin();
+                "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/log-in","/about-us","/services", "/contacts", "/registration")
+                .permitAll().anyRequest().authenticated().and()
+                .formLogin().loginPage("/login")
+                .permitAll().defaultSuccessUrl("/profileutente", true)
+                .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
+                //Todo: make the key secure
+                .and().logout()
+                .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
+                .logoutSuccessUrl("/");
     }
 
     @Override

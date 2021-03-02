@@ -30,8 +30,8 @@
             </div>
             <div class="medium ">
                 <a href="/contacts">
-                    <div class="icon calendario"></div>
-                    <span class="none">Calendario</span>
+                    <div class="icon contactos"></div>
+                    <span class="none">Contactos</span>
                 </a>
             </div>
             <div class="medium">
