@@ -41,6 +41,13 @@ public class User implements UserDetails {
 
 
     //Test purposes
+
+
+    public User(Integer utente, String name) {
+        this.utente = utente;
+        this.name = name;
+    }
+
     public User(Integer utente,
                 String name,
                 String username,
@@ -109,5 +116,24 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "utente=" + utente +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", morada='" + morada + '\'' +
+                ", localidade='" + localidade + '\'' +
+                ", phone='" + phone + '\'' +
+                ", birthday=" + birthday +
+                ", userRole=" + userRole +
+                ", locked=" + locked +
+                ", enabled=" + enabled +
+                ", profilePicture='" + profilePicture + '\'' +
+                '}';
     }
 }
