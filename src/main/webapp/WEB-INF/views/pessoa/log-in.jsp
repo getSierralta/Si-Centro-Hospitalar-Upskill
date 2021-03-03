@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="medium">
-            <a href="/log-in">
+            <a href="/login">
                 <div class="icon utente"></div>
                 <span class="none">Log-In</span>
             </a>

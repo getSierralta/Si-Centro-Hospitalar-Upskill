@@ -30,20 +30,21 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
-    /*
+
     //Use this one for testing purposes like roles and stuff
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return applicationUserDao
                 .selectUserByUsername(s)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", s)));
-    }*/
+    }
 
+    /*
     @Override
     //The real deal database
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findByusername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
-    }
+    }*/
 
     public String singUpUser(User user){
         boolean userExist = userRepository.findByusername(user.getUsername()).isPresent();
