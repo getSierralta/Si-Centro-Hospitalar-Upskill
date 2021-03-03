@@ -18,7 +18,7 @@ public class Employee extends User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole = UserRole.COLABORADOR;
 
-    public Employee(Integer utente,
+    public Employee(Integer nif,
                     String name,
                     String username,
                     String email,
@@ -32,7 +32,7 @@ public class Employee extends User {
                     Hospital unidade,
                     EmployeeRole cargo1,
                     EmployeeRole cargo2) {
-        super(utente, name, username, email, password, morada, localidade, phone, birthday, userRole);
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole);
         this.numFuncionario = numFuncionario;
         this.unidade = unidade;
         cargos.add(cargo1);

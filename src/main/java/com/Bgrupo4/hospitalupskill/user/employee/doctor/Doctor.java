@@ -20,7 +20,7 @@ public class Doctor extends Employee {
     @Enumerated(EnumType.STRING)
     private UserRole userRole = UserRole.MEDICO;
 
-    public Doctor(Integer utente,
+    public Doctor(Integer nif,
                   String name,
                   String username,
                   String email,
@@ -40,7 +40,7 @@ public class Doctor extends Employee {
                   Especialidade esp3,
                   Especialidade esp4,
                   Especialidade esp5) {
-        super(utente, name, username, email, password, morada, localidade, phone, birthday, userRole, numFuncionario, unidade, cargo1, cargo2);
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole, numFuncionario, unidade, cargo1, cargo2);
         this.cedula = cedula;
         especialidades.add(esp1);
         if(esp2 != null){especialidades.add(esp2);}
