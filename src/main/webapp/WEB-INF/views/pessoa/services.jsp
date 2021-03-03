@@ -62,6 +62,7 @@
         </div>
         <!--/Info Box-->
         <!--Cards-->
+        <!--CHANGE TO DROPDOWN FOR MOBILE-->
         <ul class="button_group">
             <a href="#/" class="butts">Análises Clínicas</a>
             <a href="#/" class="butts">Atendimento Urgente 24h</a>
@@ -73,13 +74,22 @@
             <a href="#/" class="butts">Maternidade</a>
             <a href="#/" class="butts">Vacinação</a>
         </ul>
-        <!--CHANGE TO DROPDOWN FOR MOBILE-->
         <div class="card info" id="toggle_info">
             <div class="content-1 active">
-                <p>Purr purr purr until owner pets why owner not pet me hiss scratch meow. Behind the couch toilet paper attack claws fluff everywhere meow miao french ciao litterbox for good now the other hand, too, the cat was chasing the mouse. Rub against owner because nose is wet. Kitty run to human with blood on mouth from frenzied attack on poor innocent mouse, don't i look cute?. Where is it? i saw that bird i need to bring it home to mommy squirrel! meow all night. Attempt to leap between furniture but woefully miscalibrate and bellyflop onto the floor; what's your problem? i meant to do that now i shall wash myself intently i vomit in the bed in the middle of the night so stand in front of the computer screen. Open the door, let me out, let me out, let me-out, let me-aow, let meaow, meaow! get scared by doggo also cucumerro but hunt by meowing loudly at 5am next to human slave food dispenser.</p>
+                <p><b>Como devo preparar-me para análises?</b><br><br>
+                   Recomendações para a generalidade das pessoas e em grande parte das análises:<br>
+                   <ul>
+                       <li>Deve cumprir um período de jejum de alimentos sólidos de 8 horas. Se as análises incluírem estudos de lípidos (por exemplo, triglicéridos, colesterol, entre outros), o período de jejum ideal é, se possível, de 12 horas;</li>
+                       <li>Pode beber água, desde que em quantidade moderada;
+                       <li>Não deve suspender a toma de medicação habitual, exceto se tiver sido especificamente indicado.</li>
+                   </ul>
+                   Pessoas com doenças crónicas (por exemplo, diabetes) e grávidas devem aconselhar-se com o seu médico sobre necessidades específicas de preparação para as análises que lhes são prescritas.</p>
             </div>
             <div class="content-2">
-                <p>Groom yourself 4 hours - checked, have your beauty sleep 18 hours - checked, be fabulous for the rest of the day - checked my cat stared at me he was sipping his tea, too. Drool hide when guests come over mewl for food at 4am and attack feet, for mew so see owner, run in terror or stare at ceiling. Is good you understand your place in my world sit as close as possible to warm fire without sitting on cold floor or destroy couch as revenge, but meow to be let in but climb leg. Cat cat moo moo lick ears lick paws shove bum in owner's face like camera lens meow. Jump on fridge refuse to drink water except out of someone's glass, chew master's slippers yet hide head under blanket so no one can see allways wanting food yet scream for no reason at 4 am jumps off balcony gives owner dead mouse at present then poops in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish.</p>
+                <p>Respondemos às urgências de saúde, prestando assistência médica eficaz em situações que exigem intervenção rápida.
+                   O Atendimento Urgente está vocacionado para avaliar e tratar problemas de saúde urgentes, bem como outros que requeiram intervenção rápida.
+
+                   Um atendimento completo e disponível sempre que precise.</p>
             </div>
             <div class="content-3">
                 <p>Pelt around the house and up and down stairs chasing phantoms chase mice, and attack the dog then pretend like nothing happened catty ipsum but cat sit like bread intently sniff hand. Leave fur on owners clothes under the bed. Reaches under door into adjacent room sun bathe, for cat ass trophy. Meow love. Man running from cops stops to pet cats, goes to jail claw at curtains stretch and yawn nibble on tuna ignore human bite human hand but kitty power yet to pet a cat, rub its belly, endure blood and agony, quietly weep, keep rubbing belly but sniff other cat's butt and hang jaw half open thereafter. Russian blue steal mom's crouton while she is in the bathroom ask for petting or do not try to mix old food with new one to fool me!. Climb a tree, wait for a fireman jump to fireman then scratch his face annoy owner until he gives you food say meow repeatedly until belly rubs, feels good for meow meow, i tell my human Gate keepers of hell. Check cat door for ambush 10 times before coming in lasers are tiny mice. Sleeps on my head drool play riveting piece on synthesizer keyboard or whatever.</p>

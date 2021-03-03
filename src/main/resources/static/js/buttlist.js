@@ -11,3 +11,28 @@ $('.butts').click(function(){
   $siblings.removeClass('active');
   $this.addClass('active');
 })
+
+// DOM ready
+$(function() {
+    $("<select />").appendTo(".button_group");
+
+    /*
+    $("<option />", {
+      "selected": "selected",
+      "value"   : "",
+      "text"    : "Análises Clínicas"
+    }).appendTo(".button_group select");
+    */
+
+    $(".button_group a").each(function() {
+      var el = $(this);
+      $("<option />", {
+        "value"   : el.attr("href"),
+        "text"    : el.text()
+      }).appendTo(".button_group select");
+    });
+
+    $(".button_group select").change(function() {
+      window.location = $(this).find("option:selected").val();
+    });
+});
