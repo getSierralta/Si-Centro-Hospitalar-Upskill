@@ -3,13 +3,18 @@ package com.Bgrupo4.hospitalupskill.user.employee.doctor;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRole;
 import com.Bgrupo4.hospitalupskill.user.employee.Hospital;
-import com.Bgrupo4.hospitalupskill.user.User;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
 import java.util.ArrayList;
 
+@Getter
+@Setter
+@Entity
 public class Doctor extends Employee {
 
     @Id
@@ -43,22 +48,6 @@ public class Doctor extends Employee {
         if(esp3 != null){especialidades.add(esp3);}
         if(esp4 != null){especialidades.add(esp4);}
         if(esp5 != null){especialidades.add(esp5);}
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public ArrayList<Especialidade> getEspecialidades() {
-        return especialidades;
-    }
-
-    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
-        this.especialidades = especialidades;
     }
 }
 

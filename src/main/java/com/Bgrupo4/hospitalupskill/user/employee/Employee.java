@@ -2,11 +2,17 @@ package com.Bgrupo4.hospitalupskill.user.employee;
 
 import com.Bgrupo4.hospitalupskill.user.User;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
 import java.util.ArrayList;
 
+@Getter
+@Setter
+@Entity
 public class Employee extends User {
 
     @Id
@@ -33,29 +39,5 @@ public class Employee extends User {
         this.unidade = unidade;
         cargos.add(cargo1);
         if(cargo2 != null){cargos.add(cargo2);}
-    }
-
-    public int getNumFuncionario() {
-        return numFuncionario;
-    }
-
-    public void setNumFuncionario(int numFuncionario) {
-        this.numFuncionario = numFuncionario;
-    }
-
-    public Hospital getUnidade() {
-        return unidade;
-    }
-
-    public void setUnidade(Hospital unidade) {
-        this.unidade = unidade;
-    }
-
-    public ArrayList<EmployeeRole> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(ArrayList<EmployeeRole> cargos) {
-        this.cargos = cargos;
     }
 }
