@@ -22,21 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="post delete put get">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/HospitalUpskillApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/HospitalUpskillApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/controllers/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/domain/Marcacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/CalendarService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/services/CalendarServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Bgrupo4/hospitalupskill/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="515f636d-1f78-48bb-989f-d40cc7ed2747" name="Default Changelist" comment="post delete put get" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +95,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
         <item itemvalue="Application.HospitalUpskillApplication" />
