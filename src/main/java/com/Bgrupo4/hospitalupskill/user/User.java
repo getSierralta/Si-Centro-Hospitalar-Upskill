@@ -8,30 +8,76 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+
+import java.util.Date;
 import java.util.Collection;
 import java.util.Collections;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity(name = "user")
+@Entity(name = "User")
+@Table(
+        name = "user",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "user_email_unique", columnNames = "email")
+        }
+)
 public class User implements UserDetails {
 
     @Id
+    @SequenceGenerator(name = "user_sequence",
+        sequenceName = "user_sequence",
+        allocationSize = 1)
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "user_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
+    private Long id;
+    @Column(name = "nUtente")
     private Integer utente;
+    @Column(
+            name= "nome",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String name;
+    @Column(
+            name= "username",
+            columnDefinition = "TEXT"
+    )
     private String username;
+    @Column(
+            name= "email",
+            nullable = false
+    )
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(
+            name= "morada",
+            columnDefinition = "TEXT"
+    )
     private String morada;
+    @Column(
+            name= "localidade",
+            columnDefinition = "TEXT"
+    )
     private String localidade;
+    @Column (name = "phone")
     private String phone;
+    @Column(
+            name= "birthday",
+            columnDefinition = "TEXT"
+    )
     private Date birthday;
     @Enumerated(EnumType.STRING)
     private UserRole userRole = UserRole.USER;
@@ -43,9 +89,10 @@ public class User implements UserDetails {
     //Test purposes
 
 
-    public User(Integer utente, String name) {
+    public User(Integer utente, String name, String email) {
         this.utente = utente;
         this.name = name;
+        this.email= email;
     }
 
     public User(Integer utente,
@@ -67,7 +114,7 @@ public class User implements UserDetails {
                 String password,
                 String morada,
                 String localidade,
-                String phone,
+                String _phone,
                 Date birthday,
                 UserRole userRole) {
         this.utente = utente;
@@ -78,7 +125,7 @@ public class User implements UserDetails {
         this.userRole = userRole;
         this.morada = morada;
         this.localidade = localidade;
-        this.phone = phone;
+        this.phone = _phone;
         this.birthday = birthday;
     }
 
