@@ -3,6 +3,8 @@ package com.Bgrupo4.hospitalupskill.user.pacient;
 import com.Bgrupo4.hospitalupskill.user.User;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import java.sql.Date;
 
@@ -11,6 +13,8 @@ public class Pacient extends User {
     @Id
     private Integer numUtente;
     private String apolice;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.USER;
 
     public Pacient(Integer utente, String name, String username, String email, String password, String morada, String localidade, String phone, Date birthday, UserRole userRole, Integer numUtente, String apolice) {
         super(utente, name, username, email, password, morada, localidade, phone, birthday, userRole);

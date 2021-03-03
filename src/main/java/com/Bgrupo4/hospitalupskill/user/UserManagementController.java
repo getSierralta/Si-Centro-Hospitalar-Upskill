@@ -1,27 +1,23 @@
 package com.Bgrupo4.hospitalupskill.user;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("management/users")
 public class UserManagementController {
 
-    private static final List<User> USERS = Arrays.asList(
-            new User(123, "João"),
-            new User(1000, "Max"),
-            new User(526, "Gabriel"),
-            new User(154, "Thiago")
-    );
+    @Autowired
+    private FakeApplicationUserDaoService fakeApplicationUserDaoService;
+
 
     @GetMapping
     //@PreAuthorize("Respect mah authority!")
-    public List<User> getAllUsers(){
+    public List<ApplicationUser> getAllUsers(){
         System.out.println("getAllUsers");
-        return USERS;
+        return fakeApplicationUserDaoService.getApplicationUsers();
     }
 
     @PostMapping

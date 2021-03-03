@@ -24,7 +24,7 @@ import java.util.Collections;
 public class User implements UserDetails {
 
     @Id
-    private Integer nib;
+    private Integer nif;
     private String name;
     private String username;
     private String email;
@@ -43,24 +43,24 @@ public class User implements UserDetails {
     //Test purposes
 
 
-    public User(Integer utente, String name) {
-        this.utente = utente;
+    public User(Integer nif, String name) {
+        this.nif = nif;
         this.name = name;
     }
 
-    public User(Integer utente,
+    public User(Integer nif,
                 String name,
                 String username,
                 String email,
                 String password) {
-        this.nib = utente;
+        this.nif = nif;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public User(Integer utente,
+    public User(Integer nif,
                 String name,
                 String username,
                 String email,
@@ -70,7 +70,7 @@ public class User implements UserDetails {
                 String phone,
                 Date birthday,
                 UserRole userRole) {
-        this.nib = utente;
+        this.nif = nif;
         this.name = name;
         this.username = username;
         this.email = email;
@@ -81,6 +81,8 @@ public class User implements UserDetails {
         this.phone = phone;
         this.birthday = birthday;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -121,7 +123,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "utente=" + utente +
+                "nif=" + nif +
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
@@ -130,7 +132,7 @@ public class User implements UserDetails {
                 ", localidade='" + localidade + '\'' +
                 ", phone='" + phone + '\'' +
                 ", birthday=" + birthday +
-                ", userRole=" + userRole +
+                //", userRole=" + userRole +
                 ", locked=" + locked +
                 ", enabled=" + enabled +
                 ", profilePicture='" + profilePicture + '\'' +

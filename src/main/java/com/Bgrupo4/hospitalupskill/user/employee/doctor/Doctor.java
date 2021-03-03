@@ -6,6 +6,8 @@ import com.Bgrupo4.hospitalupskill.user.employee.Hospital;
 import com.Bgrupo4.hospitalupskill.user.User;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ public class Doctor extends Employee {
     @Id
     private String cedula;
     private ArrayList<Especialidade> especialidades = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.MEDICO;
 
     public Doctor(Integer utente,
                   String name,
