@@ -24,7 +24,7 @@ import java.util.Collections;
 public class User implements UserDetails {
 
     @Id
-    private Integer utente;
+    private Integer nib;
     private String name;
     private String username;
     private String email;
@@ -34,7 +34,7 @@ public class User implements UserDetails {
     private String phone;
     private Date birthday;
     @Enumerated(EnumType.STRING)
-    private UserRole userRole = UserRole.USER;
+    private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
     private String profilePicture = "";
@@ -53,7 +53,7 @@ public class User implements UserDetails {
                 String username,
                 String email,
                 String password) {
-        this.utente = utente;
+        this.nib = utente;
         this.name = name;
         this.username = username;
         this.email = email;
@@ -70,7 +70,7 @@ public class User implements UserDetails {
                 String phone,
                 Date birthday,
                 UserRole userRole) {
-        this.utente = utente;
+        this.nib = utente;
         this.name = name;
         this.username = username;
         this.email = email;
