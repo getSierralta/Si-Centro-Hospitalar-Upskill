@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="medium">
-            <a href="/log-in">
+            <a href="/login">
                 <div class="icon utente"></div>
                 <span class="none">Log-In</span>
             </a>
@@ -49,15 +49,16 @@
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <form class="log-in">
-                <input type="text" name="username" placeholder="Jenipurr Lopez">
-                <input type="password" name="password" placeholder="********">
+            <form class="log-in" method="post" action="/login">
+                <input type="text" id="username" name="username"  placeholder="Jenipurr Lopez">
+                <input type="password" id="password" name="password"  placeholder="********">
+                <p>Remember Me?<input type="checkbox" id="remember-me" name="remember-me" class="form-control"></p>
+                <div class="greenbutt">
+                    <button type="submit" class="medium">Log in</button>
+                </div>
             </form>
             <p>Forgot your password?</p>
-            <div class="greenbutt">
-                <h3 class="medium">Log in</h3>
-            </div>
-            <p style="font-weight: bolder;"><a href="/register">Create account</a></p>
+            <p style="font-weight: bolder;"><a href="/registration">Create account</a></p>
         </div>
     </main>
     <!--/Main-->

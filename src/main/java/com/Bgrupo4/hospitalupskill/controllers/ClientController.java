@@ -58,5 +58,16 @@ public class ClientController {
         return "/utente/calendariogeralutente";
     }
 
+    @GetMapping(value = "/calendarutente")
+    public String showEvents(){
+        return "/utente/calendar";
+    }
 
+
+    /*
+    @GetMapping(value = "/calendarutente")
+    public String showEvents(ModelMap map){
+        map.put("calendarList", calendarService.getMarcacoes());
+        return "/utente/calendar";
+    }*/
 }

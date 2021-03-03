@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping(path = "{utente}")
     public User getUser(@PathVariable("utente") Integer utente){
-        return USERS.stream().filter(student -> utente.equals(student.getUtente())).findFirst()
+        return USERS.stream().filter(student -> utente.equals(student.getNif())).findFirst()
                 .orElseThrow(() -> new IllegalStateException("Utente "+ utente + " does not exists"));
 
 

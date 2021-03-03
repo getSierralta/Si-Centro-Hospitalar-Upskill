@@ -13,9 +13,14 @@ public class PersonController {
         return "/pessoa/index";
     }
 
-    @GetMapping(value = "/log-in")
+    @GetMapping(value = "/login")
     public String showLogIn(){
         return "/pessoa/log-in";
+    }
+
+    @GetMapping(value = "/registration")
+    public String showRegistration(){
+        return "/pessoa/register";
     }
 
 
