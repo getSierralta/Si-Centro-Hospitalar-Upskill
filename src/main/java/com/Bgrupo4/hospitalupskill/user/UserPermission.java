@@ -8,7 +8,9 @@ public enum UserPermission {
     UTENTE_READ("utente:read"),
     UTENTE_WRITE("utente:write"),
     RESPONSAVEL_READ("responsavel:read"),
-    RESPONSAVEL_WRITE("responsavel:write");
+    RESPONSAVEL_WRITE("responsavel:write"),
+    USER_READ("utente:read"),
+    USER_WRITE("utente:write");
 
     private final String permission;
 

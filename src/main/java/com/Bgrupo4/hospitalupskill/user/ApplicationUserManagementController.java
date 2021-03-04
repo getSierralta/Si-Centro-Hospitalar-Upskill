@@ -1,34 +1,29 @@
-package com.Bgrupo4.hospitalupskill.user.utente;
+package com.Bgrupo4.hospitalupskill.user;
 
-import com.Bgrupo4.hospitalupskill.user.UserRole;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("management/users/utentes")
-public class UtenteManagementController {
+@RequestMapping("api/v1/users")
+public class ApplicationUserManagementController {
 
+    @Autowired
+    private final ApplicationUserService applicationUserService;
 
-
-
-    private static final List<Utente> UTENTES = Arrays.asList(
-    // somos utentes, felizes e doentes
-            new Utente(123456789, "Rebeca Rebola", "reboca", "reboca@email.com",
-                    "123", UserRole.UTENTE.name(),  "987654321"),
-            new Utente(123456788, "Pepe Pepetola", "petola", "petola@email.com",
-                    "123",  UserRole.UTENTE.name(), "Almada")
-    );
+    public ApplicationUserManagementController(ApplicationUserService applicationUserService) {
+        this.applicationUserService = applicationUserService;
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('utente:read')")
-    public List<Utente> getAllUtentes() {
+    public List<ApplicationUser> getUsers() {
         // this is a placeholder
-        System.out.println("getAllUtentes");
-        return UTENTES;
+        System.out.println("get Users");
+        return applicationUserService.getUsers();
     }
 
     @PostMapping
@@ -54,4 +49,6 @@ public class UtenteManagementController {
         System.out.println("updateUtente");
         System.out.printf("%s %s%n", nif, utente);
     }
+
+
 }

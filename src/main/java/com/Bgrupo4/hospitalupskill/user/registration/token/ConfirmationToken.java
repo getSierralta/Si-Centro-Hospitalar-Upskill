@@ -1,6 +1,6 @@
-package com.Bgrupo4.hospitalupskill.registration.token;
+package com.Bgrupo4.hospitalupskill.user.registration.token;
 
-import com.Bgrupo4.hospitalupskill.user.User;
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,9 +42,9 @@ public class ConfirmationToken {
             nullable = false,
             name = "user_utente"
     )
-    private User user;
+    private ApplicationUser user;
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, User user) {
+    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, ApplicationUser user) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;

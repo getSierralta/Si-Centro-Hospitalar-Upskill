@@ -1,65 +1,22 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
-import com.Bgrupo4.hospitalupskill.user.User;
-import com.Bgrupo4.hospitalupskill.user.UserRole;
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
-public class Employee extends User {
+@Getter
+@Setter
+public class Employee extends ApplicationUser {
 
-    @Id
-    private int numFuncionario;
-    private Hospital unidade;
-    private ArrayList<EmployeeRole> cargos = new ArrayList<>();
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole = UserRole.COLABORADOR;
+    private Unidade unidade;
 
-    public Employee(Integer nif,
-                    String name,
-                    String username,
-                    String email,
-                    String password,
-                    String morada,
-                    String localidade,
-                    String phone,
-                    Date birthday,
-                    UserRole userRole,
-                    int numFuncionario,
-                    Hospital unidade,
-                    EmployeeRole cargo1,
-                    EmployeeRole cargo2) {
-        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole);
-        this.numFuncionario = numFuncionario;
+    public Employee(Integer nif, String name, String username, String email, String password, String role, Unidade unidade) {
+        super(nif, name, username, email, password, role);
         this.unidade = unidade;
-        cargos.add(cargo1);
-        if(cargo2 != null){cargos.add(cargo2);}
-    }
-
-    public int getNumFuncionario() {
-        return numFuncionario;
-    }
-
-    public void setNumFuncionario(int numFuncionario) {
-        this.numFuncionario = numFuncionario;
-    }
-
-    public Hospital getUnidade() {
-        return unidade;
-    }
-
-    public void setUnidade(Hospital unidade) {
-        this.unidade = unidade;
-    }
-
-    public ArrayList<EmployeeRole> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(ArrayList<EmployeeRole> cargos) {
-        this.cargos = cargos;
     }
 }
