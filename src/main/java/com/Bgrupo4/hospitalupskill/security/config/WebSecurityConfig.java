@@ -36,15 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin().loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/profileutente", true)
-                .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
-                //Todo: make the key secure
-                .and().logout()
-                .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");
-
+                .httpBasic(); //for development purposes
         /*
         http
                 .csrf().disable()

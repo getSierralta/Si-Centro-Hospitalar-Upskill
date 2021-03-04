@@ -2,11 +2,11 @@ package com.Bgrupo4.hospitalupskill.user;
 
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,7 +18,7 @@ public class UserManagementController {
 
 
     @GetMapping
-    @PreAuthorize("hasAuthority('utente:read')")
+    //@PreAuthorize("hasAuthority('utente:read')")
     public List<ApplicationUser> getAllUtentes() {
         // this is a placeholder
         System.out.println("getAllUtentes");
@@ -26,7 +26,7 @@ public class UserManagementController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('utente:write')")
+    //@PreAuthorize("hasAuthority('utente:write')")
     public void registerNewUtente(@RequestBody Utente utente) {
         // this is also a placeholder
         System.out.println("registerNewUtente");
@@ -34,7 +34,7 @@ public class UserManagementController {
     }
 
     @DeleteMapping(path = "{utente}")
-    @PreAuthorize("hasAuthority('utente:write')")
+    //@PreAuthorize("hasAuthority('utente:write')")
     public void deleteUtente(@PathVariable("utente") Integer nif){
         // same sh*t, different method
         System.out.println("deleteUtente");
@@ -42,7 +42,7 @@ public class UserManagementController {
     }
 
     @PutMapping(path = "{utente}")
-    @PreAuthorize("hasAuthority('utente:write')")
+    //@PreAuthorize("hasAuthority('utente:write')")
     public void updateUtente(@PathVariable("utente") Integer nif, @RequestBody Utente utente) {
         // same as the above
         System.out.println("updateUtente");
@@ -51,16 +51,17 @@ public class UserManagementController {
 
     //////////////////// MEDICO
 
-
+/*
     private static final List<Doctor> MEDICOS = Arrays.asList(
     // we are rich because we are doctors and doctors make a lot of money
     );
 
+
     @GetMapping
     @PreAuthorize("hasAuthority('medico:read')")
-    public List<Doctor> getAllMedicos() {
+    public List<ApplicationUser> getAllMedicos() {
         System.out.println("getAllMedicos");
-        return MEDICOS;
+        return fakeApplicationUserDaoService.getApplicationUsers();
     }
 
 
@@ -87,15 +88,16 @@ public class UserManagementController {
 
     //////////////////// COLABORADOR
 
+
     private static final List<Employee> COLABORADORES = Arrays.asList(
     // underpaid staff list goes here
     );
 
     @GetMapping
     @PreAuthorize("hasAuthority('colaborador:read')")
-    public List<Employee> getAllColaboradores() {
+    public List<ApplicationUser> getAllColaboradores() {
         System.out.println("getAllColaboradores");
-        return COLABORADORES;
+        return fakeApplicationUserDaoService.getApplicationUsers();
     }
 
     @PostMapping
@@ -118,7 +120,7 @@ public class UserManagementController {
         System.out.println("updateDoctor");
         System.out.printf("%s %s%n", nif, employee);
     }
-
+*/
     //////////////////// RESPONSAVEL
 
     // @GetMapping > @PreAuthorize("hasAuthority('responsavel:read')")
