@@ -12,11 +12,11 @@ import static com.Bgrupo4.hospitalupskill.user.UserPermission.*;
 public enum UserRole {
     // maybe remove USER and have ADMIN handle the tests
     USER(Sets.newHashSet()),
-    UTENTE(Sets.newHashSet(UTENTE_WRITE)),
-    MEDICO(Sets.newHashSet(UTENTE_WRITE)),
-    COLABORADOR(Sets.newHashSet(UTENTE_WRITE, RESPONSAVEL_WRITE)),
-    RESPONSAVEL(Sets.newHashSet(MEDICO_WRITE, RESPONSAVEL_WRITE)),
-    ADMIN(Sets.newHashSet(COLABORADOR_WRITE, MEDICO_WRITE, UTENTE_WRITE, RESPONSAVEL_WRITE));
+    UTENTE(Sets.newHashSet(UTENTE_READ)),
+    MEDICO(Sets.newHashSet(UTENTE_READ, MEDICO_READ)),
+    COLABORADOR(Sets.newHashSet(UTENTE_READ, UTENTE_WRITE, RESPONSAVEL_READ, RESPONSAVEL_WRITE)),
+    RESPONSAVEL(Sets.newHashSet(MEDICO_READ, MEDICO_WRITE, RESPONSAVEL_READ, RESPONSAVEL_WRITE)),
+    ADMIN(Sets.newHashSet(COLABORADOR_READ, COLABORADOR_WRITE, MEDICO_READ, MEDICO_WRITE, UTENTE_READ, UTENTE_WRITE, RESPONSAVEL_READ, RESPONSAVEL_WRITE));
 
     private final Set<UserPermission> permissions;
 
