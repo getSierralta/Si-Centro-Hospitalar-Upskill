@@ -5,7 +5,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import java.sql.Date;
 
-public class Hospital {
+public class Unidade {
 
     @Id
     private Integer id;
@@ -16,7 +16,7 @@ public class Hospital {
     private String phone;
     private String picture;
 
-    public Hospital(Integer id, String name, String email, String morada, String localidade, String phone, String picture) {
+    public Unidade(Integer id, String name, String email, String morada, String localidade, String phone, String picture) {
         this.id = id;
         this.name = name;
         this.email = email;

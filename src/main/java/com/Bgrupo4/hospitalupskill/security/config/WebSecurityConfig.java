@@ -3,7 +3,7 @@ package com.Bgrupo4.hospitalupskill.security.config;
 import com.Bgrupo4.hospitalupskill.jwt.JwtConfig;
 import com.Bgrupo4.hospitalupskill.jwt.JwtTokenVerifier;
 import com.Bgrupo4.hospitalupskill.jwt.JwtUsernameAndPasswordAuthenticationFilter;
-import com.Bgrupo4.hospitalupskill.user.UserService;
+import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.crypto.SecretKey;
 import java.util.concurrent.TimeUnit;
-
-import static com.Bgrupo4.hospitalupskill.user.UserRole.*;
 
 @Configuration
 @AllArgsConstructor
@@ -29,14 +26,14 @@ import static com.Bgrupo4.hospitalupskill.user.UserRole.*;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //If this gives error probably you don't have the lombok plugin
-    private final UserService userService;
+    private final ApplicationUserService applicationUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-<<<<<<<<< Temporary merge branch 1
+
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -48,25 +45,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic(); //for development purposes
-                /*
-                http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(
-                "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/login","/about-us","/services", "/contacts",
-                .authorizeRequests().antMatchers(
-                "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/login","/about-us","/services", "/contacts",
-                "/registration", "/users/**", "/management/users", "/management/users/**")
-                .permitAll().anyRequest().authenticated();
+                //.httpBasic();
                 //todo: fix login so it uses Json
-                /*.and().formLogin().loginPage("/login")
+                .formLogin().loginPage("/login")
                 .permitAll().defaultSuccessUrl("/profileutente", true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");*/
+                .logoutSuccessUrl("/");
     }
 
     @Override
@@ -77,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userService);
+        provider.setUserDetailsService(applicationUserService);
         return provider;
     }
 }

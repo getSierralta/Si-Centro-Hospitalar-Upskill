@@ -1,51 +1,35 @@
 package com.Bgrupo4.hospitalupskill.user.employee.doctor;
 
-import com.Bgrupo4.hospitalupskill.user.FakeApplicationUserDaoService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.employee.Employee;
-import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRole;
-import com.Bgrupo4.hospitalupskill.user.employee.Hospital;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.especialidades;
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
+
+
 @RestController
-@RequestMapping("management/users/medicos")
+@RequestMapping("management/users/doctors")
 public class DoctorManagementController {
 
-    @Autowired
-    private FakeApplicationUserDaoService fakeApplicationUserDaoService;
-
-    // FOR TESTING PURPOSES ONLY
-    private static Hospital upskill() {
-        return new Hospital(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill",
-                "Sintra", "456456665", "UpPhoto");
-    }
-
-    private static final List<Doctor> MEDICOS = Arrays.asList(
-    // computer says no
+    private List<Doctor> MEDICOS = Arrays.asList(
+            // computer says no
             new Doctor(144456789, "Dr Love", "luv", "luv@email.com",
-                    "123", "Rua B n1", "Alameda", "981154325", new Date(25/05/1989),
-                    UserRole.MEDICO, 005, upskill(), "Cedula1", EmployeeRole.DOCTOR, EmployeeRole.DOCTOR,
-                    Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia,
-                    Especialidade.Radiologia),
+                    "123", UserRole.MEDICO.name(), upskill, "aasfghkjg", especialidades),
             new Doctor(145645563, "Dr Jones", "bones", "bones@email.com",
-                    "123", "Rua E n2", "Alameda", "981244322", new Date(25/05/1989),
-                    UserRole.MEDICO, 005, upskill(), "Cedula2", EmployeeRole.DOCTOR, EmployeeRole.DOCTOR,
-                    Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia,
-                    Especialidade.Radiologia)
+                    "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula2", especialidades)
     );
+
 
     @GetMapping
     @PreAuthorize("hasAuthority('medico:read')")
     public List<Doctor> getAllMedicos() {
         System.out.println("getAllMedicos");
-        return MEDICOS;
+        return null;
     }
 
     @PostMapping

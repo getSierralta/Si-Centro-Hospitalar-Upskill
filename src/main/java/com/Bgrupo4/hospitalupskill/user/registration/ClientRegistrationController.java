@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.registration;
+package com.Bgrupo4.hospitalupskill.user.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
