@@ -36,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+<<<<<<<<< Temporary merge branch 1
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -53,6 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
+                "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/login","/about-us","/services", "/contacts",
+                .authorizeRequests().antMatchers(
                 "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/login","/about-us","/services", "/contacts",
                 "/registration", "/users/**", "/management/users", "/management/users/**")
                 .permitAll().anyRequest().authenticated();
