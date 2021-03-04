@@ -20,10 +20,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity(name = "User")
-@Table(name = "user",uniqueConstraints = {@UniqueConstraint(name = "user_email_unique", columnNames = "email")})
-                                           // @UniqueConstraint(name = "user_username_unique", columnNames = "username"),
-                                            //@UniqueConstraint(name = "user_nif_unique", columnNames = "nif")})
+@MappedSuperclass
 public class ApplicationUser implements UserDetails {
 
     @Id
