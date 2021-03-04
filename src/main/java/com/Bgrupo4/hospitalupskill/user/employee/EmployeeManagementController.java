@@ -11,7 +11,7 @@ import java.util.List;
 import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
 
 @RestController
-@RequestMapping("management/users/employee")
+@RequestMapping("/api/employee")
 @AllArgsConstructor
 public class EmployeeManagementController {
 

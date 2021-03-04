@@ -1,8 +1,10 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
-import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +21,16 @@ public class Doctor extends ApplicationUser {
 
 
     private String cedula;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Vaga> vagas;
+
+
     //private List<Especialidade> especialidades;
     /*@OneToMany
     @JoinColumn(nullable = false,name = "unidade")

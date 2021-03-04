@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("management/api/utentes")
+@RequestMapping("/api/utentes")
 public class UtenteManagementController {
 
 

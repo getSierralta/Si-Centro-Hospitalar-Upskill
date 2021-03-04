@@ -12,7 +12,7 @@ import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
 
 
 @RestController
-@RequestMapping("management/users/doctors")
+@RequestMapping("/api/doctors")
 public class DoctorManagementController {
 
     private List<Doctor> MEDICOS = Arrays.asList(

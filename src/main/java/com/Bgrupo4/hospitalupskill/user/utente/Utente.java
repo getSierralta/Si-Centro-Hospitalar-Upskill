@@ -1,13 +1,15 @@
 package com.Bgrupo4.hospitalupskill.user.utente;
 
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -18,6 +20,10 @@ import javax.persistence.UniqueConstraint;
 public class Utente extends ApplicationUser {
 
     private String apolice;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
     //For some reason this doesnt work if i dont have an empty constructor
     public Utente() {
