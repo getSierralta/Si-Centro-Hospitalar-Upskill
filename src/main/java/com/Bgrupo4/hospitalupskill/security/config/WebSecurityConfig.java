@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,9 +20,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import javax.crypto.SecretKey;
 import java.util.concurrent.TimeUnit;
 
+import static com.Bgrupo4.hospitalupskill.user.UserRole.*;
+
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //If this gives error probably you don't have the lombok plugin
@@ -37,7 +41,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
-                .authorizeRequests().antMatchers(
+                .authorizeRequests()
+                .antMatchers("/register","/register/**","/css/**","/img/**","/js/**","/","/log-in","/about-us","/services", "/contacts", "/registration").permitAll()
+                //.antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole(UTENTE.name(), MEDICO.name(), COLABORADOR.name())
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic(); //for development purposes
+                /*
+                http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(
                 "/register","/register/**","/css/**","/img/**","/js/**","/files/**","/","/login","/about-us","/services", "/contacts",
                 "/registration", "/users/**", "/management/users", "/management/users/**")
                 .permitAll().anyRequest().authenticated();

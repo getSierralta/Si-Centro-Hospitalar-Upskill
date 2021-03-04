@@ -29,37 +29,33 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
     public List<ApplicationUser> getApplicationUsers(){
         List<ApplicationUser> applicationUsers = Lists.newArrayList(
                 new ApplicationUser(
-                        "utente",
+                         "utente",
                         passwordEncoder.encode("root"),
-                        true,
+                        UserRole.UTENTE.getGrantedAuthorities(), true,
                         true,
                         true,
                         true),
-                new ApplicationUser(
-                        "medico",
+                new ApplicationUser( "medico",
                         passwordEncoder.encode("root"),
-                        true,
+                        UserRole.MEDICO.getGrantedAuthorities(), true,
                         true,
                         true,
                         true),
-                new ApplicationUser(
-                        "responsavel",
+                new ApplicationUser("responsavel",
                         passwordEncoder.encode("root"),
-                        true,
+                        UserRole.RESPONSAVEL.getGrantedAuthorities(), true,
                         true,
                         true,
                         true),
-                new ApplicationUser(
-                        "colaborador",
+                new ApplicationUser( "colaborador",
                         passwordEncoder.encode("root"),
-                        true,
+                        UserRole.COLABORADOR.getGrantedAuthorities(), true,
                         true,
                         true,
                         true),
-                new ApplicationUser(
-                        "admin",
+                new ApplicationUser( "admin",
                         passwordEncoder.encode("root"),
-                        true,
+                        UserRole.ADMIN.getGrantedAuthorities(), true,
                         true,
                         true,
                         true)

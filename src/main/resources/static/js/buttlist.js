@@ -12,11 +12,10 @@ $('.butts').click(function(){
   $this.addClass('active');
 })
 
-// DOM ready
 $(function() {
     $("<select />").appendTo(".button_group");
 
-    /*
+    /* I DON'T KNOW
     $("<option />", {
       "selected": "selected",
       "value"   : "",

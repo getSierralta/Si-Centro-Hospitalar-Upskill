@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -26,6 +27,7 @@ public class UserService implements UserDetailsService {
     }
 
     private final static String USER_NOT_FOUND_MSG = "O usuario %s não foi encontrado";
+    //If this gives error probably you dont have the lombok plugin
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
@@ -46,6 +48,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByusername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
     }*/
 
+    //@PostMapping
     public String singUpUser(User user){
         boolean userExist = userRepository.findByusername(user.getUsername()).isPresent();
         if (userExist){
