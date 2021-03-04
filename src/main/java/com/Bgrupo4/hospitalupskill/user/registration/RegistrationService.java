@@ -1,10 +1,10 @@
-package com.Bgrupo4.hospitalupskill.registration;
+package com.Bgrupo4.hospitalupskill.user.registration;
 
 import com.Bgrupo4.hospitalupskill.email.EmailSender;
-import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
-import com.Bgrupo4.hospitalupskill.user.User;
-import com.Bgrupo4.hospitalupskill.user.UserService;
+import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ public class RegistrationService {
 
     // if this gives error you probably don't have the lombok plugin installed
     private final EmailValidator emailValidator;
-    private final UserService userService;
+    private final ApplicationUserService applicationUserService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
@@ -26,12 +26,13 @@ public class RegistrationService {
         if(!isValidEmail){
             throw new IllegalStateException("email not valid");
         }
-        String token = userService.singUpUser(new User(
-                        request.getUtente(),
+        String token = applicationUserService.singUpUser(new ApplicationUser(
+                        request.getNif(),
                         request.getName(),
                         request.getUsername(),
                         request.getEmail(),
-                        request.getPassword()));
+                        request.getPassword(),
+                        request.getRole()));
         String link = "http://localhost:8080/register/confirm?token="+token;
         emailSender.senad(request.getEmail(), buildEmail(request.getName(), link));
         return token;
@@ -55,7 +56,7 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        userService.enableUser(
+        applicationUserService.enableUser(
                 confirmationToken.getUser().getEmail());
         return "confirmed";
     }
