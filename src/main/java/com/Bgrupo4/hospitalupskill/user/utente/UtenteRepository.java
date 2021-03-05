@@ -1,6 +1,7 @@
-package com.Bgrupo4.hospitalupskill.user;
+package com.Bgrupo4.hospitalupskill.user.utente;
 
 
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,12 +12,12 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface ApplicationUserRepository extends JpaRepository<ApplicationUser, Long> {
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
-    Optional<ApplicationUser> findByUsername(String username);
+    Optional<Utente> findByUsername(String username);
 
     @Transactional
     @Modifying
-    @Query("UPDATE User a SET a.enabled = TRUE WHERE a.email = ?1")
+    @Query("UPDATE Utente a SET a.enabled = TRUE WHERE a.email = ?1")
     int enableUser(String email);
 }

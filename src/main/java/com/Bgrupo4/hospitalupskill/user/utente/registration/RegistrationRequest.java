@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.user.registration;
+package com.Bgrupo4.hospitalupskill.user.utente.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,8 @@ public class RegistrationRequest {
     private final String username;
     private final String email;
     private final String password;
-    private final String role;
+    private final String apolice;
+
     /*
     private String morada;
     private String localidade;

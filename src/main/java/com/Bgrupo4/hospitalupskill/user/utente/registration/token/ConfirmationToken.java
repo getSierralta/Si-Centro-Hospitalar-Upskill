@@ -1,6 +1,6 @@
-package com.Bgrupo4.hospitalupskill.user.registration.token;
+package com.Bgrupo4.hospitalupskill.user.utente.registration.token;
 
-import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,13 +38,10 @@ public class ConfirmationToken {
     private LocalDateTime confirmedAt;
 
     @ManyToOne
-    @JoinColumn(
-            nullable = false,
-            name = "user_utente"
-    )
-    private ApplicationUser user;
+    @JoinColumn(nullable = false, name = "user_utente")
+    private Utente user;
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, ApplicationUser user) {
+    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Utente user) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;

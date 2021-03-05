@@ -1,4 +1,5 @@
-package com.Bgrupo4.hospitalupskill.user;
+package com.Bgrupo4.hospitalupskill.user.utente;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,16 +7,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
-public class ApplicationUserController {
+@RequestMapping("api/utentes")
+public class UtenteController {
 
     @Autowired
-    private ApplicationUserService applicationUserService;
+    private UtenteService utenteService;
 
     @GetMapping(path = "{id}")
-    public ApplicationUser getUser(@PathVariable("id") Long id){
-        return applicationUserService.getUserById(id);
+    public Optional<Utente> getUser(@PathVariable("id") Long id){
+        return utenteService.getUserById(id);
     }
 }

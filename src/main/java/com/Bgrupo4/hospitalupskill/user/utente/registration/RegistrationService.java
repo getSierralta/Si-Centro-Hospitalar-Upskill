@@ -1,10 +1,10 @@
-package com.Bgrupo4.hospitalupskill.user.registration;
+package com.Bgrupo4.hospitalupskill.user.utente.registration;
 
 import com.Bgrupo4.hospitalupskill.email.EmailSender;
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationTokenService;
-import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
+import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,13 +26,14 @@ public class RegistrationService {
         if(!isValidEmail){
             throw new IllegalStateException("email not valid");
         }
-        String token = applicationUserService.singUpUser(new ApplicationUser(
+        //Todo we should check the request before doing the user cause it gives error if the user is not complete
+        String token = applicationUserService.singUpUser(new Utente(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
                         request.getEmail(),
                         request.getPassword(),
-                        request.getRole()));
+                        request.getApolice()));
         String link = "http://localhost:8080/register/confirm?token="+token;
         emailSender.senad(request.getEmail(), buildEmail(request.getName(), link));
         return token;
@@ -56,8 +57,7 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        applicationUserService.enableUser(
-                confirmationToken.getUser().getEmail());
+        applicationUserService.enableUser(confirmationToken.getUser().getEmail(), confirmationToken.getUser().getUserRole().name());
         return "confirmed";
     }
 

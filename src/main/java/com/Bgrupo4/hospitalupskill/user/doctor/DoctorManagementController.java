@@ -1,7 +1,6 @@
-package com.Bgrupo4.hospitalupskill.user.employee.doctor;
+package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,7 @@ import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
 
 
 @RestController
-@RequestMapping("management/users/doctors")
+@RequestMapping("/api/doctors")
 public class DoctorManagementController {
 
     private List<Doctor> MEDICOS = Arrays.asList(
