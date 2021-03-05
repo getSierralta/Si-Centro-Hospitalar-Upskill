@@ -10,9 +10,8 @@ import java.util.stream.Collectors;
 import static com.Bgrupo4.hospitalupskill.user.UserPermission.*;
 
 public enum UserRole {
-    // maybe remove USER and have ADMIN handle the tests
     USER(Sets.newHashSet()),
-    UTENTE(Sets.newHashSet(UTENTE_WRITE, UTENTE_READ)),
+    UTENTE(Sets.newHashSet(UTENTE_READ)),
     MEDICO(Sets.newHashSet(UTENTE_WRITE, UTENTE_READ)),
     COLABORADOR(Sets.newHashSet(UTENTE_WRITE, UTENTE_READ)),
     RESPONSAVEL(Sets.newHashSet(MEDICO_WRITE, MEDICO_READ)),
