@@ -1,5 +1,7 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,48 +11,50 @@ public class PersonController {
     // Landing Page
 
     @GetMapping(value = "/")
-    public String showIndex(){
+    public String showIndex() {
         return "/pessoa/index";
     }
 
     @GetMapping(value = "/login")
-    public String showLogIn(){
+    public String showLogIn() {
         return "/pessoa/log-in";
     }
 
     @GetMapping(value = "/registration")
-    public String showRegistration(){
+    public String showRegistration() {
         return "/pessoa/register";
     }
 
 
     @GetMapping(value = "/about-us")
-    public String showAboutUs(){
+    public String showAboutUs() {
         return "/pessoa/about-us";
     }
 
     @GetMapping(value = "/services")
-    public String showServices(){
+    public String showServices() {
         return "/pessoa/services";
     }
 
     @GetMapping(value = "/contacts")
-    public String showContacts(){ return "/pessoa/contacts"; }
+    public String showContacts() {
+        return "/pessoa/contacts";
+    }
 
     //Messages
 
     @GetMapping(value = "/error")
-    public String showError(){
+    public String showError() {
         return "error";
     }
 
     @GetMapping(value = "/info")
-    public String showInfo(){
+    public String showInfo() {
         return "/pessoa/info";
     }
 
     @GetMapping(value = "/success")
-    public String showSuccess(){
+    public String showSuccess() {
         return "/pessoa/success";
     }
 
