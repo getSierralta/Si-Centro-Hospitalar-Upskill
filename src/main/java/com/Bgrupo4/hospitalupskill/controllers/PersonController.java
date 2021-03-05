@@ -1,7 +1,6 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
-import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
-import org.springframework.http.MediaType;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,7 @@ public class PersonController {
 
     @GetMapping(value = "/")
     public String showIndex() {
-        return "/pessoa/index";
+        return "index";
     }
 
     @GetMapping(value = "/login")

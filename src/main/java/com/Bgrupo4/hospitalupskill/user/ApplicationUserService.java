@@ -4,8 +4,8 @@ import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
-import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

@@ -1,9 +1,9 @@
-package com.Bgrupo4.hospitalupskill.user.utente.registration;
+package com.Bgrupo4.hospitalupskill.registration;
 
 import com.Bgrupo4.hospitalupskill.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
-import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.user.utente.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

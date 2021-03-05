@@ -1,13 +1,3 @@
-/*const login = function(){
-    fetch('http://localhost:8080/log-in',
-        data = {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(data)
-        }).then(data => {console.log(response.data)});
-}
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -15,8 +5,8 @@ function handleSubmit(event) {
   let username = data.get("username");
   let password = data.get("password");
   var xhr = new XMLHttpRequest();
-  xhr.open(this.method,'http://localhost:8080/login', true);
-  fetch('http://localhost:8080/login',
+  xhr.open(this.method,'http://localhost:8080/api/login', true);
+  fetch('http://localhost:8080/api/login',
         data2 = {
             method: 'POST',
             headers: {
@@ -30,4 +20,3 @@ function handleSubmit(event) {
 
 const form = document.querySelector('#login');
 form.addEventListener('submit', handleSubmit);
-*/

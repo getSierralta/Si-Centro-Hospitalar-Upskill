@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<http use-expressions="true">
+    <intercept-url pattern="/**" access="isAuthenticated()"/>
+    <http-basic/>
+</http>
+
+<authentication-manager>
+    <authentication-provider ref="AuthenticationProviderImpl" />
+</authentication-manager>

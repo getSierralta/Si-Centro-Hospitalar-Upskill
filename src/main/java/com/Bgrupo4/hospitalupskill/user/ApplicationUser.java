@@ -38,6 +38,7 @@ public class ApplicationUser implements UserDetails {
     @Column(name= "username", columnDefinition = "TEXT")
     private String username;
 
+    //@Email
     @Column(name= "email", nullable = false)
     private String email;
 

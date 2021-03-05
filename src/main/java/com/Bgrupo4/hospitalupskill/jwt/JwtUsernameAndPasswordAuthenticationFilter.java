@@ -29,6 +29,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         this.jwtConfig = jwtConfig;
         this.secretKey = secretKey;
         this.authenticationManager = authenticationManager;
+        this.setFilterProcessesUrl("/api/login");
     }
 
 

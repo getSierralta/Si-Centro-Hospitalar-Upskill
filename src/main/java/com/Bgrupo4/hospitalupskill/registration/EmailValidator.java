@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.user.utente.registration;
+package com.Bgrupo4.hospitalupskill.registration;
 
 
 import org.springframework.stereotype.Service;
