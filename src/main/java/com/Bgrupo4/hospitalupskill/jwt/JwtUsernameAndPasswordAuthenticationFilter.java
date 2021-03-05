@@ -34,7 +34,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
     @Override
     //Were we are sending the credentials and we validate them
-
     //The attemptAuthentication function runs when the user tries to log in to our application. It reads the credentials, creates a user POJO from them, and then checks the credentials to authenticate.
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -87,11 +88,23 @@ public class ApplicationUserService implements UserDetailsService {
         employeeRepository.save(user);
     }
 
-
     //LOGIN
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return utenteRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
+        UserDetails userDetails;
+        try {
+            userDetails = utenteRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
+            return userDetails;
+        }catch(UsernameNotFoundException ignored){}
+        try {
+            userDetails = employeeRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
+            return userDetails;
+        }catch(UsernameNotFoundException ignored){}
+        try {
+            userDetails = doctorRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s)));
+            return userDetails;
+        }catch(UsernameNotFoundException ignored){}
+        throw new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, s));
     }
 
     /**
