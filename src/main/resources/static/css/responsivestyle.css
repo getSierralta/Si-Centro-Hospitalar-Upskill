@@ -335,7 +335,6 @@ img.inversed {
 /* end nav row */
 
 /* nav row media */
-
 @media screen and (max-width: 1000px) {
     .nav-row .medium .none{
         display: none;
@@ -360,10 +359,7 @@ img.inversed {
     }
 
 }
-
-
 /* end nav row media */
-
 /* end nav */
 
 /* header and info */
@@ -512,6 +508,12 @@ div.active ul {
     grid-column-end: span 2;
 }
 
+.card.small.as_list {
+    background: var(--color-secondary);
+    grid-column: 1 / -1;
+    height: 2rem;
+}
+
 .card.medium {
     background: var(--color-dark);
     grid-column-end: span 4;
@@ -562,6 +564,24 @@ div.active ul {
 .card.small .card_text {
     font-size: 2vw;
     font-weight: 400;
+}
+
+.card.small .card_text.as_list {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.card.small.item {
+    background-image: url("../img/imgbill.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card.small.item:hover {
+    background: var(--color-white);
+    font-size: 2rem;
 }
 
 /* cards media */
@@ -704,6 +724,40 @@ div.active ul {
 }
 /* end container media */
 /* end containers */
+
+/* item view */
+.item_nav {
+    grid-column: 1 / -1;
+    background: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item_form {
+    display: flex;
+    grid-column-end: span 2;
+    gap: 1rem;
+    max-height: 1,5rem;
+}
+
+.item_order {
+    display: flex;
+    flex-direction: row;
+    height: 1,5rem;
+}
+
+.item_toggle {
+    height: 20px;
+}
+
+.item_toggle.list {
+    height: 20px;
+}
+/* end item view */
 
 /* client profile */
 .client_details {
@@ -866,8 +920,202 @@ div.active ul {
 /* end client media */
 /* end client profile */
 
-/* Track Numbers*/
+/* pop up */
+.popup{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 4000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+}
 
+.popup__content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    font-size: .75rem;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    background-image: url(../img/Bg_ap.png);
+    background-size: cover;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.25);
+    transition: all .5s .2s;
+}
+
+.popup__close{
+    margin-left: 5px;
+    color: var(--color-darkest);
+}
+.popup__close:hover{
+    color: var(--color-ternary);
+}
+
+.popup:target{
+    opacity: 1;
+    visibility: visible;
+}
+.popup:target .popup__content{
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.popup:link,
+.popup:visited{
+        color: var(--color-grey);
+        position: absolute;
+        top: 2.5rem;
+        right: 2.5rem;
+        font-size: 3rem;
+        text-decoration: none;
+        display: inline-block;
+        transform: all .2s;
+        line-height: 1;
+}
+
+.popup__header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup__titulo__logo{
+    width: 20%;
+    padding: 1rem;
+    margin-right: 1rem;
+}
+.popup__info{
+    display: flex;
+
+}
+.popup__info__content{
+    margin: 0px .7rem .7rem .7rem;
+}
+.popup__description{
+    background: rgba(152, 195, 62, .2);
+}
+.popup__description--up{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.popup__description--up .right{
+    display: flex;
+    justify-content: flex-end;
+}
+.popup__description--up .right p, .popup__description--up .right p b{
+    min-width: 3.2rem;
+    text-align: right;
+}
+.popup__description--up .right p, .popup__description--text.left{
+    padding: 0 .5rem .5rem .5rem;
+}
+
+.popup__description--up.header{
+    border-bottom: 2px var(--color-dark) solid;
+}
+
+.popup__description--down{
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+}
+.popup__description--text p{
+    margin-right: .75rem;
+    margin-top: .75rem;
+    text-align: right;
+}
+.popup__description--up.header.padding-bottom{
+    padding-bottom: .5rem;
+}
+.popup__total__caixa{
+    display: flex;
+    justify-content: flex-end;
+}
+.popup__total{
+    margin: 1rem;
+    padding: .5rem;
+    background-color: var(--color-dark);
+    border-radius: 3px;
+}
+.popup__total span{
+   font-size: 1.2rem;
+   color: var(--color-white);
+}
+.popup__total p{
+    color: var(--color-grey-light);
+ }
+
+ .popup__pagar__caixa{
+     display: flex;
+     justify-content: center;
+     margin: 1rem;
+     margin-bottom: 2rem;
+ }
+ .green-btn{
+     padding: 1rem 5rem;
+     background-color: var(--color-secondary);
+     color: var(--color-white);
+     font-weight: bold;
+     letter-spacing: .3rem;
+     cursor: pointer;
+ }
+
+/* popup media */
+@media screen and (max-width: 990px) {
+
+    .popup__content{
+        position: absolute;
+        font-size: .6rem;
+        width: 50%;
+    }
+    .green-btn{
+        padding: .5rem 2rem;
+        letter-spacing: .2rem;
+    }
+    .popup__total span{
+        font-size: 1rem;
+     }
+     .popup__total{
+        margin: .5rem;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .popup__description--up .right p, .popup__description--up .right p b{
+        min-width: 2rem;
+    }
+    .popup__description--up .right p, .popup__description--text.left{
+        padding: 0 .2rem .2rem .2rem;
+    }
+
+}
+@media screen and (max-width: 450px) {
+
+    .popup__content{
+        width: 100vw;
+        font-size: .6rem;
+    }
+
+    .popup__titulo__logo{
+        width: 0px;
+        padding: 0px;
+        margin-right: 0px;
+    }
+}
+/* end popup media */
+/* end popup */
+
+/* Track Numbers*/
 .object_container.full_info.numbers{
     overflow-x: scroll;
     display: flex;
