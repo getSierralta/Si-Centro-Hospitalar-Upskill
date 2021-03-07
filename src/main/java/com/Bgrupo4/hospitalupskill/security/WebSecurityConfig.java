@@ -45,19 +45,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
-                /* JWT not working perfectly yet
+                // JWT not working perfectly yet
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)*/
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/register","/register/**","/css/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
+                .antMatchers("/register","/register/**","/css/**","/files/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
                 .antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole("UTENTE", "MEDICO", "COLABORADOR")
                 .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
-                /*.formLogin().loginPage("/login")
+                .authenticated();
+                /*.and()
+                //.httpBasic();
+                .formLogin().loginPage("/login")
                 .permitAll().defaultSuccessUrl("/profileutente", true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure

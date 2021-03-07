@@ -1,4 +1,4 @@
-/*JWT stuff
+//JWT stuff
 function handleSubmit(event) {
   event.preventDefault();
   const data = new FormData(event.target);
@@ -19,4 +19,4 @@ function handleSubmit(event) {
 }
 
 const form = document.querySelector('#login');
-form.addEventListener('submit', handleSubmit);*/
+form.addEventListener('submit', handleSubmit);
