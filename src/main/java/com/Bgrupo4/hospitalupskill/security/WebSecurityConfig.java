@@ -45,25 +45,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
+                /* JWT not working perfectly yet
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)*/
                 .authorizeRequests()
                 .antMatchers("/register","/register/**","/css/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration", "/api/login").permitAll()
-                //.antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole(UTENTE.name(), MEDICO.name(), COLABORADOR.name())
                 .anyRequest()
-                .authenticated();
-                /*.and()
+                .authenticated()
+                .and()
                 //.httpBasic();
-                //todo: fix login so it uses Json
                 .formLogin().loginPage("/login")
                 .permitAll().defaultSuccessUrl("/profileutente", true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");*/
+                .logoutSuccessUrl("/");
     }
 
     @Override
