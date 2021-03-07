@@ -6,106 +6,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style_.css">
+    <link rel="stylesheet" href="../css/responsivestyle.css">
     <title>Clients Bills</title>
 </head>
 
 <body>
     <div class="container">
-       <nav class="nav nav-sidebar">
-           <div class="up">
-               <div class="btn-toggle-nav" onclick="toggleNav()"></div>
-               <div class="nav__logo">
-                   <img src="../img/logo.svg" alt="logo">
-               </div>
-               <div class="nav__hello">
-                   <ul>
-                       <li class="medium">Olá de novo,</li>
-                       <li class="bold"><span class="name">{pessoa.nome}</span></li>
-                       <li class="light small">{pessoa.funçao}</li>
-                   </ul>
-               </div>
-               <div class="up2">
-                   <div class="nav__index">
-                       <ul>
-                           <li class="medium ">
-                               <div class="icon utente"></div>
-                               <a href="/profileutente">Profile</a>
-                           </li>
-                           <li class="medium">
-                               <div class="icon medico"></div>
-                               <a href="/checkinutente">Check-in</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon consulta"></div>
-                               <a href="/tracknumberutente">Track Numbers</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon calendario"></div>
-                               <a href="/calendariogeralutente">Calendario Geral</a>
-                           </li>
-                           <li class="medium ">
-                              <div class="icon calendario"></div>
-                              <a href="/calendarutente">Calendario Pessoal</a>
-                           </li>
-                            <li class="medium ">
-                                 <div class="icon informacao"></div>
-                                 <a href="/billsutente">Faturas</a>
-                            </li>
-                            <li class="medium ">
-                                 <div class="icon informacao"></div>
-                                 <a href="/filesutente">Ficheiros</a>
-                            </li>
-                           <li class="medium ">
-                               <div class="icon contactos"></div>
-                               <a href="/contactsutente">Contact</a>
-                           </li>
-                           <li class="medium ">
-                               <div class="icon tools"></div>
-                               <a href="/settings">Settings</a>
-                           </li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <div class="down">
-               <div class="nav__down--logo">
-                   <img src="../img/upskill.png" alt="logo upskill">
-               </div>
-               <div class="nav__down--logout medium">
-                   <img src="../img/logout.svg" alt="log out icon">
-                   <a href="/logout">Terminar Sessão</a>
-               </div>
-           </div>
-       </nav>
-        <!-- MAIN - Div horizontal central -->
-        <main class="main">
-
-            <!-- Inicio Main Container -->
-            <div class="main__container">
-                <header class="header">
-                    <div class="main__titulo">
-                        <h3 class="page_title">Bills</h3>
-                    </div>
-                </header>
-                <div class="section_tab cards">
-                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
-                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
-                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
-                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
-                    <div class="card small"><a href="#popup" class="btn btn--white">Visit</a></div>
-                </div>
-                <div class="section_tab cards">
-                    <div class="card biggest">
-                        Payment details
-                    </div>
-                </div>
-
+        <!--Horizontal Nav-->
+        <nav class="nav-row">
+            <div class="medium">
+                <div class="icon home"></div>
+                <a href="/">Inicio</a>
             </div>
-        </main>
-        <!-- FIM - MAIN - Div horizontal central -->
+            <div class="medium ">
+                <div class="icon informacao"></div>
+                <a href="/about-us">Sobre Nós</a>
+            </div>
+            <div class="medium">
+                <div class="icon medico"></div>
+                <a href="/services">Serviços</a>
+            </div>
+            <div class="medium ">
+                <div class="icon contactos"></div>
+                <a href="/contacts">Contactos</a>
+            </div>
+            <div class="medium">
+                <div class="icon utente"></div>
+                <a href="/log-in">Log-In</a>
+            </div>
+        </nav>
+        <!--/Horizontal Nav-->
+        <!--Main-->
+        <div class="main">
+            <!--Header-->
+            <header class="header">
+                <h3 class="page_title">BILLS</h3>
+            </header>
+            <!--/Header-->
+            <!--Cards-->
+            <a href="#popup" class="card small item">FT0012</a>
+            <a href="#popup" class="card small item">FT0011</a>
+            <a href="#popup" class="card small item">FT0010</a>
+            <a href="#popup" class="card small item">FT0009</a>
+            <a href="#popup" class="card small item">FT0008</a>
+            <a href="#popup" class="card small item">FT0007</a>
+            <a href="#popup" class="card small item">FT0006</a>
+            <a href="#popup" class="card small item">FT0005</a>
+            <a href="#popup" class="card small item">FT0004</a>
+            <a href="#popup" class="card small item">FT0003</a>
+            <a href="#popup" class="card small item">FT0002</a>
+            <a href="#popup" class="card small item">FT0001</a>
+            <!--/Cards-->
+        </div>
+        <!--/Main-->
     </div>
+    <!--Popup-->
     <div class="popup" id="popup">
         <div class="popup__content">
             <a href="#" class="popup__close">&times;</a>
@@ -241,7 +196,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/toggle.js"></script>
+    <!--/Popup-->
 </body>
 
 </html>

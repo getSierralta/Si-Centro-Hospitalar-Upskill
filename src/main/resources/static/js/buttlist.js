@@ -35,3 +35,15 @@ $(function() {
       window.location = $(this).find("option:selected").val();
     });
 });
+
+$('.item_toggle').click(function(){
+  if ($(this).hasClass('list')) {
+    $('.card.small').removeClass('as_list');
+    $('.card_text').removeClass('as_list');
+    $(this).removeClass('list');
+  } else {
+    $('.card.small').addClass('as_list');
+    $('.card_text').addClass('as_list');
+    $(this).addClass('list');
+  };
+});
