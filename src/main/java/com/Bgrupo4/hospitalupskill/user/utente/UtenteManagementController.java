@@ -27,6 +27,7 @@ public class UtenteManagementController {
         return UTENTES;
     }
 
+    //todo: put that it takes json
     @PostMapping
     @PreAuthorize("hasAuthority('utente:write')")
     public void registerNewUtente(@RequestBody Utente utente) {
