@@ -51,7 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)*/
                 .authorizeRequests()
-                .antMatchers("/register","/register/**","/css/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration", "/api/login").permitAll()
+                .antMatchers("/register","/register/**","/css/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
+                .antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole("UTENTE", "MEDICO", "COLABORADOR")
                 .anyRequest()
                 .authenticated()
                 .and()
