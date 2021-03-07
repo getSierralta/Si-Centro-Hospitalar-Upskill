@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
+import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class DoctorService{
     private final static String USER_NOT_FOUND_MSG = "O medico %s não foi encontrado";
 
     private final DoctorRepository doctorRepository;
+    private final ApplicationUserService applicationUserService;
 
     public Optional<Doctor> getUserById(Long id) {
         return doctorRepository.findById(id);
@@ -27,7 +29,7 @@ public class DoctorService{
     }
 
     public void registerDoctor(Doctor doctor) {
-        doctorRepository.save(doctor);
+        applicationUserService.enableAndSave(doctor);
     }
 
     public void updateDoctorMorada(Long id, String morada) {

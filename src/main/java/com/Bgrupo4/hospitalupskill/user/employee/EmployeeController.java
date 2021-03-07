@@ -13,7 +13,7 @@ import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
 @RestController
 @RequestMapping("/api/employee")
 @AllArgsConstructor
-public class EmployeeManagementController {
+public class EmployeeController {
 
     private static final List<Employee> COLABORADORES = Arrays.asList(
             // underpaid staff list goes here

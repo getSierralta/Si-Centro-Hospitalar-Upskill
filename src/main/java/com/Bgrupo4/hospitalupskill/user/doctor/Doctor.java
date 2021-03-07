@@ -5,8 +5,7 @@ import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 @Table(name = "doctor", uniqueConstraints = {@UniqueConstraint(name = "doctor_email_unique", columnNames = "email")})
 // @UniqueConstraint(name = "user_username_unique", columnNames = "username"),
 //@UniqueConstraint(name = "user_nif_unique", columnNames = "nif")})
+@NoArgsConstructor
 public class Doctor extends ApplicationUser {
 
 
@@ -36,7 +36,9 @@ public class Doctor extends ApplicationUser {
     @JoinColumn(nullable = false,name = "unidade")
     private Unidade unidade;*/
 
-    public Doctor() {
+    public Doctor(Integer nif, String name, String username, String email, String password, String role, String cedula) {
+        super(nif, name, username, email, password, role);
+        this.cedula = cedula;
     }
 
     public Doctor(Integer nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, List<Especialidade> especialidades) {
