@@ -2,9 +2,11 @@ package com.Bgrupo4.hospitalupskill.consultas.appointment;
 
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @Setter
 @Entity(name = "Appointment")
 @Table(name = "appointment")
+@NoArgsConstructor
 public class Appointment {
 
     @Id
@@ -45,8 +48,12 @@ public class Appointment {
     private Status status;
 
 
+    @Column(name= "especialidade", nullable = false)
+    private Especialidade especialidade;
 
-    public Appointment() {
-    }
+
+    //Criar "acto", ver: profileutente.jsp
+    //Criar "acto medico", ver: profileutente.jsp
+
 
 }

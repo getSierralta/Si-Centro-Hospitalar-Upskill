@@ -17,6 +17,8 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
     Optional<Utente> findByUsername(String username);
 
+    Optional<Utente> findById(long id);
+
     @Transactional
     @Modifying
     @Query("UPDATE Utente a SET a.enabled = TRUE WHERE a.email = ?1")

@@ -24,17 +24,21 @@ import java.util.List;
 public class Utente extends ApplicationUser {
 
     private String apolice;
+    private int numUtente;
 
     @JsonBackReference
     @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
-    public Utente(Integer nif, String name, String username, String email, String password, String apolice) {
+    public Utente(Integer nif, String name, String username, String email, String password, String apolice, int numUtente) {
         super(nif, name, username, email, password, UserRole.UTENTE.name());
         this.apolice = apolice;
+        this.numUtente = numUtente;
     }
 
     public Utente(String name, UserRole userRole) {
         super(name, userRole);
     }
+
+
 }

@@ -16,7 +16,7 @@ public class RegistrationRequest {
     private final String email;
     private final String password;
     private final String apolice;
-
+    private final Integer numUtente;
     /*
     private String morada;
     private String localidade;

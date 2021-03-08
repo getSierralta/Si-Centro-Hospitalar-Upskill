@@ -20,7 +20,7 @@ import java.util.List;
 public class HospitalUpskillApplication {
 
 	public final static Unidade upskill =  new Unidade(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill","Sintra", "456456665", "UpPhoto");
-	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia, Especialidade.Radiologia);
+	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.GERAL, Especialidade.CARDIOLOGIA, Especialidade.FISIOTERAPIA, Especialidade.GINECOLOGIA, Especialidade.RADIOLOGIA);
 	private final ApplicationUserService applicationUserService;
 
 	public HospitalUpskillApplication(ApplicationUserService applicationUserService) {
@@ -37,7 +37,7 @@ public class HospitalUpskillApplication {
 		return args -> {
 			// FOR TESTING PURPOSES ONLY
 			applicationUserService.enableAndSave(new Employee(1, "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
-			applicationUserService.enableAndSave(new Utente(2, "Joao", "utente", "utente@utente.com", "123", "apolice"));
+			applicationUserService.enableAndSave(new Utente(2, "Joao", "utente", "utente@utente.com", "123", "apolice", 1354643513));
 			applicationUserService.enableAndSave(new Doctor(3, "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", especialidades));
 			applicationUserService.enableAndSave(new Employee(4, "Gabriel", "responsavel", "responsavel@responsavel.com", "123", UserRole.RESPONSAVEL.name(), upskill));
 			applicationUserService.enableAndSave(new Employee(5, "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));

@@ -33,7 +33,8 @@ public class RegistrationService {
                         request.getUsername(),
                         request.getEmail(),
                         request.getPassword(),
-                        request.getApolice()));
+                        request.getApolice(),
+                        request.getNumUtente()));
         String link = "http://localhost:8080/register/confirm?token="+token;
         emailSender.senad(request.getEmail(), buildEmail(request.getName(), link));
         return token;

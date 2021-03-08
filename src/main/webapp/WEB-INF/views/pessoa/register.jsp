@@ -53,7 +53,8 @@
                 <form class="log-in column" id="register" action="/register" method="POST">
                     <input type="text" path="userName" placeholder="User Name" required="required" />
                     <input type="text" path="nome" placeholder="Nome Completo" required="required" />
-                    <input type="text" path="nUtente" placeholder="Numero de Utente" required="required" />
+                    <input type="text" path="nif" placeholder="Numero de Identificação Fiscal" required="required" />
+                    <input type="text" path="numUtente" placeholder="Numero de Utente" required="required" />
                     <textarea name="message" rows="2" cols="30" path="morada" placeholder="Morada" required="required"></textarea>
                     <input type="text" path="localidade" placeholder="Localidade" />
                     <input type="email" path="email" placeholder="E-mail" required="required" />

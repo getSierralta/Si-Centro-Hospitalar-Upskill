@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +46,21 @@ public class ConsultasService {
     public List<Appointment> getAppointmentsUtente(Long id) {
         return appointmentRepository.findAllByUtenteId(id);
     }
+
+    //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
+    public Appointment getNextAppointment() {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        appointments.sort(Comparator.comparing(Appointment::getDate).thenComparing(Appointment::getTime));
+        for(Appointment appointment: appointments){
+            if(appointment.getDate().isAfter(java.time.LocalDate.now())){
+                if(appointment.getTime().isAfter(java.time.LocalTime.now())){
+                    return appointment;
+                }
+            }
+        }
+        return null;
+    }
+
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
