@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -68,6 +69,13 @@ public class ApplicationUser implements UserDetails {
     private final boolean isCredentialsNonExpired = true;
 
     //Test purposes
+
+
+    public ApplicationUser(String name, UserRole userRole) {
+        this.name = name;
+        this.userRole = userRole;
+    }
+
     public ApplicationUser(Integer nif,
                            String name,
                            String username,

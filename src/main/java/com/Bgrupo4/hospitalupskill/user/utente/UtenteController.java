@@ -1,23 +1,43 @@
 package com.Bgrupo4.hospitalupskill.user.utente;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/utentes")
+@AllArgsConstructor
 public class UtenteController {
 
     @Autowired
-    private UtenteService utenteService;
+    private final UtenteService utenteService;
 
     @GetMapping(path = "{id}")
-    public Optional<Utente> getUser(@PathVariable("id") Long id){
+    public Optional<Utente> getUser(@PathVariable("id") Long id) {
         return utenteService.getUserById(id);
     }
+
+    @GetMapping
+    public List<Utente> getAllUtentes() {
+        return utenteService.getAllUtentes();
+    }
+
+
+    @PostMapping("/{id}")
+    @PreAuthorize("hasAuthority('utente:write')")
+    public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(utenteService.updateUtente(id, request));
+    }
+
+    /*@DeleteMapping("{/id}")
+    @PreAuthorize("hasAuthority('utente:write')")
+    public void xauXauUtente(@PathVariable("id") Long id) {
+        utenteService.deleteUtente(id);
+    }*/
 }

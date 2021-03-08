@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+/*@RestController
 @RequestMapping("/api/utentes")
 public class UtenteManagementController {
 
@@ -52,3 +52,5 @@ public class UtenteManagementController {
         System.out.printf("%s %s%n", id, utente);
     }
 }
+
+ */
