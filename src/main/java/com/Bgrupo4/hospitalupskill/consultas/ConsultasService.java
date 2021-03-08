@@ -47,6 +47,7 @@ public class ConsultasService {
     }
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
+        //todo verificar se o appoinment ja existe(?)
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
         Optional<Vaga> vaga = vagaRepository.findById(request.getVaga());
@@ -62,6 +63,22 @@ public class ConsultasService {
         return appointmentRepository.save(appointment);
     }
 
+    public Appointment createAppointment(Vaga vaga, Utente utente) {
+        Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
+        Optional<Utente> utenteOpt = utenteRepository.findById(utente.getId());
+        if (doctor.isEmpty() || utenteOpt.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Utente %s não foi encontrado", utente.getUsername(), vaga.getId()));
+        }
+        Appointment appointment = new Appointment();
+        vaga.setFree(false);
+        appointment.setDate(vaga.getDate());
+        appointment.setTime(vaga.getTime());
+        appointment.setEspecialidade(vaga.getEspecialidade());
+        appointment.setDoctor(doctor.get());
+        appointment.setUtente(utenteOpt.get());
+        return appointmentRepository.save(appointment);
+    }
+
     public Appointment updateAppointment(Long id, AppointmentCreationRequest request) {
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
@@ -70,8 +87,8 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("Utente %s, appointment %s ou Medico %s não foi encontrado",request.getUtente(), id, request.getDoctor()));
         }
         Appointment appointment = optionalAppointment.get();
-        appointment.setDate(LocalDate.parse(request.getDate()));
-        appointment.setTime(LocalTime.parse(request.getTime()));
+        appointment.setDate(request.getDate());
+        appointment.setTime(request.getTime());
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
         appointment.setStatus(Status.valueOf(request.getStatus()));
@@ -124,6 +141,9 @@ public class ConsultasService {
         Vaga vaga = new Vaga();
         BeanUtils.copyProperties(request, vaga);
         vaga.setDoctor(doctor.get());
+        return vagaRepository.save(vaga);
+    }
+    public Vaga createVaga(Vaga vaga) {
         return vagaRepository.save(vaga);
     }
     public void deleteVaga(Long id) {

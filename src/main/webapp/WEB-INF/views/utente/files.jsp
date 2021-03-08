@@ -17,27 +17,55 @@
     <div class="container">
         <!--Horizontal Nav-->
         <nav class="nav-row">
-            <div class="medium">
-                <div class="icon home"></div>
-                <a href="/">Inicio</a>
-            </div>
-            <div class="medium ">
-                <div class="icon informacao"></div>
-                <a href="/about-us">Sobre Nós</a>
-            </div>
-            <div class="medium">
-                <div class="icon medico"></div>
-                <a href="/services">Serviços</a>
-            </div>
-            <div class="medium ">
-                <div class="icon contactos"></div>
-                <a href="/contacts">Contactos</a>
-            </div>
-            <div class="medium">
-                <div class="icon utente"></div>
-                <a href="/log-in">Log-In</a>
-            </div>
-        </nav>
+                    <div class="medium">
+                        <a href="utente/profileutente">
+                            <div class="icon home"></div>
+                            <span class="none">Perfil</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="utente/checkinutente">
+                            <div class="icon medico"></div>
+                            <span class="none">Check-in</span>
+                        </a>
+                    </div>
+                    <div class="medium">
+                        <a href="utente/tracknumberutente">
+                            <div class="icon consulta"></div>
+                            <span class="none">Track Numbers</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="utente/calendariogeralutente">
+                            <div class="icon calendario"></div>
+                            <span class="none">Calendario geral</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="utente/calendarutente">
+                            <div class="icon calendario"></div>
+                            <span class="none">Calendario Pessoal</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="utente/contactsutente">
+                            <div class="icon contactos"></div>
+                            <span class="none">Support</span>
+                        </a>
+                    </div>
+                    <div class="medium">
+                        <a href="utente/settings">
+                            <div class="icon tools"></div>
+                            <span class="none">Settings</span>
+                        </a>
+                    </div>
+                    <div class="medium">
+                        <a href="/logout">
+                            <div class="icon logout"></div>
+                            <span class="none">LogOut</span>
+                        </a>
+                    </div>
+                </nav>
         <!--/Horizontal Nav-->
         <!--Main-->
         <div class="main">

@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
+import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
 import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
@@ -11,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Controller
@@ -27,9 +29,13 @@ public class UtenteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Utente utente = utenteService.getLogged(auth);
         map.put("utente", utente);
+        try {
+            map.put("consulta",utenteService.getNextAppointment(utente));
+        }catch (EntityNotFoundException e){
+            map.put("consulta", new FakeAppointment());
+        }
         return "/utente/profileutente";
     }
-
 
     @GetMapping(value = "/checkinutente")
     public String showCheckIn(){
