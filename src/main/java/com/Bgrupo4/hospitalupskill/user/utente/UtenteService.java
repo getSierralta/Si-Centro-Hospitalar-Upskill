@@ -55,10 +55,8 @@ public class UtenteService {
                 request.getDataDeNascimento(),
                 UserRole.UTENTE,
                 request.getApolice()));
-        System.out.println("inside the register 3");
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;
         emailSender.senad(request.getEmail(), registrationService.buildEmail(request.getName(), link));
-        System.out.println("inside the register 4");
         return token;
     }
 

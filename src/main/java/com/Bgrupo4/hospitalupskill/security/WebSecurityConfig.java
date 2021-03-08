@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.httpBasic();
                 .formLogin().loginPage("/login")
-                .permitAll().defaultSuccessUrl("/profileutente", true)
+                .permitAll()//.defaultSuccessUrl("/profileutente", true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()

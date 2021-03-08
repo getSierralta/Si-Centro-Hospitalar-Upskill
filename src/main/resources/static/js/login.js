@@ -49,8 +49,9 @@ function handleSubmit(event) {
             },
             body: user
         })
-        .then(console.log(data2));
+        .then(console.log(data2))
         .then(xhr.send(data2));
+
 }
 
 const form = document.querySelector('#register');

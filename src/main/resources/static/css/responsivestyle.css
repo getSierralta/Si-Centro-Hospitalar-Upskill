@@ -1552,6 +1552,10 @@ input[type=file]{
     justify-content: center;
     text-align: center;
 }
+.white_box.transparent_box{
+    background: none;
+    min-width: 40rem;
+}
 
 .white_box p{
     font-size: 0.8rem;

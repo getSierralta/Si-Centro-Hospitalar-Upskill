@@ -17,6 +17,8 @@ public class UtenteManagementController {
     @Autowired
     private final UtenteService utenteService;
 
+
+
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('utente:read')")
     public Optional<Utente> getUser(@PathVariable("id") Long id) {
@@ -36,9 +38,5 @@ public class UtenteManagementController {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
 
-    /*@DeleteMapping("{/id}")
-    @PreAuthorize("hasAuthority('utente:write')")
-    public void xauXauUtente(@PathVariable("id") Long id) {
-        utenteService.deleteUtente(id);
-    }*/
+
 }
