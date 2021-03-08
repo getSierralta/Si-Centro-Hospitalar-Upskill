@@ -1,17 +1,18 @@
-package com.Bgrupo4.hospitalupskill.controllers;
+package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.services.FileService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ClientController {
+@RequestMapping("/utente")
+@RequiredArgsConstructor
+public class UtenteController {
 
-    @Autowired
-    FileService fileService;
+    private final FileService fileService;
 
     @GetMapping(value = "/profileutente")
     public String showProfile(){
@@ -63,12 +64,4 @@ public class ClientController {
     public String showEvents(){
         return "/utente/calendar";
     }
-
-
-    /*
-    @GetMapping(value = "/calendarutente")
-    public String showEvents(ModelMap map){
-        map.put("calendarList", calendarService.getMarcacoes());
-        return "/utente/calendar";
-    }*/
 }

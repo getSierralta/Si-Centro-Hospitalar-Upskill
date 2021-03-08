@@ -4,7 +4,6 @@ import com.Bgrupo4.hospitalupskill.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,30 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RegistrationService {
 
-    // if this gives error you probably don't have the lombok plugin installed
-    private final EmailValidator emailValidator;
     private final ApplicationUserService applicationUserService;
     private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
-
-    public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.test(request.getEmail());
-        if(!isValidEmail){
-            throw new IllegalStateException("email not valid");
-        }
-        //Todo we should check the request before doing the user cause it gives error if the user is not complete
-        String token = applicationUserService.singUpUser(new Utente(
-                        request.getNif(),
-                        request.getName(),
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        request.getApolice(),
-                        request.getNumUtente()));
-        String link = "http://localhost:8080/register/confirm?token="+token;
-        emailSender.senad(request.getEmail(), buildEmail(request.getName(), link));
-        return token;
-    }
 
     @Transactional
     public String confirmToken(String token) {
@@ -63,7 +40,7 @@ public class RegistrationService {
     }
 
 
-    private String buildEmail(String name, String link) {
+    public String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +

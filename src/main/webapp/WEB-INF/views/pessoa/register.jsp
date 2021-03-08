@@ -49,30 +49,30 @@
                 <img class="photo" src="/img/imgdoc.jpg" alt="img doctora">
             </div>
             <div class="object_container forms">
-                <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-                <form class="log-in column" id="register" action="/register" method="POST">
-                    <input type="text" path="userName" placeholder="User Name" required="required" />
-                    <input type="text" path="nome" placeholder="Nome Completo" required="required" />
-                    <input type="text" path="nif" placeholder="Numero de Identificação Fiscal" required="required" />
-                    <input type="text" path="numUtente" placeholder="Numero de Utente" required="required" />
-                    <textarea name="message" rows="2" cols="30" path="morada" placeholder="Morada" required="required"></textarea>
-                    <input type="text" path="localidade" placeholder="Localidade" />
-                    <input type="email" path="email" placeholder="E-mail" required="required" />
-                    <input type="text" path="telemovel" placeholder="Telemovel" required="required" />
-                    <input type="date" placeholder="Data de nascimento" path="dataDeNascimento" onfocus="(this.type='date')"
+                <form class="log-in column" id="register" action="/utente/register" method="POST">
+                    <input type="text" name="username" placeholder="User Name" required="required" />
+                        <input type="text" name="name" placeholder="Nome Completo" required="required" />
+                        <input type="text" name="numUtente" placeholder="Numero de Utente" required="required" />
+                        <input type="text" name="nif" placeholder="Nif" required="required" />
+                        <textarea name="morada" rows="2" cols="30"  placeholder="Morada" required="required"></textarea>
+                        <input type="text" name="localidade" placeholder="Localidade" />
+                        <input type="email" name="email" placeholder="E-mail" required="required" />
+                        <input type="text" name="telemovel" placeholder="Telemovel" required="required" />
+                        <input type="text" name="apolice" placeholder="Apolice" required="required" />
+                        <input type="date" placeholder="Data de nascimento" name="dataDeNascimento" onfocus="(this.type='date')"
                         onblur="(this.type='text')" required="required" />
-                    <input type="password" path="password" placeholder="Password" required="required" />
-                    <input type="password" path="passwordRepeat" placeholder="Repeat Password" required="required" />
-                    <div class="form-label">
-                        <checkbox value="element" path="condicao" required="required" />
-                        <a href="#"><span class="light small">Aceita os</span> termos e condições?</a>
-                    </div>
-                    <button class="greenbutt" type="submit">Register</form:button>
+                        <input type="password" name="password" placeholder="Password" required="required" />
+                        <div class="form-label">
+                            <input type="checkbox" value="element" name="condicao" required="required" checked = "checked"/>
+                            <a href="#"><span class="light small">Aceita os</span> termos e condições?</a>
+                        </div>
+                    <button class="greenbutt" type="submit">Register</button>
                 </form>
                 <a href="/log-in" class="green">Log In</a>
             </div>
     </main>
     <!--/Main-->
+    <script src="js/login.js"></script>
 </body>
 
 </html>

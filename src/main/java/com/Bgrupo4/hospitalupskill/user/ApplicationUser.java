@@ -31,7 +31,7 @@ public class ApplicationUser implements UserDetails {
     private Long id;
 
     @Column(name = "nif")
-    private Integer nif;
+    private String nif;
 
     @Column(name= "nome", nullable = false, columnDefinition = "TEXT")
     private String name;
@@ -56,7 +56,7 @@ public class ApplicationUser implements UserDetails {
     private String phone;
 
     @Column(name= "birthday", columnDefinition = "TEXT")
-    private Date birthday;
+    private String birthday;
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -76,7 +76,7 @@ public class ApplicationUser implements UserDetails {
         this.userRole = userRole;
     }
 
-    public ApplicationUser(Integer nif,
+    public ApplicationUser(String nif,
                            String name,
                            String username,
                            String email,
@@ -88,6 +88,19 @@ public class ApplicationUser implements UserDetails {
         this.email = email;
         this.password = password;
         this.userRole = getRole(role);
+    }
+
+    public ApplicationUser(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, UserRole userRole) {
+        this.nif = nif;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.morada = morada;
+        this.localidade = localidade;
+        this.phone = phone;
+        this.userRole = userRole;
+        this.birthday = birthday;
     }
 
 

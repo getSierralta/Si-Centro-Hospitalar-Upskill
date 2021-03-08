@@ -1,17 +1,15 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/responsivestyle.css">
+    <link rel="stylesheet" href="../css/responsivestyle.css">
     <title>Upskill</title>
 </head>
 
-<body class="container blue">
+<body class="container">
     <!--Horizontal Nav-->
     <nav class="nav-row">
         <div class="medium">
@@ -48,27 +46,11 @@
     <!--/Horizontal Nav-->
     <!--Main-->
     <main class="full_main">
-        <div class="white_box">
-            <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <!-- JWT api/login -->
-            <form class="log-in" method="post" action="/login" id="login">
-                <input type="text" id="username" name="username"  placeholder="Jenipurr Lopez">
-                <input type="password" id="password" name="password"  placeholder="********">
-                <div class="form-label">
-                    <span class="light small">Remember Me? &emsp;</span>
-                    <input type="checkbox" id="remember-me" name="remember-me">
-                </div>
-                <div class="greenbutt">
-                    <button type="submit" class="medium">Log in</button>
-                </div>
-            </form>
-            <p>Forgot your password?</p>
-            <p style="font-weight: bolder;"><a href="/registration">Create account</a></p>
+        <div class="white_box transparent_box">
+            <img class="inversed" src="/img/meowie-email-24.svg" alt="please confirm your email">
         </div>
     </main>
     <!--/Main-->
-
-    <script src="js/login.js"></script>
 </body>
 
 </html>

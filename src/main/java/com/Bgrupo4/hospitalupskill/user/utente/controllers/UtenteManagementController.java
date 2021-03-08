@@ -1,6 +1,8 @@
-package com.Bgrupo4.hospitalupskill.user.utente;
+package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
-
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +15,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/utentes")
 @AllArgsConstructor
-public class UtenteController {
+public class UtenteManagementController {
 
     @Autowired
     private final UtenteService utenteService;
 
+
+
     @GetMapping(path = "{id}")
+    @PreAuthorize("hasAuthority('utente:read')")
     public Optional<Utente> getUser(@PathVariable("id") Long id) {
         return utenteService.getUserById(id);
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('utente:read')")
     public List<Utente> getAllUtentes() {
         return utenteService.getAllUtentes();
     }
@@ -35,9 +41,5 @@ public class UtenteController {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
 
-    /*@DeleteMapping("{/id}")
-    @PreAuthorize("hasAuthority('utente:write')")
-    public void xauXauUtente(@PathVariable("id") Long id) {
-        utenteService.deleteUtente(id);
-    }*/
+
 }

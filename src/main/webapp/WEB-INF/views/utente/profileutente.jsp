@@ -1,17 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-
-
-<%
-
-    ApplicationUserService application;
-    Utente utente = (Utente) application.loadUserByUsername("admin");
-
-    @Autowired
-    ConsultasService consultasService;
-    Appointment nextAppointment = consultasService.getNextAppointment();
-%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,16 +71,16 @@
                     <img class="inversed" src="/img/imgclient.jpeg" alt="client">
                 </div>
                 <div class="client_details">
-                    <p><b><%=utente.getName()%></b></p>
-                    <p><b><%=utente.getBirthday()%></b></p>
-                    <p><b><%=utente.getNumUtente()%></b></p>
+                    <p><b>{client.name}</b></p>
+                    <p><b>{client.dataDeNascimento}</b></p>
+                    <p><b>{client.nUtente}</b></p>
                 </div>
            </div>
             <div class="client_info">
-                    <p><b>Morada: </b> <%=utente.getMorada()%></p>
-                    <p><b>E-mail: </b> <%=utente.getEmail()%></p>
-                    <p><b>Localidade: </b> <%=utente.getLocalidade()%> </p>
-                    <p><b>Telemovel: </b> <%=utente.getPhone()%> </p>
+                    <p><b>Morada: </b> {client.morada}</p>
+                    <p><b>E-mail: </b> {client.email}</p>
+                    <p><b>Localidade: </b> {client.localidade} </p>
+                    <p><b>Telemovel: </b> {client.telemovel} </p>
             </div>
         </div>
         <!--/Info Box-->
@@ -104,11 +93,11 @@
                 <div class="smallpadding">
                     <p class="title"><b> Data do Proximo Agendamento</b></p>
                     <p><b>Acto:</b> Consulta</p>
-                     <p><b>Especialidade:</b><%=nextAppointment.getEspecialidade()%></p>
+                    <p><b>Especialidade:</b> Oftamologia</p>
                     <p><b>Acto Medico:</b> Exame pericial com relatório </p>
-                    <p><b>Recurso Executante:</b> <%=nextAppointment.getDoctor()%></p>
-                    <p><b>Data:</b> <%=nextAppointment.getDate()%></p>
-                    <p><b>Hora:</b> <%=nextAppointment.getTime()%></p>
+                    <p><b>Recurso Executante:</b> Dr. João Aires</p>
+                    <p><b>Data:</b> 28/09/21</p>
+                    <p><b>Hora:</b> 11:30</p>
                 </div>
                 <div class="middle">
                     <button class="btn-green-small">Check-in</button>
