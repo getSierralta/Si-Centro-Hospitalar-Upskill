@@ -64,8 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Todo: make the key secure
                 .and().logout()
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");
-                */
+                .logoutSuccessUrl("/");*/
+
     }
 
     @Override
