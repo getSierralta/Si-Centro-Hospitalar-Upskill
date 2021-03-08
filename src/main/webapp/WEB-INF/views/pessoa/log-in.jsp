@@ -54,7 +54,10 @@
             <form class="log-in" method="post" action="/login" id="login">
                 <input type="text" id="username" name="username"  placeholder="Jenipurr Lopez">
                 <input type="password" id="password" name="password"  placeholder="********">
-                <p>Remember Me?<input type="checkbox" id="remember-me" name="remember-me" class="form-control"></p>
+                <div class="form-label">
+                    <span class="light small">Remember Me? &emsp;</span>
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                </div>
                 <div class="greenbutt">
                     <button type="submit" class="medium">Log in</button>
                 </div>

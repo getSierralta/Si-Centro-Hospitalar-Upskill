@@ -1,55 +1,44 @@
 package com.Bgrupo4.hospitalupskill.user.utente;
 
-import com.Bgrupo4.hospitalupskill.user.UserRole;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-/*@RestController
-@RequestMapping("/api/utentes")
+@RestController
+@RequestMapping("api/utentes")
+@AllArgsConstructor
 public class UtenteManagementController {
 
+    @Autowired
+    private final UtenteService utenteService;
 
-    private static final List<Utente> UTENTES = Arrays.asList(
-    // somos utentes, felizes e doentes
-            new Utente(123456789, "Rebeca Rebola", "reboca", "reboca@email.com","123",  "987654321"),
-            new Utente(123456788, "Pepe Pepetola", "petola", "petola@email.com","123",  "Almada")
-    );
+    @GetMapping(path = "{id}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public Optional<Utente> getUser(@PathVariable("id") Long id) {
+        return utenteService.getUserById(id);
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('utente:read')")
     public List<Utente> getAllUtentes() {
-        // this is a placeholder
-        System.out.println("getAllUtentes");
-        return UTENTES;
+        return utenteService.getAllUtentes();
     }
 
-    @PostMapping
+
+    @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
-    public void registerNewUtente(@RequestBody Utente utente) {
-        // this is also a placeholder
-        System.out.println("registerNewUtente");
-        System.out.println(utente);
+    public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
 
-    @DeleteMapping(path = "{id}")
+    /*@DeleteMapping("{/id}")
     @PreAuthorize("hasAuthority('utente:write')")
-    public void deleteUtente(@PathVariable("id") Integer id){
-        // same sh*t, different method
-        System.out.println("deleteUtente");
-        System.out.println(id);
-    }
-
-    @PutMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('utente:write')")
-    public void updateUtente(@PathVariable("id") Integer id, @RequestBody Utente utente) {
-        // same as the above
-        System.out.println("updateUtente");
-        System.out.printf("%s %s%n", id, utente);
-    }
+    public void xauXauUtente(@PathVariable("id") Long id) {
+        utenteService.deleteUtente(id);
+    }*/
 }
-
- */

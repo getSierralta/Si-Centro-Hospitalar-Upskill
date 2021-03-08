@@ -1636,6 +1636,12 @@ textarea#message{
     font-size: 85%;
     text-align: center;
 }
+.greenbutt button {
+    color: var(--color-white);
+    font-size: 85%;
+    text-align: center;
+    background-color: unset;
+}
 
 .greenbutt:hover {
     opacity: 0.6;

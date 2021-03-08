@@ -2,28 +2,17 @@ package com.Bgrupo4.hospitalupskill.security;
 
 import com.Bgrupo4.hospitalupskill.auth.AuthenticationProviderImpl;
 import com.Bgrupo4.hospitalupskill.jwt.JwtConfig;
-import com.Bgrupo4.hospitalupskill.jwt.JwtTokenVerifier;
-import com.Bgrupo4.hospitalupskill.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.crypto.SecretKey;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationProviderImpl authenticationProvider;
@@ -51,8 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 //.addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/register","/register/**","/css/**","/files/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
-                .antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole("UTENTE", "MEDICO", "COLABORADOR")
+                .antMatchers("/utente/register","/utente/register/**", "/css/**","/files/**"
+                        ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -79,11 +67,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    /*
-
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }*/
 }
