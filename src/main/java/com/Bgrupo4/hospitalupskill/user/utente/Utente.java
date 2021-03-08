@@ -36,9 +36,10 @@ public class Utente extends ApplicationUser {
         this.apolice = apolice;
     }
 
-    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String apolice) {
+    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String apolice, String numUtente) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.UTENTE.name());
         this.apolice = apolice;
+        this.numUtente = numUtente;
     }
 
     public Utente(String name, UserRole userRole) {
