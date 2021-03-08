@@ -36,8 +36,10 @@ public class HospitalUpskillApplication {
 	CommandLineRunner commandLineRunner() {
 		return args -> {
 			// FOR TESTING PURPOSES ONLY
+			applicationUserService.enableAndSave(new Utente("2", "Joao", "utente", "utente@utente.com", "123", "Sintra","Lisboa","914789651","25-06-1998" ,"apolice", "123456789"));
+			applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo","Paraguana","914789651","25-06-1998" ,"apo", "123456789"));
+			applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan","Las Cumaraguas","914789651","25-06-1998" ,"lice", "123456789"));
 			applicationUserService.enableAndSave(new Employee("1", "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
-			applicationUserService.enableAndSave(new Utente("2", "Joao", "utente", "utente@utente.com", "123", "apolice"));
 			applicationUserService.enableAndSave(new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", especialidades));
 			applicationUserService.enableAndSave(new Employee("4", "Gabriel", "responsavel", "responsavel@responsavel.com", "123", UserRole.RESPONSAVEL.name(), upskill));
 			applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));

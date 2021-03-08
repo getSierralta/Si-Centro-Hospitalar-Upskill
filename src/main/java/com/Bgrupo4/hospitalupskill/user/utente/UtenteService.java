@@ -72,8 +72,8 @@ public class UtenteService {
                 request.getLocalidade(),
                 request.getTelemovel(),
                 request.getDataDeNascimento(),
-                UserRole.UTENTE,
-                request.getApolice()));
+                request.getApolice(),
+                request.getNumUtente()));
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;
         emailSender.senad(request.getEmail(), registrationService.buildEmail(request.getName(), link));
     }

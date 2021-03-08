@@ -26,11 +26,7 @@ public class UtenteController {
     public String showProfile(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Utente utente = utenteService.getLogged(auth);
-        map.addAttribute("name", utente.getName());
-        map.addAttribute("dataDeNascimento", utente.getBirthday());
-        map.addAttribute("id", utente.getId());
-        map.addAttribute("id", utente.getId());
-        map.addAttribute("id", utente.getId());
+        map.put("utente", utente);
         return "/utente/profileutente";
     }
 

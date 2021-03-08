@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,16 +72,18 @@
                     <img class="inversed" src="/img/imgclient.jpeg" alt="client">
                 </div>
                 <div class="client_details">
-                    <p><b>{client.name}</b></p>
-                    <p><b>{client.dataDeNascimento}</b></p>
-                    <p><b>{client.nUtente}</b></p>
+                    <p><b>${utente.getName()}</b></p>
+                    <p><b>${utente.getBirthday()}</b></p>
+                    <p><b>${utente.getNumUtente()}</b></p>
+                    <p><b>${utente.getNif()}</b></p>
                 </div>
            </div>
             <div class="client_info">
-                    <p><b>Morada: </b> {client.morada}</p>
-                    <p><b>E-mail: </b> {client.email}</p>
-                    <p><b>Localidade: </b> {client.localidade} </p>
-                    <p><b>Telemovel: </b> {client.telemovel} </p>
+                    <p><b>Morada: </b> ${utente.getMorada()}</p>
+                    <p><b>E-mail: </b> ${utente.getEmail()}</p>
+                    <p><b>Localidade: </b> ${utente.getLocalidade()} </p>
+                    <p><b>Telemovel: </b> ${utente.getPhone()} </p>
+
             </div>
         </div>
         <!--/Info Box-->
