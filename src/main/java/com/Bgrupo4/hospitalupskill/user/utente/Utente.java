@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,21 +25,25 @@ import java.util.List;
 public class Utente extends ApplicationUser {
 
     private String apolice;
-    private int numUtente;
 
     @JsonBackReference
     @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
-    public Utente(Integer nif, String name, String username, String email, String password, String apolice, int numUtente) {
+    public Utente(String nif, String name, String username, String email, String password, String apolice) {
         super(nif, name, username, email, password, UserRole.UTENTE.name());
         this.apolice = apolice;
-        this.numUtente = numUtente;
+    }
+
+    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, UserRole userRole, String apolice) {
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole);
+        this.apolice = apolice;
     }
 
     public Utente(String name, UserRole userRole) {
         super(name, userRole);
     }
+
 
 
 }

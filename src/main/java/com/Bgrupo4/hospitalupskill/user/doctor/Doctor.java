@@ -36,12 +36,12 @@ public class Doctor extends ApplicationUser {
     @JoinColumn(nullable = false,name = "unidade")
     private Unidade unidade;*/
 
-    public Doctor(Integer nif, String name, String username, String email, String password, String role, String cedula) {
+    public Doctor(String nif, String name, String username, String email, String password, String role, String cedula) {
         super(nif, name, username, email, password, role);
         this.cedula = cedula;
     }
 
-    public Doctor(Integer nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, List<Especialidade> especialidades) {
+    public Doctor(String nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, List<Especialidade> especialidades) {
         super(nif, name, username, email, password, role);
         this.cedula = cedula;
         //this.especialidades = especialidades;

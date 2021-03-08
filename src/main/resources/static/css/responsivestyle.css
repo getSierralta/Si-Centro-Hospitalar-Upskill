@@ -1552,6 +1552,10 @@ input[type=file]{
     justify-content: center;
     text-align: center;
 }
+.white_box.transparent_box{
+    background: none;
+    min-width: 40rem;
+}
 
 .white_box p{
     font-size: 0.8rem;
@@ -1635,6 +1639,12 @@ textarea#message{
     color: var(--color-white);
     font-size: 85%;
     text-align: center;
+}
+.greenbutt button {
+    color: var(--color-white);
+    font-size: 85%;
+    text-align: center;
+    background-color: unset;
 }
 
 .greenbutt:hover {

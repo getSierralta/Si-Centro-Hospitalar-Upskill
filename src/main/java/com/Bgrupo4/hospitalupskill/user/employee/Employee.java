@@ -26,7 +26,7 @@ public class Employee extends ApplicationUser {
     public Employee() {
     }
 
-    public Employee(Integer nif, String name, String username, String email, String password, String role, Unidade unidade) {
+    public Employee(String nif, String name, String username, String email, String password, String role, Unidade unidade) {
         super(nif, name, username, email, password, role);
         //this.unidade = unidade;
     }
