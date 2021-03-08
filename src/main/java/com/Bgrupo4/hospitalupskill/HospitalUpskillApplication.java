@@ -52,10 +52,10 @@ public class HospitalUpskillApplication {
 			applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
 
 			//Appointments
-			Vaga vaga = new Vaga("2021-06-18", "14:30", Especialidade.Cardiologia.name(), doctor);
-			Vaga vaga1 = new Vaga("2021-05-18", "16:30", Especialidade.Cardiologia.name(), doctor);
-			Vaga vaga2 = new Vaga("2021-04-18", "15:30", Especialidade.Cardiologia.name(), doctor);
-			Vaga vaga3 = new Vaga("2021-03-18", "13:30", Especialidade.Cardiologia.name(), doctor);
+			Vaga vaga = new Vaga("2021-06-18", "14:30", Especialidade.CARDIOLOGIA.name(), doctor);
+			Vaga vaga1 = new Vaga("2021-05-18", "16:30", Especialidade.CARDIOLOGIA.name(), doctor);
+			Vaga vaga2 = new Vaga("2021-04-18", "15:30", Especialidade.CARDIOLOGIA.name(), doctor);
+			Vaga vaga3 = new Vaga("2021-03-18", "13:30", Especialidade.CARDIOLOGIA.name(), doctor);
 			consultasService.createVaga(vaga);
 			consultasService.createAppointment(vaga, utente);
 			consultasService.createAppointment(vaga1, utente);
