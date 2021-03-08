@@ -6,16 +6,17 @@ import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UtenteService {
 
     private final static String USER_NOT_FOUND_MSG = "O utente %s não foi encontrado";
@@ -27,15 +28,33 @@ public class UtenteService {
     private final EmailSender emailSender;
     private final RegistrationService registrationService;
 
+
     public Optional<Utente> getUserById(Long id) {
         return utenteRepository.findById(id);
     }
+
+    public Optional<Utente> getUserByUsername(String username) {
+        return utenteRepository.findByUsername(username);
+    }
+
 
     public List<Utente> getAllUtentes() {
         return utenteRepository.findAll();
     }
 
-    public String registerUtente(UtenteRegistrationRequest request) {
+    public Utente getLogged(Authentication auth) throws Exception {
+        String principal = auth.getPrincipal().toString();
+        String[] split = principal.split("username='");
+        String[] split2 = split[1].split("',");
+        Optional<Utente> utente = getUserByUsername(split2[0]);
+        if (utente.isEmpty()){
+            throw new Exception("There's no logged person");
+        }
+        return utente.get();
+    }
+
+
+    public void registerUtente(UtenteRegistrationRequest request) {
         System.out.println("inside the register 1");
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if (!isValidEmail) {
@@ -57,7 +76,6 @@ public class UtenteService {
                 request.getApolice()));
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;
         emailSender.senad(request.getEmail(), registrationService.buildEmail(request.getName(), link));
-        return token;
     }
 
     public Utente updateUtente(Long id, UtenteRequest request) {
@@ -72,6 +90,7 @@ public class UtenteService {
 
         return utenteRepository.save(utente1);
     }
+
 
 
 }
