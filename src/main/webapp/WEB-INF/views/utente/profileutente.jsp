@@ -1,9 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-    //Não estou muito seguro deste @Autowired
+
+
 <%
-    @Autowired
+
     ApplicationUserService application;
     Utente utente = (Utente) application.loadUserByUsername("admin");
 
