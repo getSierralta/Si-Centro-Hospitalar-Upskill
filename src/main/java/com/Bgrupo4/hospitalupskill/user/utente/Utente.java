@@ -34,4 +34,7 @@ public class Utente extends ApplicationUser {
         this.apolice = apolice;
     }
 
+    public Utente(String name, UserRole userRole) {
+        super(name, userRole);
+    }
 }
