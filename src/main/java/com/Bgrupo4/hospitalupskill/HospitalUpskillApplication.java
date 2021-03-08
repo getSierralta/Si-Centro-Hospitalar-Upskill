@@ -20,7 +20,7 @@ import java.util.List;
 public class HospitalUpskillApplication {
 
 	public final static Unidade upskill =  new Unidade(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill","Sintra", "456456665", "UpPhoto");
-	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia, Especialidade.Radiologia);
+	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.GERAL, Especialidade.CARDIOLOGIA, Especialidade.FISIOTERAPIA, Especialidade.GINECOLOGIA, Especialidade.RADIOLOGIA);
 	private final ApplicationUserService applicationUserService;
 
 	public HospitalUpskillApplication(ApplicationUserService applicationUserService) {
