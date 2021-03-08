@@ -15,43 +15,43 @@
     <!--side nav ignored for now due to incompatibility issues-->
         <nav class="nav-row">
             <div class="medium">
-                <a href="/profileutente">
+                <a href="utente/profileutente">
                     <div class="icon home"></div>
                     <span class="none">Perfil</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/checkinutente">
+                <a href="utente/checkinutente">
                     <div class="icon medico"></div>
                     <span class="none">Check-in</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="/tracknumberutente">
+                <a href="utente/tracknumberutente">
                     <div class="icon consulta"></div>
                     <span class="none">Track Numbers</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/calendariogeralutente">
+                <a href="utente/calendariogeralutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario geral</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/calendarutente">
+                <a href="utente/calendarutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario Pessoal</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/contactsutente">
+                <a href="utente/contactsutente">
                     <div class="icon contactos"></div>
                     <span class="none">Support</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="/settings">
+                <a href="utente/settings">
                     <div class="icon tools"></div>
                     <span class="none">Settings</span>
                 </a>
@@ -95,12 +95,10 @@
             <div class="profileutente__consulta__header">
                 <div class="smallpadding">
                     <p class="title"><b> Data do Proximo Agendamento</b></p>
-                    <p><b>Acto:</b> Consulta</p>
-                    <p><b>Especialidade:</b> Oftamologia</p>
-                    <p><b>Acto Medico:</b> Exame pericial com relatório </p>
-                    <p><b>Recurso Executante:</b> Dr. João Aires</p>
-                    <p><b>Data:</b> 28/09/21</p>
-                    <p><b>Hora:</b> 11:30</p>
+                    <p><b>Especialidade:</b> ${consulta.getEspecialidade()}</p>
+                    <p><b>Recurso Executante:</b> ${consulta.getDoctor().getName()}</p>
+                    <p><b>Data:</b> ${consulta.getDate()}</p>
+                    <p><b>Hora:</b> ${consulta.getTime()}</p>
                 </div>
                 <div class="middle">
                     <button class="btn-green-small">Check-in</button>
@@ -133,7 +131,7 @@
         </div>
         <div class="card small">
             <div class="card_text">
-                <a href="/billsutente">
+                <a href="utente/billsutente">
                     <p>FATURAS</p><br>
                 </a>
             </div>
@@ -142,7 +140,7 @@
         </div>
         <div class="card small">
             <div class="card_text">
-                <a href="/filesutente">
+                <a href="utente/filesutente">
                    <p>FICHEIROS</p><br>
                 </a>
             </div>

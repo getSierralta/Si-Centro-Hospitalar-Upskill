@@ -13,72 +13,72 @@
 
 <body>
     <div class="container">
-            <nav class="nav nav-sidebar">
-               <div class="up">
-                   <div class="btn-toggle-nav" onclick="toggleNav()"></div>
-                   <div class="nav__logo">
-                       <img src="../img/logo.svg" alt="logo">
-                   </div>
-                   <div class="nav__hello">
-                       <ul>
-                           <li class="medium">Olá de novo,</li>
-                           <li class="bold"><span class="name">{pessoa.nome}</span></li>
-                           <li class="light small">{pessoa.funçao}</li>
-                       </ul>
-                   </div>
-                   <div class="up2">
-                       <div class="nav__index">
-                           <ul>
-                               <li class="medium ">
-                                   <div class="icon utente"></div>
-                                   <a href="/profileutente">Profile</a>
-                               </li>
-                               <li class="medium">
-                                   <div class="icon medico"></div>
-                                   <a href="/checkinutente">Check-in</a>
-                               </li>
-                               <li class="medium ">
-                                   <div class="icon consulta"></div>
-                                   <a href="/tracknumberutente">Track Numbers</a>
-                               </li>
-                               <li class="medium ">
-                                   <div class="icon calendario"></div>
-                                   <a href="/calendariogeralutente">Calendario Geral</a>
-                               </li>
-                               <li class="medium ">
-                                  <div class="icon calendario"></div>
-                                  <a href="/calendarutente">Calendario Pessoal</a>
-                               </li>
-                                <li class="medium ">
-                                     <div class="icon informacao"></div>
-                                     <a href="/billsutente">Faturas</a>
-                                </li>
-                                <li class="medium ">
-                                     <div class="icon informacao"></div>
-                                     <a href="/filesutente">Ficheiros</a>
-                                </li>
-                               <li class="medium ">
-                                   <div class="icon contactos"></div>
-                                   <a href="/contactsutente">Contact</a>
-                               </li>
-                               <li class="medium ">
-                                   <div class="icon tools"></div>
-                                   <a href="/settings">Settings</a>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-               </div>
-               <div class="down">
-                   <div class="nav__down--logo">
-                       <img src="../img/upskill.png" alt="logo upskill">
-                   </div>
-                   <div class="nav__down--logout medium">
-                       <img src="../img/logout.svg" alt="log out icon">
-                       <a href="//logout">Terminar Sessão</a>
-                   </div>
-               </div>
-        </nav>
+           <nav class="nav nav-sidebar">
+                      <div class="up">
+                          <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+                          <div class="nav__logo">
+                              <img src="../img/logo.svg" alt="logo">
+                          </div>
+                          <div class="nav__hello">
+                              <ul>
+                                  <li class="medium">Olá de novo,</li>
+                                  <li class="bold"><span class="name">{pessoa.nome}</span></li>
+                                  <li class="light small">{pessoa.funçao}</li>
+                              </ul>
+                          </div>
+                          <div class="up2">
+                              <div class="nav__index">
+                                  <ul>
+                                      <li class="medium ">
+                                          <div class="icon utente"></div>
+                                          <a href="utente/profileutente">Profile</a>
+                                      </li>
+                                      <li class="medium">
+                                          <div class="icon medico"></div>
+                                          <a href="utente/checkinutente">Check-in</a>
+                                      </li>
+                                      <li class="medium ">
+                                          <div class="icon consulta"></div>
+                                          <a href="utente/tracknumberutente">Track Numbers</a>
+                                      </li>
+                                      <li class="medium ">
+                                          <div class="icon calendario"></div>
+                                          <a href="utente/calendariogeralutente">Calendario Geral</a>
+                                      </li>
+                                      <li class="medium ">
+                                         <div class="icon calendario"></div>
+                                         <a href="utente/calendarutente">Calendario Pessoal</a>
+                                      </li>
+                                       <li class="medium ">
+                                            <div class="icon informacao"></div>
+                                            <a href="utente/billsutente">Faturas</a>
+                                       </li>
+                                       <li class="medium ">
+                                            <div class="icon informacao"></div>
+                                            <a href="utente/filesutente">Ficheiros</a>
+                                       </li>
+                                      <li class="medium ">
+                                          <div class="icon contactos"></div>
+                                          <a href="utente/contactsutente">Contact</a>
+                                      </li>
+                                      <li class="medium ">
+                                          <div class="icon tools"></div>
+                                          <a href="utente/settings">Settings</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="down">
+                          <div class="nav__down--logo">
+                              <img src="../img/upskill.png" alt="logo upskill">
+                          </div>
+                          <div class="nav__down--logout medium">
+                              <img src="../img/logout.svg" alt="log out icon">
+                              <a href="//logout">Terminar Sessão</a>
+                          </div>
+                      </div>
+                  </nav>
         <!-- MAIN - Div horizontal central -->
         <main class="main">
 

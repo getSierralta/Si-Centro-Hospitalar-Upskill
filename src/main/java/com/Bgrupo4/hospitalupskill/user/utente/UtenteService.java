@@ -1,15 +1,15 @@
 package com.Bgrupo4.hospitalupskill.user.utente;
 
 
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
-import com.Bgrupo4.hospitalupskill.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -27,6 +27,7 @@ public class UtenteService {
     private final ApplicationUserService applicationUserService;
     private final EmailSender emailSender;
     private final RegistrationService registrationService;
+    private final ConsultasService consultasService;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -91,6 +92,17 @@ public class UtenteService {
         return utenteRepository.save(utente1);
     }
 
+    public List<Appointment> getAppointments(Utente utente){
+        return consultasService.getAppointmentsUtente(utente.getId());
+    }
 
 
+    public Appointment getNextAppointment(Utente utente) {
+        List<Appointment> appointment = getAppointments(utente);
+        if (appointment.isEmpty()){
+            throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
+        }
+        Collections.sort(appointment);
+        return appointment.get(0);
+    }
 }
