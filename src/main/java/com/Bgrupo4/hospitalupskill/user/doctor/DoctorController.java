@@ -40,21 +40,9 @@ public class DoctorController {
         doctorService.registerDoctor(doctor);
     }
 
-    @PutMapping(path = "{morada}")
+    @PutMapping(path = "{id}")
     @PreAuthorize("hasAuthority('medico:write')")
-    public void updateDoctorMorada(@PathVariable("morada") Long id, @RequestBody String morada) {
-        doctorService.updateDoctorMorada(id, morada);
-    }
-
-    @PutMapping(path = "{localidade}")
-    @PreAuthorize("hasAuthority('medico:write')")
-    public void updateDoctorLocalidade(@PathVariable("localidade") Long id, @RequestBody String localidade) {
-        doctorService.updateDoctorMorada(id, localidade);
-    }
-
-    @PutMapping(path = "{phone}")
-    @PreAuthorize("hasAuthority('medico:write')")
-    public void updateDoctorPhone(@PathVariable("phone") Long id, @RequestBody String phone) {
-        doctorService.updateDoctorMorada(id, phone);
+    public void updateDoctor(@PathVariable("id") Long id, @RequestBody DoctorRequest request) {
+        doctorService.updateDoctor(id, request);
     }
 }

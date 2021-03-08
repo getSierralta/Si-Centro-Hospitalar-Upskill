@@ -4,6 +4,7 @@ import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,27 +33,13 @@ public class DoctorService{
         applicationUserService.enableAndSave(doctor);
     }
 
-    public void updateDoctorMorada(Long id, String morada) {
-        if (doctorRepository.findById(id).isPresent()) {
-            Doctor selected = doctorRepository.findById(id).get();
-            selected.setMorada(morada);
-            doctorRepository.save(selected);
+    public Doctor updateDoctor(Long id, DoctorRequest request) {
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        if (!doctor.isPresent()) {
+            throw new EntityNotFoundException(String.format("Médico %s não foi encontrado", id));
         }
-    }
-
-    public void updateDoctorLocalidade(Long id, String localidade) {
-        if (doctorRepository.findById(id).isPresent()) {
-            Doctor selected = doctorRepository.findById(id).get();
-            selected.setLocalidade(localidade);
-            doctorRepository.save(selected);
-        }
-    }
-
-    public void updateDoctorPhone(Long id, String phone) {
-        if (doctorRepository.findById(id).isPresent()) {
-            Doctor selected = doctorRepository.findById(id).get();
-            selected.setPhone(phone);
-            doctorRepository.save(selected);
-        }
+        Doctor doctor1 = doctor.get();
+        doctor1.setMorada(request.getMorada());
+        return doctorRepository.save(doctor1);
     }
 }
