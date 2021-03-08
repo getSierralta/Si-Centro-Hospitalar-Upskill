@@ -1,5 +1,8 @@
-package com.Bgrupo4.hospitalupskill.user.utente;
+package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

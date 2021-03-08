@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthenticationProviderImpl authenticationProvider;
     private final ApplicationUserService applicationUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AuthSuccessHandler successHandler;
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
 
@@ -46,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.httpBasic();
                 .formLogin().loginPage("/login")
-                .permitAll()//.defaultSuccessUrl("/profileutente", true)
+                .successHandler(successHandler)
+                //.permitAll().defaultSuccessUrl(authSuccessHandler().determineTargetUrl(), true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()
@@ -54,10 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/");
     }
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
