@@ -1,11 +1,17 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.services.FileService;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/utente")
@@ -13,11 +19,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UtenteController {
 
     private final FileService fileService;
+    private final UtenteService utenteService;
+
 
     @GetMapping(value = "/profileutente")
-    public String showProfile(){
+    public String showProfile(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        map.addAttribute("name", utente.getName());
+        map.addAttribute("dataDeNascimento", utente.getBirthday());
+        map.addAttribute("id", utente.getId());
+        map.addAttribute("id", utente.getId());
+        map.addAttribute("id", utente.getId());
         return "/utente/profileutente";
     }
+
 
     @GetMapping(value = "/checkinutente")
     public String showCheckIn(){

@@ -25,9 +25,10 @@ import java.util.List;
 public class Utente extends ApplicationUser {
 
     private String apolice;
+    private String numUtente;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
     public Utente(String nif, String name, String username, String email, String password, String apolice) {
@@ -35,8 +36,8 @@ public class Utente extends ApplicationUser {
         this.apolice = apolice;
     }
 
-    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, UserRole userRole, String apolice) {
-        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole);
+    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String apolice) {
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.UTENTE.name());
         this.apolice = apolice;
     }
 
