@@ -51,10 +51,10 @@
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
             <!-- JWT api/login -->
-            <form class="log-in" method="post" action="api/login" id="login">
+            <form class="log-in" method="post" action="/login" id="login">
                 <input type="text" id="username" name="username"  placeholder="Jenipurr Lopez">
                 <input type="password" id="password" name="password"  placeholder="********">
-                <!--<p>Remember Me?<input type="checkbox" id="remember-me" name="remember-me" class="form-control"></p>-->
+                <p>Remember Me?<input type="checkbox" id="remember-me" name="remember-me" class="form-control"></p>
                 <div class="greenbutt">
                     <button type="submit" class="medium">Log in</button>
                 </div>

@@ -46,16 +46,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 // JWT not working perfectly yet
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and()
+                //.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
+                //.addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/register","/register/**","/css/**","/files/**","/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
                 .antMatchers("/users/**", "/management/users", "/management/users/**").hasAnyRole("UTENTE", "MEDICO", "COLABORADOR")
                 .anyRequest()
-                .authenticated();
-                /*.and()
+                .authenticated()
+                .and()
                 //.httpBasic();
                 .formLogin().loginPage("/login")
                 .permitAll().defaultSuccessUrl("/profileutente", true)
@@ -63,24 +63,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Todo: make the key secure
                 .and().logout()
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");*/
+                .logoutSuccessUrl("/");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
-
-    //i dont remember what the fuck this method is for
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
@@ -91,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /*
+
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
