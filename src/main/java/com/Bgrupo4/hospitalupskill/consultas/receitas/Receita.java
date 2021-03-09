@@ -1,15 +1,12 @@
 package com.Bgrupo4.hospitalupskill.consultas.receitas;
 
 
-import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -22,7 +19,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Receita")
 @Table(name = "receita")
 @NoArgsConstructor
-public class Receita {
+@ToString
+public class Receita implements Comparable<Receita>{
 
     @Id
     @SequenceGenerator(name = "receita_sequence", sequenceName = "receita_sequence", allocationSize = 1)
@@ -48,7 +46,7 @@ public class Receita {
     private Appointment appointment;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "medicamento", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "receita", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Medicamento> medicamentos;
 
     @Column(name= "status", nullable = false)
@@ -61,5 +59,24 @@ public class Receita {
         this.utente = utente;
         this.appointment = appointment;
         this.medicamentos = medicamentos;
+    }
+
+    @SneakyThrows
+    @Override
+    public int compareTo(Receita o) {
+        String[] oDate = o.getDate().split("-");
+        String[] myDate = this.getDate().split("-");
+        if (oDate.length != 3 || myDate.length != 3){
+            throw new Exception(String.format("A data da consulta %s %s ou a data da consulta %s %s esta mal formatada", o.getId(), o.getDate(), this.getId(), this.getDate()));
+        }
+        if (oDate[0].equals(myDate[0]) && oDate[1].equals(myDate[1]) && oDate[2].equals(myDate[2])){
+            return 0;
+        }
+        if (Integer.parseInt(myDate[0]) < Integer.parseInt(myDate[0])
+                || (oDate[0].equals(myDate[0]) && Integer.parseInt(myDate[1]) < Integer.parseInt(myDate[1]))
+                || (oDate[0].equals(myDate[0]) && myDate[1].equals(oDate[1]) && Integer.parseInt(myDate[2]) < Integer.parseInt(myDate[2]))){
+            return 1;
+        }
+        return -1;
     }
 }

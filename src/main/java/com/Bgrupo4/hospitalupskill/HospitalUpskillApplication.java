@@ -1,6 +1,11 @@
 package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
@@ -16,8 +21,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -27,6 +31,7 @@ public class HospitalUpskillApplication {
 	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia, Especialidade.Radiologia);
 	private final ApplicationUserService applicationUserService;
 	private final ConsultasService consultasService;
+	private final ReceitaService receitaService;
 
 
 	public static void main(String[] args) {
@@ -57,10 +62,20 @@ public class HospitalUpskillApplication {
 			Vaga vaga2 = new Vaga("2021-04-18", "15:30", Especialidade.Cardiologia.name(), doctor);
 			Vaga vaga3 = new Vaga("2021-03-18", "13:30", Especialidade.Cardiologia.name(), doctor);
 			consultasService.createVaga(vaga);
+			consultasService.createVaga(vaga1);
+			consultasService.createVaga(vaga2);
+			consultasService.createVaga(vaga3);
+			Appointment appointment = consultasService.createAppointment(vaga1, utente);
 			consultasService.createAppointment(vaga, utente);
-			consultasService.createAppointment(vaga1, utente);
 			consultasService.createAppointment(vaga2, utente);
-			consultasService.createAppointment(vaga3, utente);
+
+			Receita receita = receitaService.createReceita(appointment);
+
+			receitaService.addMedicamento(new Medicamento("Ibuprofen", "2 veces por dia"), receita);
+			receitaService.addMedicamento(new Medicamento("Pokemon", "1 veces por semana"), receita);
+			receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
+			receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
+
 
 		};
 	}

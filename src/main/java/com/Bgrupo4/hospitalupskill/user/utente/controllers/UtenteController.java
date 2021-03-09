@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/utente")
@@ -33,6 +32,11 @@ public class UtenteController {
             map.put("consulta",utenteService.getNextAppointment(utente));
         }catch (EntityNotFoundException e){
             map.put("consulta", new FakeAppointment());
+        }
+        try {
+            map.put("receita",utenteService.getLastReceita(utente));
+        }catch (EntityNotFoundException e){
+            map.put("receita", new FakeAppointment());
         }
         return "/utente/profileutente";
     }

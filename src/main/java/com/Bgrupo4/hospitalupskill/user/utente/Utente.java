@@ -34,8 +34,12 @@ public class Utente extends ApplicationUser {
     private List<Appointment> appointments;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "receita", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Receita> receitas;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Medicamento> medicamentos;
 
     public Utente(String nif, String name, String username, String email, String password, String apolice) {
         super(nif, name, username, email, password, UserRole.UTENTE.name());

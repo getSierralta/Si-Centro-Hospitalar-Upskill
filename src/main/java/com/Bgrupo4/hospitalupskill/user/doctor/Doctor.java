@@ -32,7 +32,7 @@ public class Doctor extends ApplicationUser {
     private List<Vaga> vagas;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "receita", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Receita> receitas;
 
 
