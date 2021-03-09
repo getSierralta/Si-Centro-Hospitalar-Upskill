@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityNotFoundException;
 
 @Controller
-@RequestMapping("/utente")
 @RequiredArgsConstructor
+@RequestMapping(path = "utente")
 public class UtenteController {
 
     private final FileService fileService;
@@ -38,52 +38,52 @@ public class UtenteController {
         }catch (EntityNotFoundException e){
             map.put("receita", new FakeAppointment());
         }
-        return "/utente/profileutente";
+        return "utente/profileutente";
     }
 
     @GetMapping(value = "/checkinutente")
     public String showCheckIn(){
-        return "/utente/check-in-utente";
+        return "utente/check-in-utente";
     }
 
     @GetMapping(value = "/tracknumberutente")
     public String showTrackNumber(){
-        return "/utente/tracknumberutente";
+        return "utente/tracknumberutente";
     }
 
     @GetMapping(value = "/getnumber")
     public String showGetNumber(){
-        return "/utente/getnumber";
+        return "utente/getnumber";
     }
 
-    @GetMapping(value = "/billsutente")
+    @GetMapping(value = "/bills")
     public String showBills(){
-        return "/utente/bills";
+        return "utente/bills";
     }
 
-    @GetMapping(value = "/filesutente")
+    @GetMapping(value = "/files")
     public String showFiles(ModelMap map){
         map.put("fileList", fileService.getFiles());
-        return "/utente/files";
+        return "utente/files";
     }
 
     @GetMapping(value = "/contactsutente")
     public String showContacts(){
-        return "/utente/contactsutente";
+        return "utente/contactsutente";
     }
 
     @GetMapping(value = "/settings")
     public String showSettings(){
-        return "/utente/settings";
+        return "utente/settings";
     }
 
     @GetMapping(value = "/calendariogeralutente")
     public String showCalendar(){
-        return "/utente/calendariogeralutente";
+        return "utente/calendariogeralutente";
     }
 
     @GetMapping(value = "/calendarutente")
     public String showEvents(){
-        return "/utente/calendar";
+        return "utente/calendar";
     }
 }

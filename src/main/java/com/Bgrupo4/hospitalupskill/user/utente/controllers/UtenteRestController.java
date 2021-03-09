@@ -32,7 +32,6 @@ public class UtenteRestController {
 
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ModelAndView register( UtenteRegistrationRequest request){
-        System.out.println("inside the register");
         utenteService.registerUtente(request);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/utente/register");
@@ -46,8 +45,14 @@ public class UtenteRestController {
 
 
     @GetMapping(path = "/register/confirm")
-    public String confirm(@RequestParam("token") String token) {
-        return registrationService.confirmToken(token);
+    public ModelAndView confirm(@RequestParam("token") String token) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (registrationService.confirmToken(token)){
+            modelAndView.setViewName("/utente/confirm");
+        }else {
+            modelAndView.setViewName("/pessoa/error");
+        }
+        return modelAndView;
     }
 
 }

@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 //.addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/utente/register","/utente/register/**", "/css/**","/files/**"
+                .antMatchers("/utente/register","/utente/register/**", "/css/**", "*/css/**","/files/**"
                         ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
                 .anyRequest()
                 .authenticated()
