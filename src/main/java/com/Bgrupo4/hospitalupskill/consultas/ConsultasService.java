@@ -47,6 +47,7 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteId(id);
     }
 
+    /*
     //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
     public Appointment getNextAppointment() {
         List<Appointment> appointments = appointmentRepository.findAll();
@@ -59,7 +60,7 @@ public class ConsultasService {
             }
         }
         return null;
-    }
+    }*/
 
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
