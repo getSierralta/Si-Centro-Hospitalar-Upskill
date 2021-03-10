@@ -3,8 +3,16 @@ package com.Bgrupo4.hospitalupskill.user.employee;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -17,6 +25,7 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final ApplicationUserService applicationUserService;
+    private final UtenteService utenteService;
 
     public Optional<Employee> getUserById(Long id) {
         return employeeRepository.findById(id);
@@ -42,5 +51,22 @@ public class EmployeeService {
         Employee employee1 = employee.get();
         employee1.setMorada(request.getMorada());
         return employeeRepository.save(employee1);
+    }
+
+    // COLABORADOR
+    @GetMapping(path = "/find-utente/all")
+    public List<Utente> getAllUtentes() {
+        return utenteService.getAllUtentes();
+    }
+
+    @GetMapping(path = "/find-utente/{id}")
+    public Optional<Utente> getUtenteById(@PathVariable("id") Long id) {
+        return utenteService.getUserById(id);
+    }
+
+    @PostMapping("/update-utente/{id}")
+    //@PreAuthorize
+    public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
 }

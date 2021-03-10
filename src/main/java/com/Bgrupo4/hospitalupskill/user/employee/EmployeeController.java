@@ -1,20 +1,17 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
-import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -23,6 +20,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    private final UtenteService utenteService;
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('colaborador:read')")
@@ -52,5 +51,25 @@ public class EmployeeController {
     @PreAuthorize("hasAuthority('colaborador:write')")
     public void updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeRequest request) {
         employeeService.updateEmployee(id, request);
+    }
+
+    /* UTENTE */
+    // UTENTE MANAGEMENT
+
+    //TODO rever
+    @GetMapping(path = "/find-utente/all")
+    public List<Utente> getAllUtentes() {
+        return utenteService.getAllUtentes();
+    }
+
+    @GetMapping(path = "/find-utente/{id}")
+    public Optional<Utente> getUtenteById(@PathVariable("id") Long id) {
+        return utenteService.getUserById(id);
+    }
+
+    @PostMapping("/update-utente/{id}")
+    //@PreAuthorize
+    public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
 }

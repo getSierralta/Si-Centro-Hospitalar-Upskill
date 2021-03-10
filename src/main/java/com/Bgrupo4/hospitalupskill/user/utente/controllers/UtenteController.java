@@ -1,7 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UtenteController {
 
-    private final FileService fileService;
     private final UtenteService utenteService;
 
 
@@ -55,12 +53,6 @@ public class UtenteController {
     @GetMapping(value = "/billsutente")
     public String showBills(){
         return "/utente/bills";
-    }
-
-    @GetMapping(value = "/filesutente")
-    public String showFiles(ModelMap map){
-        map.put("fileList", fileService.getFiles());
-        return "/utente/files";
     }
 
     @GetMapping(value = "/contactsutente")

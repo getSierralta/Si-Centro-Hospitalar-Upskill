@@ -2,14 +2,12 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

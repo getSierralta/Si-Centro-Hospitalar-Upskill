@@ -48,7 +48,7 @@ public class ConsultasService {
     }
 
     //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
-    public Appointment getNextAppointment() {
+    /*public Appointment getNextAppointment() {
         List<Appointment> appointments = appointmentRepository.findAll();
         appointments.sort(Comparator.comparing(Appointment::getDate).thenComparing(Appointment::getTime));
         for(Appointment appointment: appointments){
@@ -59,7 +59,7 @@ public class ConsultasService {
             }
         }
         return null;
-    }
+    }*/
 
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
