@@ -22,7 +22,7 @@ public class DoctorManagementController {
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('medico:read')")
-    public Optional<Doctor> getUser(@PathVariable("id") Long id){
+    public Optional<Doctor> getUser(@PathVariable("id") Long id) {
         return doctorService.getUserById(id);
     }
 
@@ -34,7 +34,7 @@ public class DoctorManagementController {
 
     @DeleteMapping(path = "{id}")
     @PreAuthorize("hasAuthority('medico:write')")
-    public void deleteDoctor(@PathVariable("id") Long id){
+    public void deleteDoctor(@PathVariable("id") Long id) {
         doctorService.deleteDoctor(id);
     }
 

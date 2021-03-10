@@ -36,15 +36,6 @@ public class HospitalUpskillApplication {
 	CommandLineRunner commandLineRunner() {
 		return args -> {
 			// FOR TESTING PURPOSES ONLY
-<<<<<<<<< Temporary merge branch 1
-			applicationUserService.enableAndSave(new Employee(1, "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
-			applicationUserService.enableAndSave(new Utente(2, "Joao", "utente", "utente@utente.com", "123", "apolice", 1354643513));
-			applicationUserService.enableAndSave(new Doctor(3, "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", especialidades));
-			applicationUserService.enableAndSave(new Employee(4, "Gabriel", "responsavel", "responsavel@responsavel.com", "123", UserRole.RESPONSAVEL.name(), upskill));
-			applicationUserService.enableAndSave(new Employee(5, "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));
-			applicationUserService.enableAndSave(new Doctor(6, "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula", especialidades));
-			applicationUserService.enableAndSave(new Employee(7, "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
-=========
 			applicationUserService.enableAndSave(new Employee("1", "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
 			applicationUserService.enableAndSave(new Utente("2", "Joao", "utente", "utente@utente.com", "123", "apolice"));
 			applicationUserService.enableAndSave(new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", especialidades));
@@ -52,7 +43,9 @@ public class HospitalUpskillApplication {
 			applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));
 			applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula", especialidades));
 			applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
->>>>>>>>> Temporary merge branch 2
+			for (int i = 8; i < 20; i++) {
+				applicationUserService.enableAndSave(new Utente(String.valueOf(i),"Utente " + String.valueOf(i), "utente" + String.valueOf(i), "utente" + String.valueOf(i) + "@utente.com", "123", "apolice"));
+			}
 		};
 	}
 }
