@@ -65,231 +65,73 @@
                 </nav>
     <!--Main-->
     <main class="main">
-        <!--Info Box-->
-        <div class="object_container full_info calendar__search">
-            <form action="#" method="get" class="calendar__search--form" id="calendar__search-form">
-                <input type="text" placeholder="Medico" required>
-                <button type="submit"><div class="icon search"></div></button>
-           </form>
-           <form action="#" method="get" class="calendar__search--form" id="calendar__search-form">
-                <input type="text" placeholder="Especialidade" required>
-                <button type="submit"><div class="icon search"></div></button>
-            </form>
-            <form action="#" method="get" class="calendar__search--form" id="calendar__search-form">
-                <select id="especialidade" name="especialidade" class="calendar__search--form especialidade">
-                    <option class="calendar__search--form especialidade" value="1">Especialidade</option>
-                    <option value="1">Anatomia Patológica</a>
-                    <option value="1">Angiologia e Cirurgia Vascular</option>
-                    <option value="1">Cardiologia</option>
-                    <option value="1">Cardiologia Pediatrica</option>
-                </select>
-                <button type="submit"><div class="icon search especialidade"></div></button>
-            </form>
 
-        </div>
-        <!--/Info Box-->
         <!--Cards-->
         <div class="card map calendar-contain--body">
             <main class="calendar-contain">
                 <section class="title-bar">
-                  <span class="title-bar__year">
-                    Calendar > May 2021
-                  </span>
-                  <span class="title-bar__month">
-                    Month
-                  </span>
+                  <div class="title-bar__year" id="monthDisplay"></div>
+                  <button class="icon left-arrow" id="backButton"></button>
+                  <button class="icon right-arrow" id="nextButton"></button>
                 </section>
 
-                <aside class="calendar__sidebar">
-                  <h2 class="sidebar__heading">Wednesday<br>May 15</h2>
-                  <ul class="sidebar__list">
+                <aside class="calendar__sidebar" id="openModal">
+                  <h2 class="sidebar__heading" id="selectedDay"></h2>
+                  <ul class="sidebar__list" id="vagas">
                     <li class="sidebar__list-item">
                         <form action="#">
                             <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
                             <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
                         </form>
                     </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
-                    <li class="sidebar__list-item">
-                        <form action="#">
-                            <span class="list-item__time">16.00</span> <span class="list-item__title">Vaga Aberta</span>
-                            <button type="submit"><div class="icon consulta"></div> Marcar Consulta</button>
-                        </form>
-                    </li>
+
                   </ul>
                 </aside>
 
 
                 <section class="calendar__days">
-                  <section class="calendar__top-bar">
+                  <section class="calendar__top-bar" id="weekdays">
+                    <span class="top-bar__days">Sun</span>
                     <span class="top-bar__days">Mon</span>
                     <span class="top-bar__days">Tue</span>
                     <span class="top-bar__days">Wed</span>
                     <span class="top-bar__days">Thu</span>
                     <span class="top-bar__days">Fri</span>
                     <span class="top-bar__days">Sat</span>
-                    <span class="top-bar__days">Sun</span>
                   </section>
 
-                  <section class="calendar__week">
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">30</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">31</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">1</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">2</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">3</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">4</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">5</span>
-                    </div>
-                  </section>
+                  <div id="calendar">
+                      <section class="calendar__week">
+                          <div class="calendar__day inactive">
+                            <span class="calendar__date">30</span>
+                          </div>
+                          <div class="calendar__day inactive">
+                            <span class="calendar__date">31</span>
+                          </div>
+                            <div class="calendar__day full">
+                             <span class="calendar__date">27</span>
+                           </div>
+                          <div class="calendar__day today">
+                              <span class="calendar__date">15</span>
+                            </div>
+                          <div class="calendar__day">
+                            <span class="calendar__date">3</span>
+                          </div>
+                          <div class="calendar__day">
+                            <span class="calendar__date">4</span>
+                          </div>
+                          <div class="calendar__day">
+                            <span class="calendar__date">5</span>
+                          </div>
+                        </section>
 
-                  <section class="calendar__week">
-                    <div class="calendar__day">
-                      <span class="calendar__date">6</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">7</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">8</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">9</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">10</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">11</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">12</span>
-                    </div>
-                  </section>
-
-                  <section class="calendar__week">
-                    <div class="calendar__day">
-                      <span class="calendar__date">13</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">14</span>
-                    </div>
-                    <div class="calendar__day today">
-                      <span class="calendar__date">15</span>
-                    </div>
-                    <div class="calendar__day vaga">
-                      <span class="calendar__date">16</span>
-                    </div>
-                    <div class="calendar__day vaga">
-                      <span class="calendar__date">17</span>
-                    </div>
-                    <div class="calendar__day vaga">
-                      <span class="calendar__date">18</span>
-                    </div>
-                    <div class="calendar__day vaga">
-                      <span class="calendar__date">19</span>
-                    </div>
-                  </section>
-
-                  <section class="calendar__week">
-                    <div class="calendar__day full">
-                      <span class="calendar__date">20</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">21</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">22</span>
-                    </div>
-                    <div class="calendar__day full">
-                      <span class="calendar__date">23</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">24</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">25</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">26</span>
-                    </div>
-                  </section>
-
-                  <section class="calendar__week">
-                    <div class="calendar__day full">
-                      <span class="calendar__date">27</span>
-                    </div>
-                    <div class="calendar__day">
-                      <span class="calendar__date">28</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">1</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">2</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">3</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">4</span>
-                    </div>
-                    <div class="calendar__day inactive">
-                      <span class="calendar__date">5</span>
-                    </div>
-                  </section>
+                  </div>
                 </section>
         </div>
         <!--/Cards-->
     </main>
     <!--/Main-->
+    <script src="../../js/calendar.js"></script>
 </body>
 
 </html>
