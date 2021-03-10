@@ -3,6 +3,8 @@ package com.Bgrupo4.hospitalupskill.user.utente;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
@@ -28,6 +30,7 @@ public class UtenteService {
     private final EmailSender emailSender;
     private final RegistrationService registrationService;
     private final ConsultasService consultasService;
+    private final ReceitaService receitaService;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -104,5 +107,18 @@ public class UtenteService {
         }
         Collections.sort(appointment);
         return appointment.get(0);
+    }
+
+    public Receita getLastReceita(Utente utente) {
+        List<Receita> receitas = getReceitas(utente);
+        if (receitas.isEmpty()){
+            throw new EntityNotFoundException(String.format("O utente %s não tem receitas marcadas", utente.getUsername()));
+        }
+        Collections.sort(receitas);
+        return receitas.get(0);
+    }
+
+    private List<Receita> getReceitas(Utente utente) {
+        return receitaService.getReceitasByUtente(utente.getId());
     }
 }

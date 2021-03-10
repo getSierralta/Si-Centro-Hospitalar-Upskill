@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
@@ -29,6 +30,10 @@ public class Doctor extends ApplicationUser {
     @JsonBackReference
     @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Vaga> vagas;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Receita> receitas;
 
 
     //private List<Especialidade> especialidades;
