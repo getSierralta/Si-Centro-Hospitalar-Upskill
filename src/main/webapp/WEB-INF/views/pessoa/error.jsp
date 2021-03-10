@@ -19,7 +19,7 @@
                     ERROR
                 </div>
                 <div class="box-msg">
-                    <p>Side-eyes your "jerk" other hand while being petted meowing non stop for food</p>
+                    <p>Nem eu sei que aconteceu</p>
                 </div>
             </div>
         </main>
