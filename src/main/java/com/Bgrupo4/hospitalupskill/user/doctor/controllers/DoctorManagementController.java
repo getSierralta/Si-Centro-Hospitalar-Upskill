@@ -1,17 +1,21 @@
-package com.Bgrupo4.hospitalupskill.user.doctor;
+package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/doctors")
-public class DoctorController {
+@AllArgsConstructor
+public class DoctorManagementController {
 
     @Autowired
     private DoctorService doctorService;

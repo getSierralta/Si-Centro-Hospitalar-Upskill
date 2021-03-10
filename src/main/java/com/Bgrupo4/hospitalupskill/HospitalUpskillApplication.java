@@ -20,7 +20,7 @@ import java.util.List;
 public class HospitalUpskillApplication {
 
 	public final static Unidade upskill =  new Unidade(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill","Sintra", "456456665", "UpPhoto");
-	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia, Especialidade.Radiologia);
+	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.GERAL, Especialidade.CARDIOLOGIA, Especialidade.FISIOTERAPIA, Especialidade.GINECOLOGIA, Especialidade.RADIOLOGIA);
 	private final ApplicationUserService applicationUserService;
 
 	public HospitalUpskillApplication(ApplicationUserService applicationUserService) {
@@ -43,6 +43,9 @@ public class HospitalUpskillApplication {
 			applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));
 			applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula", especialidades));
 			applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
+			applicationUserService.enableAndSave(new Utente("8", "Thiago", "utente2", "utente2@utente.com", "123", "apolice"));
+			applicationUserService.enableAndSave(new Utente("9", "Gabriel", "utente3", "utente3@utente.com", "123", "apolice"));
+			applicationUserService.enableAndSave(new Utente("10", "Max", "utente4", "utente4@utente.com", "123", "apolice"));
 		};
 	}
 }
