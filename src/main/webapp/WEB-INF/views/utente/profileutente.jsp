@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="medium ">
-                <a href="/utente/calendariogeralutente">
+                <a href="/utente/formularioCalendario">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario geral</span>
                 </a>

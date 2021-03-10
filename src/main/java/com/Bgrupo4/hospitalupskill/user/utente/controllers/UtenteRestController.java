@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 
+import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -9,9 +10,11 @@ import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
@@ -53,6 +56,12 @@ public class UtenteRestController {
             modelAndView.setViewName("/pessoa/error");
         }
         return modelAndView;
+    }
+
+    @PostMapping(path = "/calendariogeralutente", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView getEspecialidade(EspecialidadeRequest request){
+        return new RedirectView("/utente/calendariogeralutente/"+request.getEspecialidade());
     }
 
 }
