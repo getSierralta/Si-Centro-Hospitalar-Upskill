@@ -3,6 +3,7 @@ package com.Bgrupo4.hospitalupskill.consultas;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaRepository;
@@ -47,6 +48,7 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteId(id);
     }
 
+    /*
     //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
     public Appointment getNextAppointment() {
         List<Appointment> appointments = appointmentRepository.findAll();
@@ -59,10 +61,11 @@ public class ConsultasService {
             }
         }
         return null;
-    }
+    }*/
 
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
+        //todo verificar se o appoinment ja existe(?)
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
         Optional<Vaga> vaga = vagaRepository.findById(request.getVaga());
@@ -70,11 +73,27 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado",request.getUtente(), request.getVaga(), request.getDoctor()));
         }
         Appointment appointment = new Appointment();
-        //yaaaaas bitch on period
-        vaga.ifPresent(vaga1 -> vaga1.setFree(false));
+        vaga.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
         BeanUtils.copyProperties(request, appointment);
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
+        return appointmentRepository.save(appointment);
+    }
+
+    public Appointment createAppointment(Vaga vaga, Utente utente) {
+        Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
+        Optional<Utente> utenteOpt = utenteRepository.findById(utente.getId());
+        Optional<Vaga> vagaOptional = vagaRepository.findById(vaga.getId());
+        if (doctor.isEmpty() || utenteOpt.isEmpty() || vagaOptional.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Utente %s ou vaga %s não foi encontrado", utente.getUsername(), vaga.getId()));
+        }
+        Appointment appointment = new Appointment();
+        vagaOptional.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
+        appointment.setDate(vaga.getDate());
+        appointment.setTime(vaga.getTime());
+        appointment.setEspecialidade(vaga.getEspecialidade());
+        appointment.setDoctor(doctor.get());
+        appointment.setUtente(utenteOpt.get());
         return appointmentRepository.save(appointment);
     }
 
@@ -86,8 +105,8 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("Utente %s, appointment %s ou Medico %s não foi encontrado",request.getUtente(), id, request.getDoctor()));
         }
         Appointment appointment = optionalAppointment.get();
-        appointment.setDate(LocalDate.parse(request.getDate()));
-        appointment.setTime(LocalTime.parse(request.getTime()));
+        appointment.setDate(request.getDate());
+        appointment.setTime(request.getTime());
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
         appointment.setStatus(Status.valueOf(request.getStatus()));
@@ -142,12 +161,21 @@ public class ConsultasService {
         vaga.setDoctor(doctor.get());
         return vagaRepository.save(vaga);
     }
+    public Vaga createVaga(Vaga vaga) {
+        return vagaRepository.save(vaga);
+    }
     public void deleteVaga(Long id) {
         vagaRepository.deleteById(id);
     }
 
-    //todo
-    public Vaga updateVaga(Long id, VagaService request) {
-        return null;
+    public Vaga updateVaga(Long id, Boolean free) {
+        Optional<Vaga> vaga = vagaRepository.findById(id);
+        if (vaga.isEmpty()) {
+            throw new EntityNotFoundException(String.format("A vaga %s não existe", id));
+        }
+        Vaga vaga1 = vaga.get();
+        vaga1.setFree(free);
+        return vagaRepository.save(vaga1);
     }
+
 }

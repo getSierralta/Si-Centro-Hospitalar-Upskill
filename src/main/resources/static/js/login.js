@@ -22,7 +22,7 @@ function handleSubmit(event) {
 }
 
 const form = document.querySelector('#login');
-form.addEventListener('submit', handleSubmit);*/
+form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -45,7 +45,7 @@ function handleSubmit(event) {
         data2 = {
             method: 'POST',
             headers: {
-                "Content-type": "application/json",
+                "Content-Type": "application/json",
             },
             body: user
         })
@@ -55,4 +55,4 @@ function handleSubmit(event) {
 }
 
 const form = document.querySelector('#register');
-form.addEventListener('submit', handleRegister);
+form.addEventListener('submit', handleRegister);*/

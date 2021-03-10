@@ -83,7 +83,7 @@ public class ConsultasController {
     }
 
     @PatchMapping("/vaga/{id}")
-    public ResponseEntity<Vaga> updateVaga (@RequestBody VagaService request, @PathVariable Long id) {
-        return ResponseEntity.ok(consultasService.updateVaga(id, request));
+    public ResponseEntity<Vaga> closeVaga (@PathVariable Long id) {
+        return ResponseEntity.ok(consultasService.updateVaga(id, false));
     }
 }

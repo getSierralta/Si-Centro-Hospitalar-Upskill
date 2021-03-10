@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,47 +11,45 @@
 </head>
 
 <body class="container">
-    <!--Horizontal Nav-->
-    <!--side nav ignored for now due to incompatibility issues-->
         <nav class="nav-row">
             <div class="medium">
-                <a href="/profileutente">
+                <a href="utente/profileutente">
                     <div class="icon home"></div>
                     <span class="none">Perfil</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/checkinutente">
+                <a href="utente/checkinutente">
                     <div class="icon medico"></div>
                     <span class="none">Check-in</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="/tracknumberutente">
+                <a href="utente/tracknumberutente">
                     <div class="icon consulta"></div>
                     <span class="none">Track Numbers</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/calendariogeralutente">
+                <a href="utente/calendariogeralutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario geral</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/calendarutente">
+                <a href="utente/calendarutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario Pessoal</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="/contactsutente">
+                <a href="utente/contactsutente">
                     <div class="icon contactos"></div>
                     <span class="none">Support</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="/settings">
+                <a href="utente/settings">
                     <div class="icon tools"></div>
                     <span class="none">Settings</span>
                 </a>
@@ -65,104 +64,72 @@
     <!--Main-->
     <main class="main">
         <!--Info Box-->
-        <div class="object_container full_info">
+        <div class="card big profileutente__consulta client_info principal">
+            <h1>Welcome back! &nbsp; ${utente.getName()}</h1>
+            <div class="client_photo">
+                <img class="inversed" src="/img/imgclient.jpeg" alt="client">
+            </div>
            <div class="flex">
-                <div class="client_photo">
-                    <img class="inversed" src="/img/imgclient.jpeg" alt="client">
-                </div>
                 <div class="client_details">
-                    <p><b>{client.name}</b></p>
-                    <p><b>{client.dataDeNascimento}</b></p>
-                    <p><b>{client.nUtente}</b></p>
+                    <p>Data de Nascimento: &nbsp;${utente.getBirthday()}</p>
+                    <p>Numero de Utente: &nbsp; ${utente.getNumUtente()}</p>
+                    <p>Numero de Identidade Fiscal:&nbsp; ${utente.getNif()}</p>
                 </div>
            </div>
             <div class="client_info">
-                    <p><b>Morada: </b> {client.morada}</p>
-                    <p><b>E-mail: </b> {client.email}</p>
-                    <p><b>Localidade: </b> {client.localidade} </p>
-                    <p><b>Telemovel: </b> {client.telemovel} </p>
+                    <p>Morada: &nbsp; ${utente.getMorada()}</p>
+                    <p>E-mail: &nbsp; ${utente.getEmail()}</p>
+                    <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
+                    <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
+            </div>
+            <div class="middle">
+                <a href="utente/files" class="btn-green-small">Ficheiros</a>
+                <a href="utente/bills" class="btn-green-small">Faturas</a>
             </div>
         </div>
+        <div class="card big profileutente__consulta client_info">
+            <div class="card big profileutente__consulta">
+                <div class="profileutente__consulta--img">
+                    <img width="100%" src="../img/imgbear.jpg" alt="consulta">
+                </div>
+                <div class="profileutente__consulta__header">
+                    <div class="smallpadding">
+                        <p class="title"><b> Data do Proximo Agendamento</b></p>
+                        <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
+                        <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
+                        <p>Data: &nbsp;${consulta.getDate()}</p>
+                        <p>Hora: &nbsp;${consulta.getTime()}</p>
+                    </div>
+                    <div class="middle">
+                        <button class="btn-green-small">Check-in</button>
+                        <button class="btn-green-small">Ver no calendario</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card big profileutente__consulta scroll">
+                <div class="profileutente__consulta--img">
+                    <img width="100%" src="../img/imgpills.jpg" alt="consulta">
+                </div>
+                <div class="profileutente__consulta__header">
+                    <p class="title"><b>Ultima Receita Medica</b></p>
+                    <div class="padding medicamentos">
+                        <c:forEach items = "${receita.getMedicamentos()}"  var = "medicamento">
+                                <p>${medicamento.getMedicamento()} &nbsp; ${medicamento.getQuantidade()}</p>
+                        </c:forEach>
+                    </div>
+                    <div class="padding">
+                        <p><b>Recurso Executante:&nbsp;</b> ${receita.getDoctor().getName()}</p>
+                        <p><b>Data:&nbsp;</b> ${receita.getDate()}</p>
+                    </div>
+                </div>
+
+            </div>
+         </div>
         <!--/Info Box-->
         <!--Cards-->
-        <div class="card big profileutente__consulta">
-            <div class="profileutente__consulta--img">
-                <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-            </div>
-            <div class="profileutente__consulta__header">
-                <div class="smallpadding">
-                    <p class="title"><b> Data do Proximo Agendamento</b></p>
-                    <p><b>Acto:</b> Consulta</p>
-                    <p><b>Especialidade:</b> Oftamologia</p>
-                    <p><b>Acto Medico:</b> Exame pericial com relatório </p>
-                    <p><b>Recurso Executante:</b> Dr. João Aires</p>
-                    <p><b>Data:</b> 28/09/21</p>
-                    <p><b>Hora:</b> 11:30</p>
-                </div>
-                <div class="middle">
-                    <button class="btn-green-small">Check-in</button>
-                    <button class="btn-green-small">Ver no calendario</button>
-                </div>
-            </div>
 
-        </div>
-        <div class="card big profileutente__consulta scroll">
-            <div class="profileutente__consulta--img">
-                <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-            </div>
-            <div class="profileutente__consulta__header">
-                <p class="title"><b>Ultima Receita Medica</b></p>
-                <div class="padding medicamentos">
-                    <p>Dextrometrhotphan 0/18</p>
-                    <p>Guaifenesin syrup 1/2</p>
-                    <p>Flavored syrup ad 60/0</p>
-                    <p>5ml as needed for cough</p>
-                    <p>Guaifenesin syrup 1/2</p>
-                    <p>Flavored syrup ad 60/0</p>
-                    <p>5ml as needed for cough</p>
-                </div>
-                <div class="padding">
-                    <p><b>Recurso Executante:</b> Dr. Thiago Hipolito</p>
-                    <p><b>Data:</b> 28/09/21</p>
-                </div>
-            </div>
 
-        </div>
-        <div class="card small">
-            <div class="card_text">
-                <a href="/billsutente">
-                    <p>FATURAS</p><br>
-                </a>
-            </div>
-            <div class="card_overlay"></div>
-            <img class="photo" src="/img/imgbill.png" alt="img">
-        </div>
-        <div class="card small">
-            <div class="card_text">
-                <a href="/filesutente">
-                   <p>FICHEIROS</p><br>
-                </a>
-            </div>
-            <div class="card_overlay"></div>
-            <img class="photo" src="/img/imgterms.jpg" alt="img">
-        </div>
-        <div class="card medium">
-            <div class="card_text">
-                <p>COVID-19<br>
-                <b>VACINA PARA TODXS</b></p>
-            </div>
-            <div class="card_overlay"></div>
-            <img class="photo" src="/img/imgcovid.jfif" alt="img">
-        </div>
-        <div class="card medium dog">
-            <div class="card_text">
-                <p>
-                Médicos de qualidade<br>
-               <b>Saúde de Qualidade</b></p>
-            </div>
-            <div class="card_overlay"></div>
-
-        </div>
 
         <!--/Cards-->
     </main>

@@ -31,39 +31,39 @@
                        <ul>
                            <li class="medium ">
                                <div class="icon utente"></div>
-                               <a href="/profileutente">Profile</a>
+                               <a href="utente/profileutente">Profile</a>
                            </li>
                            <li class="medium">
                                <div class="icon medico"></div>
-                               <a href="/checkinutente">Check-in</a>
+                               <a href="utente/checkinutente">Check-in</a>
                            </li>
                            <li class="medium ">
                                <div class="icon consulta"></div>
-                               <a href="/tracknumberutente">Track Numbers</a>
+                               <a href="utente/tracknumberutente">Track Numbers</a>
                            </li>
                            <li class="medium ">
                                <div class="icon calendario"></div>
-                               <a href="/calendariogeralutente">Calendario Geral</a>
+                               <a href="utente/calendariogeralutente">Calendario Geral</a>
                            </li>
                            <li class="medium ">
                               <div class="icon calendario"></div>
-                              <a href="/calendarutente">Calendario Pessoal</a>
+                              <a href="utente/calendarutente">Calendario Pessoal</a>
                            </li>
                             <li class="medium ">
                                  <div class="icon informacao"></div>
-                                 <a href="/billsutente">Faturas</a>
+                                 <a href="utente/billsutente">Faturas</a>
                             </li>
                             <li class="medium ">
                                  <div class="icon informacao"></div>
-                                 <a href="/filesutente">Ficheiros</a>
+                                 <a href="utente/filesutente">Ficheiros</a>
                             </li>
                            <li class="medium ">
                                <div class="icon contactos"></div>
-                               <a href="/contactsutente">Contact</a>
+                               <a href="utente/contactsutente">Contact</a>
                            </li>
                            <li class="medium ">
                                <div class="icon tools"></div>
-                               <a href="/settings">Settings</a>
+                               <a href="utente/settings">Settings</a>
                            </li>
                        </ul>
                    </div>

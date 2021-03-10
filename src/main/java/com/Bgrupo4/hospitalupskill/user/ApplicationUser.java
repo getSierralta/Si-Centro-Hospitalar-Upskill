@@ -90,7 +90,7 @@ public class ApplicationUser implements UserDetails {
         this.userRole = getRole(role);
     }
 
-    public ApplicationUser(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, UserRole userRole) {
+    public ApplicationUser(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String role) {
         this.nif = nif;
         this.name = name;
         this.username = username;
@@ -99,7 +99,7 @@ public class ApplicationUser implements UserDetails {
         this.morada = morada;
         this.localidade = localidade;
         this.phone = phone;
-        this.userRole = userRole;
+        this.userRole = getRole(role);
         this.birthday = birthday;
     }
 
