@@ -18,6 +18,12 @@ function openModal(monthName, daySquare, month){
     selectedDay.innerText = daySquare.innerText+ ", "+monthName;
     daySquare.classList.add('today');
 
+    const vagas = getVagas(daySquare, month);  
+    console.log(vagas);  
+}
+
+function getVagas(daySquare, month){
+
     const url = window.location.href;
     const st = url.split("/");
     const especialidade = st[5];
@@ -26,7 +32,8 @@ function openModal(monthName, daySquare, month){
     console.log(dia);
     fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${dia}`)
     .then(response => response.json())
-    .then(data => console.log(data));
+    //.then(data => console.log(data));
+    .then(data => {return data});
 }
 
 function load(){  
