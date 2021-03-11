@@ -1,6 +1,5 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class DoctorController {
 
     private final UtenteManagementController utenteManagementController;
-    private final FileService fileService;
 
     @GetMapping(value = "/profilemedico")
     public String showProfile(){
