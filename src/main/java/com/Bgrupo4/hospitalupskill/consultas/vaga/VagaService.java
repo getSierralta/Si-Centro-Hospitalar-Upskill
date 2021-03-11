@@ -46,7 +46,7 @@ public class VagaService {
             }
         }
     }
-    //Only for developing porpuses
+    //Only for developing purposes
     public void createVagasThisMonth(){
         List<Doctor> doctors = doctorRepository.findAll();
         YearMonth yearMonthObject = YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth().ordinal());
@@ -63,7 +63,7 @@ public class VagaService {
                     continue;
                 }
                 Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), LocalDate.now().getMonth().ordinal(), i);
-                for (int j = 8; j <= 18; j++){
+                for (int j = 8; j < 17; j++){
                     if (j != 13){
                         String time = j+":00";
                         vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade(), doctor));

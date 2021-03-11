@@ -4,11 +4,13 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.List;
 
 @Getter
@@ -52,6 +54,12 @@ public class Doctor extends ApplicationUser {
         this.cedula = cedula;
         this.especialidade = especialidade;
         //this.unidade = unidade;
+    }
+
+    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, String especialidade) {
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.MEDICO.name());
+        this.cedula = cedula;
+        this.especialidade = especialidade;
     }
 }
 

@@ -43,11 +43,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/utente/register","/utente/register/**", "/css/**", "*/css/**","/files/**"
                         ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration"
-                        ,"/403","/404","/500").permitAll()
+                        ,"/403","/404","/500", "**/calendariogeralutente/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 //.httpBasic();
+
                 .formLogin().loginPage("/login")
                 .successHandler(successHandler)
                 //.permitAll().defaultSuccessUrl(authSuccessHandler().determineTargetUrl(), true)

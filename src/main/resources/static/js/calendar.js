@@ -25,17 +25,12 @@ function openModal(monthName, daySquare, month){
     const dia = "2021-"+month.toString()+"-"+day.toString();
     console.log(dia);
     fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${dia}`)
-    .then(function(text) {                          
-        console.log('Request successful', text);  
-      }) 
     .then(response => response.json())
-    .then(data => console.log(data)) 
-    .catch(function(error) {                       
-        console.log('Request failed', error);
-    });
+    .then(data => console.log(data));
 }
 
 function load(){  
+    
 
    if(nav !== 0){
        dt.setMonth(new Date().getMonth() + nav);

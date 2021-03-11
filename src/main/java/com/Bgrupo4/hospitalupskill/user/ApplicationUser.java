@@ -105,6 +105,8 @@ public class ApplicationUser implements UserDetails {
         this.dataDeNascimento = birthday;
     }
 
+
+
     public String getDataDeNascimento(){
         return (dataDeNascimento.get(3))+"-"+ (dataDeNascimento.get(2))+"-"+ (dataDeNascimento.get(1));
     }
