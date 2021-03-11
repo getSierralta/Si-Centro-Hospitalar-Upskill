@@ -105,7 +105,7 @@ public class UtenteService {
         if (appointment.isEmpty()){
             throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        Collections.sort(appointment);
+        //Collections.sort(appointment);
         return appointment.get(0);
     }
 

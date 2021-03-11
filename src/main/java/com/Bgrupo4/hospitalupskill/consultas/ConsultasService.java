@@ -17,8 +17,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +62,7 @@ public class ConsultasService {
         BeanUtils.copyProperties(request, appointment);
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
+        appointment.setTime(vaga.get().getTime());
         return appointmentRepository.save(appointment);
     }
 
@@ -79,7 +82,7 @@ public class ConsultasService {
         appointment.setUtente(utenteOpt.get());
         return appointmentRepository.save(appointment);
     }
-
+/*
     public Appointment updateAppointment(Long id, AppointmentCreationRequest request) {
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
@@ -89,12 +92,12 @@ public class ConsultasService {
         }
         Appointment appointment = optionalAppointment.get();
         appointment.setDate(request.getDate());
-        appointment.setTime(request.getTime());
+        appointment.setTime();
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
         appointment.setStatus(Status.valueOf(request.getStatus()));
         return appointmentRepository.save(appointment);
-    }
+    }*/
 
     public Vaga cancelAppointment(Long id){
         Optional<Appointment> appointment = appointmentRepository.findById(id);
@@ -106,6 +109,8 @@ public class ConsultasService {
             appointment1.setStatus(Status.CANCELLED);
             vaga.setDate(appointment1.getDate());
             vaga.setDoctor(appointment1.getDoctor());
+            vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade());
+            vaga.setDate(appointment1.getDate());
             vaga.setTime(appointment1.getTime());
         });
         //todo

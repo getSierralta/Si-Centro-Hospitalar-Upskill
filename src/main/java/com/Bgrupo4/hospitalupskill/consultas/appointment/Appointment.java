@@ -7,10 +7,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.IllegalFormatException;
-import java.util.Optional;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -19,7 +18,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Appointment")
 @Table(name = "appointment")
 @NoArgsConstructor
-public class Appointment implements Comparable<Appointment>{
+public class Appointment{
 
     @Id
     @SequenceGenerator(name = "appointment_sequence", sequenceName = "appointment_sequence", allocationSize = 1)
@@ -27,7 +26,8 @@ public class Appointment implements Comparable<Appointment>{
     private Long id;
 
     @Column(name= "date", nullable = false)
-    private String date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar date;
 
     @Column(name= "time", nullable = false)
     private String time;
@@ -52,15 +52,15 @@ public class Appointment implements Comparable<Appointment>{
     private String especialidade;
 
 
-    public Appointment(String date, String time, Doctor doctor, Utente utente, Status status, String especialidade) {
+    public Appointment(Calendar date, Doctor doctor, Utente utente, Status status, String especialidade) {
         this.date = date;
-        this.time = time;
         this.doctor = doctor;
         this.utente = utente;
         this.status = status;
         this.especialidade = especialidade;
     }
 
+    /*
     @SneakyThrows
     @Override
     public int compareTo(Appointment o) {
@@ -87,17 +87,18 @@ public class Appointment implements Comparable<Appointment>{
         }
         return -1;
     }
-
+*/
     @Override
     public String toString() {
         return "Appointment{" +
                 "id=" + id +
                 ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
                 ", doctor=" + doctor +
                 ", utente=" + utente +
                 ", status=" + status +
                 ", especialidade='" + especialidade + '\'' +
                 '}';
     }
+
+
 }

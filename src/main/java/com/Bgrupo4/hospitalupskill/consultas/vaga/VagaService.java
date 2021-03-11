@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +36,11 @@ public class VagaService {
                     flag = false;
                     continue;
                 }
+                Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), getNextMonth().ordinal(),i);
                 for (int j = 8; j <= 18; j++){
                     if (j != 13){
-                        String date = LocalDate.now().getYear()+"-"+getNextMonth().ordinal()+"-"+i;
-                        String hour = j+":00";
-                        vagaRepository.save(new Vaga(date, hour, doctor.getEspecialidade(), doctor));
+                       String time = j+":00";
+                        vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade(), doctor));
                     }
                 }
             }
@@ -59,11 +62,11 @@ public class VagaService {
                     flag = false;
                     continue;
                 }
+                Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), LocalDate.now().getMonth().ordinal(), i);
                 for (int j = 8; j <= 18; j++){
                     if (j != 13){
-                        String date = LocalDate.now().getYear()+"-"+LocalDate.now().getMonth().ordinal()+"-"+i;
-                        String hour = j+":00";
-                        vagaRepository.save(new Vaga(date, hour, doctor.getEspecialidade(), doctor));
+                        String time = j+":00";
+                        vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade(), doctor));
                     }
                 }
             }
@@ -75,7 +78,6 @@ public class VagaService {
         for (Month m: Month.values()) {
             if (nextMonth){
                month = m;
-                System.out.println("-----------------------------------"+month.name());
                break;
             }else {
                 if (m.name().equals(LocalDate.now().getMonth().name())){

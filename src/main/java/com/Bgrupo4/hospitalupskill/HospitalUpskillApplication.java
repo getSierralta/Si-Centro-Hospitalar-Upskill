@@ -54,6 +54,7 @@ public class HospitalUpskillApplication {
 			applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
 
 			//Appointments
+			/*
 			Vaga vaga = new Vaga("2021-06-18", "14:30", Especialidade.Cardiologia.name(), doctor);
 			Vaga vaga1 = new Vaga("2021-05-18", "16:30", Especialidade.Cardiologia.name(), doctor);
 			Vaga vaga2 = new Vaga("2021-04-18", "15:30", Especialidade.Cardiologia.name(), doctor);
@@ -72,7 +73,7 @@ public class HospitalUpskillApplication {
 			receitaService.addMedicamento(new Medicamento("Pokemon", "1 veces por semana"), receita);
 			receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
 			receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
-
+*/
 			vagaService.createVagasThisMonth();
 			vagaService.createVagasNextMonth();
 

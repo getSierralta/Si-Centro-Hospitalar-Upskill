@@ -6,6 +6,9 @@ const selectedDay = document.getElementById('selectedDay');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let lastDaySquare = null;
 
+
+
+
 function openModal(month, daySquare){
     if(lastDaySquare != null){
         lastDaySquare.classList.remove('today');
