@@ -90,4 +90,14 @@ public class VagaService {
         }
         return month;
     }
+
+    public List<Vaga> getVagas(String especialidade, String dia) {
+        String[] split = dia.split("-");
+        String[] m = split[1].split("");
+        String[] d = split[2].split("");
+        String month = m.length == 2 ? split[1] : "0"+split[1];
+        String day = d.length == 2 ? split[2] : "0"+split[2];
+        return vagaRepository.findAllByEspecialidadeAndDate(especialidade, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
+
+    }
 }

@@ -106,8 +106,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     public String getDataDeNascimento(){
-        String string = String.valueOf(dataDeNascimento.get(3))+"-"+ String.valueOf(dataDeNascimento.get(2))+"-"+ String.valueOf(dataDeNascimento.get(1));
-        return string;
+        return (dataDeNascimento.get(3))+"-"+ (dataDeNascimento.get(2))+"-"+ (dataDeNascimento.get(1));
     }
 
 

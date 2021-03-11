@@ -57,7 +57,7 @@ public class Vaga {
                 "id=" + id +
                 ", date='" + date + '\'' +
                 ", especialidade='" + especialidade + '\'' +
-                ", doctor=" + doctor +
+                ", doctor=" + doctor.getId() +
                 ", free=" + free +
                 '}';
     }

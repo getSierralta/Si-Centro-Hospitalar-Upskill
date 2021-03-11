@@ -5,24 +5,37 @@ const backDrop = document.getElementById('modalBackDrop');
 const selectedDay = document.getElementById('selectedDay');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let lastDaySquare = null;
+const dt = new Date();
 
 
-
-
-function openModal(month, daySquare){
+function openModal(monthName, daySquare, month){
     if(lastDaySquare != null){
         lastDaySquare.classList.remove('today');
         lastDaySquare = null;
     }    
     lastDaySquare = daySquare;
     selectedDay.innerText = "";
-    selectedDay.innerText = daySquare.innerText+ ", "+month;
+    selectedDay.innerText = daySquare.innerText+ ", "+monthName;
     daySquare.classList.add('today');
+
+    const url = window.location.href;
+    const st = url.split("/");
+    const especialidade = st[5];
+    const day = daySquare.innerText;
+    const dia = "2021-"+month.toString()+"-"+day.toString();
+    console.log(dia);
+    fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${dia}`)
+    .then(function(text) {                          
+        console.log('Request successful', text);  
+      }) 
+    .then(response => response.json())
+    .then(data => console.log(data)) 
+    .catch(function(error) {                       
+        console.log('Request failed', error);
+    });
 }
 
-function load(){
-
-   const dt = new Date();
+function load(){  
 
    if(nav !== 0){
        dt.setMonth(new Date().getMonth() + nav);
@@ -60,7 +73,7 @@ function load(){
         const dateSquare = document.createElement('span');
         dateSquare.classList.add('calendar__date');
         daySquare.appendChild(dateSquare);
-        const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+        //const dayString = `${month + 1}/${i - paddingDays}/${year}`;
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
         }else{
@@ -69,7 +82,7 @@ function load(){
         if(i - paddingDays < day && nav === 0 || nav < 0){
             daySquare.classList.add('full');
         }else{
-            daySquare.addEventListener('click', () => openModal(monthName, daySquare));
+            daySquare.addEventListener('click', () => openModal(monthName, daySquare, month));
         }
         week.push(daySquare);
         if(i === paddingDays + daysInMonth){

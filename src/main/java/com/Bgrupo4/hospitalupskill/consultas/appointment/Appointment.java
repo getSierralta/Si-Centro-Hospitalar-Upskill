@@ -26,7 +26,7 @@ public class Appointment{
     private Long id;
 
     @Column(name= "date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Calendar date;
 
     @Column(name= "time", nullable = false)
