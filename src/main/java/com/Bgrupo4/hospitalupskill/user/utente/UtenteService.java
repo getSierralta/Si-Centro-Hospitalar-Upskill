@@ -66,6 +66,7 @@ public class UtenteService {
         }
         System.out.println("inside the register 2");
         //Todo we should check the request before doing the user cause it gives error if the user is not complete
+        String[] data = request.getDataDeNascimento().split("-");
         String token = applicationUserService.singUpUser(new Utente(
                 request.getNif(),
                 request.getName(),
@@ -75,7 +76,7 @@ public class UtenteService {
                 request.getMorada(),
                 request.getLocalidade(),
                 request.getTelemovel(),
-                request.getDataDeNascimento(),
+                new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
                 request.getApolice(),
                 request.getNumUtente()));
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;

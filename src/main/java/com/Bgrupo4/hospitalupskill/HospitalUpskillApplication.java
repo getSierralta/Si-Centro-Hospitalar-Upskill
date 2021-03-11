@@ -20,6 +20,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.GregorianCalendar;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class HospitalUpskillApplication {
@@ -41,10 +43,11 @@ public class HospitalUpskillApplication {
 			// FOR TESTING PURPOSES
 
 			//USERS
-			Utente utente = new Utente("2", "Joao", "utente", "utente@utente.com", "123", "Sintra","Lisboa","914789651","25-06-1998" ,"apolice", "123456789");
+
+			Utente utente = new Utente("2", "Joao", "utente", "utente@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, 25, 10), "apolice", "123456789");
 			applicationUserService.enableAndSave(utente);
-			applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo","Paraguana","914789651","25-06-1998" ,"apo", "123456789"));
-			applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan","Las Cumaraguas","914789651","25-06-1998" ,"lice", "123456789"));
+			applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo", "Paraguana", "914789651", new GregorianCalendar(1970, 26, 15), "apo", "123456789"));
+			applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan", "Las Cumaraguas", "914789651", new GregorianCalendar(1958, 1, 20), "lice", "123456789"));
 			applicationUserService.enableAndSave(new Employee("1", "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
 			Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", Especialidade.Cardiologia.name());
 			applicationUserService.enableAndSave(doctor);

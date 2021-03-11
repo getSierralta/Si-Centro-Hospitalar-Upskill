@@ -15,6 +15,8 @@ public class FakeAppointment {
 
     private String date = "Não tem consultas marcadas";
 
+    private String time = "";
+
     private String especialidade = "";
 
     private Doctor doctor = new Doctor();

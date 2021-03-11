@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Utente extends ApplicationUser {
         this.apolice = apolice;
     }
 
-    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String apolice, String numUtente) {
+    public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String apolice, String numUtente) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.UTENTE.name());
         this.apolice = apolice;
         this.numUtente = numUtente;

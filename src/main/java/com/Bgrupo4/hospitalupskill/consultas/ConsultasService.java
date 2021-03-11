@@ -62,7 +62,9 @@ public class ConsultasService {
         BeanUtils.copyProperties(request, appointment);
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
+        appointment.setDate(vaga.get().getDate());
         appointment.setTime(vaga.get().getTime());
+        appointment.setEspecialidade(vaga.get().getEspecialidade());
         return appointmentRepository.save(appointment);
     }
 
@@ -75,9 +77,9 @@ public class ConsultasService {
         }
         Appointment appointment = new Appointment();
         vagaOptional.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
-        appointment.setDate(vaga.getDate());
-        appointment.setTime(vaga.getTime());
-        appointment.setEspecialidade(vaga.getEspecialidade());
+        appointment.setDate(vagaOptional.get().getDate());
+        appointment.setTime(vagaOptional.get().getTime());
+        appointment.setEspecialidade(vagaOptional.get().getEspecialidade());
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utenteOpt.get());
         return appointmentRepository.save(appointment);
@@ -152,6 +154,7 @@ public class ConsultasService {
     public Vaga createVaga(Vaga vaga) {
         return vagaRepository.save(vaga);
     }
+
     public void deleteVaga(Long id) {
         vagaRepository.deleteById(id);
     }
