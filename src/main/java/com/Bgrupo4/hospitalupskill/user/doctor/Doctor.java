@@ -35,8 +35,9 @@ public class Doctor extends ApplicationUser {
     @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Receita> receitas;
 
+    @Column(name= "especialidade", nullable = false, columnDefinition = "TEXT")
+    private String especialidade;
 
-    //private List<Especialidade> especialidades;
     /*@OneToMany
     @JoinColumn(nullable = false,name = "unidade")
     private Unidade unidade;*/
@@ -46,10 +47,10 @@ public class Doctor extends ApplicationUser {
         this.cedula = cedula;
     }
 
-    public Doctor(String nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, List<Especialidade> especialidades) {
+    public Doctor(String nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, String especialidade) {
         super(nif, name, username, email, password, role);
         this.cedula = cedula;
-        //this.especialidades = especialidades;
+        this.especialidade = especialidade;
         //this.unidade = unidade;
     }
 }

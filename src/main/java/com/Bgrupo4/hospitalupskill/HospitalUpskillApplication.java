@@ -4,9 +4,9 @@ import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
@@ -14,24 +14,21 @@ import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.*;
-
 @SpringBootApplication
 @RequiredArgsConstructor
 public class HospitalUpskillApplication {
 
 	public final static Unidade upskill =  new Unidade(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill","Sintra", "456456665", "UpPhoto");
-	public final static List<Especialidade> especialidades = Arrays.asList(Especialidade.Geral, Especialidade.Cardiologia, Especialidade.Fisioteratia, Especialidade.Ginecologia, Especialidade.Radiologia);
 	private final ApplicationUserService applicationUserService;
 	private final ConsultasService consultasService;
 	private final ReceitaService receitaService;
+	private final VagaService vagaService;
 
 
 	public static void main(String[] args) {
@@ -49,11 +46,11 @@ public class HospitalUpskillApplication {
 			applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo","Paraguana","914789651","25-06-1998" ,"apo", "123456789"));
 			applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan","Las Cumaraguas","914789651","25-06-1998" ,"lice", "123456789"));
 			applicationUserService.enableAndSave(new Employee("1", "Max", "admin", "admin@admin.com", "123", UserRole.ADMIN.name(), upskill));
-			Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", especialidades);
+			Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", UserRole.MEDICO.name(), upskill, "cedula", Especialidade.Cardiologia.name());
 			applicationUserService.enableAndSave(doctor);
 			applicationUserService.enableAndSave(new Employee("4", "Gabriel", "responsavel", "responsavel@responsavel.com", "123", UserRole.RESPONSAVEL.name(), upskill));
 			applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", UserRole.COLABORADOR.name(), upskill));
-			applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula", especialidades));
+			applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", UserRole.MEDICO_RESPONSAVEL.name(), upskill, "cedula", Especialidade.Oncologia.name()));
 			applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
 
 			//Appointments
@@ -76,6 +73,8 @@ public class HospitalUpskillApplication {
 			receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
 			receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
 
+			vagaService.createVagasThisMonth();
+			vagaService.createVagasNextMonth();
 
 		};
 	}
