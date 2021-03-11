@@ -8,6 +8,7 @@ import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +54,7 @@ public class EmployeeService {
         return employeeRepository.save(employee1);
     }
 
-    // COLABORADOR
+    // EMPLOYEE
     @GetMapping(path = "/find-utente/all")
     public List<Utente> getAllUtentes() {
         return utenteService.getAllUtentes();
@@ -68,5 +69,20 @@ public class EmployeeService {
     //@PreAuthorize
     public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
+    }
+
+    public Optional<Employee> getUserByUsername(String username) {
+        return employeeRepository.findByUsername(username);
+    }
+
+    public Employee getLogged(Authentication auth) throws Exception {
+        String principal = auth.getPrincipal().toString();
+        String[] split = principal.split("username='");
+        String[] split2 = split[1].split("',");
+        Optional<Employee> employee = getUserByUsername(split2[0]);
+        if (employee.isEmpty()){
+            throw new Exception("There's no logged person");
+        }
+        return employee.get();
     }
 }
