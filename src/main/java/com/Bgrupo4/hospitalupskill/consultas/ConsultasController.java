@@ -43,17 +43,10 @@ public class ConsultasController {
     }
 
     @PostMapping("/appointments/utente/{id}/{especialidade}")
-    public RedirectView createAppointmentUtente(@PathVariable Long id, @PathVariable String especialidade) throws Exception {
+    public ResponseEntity<Appointment> createAppointmentUtente(@PathVariable Long id, @PathVariable String especialidade) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Utente utente = utenteService.getLogged(auth);
-        consultasService.createAppointment(id, utente);
-        return new RedirectView("/utente/consultaconfirmada");
-    }
-
-    @GetMapping(value = "/utente/consultaconfirmada")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showCalendarioGeralConfirmado(){
-        return "utente/consultaconfirmada";
+        return ResponseEntity.ok(consultasService.createAppointment(id, utente));
     }
 
     @PostMapping("/appointments")
