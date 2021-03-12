@@ -8,6 +8,7 @@ let lastDaySquare = null;
 const dt = new Date();
 const popUp = document.getElementById("popup");
 const popUpContent = document.getElementById("popup__content");
+let id = null;
 
 
 function openModal(monthName, daySquare, month){
@@ -72,6 +73,9 @@ function abrirPopUp(vaga){
     popUpContent.style.opacity = '1';
     popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
     
+    document.getElementById("cancelarConsulta").removeEventListener('click',  () => {
+        marcarConsulta(vaga);
+    });
     //butons
     document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
     document.getElementById("marcarConsulta").addEventListener('click',  () => {
@@ -105,6 +109,24 @@ function abrirPopUp(vaga){
 }
 
 function marcarConsulta(vaga){
+    let xhr = new XMLHttpRequest();
+    id = null;
+    id = vaga.id;
+
+    const url = `http://localhost:8080/api/consultas/appointments/utente/${id}/${vaga.especialidade}`;
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(); //JSON.stringify(vaga)
+    xhr.onloadend = function() {
+        if(xhr.status == 500){
+            const content = document.getElementById('content');
+            content.innerHTML = "";
+            const error = document.createElement('img'); 
+            error.classList.add('inversed');
+            error.src = "/img/lamma-del-rey-vaga-31.svg";
+            content.appendChild(error);
+        }   
+    }
     console.log(vaga);
 }
 
@@ -118,10 +140,13 @@ function closePopUp(){
 
 function load(){  
     
+    //reset the calendar
+    calendar.innerHTML = '';
+    
+    dt.setMonth(new Date().getMonth() + nav);
 
-   if(nav !== 0){
-       dt.setMonth(new Date().getMonth() + nav);
-   }
+
+   console.log(dt);
 
    const day = dt.getDate();
    const month = dt.getMonth();
@@ -145,8 +170,7 @@ function load(){
     const monthName = dt.toLocaleDateString('en-us', {month: 'long'});
     document.getElementById('monthDisplay').innerText = `${monthName} ${year}`;
 
-    //reset the calendar
-    calendar.innerHTML = '';
+    
     let week = new Array();
     for(let i = 1; i <= paddingDays + daysInMonth; i++){
 

@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.print.Doc;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -101,6 +102,31 @@ public class ConsultasService {
         appointment.setUtente(utenteOpt.get());
         return appointmentRepository.save(appointment);
     }
+
+    public Appointment createAppointment(Long id, Utente utente) {
+        Optional<Vaga> vagaOptional = vagaRepository.findById(id);
+        if (vagaOptional.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Vaga %s não foi encontrada", id));
+        }
+        Vaga vaga = vagaOptional.get();
+        if (vaga.isFree()) {
+            Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
+            if (doctor.isEmpty()) {
+                throw new EntityNotFoundException(String.format("Medico %s não foi encontrada", vaga.getDoctor().getUsername()));
+            }
+            Appointment appointment = new Appointment();
+            updateVaga(vaga.getId(), false);
+            appointment.setDate(vaga.getDate());
+            appointment.setTime(vaga.getTime());
+            appointment.setEspecialidade(vaga.getEspecialidade());
+            appointment.setDoctor(doctor.get());
+            appointment.setUtente(utente);
+            return appointmentRepository.save(appointment);
+        }
+        throw new IllegalArgumentException(String.format("A vaga %s ja foi prenchida", vaga.getId()));
+    }
+
+
 /*
     public Appointment updateAppointment(Long id, AppointmentCreationRequest request) {
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
@@ -185,5 +211,7 @@ public class ConsultasService {
         vaga1.setFree(free);
         return vagaRepository.save(vaga1);
     }
+
+
 
 }

@@ -59,6 +59,14 @@ public class UtenteController {
         return "utente/calendariogeralutente";
     }
 
+    @GetMapping(value = "/calendariogeralutente/{especialidade}/error")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public String showCalendarioGeralError(@PathVariable String especialidade){
+        return "utente/calendariogeralutente";
+    }
+
+
+
     @GetMapping(value = "/checkinutente")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showCheckIn(){
