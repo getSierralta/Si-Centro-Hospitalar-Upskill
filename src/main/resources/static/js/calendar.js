@@ -123,8 +123,16 @@ function marcarConsulta(vaga){
             content.innerHTML = "";
             const error = document.createElement('img'); 
             error.classList.add('inversed');
-            error.src = "/img/lamma-del-rey-vaga-31.svg";
+            error.src = "/img/jenipurr-chile-29.svg";
             content.appendChild(error);
+        }   
+        if(xhr.status == 200){
+            const content = document.getElementById('content');
+            content.innerHTML = "";
+            const confirm = document.createElement('img'); 
+            confirm.classList.add('inversed');
+            confirm.src = " /img/lamma-del-rey-vaga-31.svg";
+            content.appendChild(confirm);
         }   
     }
     console.log(vaga);
