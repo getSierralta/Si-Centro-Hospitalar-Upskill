@@ -2,7 +2,6 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;

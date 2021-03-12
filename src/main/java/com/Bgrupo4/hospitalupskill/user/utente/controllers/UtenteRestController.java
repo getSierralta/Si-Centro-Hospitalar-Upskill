@@ -5,7 +5,6 @@ import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;

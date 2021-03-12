@@ -37,7 +37,9 @@ public class EmployeeController {
         return "/employee/profile";
     }
 
-    /*@GetMapping(value = "/check-in")
+    /*
+
+    @GetMapping(value = "/check-in")
     public String showCheckIn(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Employee employee = employeeService.getLogged(auth);
@@ -45,15 +47,15 @@ public class EmployeeController {
         return "/employee/check-in";
     }*/
 
-    /*
+
     //GET do formulário
     @GetMapping(value = "/check-in")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public String showCheckInFormulario(ModelMap map){
-        map.put("appointment", consultasService.getAppointment(appointment.getId()));
-        return "/employee/checkin";
+       // map.put("appointment", consultasService.getAppointment(appointment.getId()));
+        return "/employee/check-in";
     }
-*/
+
     //POST do formulário
     @PostMapping(path = "/check-in", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")

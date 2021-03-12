@@ -12,58 +12,56 @@
 </head>
 
 <body>
-    <nav class="nav-row">
-                <div class="medium">
-                    <a href="/profile">
-                        <div class="icon home"></div>
-                        <span class="none">Perfil</span>
-                    </a>
-                </div>
-                <div class="medium ">
-                    <a href="/employee/check-in">
-                        <div class="icon medico"></div>
-                        <span class="none">Check-in</span>
-                    </a>
-                </div>
-                <div class="medium ">
-                    <a href="/calendariogeral">
-                        <div class="icon calendario"></div>
-                        <span class="none">Calendário geral</span>
-                    </a>
-                </div>
-                <div class="medium ">
-                    <a href="/show-all-utentes">
-                        <div class="icon calendario"></div>
-                        <span class="none">Utentes</span>
-                    </a>
-                </div>
-                <div class="medium ">
-                    <a href="/payments">
-                        <div class="icon contactos"></div>
-                        <span class="none">Pagamentos</span>
-                    </a>
-                </div>
-                <div class="medium">
-                    <a href="/saladeespera">
-                        <div class="icon consulta"></div>
-                            <span class="none">Sala de Espera</span>
-                    </a>
-                </div>
-                <div class="medium">
-                    <a href="/settings">
-                        <div class="icon tools"></div>
-                        <span class="none">Definições</span>
-                    </a>
-                </div>
-                <div class="medium">
-                    <a href="/logout">
-                        <div class="icon logout"></div>
-                        <span class="none">LogOut</span>
-                    </a>
-                </div>
-            </nav>
-
-        <!-- MAIN - Div horizontal central -->
+   <nav class="nav-row">
+               <div class="medium">
+                   <a href="/employee/profile">
+                       <div class="icon home"></div>
+                       <span class="none">Perfil</span>
+                   </a>
+               </div>
+               <div class="medium ">
+                   <a href="/employee/check-in">
+                       <div class="icon medico"></div>
+                       <span class="none">Check-in</span>
+                   </a>
+               </div>
+               <div class="medium ">
+                   <a href="employee/calendariogeral">
+                       <div class="icon calendario"></div>
+                       <span class="none">Calendário geral</span>
+                   </a>
+               </div>
+               <div class="medium ">
+                   <a href="employee/show-all-utentes">
+                       <div class="icon calendario"></div>
+                       <span class="none">Utentes</span>
+                   </a>
+               </div>
+               <div class="medium ">
+                   <a href="employee/payments">
+                       <div class="icon contactos"></div>
+                       <span class="none">Pagamentos</span>
+                   </a>
+               </div>
+               <div class="medium">
+                   <a href="employee/saladeespera">
+                       <div class="icon consulta"></div>
+                           <span class="none">Sala de Espera</span>
+                   </a>
+               </div>
+               <div class="medium">
+                   <a href="employee/settings">
+                       <div class="icon tools"></div>
+                       <span class="none">Definições</span>
+                   </a>
+               </div>
+               <div class="medium">
+                   <a href="/logout">
+                       <div class="icon logout"></div>
+                       <span class="none">LogOut</span>
+                   </a>
+               </div>
+           </nav>
         <main class="main">
 
             <!-- Inicio Main Container -->
@@ -122,7 +120,6 @@
         </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>
-    <script src="js/toggle.js"></script>
 </body>
 
 </html>
