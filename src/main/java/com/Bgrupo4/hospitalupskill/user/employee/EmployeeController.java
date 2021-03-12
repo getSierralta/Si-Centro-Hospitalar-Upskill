@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.salaDeEspera;
+
 @Controller
 @RequestMapping(path = "employee")
 @AllArgsConstructor
@@ -33,6 +35,7 @@ public class EmployeeController {
         Employee employee = employeeService.getLogged(auth);
         map.put("employee", employee);
         map.put("senhas", senhaService.getSenhas());
+        map.put("salaDeEspera", salaDeEspera);
         return "/employee/profile";
     }
 

@@ -3,6 +3,7 @@ package com.Bgrupo4.hospitalupskill;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaCategoria;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
@@ -28,10 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.Month;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -43,6 +41,7 @@ public class HospitalUpskillApplication {
 	private final SenhaService senhaService;
 	private final ReceitaService receitaService;
 	private final VagaService vagaService;
+	public static List<Senha> salaDeEspera = new ArrayList<>();
 
 
 	public static void main(String[] args) {
@@ -90,6 +89,8 @@ public class HospitalUpskillApplication {
 
 			vagaService.createVagasThisMonth();
 			vagaService.createVagasNextMonth();
+
+			salaDeEspera.add(senhaService.createSenha(doctor, utente, appointment, SenhaCategoria.INFORMACAO));
 
 			for (int i = 8; i < 20; i++) {
 				applicationUserService.enableAndSave(new Utente(String.valueOf(i),"Utente " + String.valueOf(i),
