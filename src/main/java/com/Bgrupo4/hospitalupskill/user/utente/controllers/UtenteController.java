@@ -2,7 +2,6 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
-import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ import javax.persistence.EntityNotFoundException;
 @RequestMapping(path = "utente")
 public class UtenteController {
 
-    private final FileService fileService;
     private final UtenteService utenteService;
     private final CalendarioService calendarioService;
 
@@ -89,13 +87,6 @@ public class UtenteController {
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showBills(){
         return "utente/bills";
-    }
-
-    @GetMapping(value = "/files")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showFiles(ModelMap map){
-        map.put("fileList", fileService.getFiles());
-        return "utente/files";
     }
 
     @GetMapping(value = "/contactsutente")
