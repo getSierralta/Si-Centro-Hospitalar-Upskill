@@ -17,8 +17,6 @@ public class Invoice {
     private List<InvoiceItem> items;
     private String url;
 
-
-
     public String getId() {
         return id;
     }
