@@ -9,7 +9,9 @@ const dt = new Date();
 const popUp = document.getElementById("popup");
 const popUpContent = document.getElementById("popup__content");
 let id = null;
-
+const url = window.location.href;
+const st = url.split("/");
+const especialidade = st[5];
 
 function openModal(monthName, daySquare, month){
     if(lastDaySquare != null){
@@ -21,9 +23,7 @@ function openModal(monthName, daySquare, month){
     selectedDay.innerText = daySquare.innerText+ ", "+monthName;
     daySquare.classList.add('today');
 
-    const url = window.location.href;
-    const st = url.split("/");
-    const especialidade = st[5];
+    
     const day = daySquare.innerText;
     const dia = "2021-"+month.toString()+"-"+day.toString();
     const vagas = document.getElementById("vagas");
@@ -116,7 +116,7 @@ function marcarConsulta(vaga){
     const url = `http://localhost:8080/api/consultas/appointments/utente/${id}/${vaga.especialidade}`;
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(); //JSON.stringify(vaga)
+    xhr.send(); 
     xhr.onloadend = function() {
         if(xhr.status == 500){
             const content = document.getElementById('content');
@@ -135,7 +135,6 @@ function marcarConsulta(vaga){
             content.appendChild(confirm);
         }   
     }
-    console.log(vaga);
 }
 
 function closePopUp(){
@@ -153,8 +152,6 @@ function load(){
     
     dt.setMonth(new Date().getMonth() + nav);
 
-
-   console.log(dt);
 
    const day = dt.getDate();
    const month = dt.getMonth();
@@ -190,6 +187,11 @@ function load(){
         //const dayString = `${month + 1}/${i - paddingDays}/${year}`;
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
+            const d = year + "-"+month+ "-"+dateSquare.innerText;
+            //http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}/one
+            fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}`)
+            .then(response => response.json())
+            .then(data => data.length === 0 ? daySquare.classList.add('full') : daySquare.classList.add('color-green'));  
         }else{
             daySquare.classList.add('inactive');
         }

@@ -72,6 +72,15 @@ public class UtenteRestController {
         return vagaService.getVagas(especialidade, dia);
     }
 
+    @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}/one")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public List<Vaga> getOneVaga(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
+        List<Vaga> vaga = new ArrayList<>();
+        vaga.add(vagaService.getOneVaga(especialidade, dia));
+        return vaga;
+    }
+
+
     @PostMapping(path = "/calendariogeralutente", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public RedirectView getEspecialidade(EspecialidadeRequest request){

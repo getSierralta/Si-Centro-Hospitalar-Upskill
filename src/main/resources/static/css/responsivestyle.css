@@ -1522,6 +1522,9 @@ input[type=file]{
 .calendar__week .vaga .calendar__date{
     color: var(--color-secondary);
 }
+.color-green{
+    color: var(--color-secondary);
+}
 .calendar__week .full .calendar__date{
     text-decoration: line-through;
     text-decoration-color: var(--color-ternary);

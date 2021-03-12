@@ -50,7 +50,7 @@
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">
-            <!-- JWT api/login -->
+
             <form class="log-in" method="post" action="/utente/calendariogeralutente" id="calendariogeralutente">
                 <label for="Especialidade">Especialidade:</label>
                 <select name="especialidade" id="especialidade"><br>
