@@ -20,8 +20,6 @@ public class UtenteManagementController {
     @Autowired
     private final UtenteService utenteService;
 
-
-
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('utente:read')")
     public Optional<Utente> getUser(@PathVariable("id") Long id) {
@@ -33,7 +31,6 @@ public class UtenteManagementController {
     public List<Utente> getAllUtentes() {
         return utenteService.getAllUtentes();
     }
-
 
     @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('utente:write')")

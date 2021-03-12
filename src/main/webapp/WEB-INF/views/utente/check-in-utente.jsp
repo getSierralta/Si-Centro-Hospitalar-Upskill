@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_.css">
     <title>Upskill</title>
 </head>
 
@@ -31,39 +31,39 @@
                                <ul>
                                    <li class="medium ">
                                        <div class="icon utente"></div>
-                                       <a href="utente/profileutente">Profile</a>
+                                       <a href="/utente/profileutente">Profile</a>
                                    </li>
                                    <li class="medium">
                                        <div class="icon medico"></div>
-                                       <a href="utente/checkinutente">Check-in</a>
+                                       <a href="/utente/checkinutente">Check-in</a>
                                    </li>
                                    <li class="medium ">
                                        <div class="icon consulta"></div>
-                                       <a href="utente/tracknumberutente">Track Numbers</a>
+                                       <a href="/utente/tracknumberutente">Track Numbers</a>
                                    </li>
                                    <li class="medium ">
                                        <div class="icon calendario"></div>
-                                       <a href="utente/calendariogeralutente">Calendario Geral</a>
+                                       <a href="/utente/calendariogeralutente">Calendario Geral</a>
                                    </li>
                                    <li class="medium ">
                                       <div class="icon calendario"></div>
-                                      <a href="utente/calendarutente">Calendario Pessoal</a>
+                                      <a href="/utente/calendarutente">Calendario Pessoal</a>
                                    </li>
                                     <li class="medium ">
                                          <div class="icon informacao"></div>
-                                         <a href="utente/billsutente">Faturas</a>
+                                         <a href="/utente/billsutente">Faturas</a>
                                     </li>
                                     <li class="medium ">
                                          <div class="icon informacao"></div>
-                                         <a href="utente/filesutente">Ficheiros</a>
+                                         <a href="/utente/filesutente">Ficheiros</a>
                                     </li>
                                    <li class="medium ">
                                        <div class="icon contactos"></div>
-                                       <a href="utente/contactsutente">Contact</a>
+                                       <a href="/utente/contactsutente">Contact</a>
                                    </li>
                                    <li class="medium ">
                                        <div class="icon tools"></div>
-                                       <a href="utente/settings">Settings</a>
+                                       <a href="/utente/settings">Settings</a>
                                    </li>
                                </ul>
                            </div>
@@ -75,7 +75,7 @@
                        </div>
                        <div class="nav__down--logout medium">
                            <img src="../img/logout.svg" alt="log out icon">
-                           <a href="//logout">Terminar Sessão</a>
+                           <a href="/logout">Terminar Sessão</a>
                        </div>
                    </div>
                </nav>

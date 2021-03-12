@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.crypto.SecretKey;
 import java.util.concurrent.TimeUnit;
@@ -40,12 +41,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 //.addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/utente/register","/utente/register/**", "/css/**","/files/**"
-                        ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
+                .antMatchers("/utente/register","/utente/register/**", "/css/**", "*/css/**","/files/**"
+                        ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration"
+                        ,"/403","/404","/500", "**/calendariogeralutente/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 //.httpBasic();
+
                 .formLogin().loginPage("/login")
                 .successHandler(successHandler)
                 //.permitAll().defaultSuccessUrl(authSuccessHandler().determineTargetUrl(), true)
@@ -61,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){

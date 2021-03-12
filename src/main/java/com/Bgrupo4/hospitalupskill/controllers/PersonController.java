@@ -1,8 +1,12 @@
 package com.Bgrupo4.hospitalupskill.controllers;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PersonController {
@@ -13,6 +17,8 @@ public class PersonController {
     public String showIndex() {
         return "index";
     }
+
+
 
     @GetMapping(value = "/login")
     public String showLogIn() {

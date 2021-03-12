@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Collection;
 import java.util.Collections;
@@ -55,8 +56,9 @@ public class ApplicationUser implements UserDetails {
     @Column (name = "phone")
     private String phone;
 
-    @Column(name= "birthday", columnDefinition = "TEXT")
-    private String birthday;
+    @Column(name= "dataDeNascimento")
+    @Temporal(TemporalType.DATE)
+    private Calendar dataDeNascimento;
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -90,7 +92,7 @@ public class ApplicationUser implements UserDetails {
         this.userRole = getRole(role);
     }
 
-    public ApplicationUser(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String role) {
+    public ApplicationUser(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String role) {
         this.nif = nif;
         this.name = name;
         this.username = username;
@@ -100,9 +102,14 @@ public class ApplicationUser implements UserDetails {
         this.localidade = localidade;
         this.phone = phone;
         this.userRole = getRole(role);
-        this.birthday = birthday;
+        this.dataDeNascimento = birthday;
     }
 
+
+
+    public String getDataDeNascimento(){
+        return (dataDeNascimento.get(3))+"-"+ (dataDeNascimento.get(2))+"-"+ (dataDeNascimento.get(1));
+    }
 
 
     @Override
@@ -154,7 +161,7 @@ public class ApplicationUser implements UserDetails {
                 ", morada='" + morada + '\'' +
                 ", localidade='" + localidade + '\'' +
                 ", phone='" + phone + '\'' +
-                ", birthday=" + birthday +
+                ", birthday=" + dataDeNascimento +
                 ", userRole=" + userRole +
                 ", profilePicture='" + profilePicture + '\'' +
                 ", locked=" + locked +
