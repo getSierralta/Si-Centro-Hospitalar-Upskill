@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
+import com.Bgrupo4.hospitalupskill.services.FileService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import javax.persistence.EntityNotFoundException;
 @RequiredArgsConstructor
 @RequestMapping(path = "utente")
 public class UtenteController {
+
 
     private final UtenteService utenteService;
     private final CalendarioService calendarioService;
