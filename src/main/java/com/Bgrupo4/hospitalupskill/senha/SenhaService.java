@@ -24,12 +24,16 @@ public class SenhaService {
     private final AppointmentRepository appointmentRepository;
 
     public Senha createSenha(SenhaRequest request) {
-        Optional<Doctor> doctorOptional = doctorRepository.findByUsername(request.getDoctorUsername());
-        Optional<Utente> utenteOptional = utenteRepository.findByUsername(request.getUtenteUsername());
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(Long.valueOf(request.getAppointment()));
-        if (doctorOptional.isEmpty() || utenteOptional.isEmpty() || appointmentOptional.isEmpty()) {
-            throw new EntityNotFoundException(String.format("Doctor %s, utente %s ou appointment %s não foi encontrado", request.getDoctorUsername(),
-                    request.getUtenteUsername(), request.getAppointment()));
+        if (appointmentOptional.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Appointment %s não foi encontrado", request.getAppointment()));
+        }
+        Appointment appointment = appointmentOptional.get();
+        Optional<Doctor> doctorOptional = doctorRepository.findByUsername(appointment.getDoctor().getUsername());
+        Optional<Utente> utenteOptional = utenteRepository.findByUsername(appointment.getUtente().getUsername());
+        if (doctorOptional.isEmpty() || utenteOptional.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Doctor %s, utente %s não foi encontrado", appointment.getDoctor().getUsername(),
+                    appointment.getUtente().getUsername()));
         }
         Senha senha = new Senha();
         senha.setDoctor(doctorOptional.get());
@@ -37,7 +41,7 @@ public class SenhaService {
         senha.setAppointment(appointmentOptional.get());
         senha.setDate(Calendar.getInstance().getTime());
         senha.setTime(String.valueOf(LocalTime.now()));
-        senha.setNumeroSenha(getSenha(request.getCategoria()));
+        senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
         return senhaRepository.save(senha);
     }
 
