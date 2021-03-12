@@ -369,6 +369,10 @@ img.inversed {
     font-size: 4rem;
 }
 
+.page_title.white {
+    color: var(--color-white);
+}
+
 .info_div {
     grid-column: 1 / -1;
     display: flex;
@@ -436,7 +440,7 @@ div[class*="content-"] {
     display:none;
 }
 
-div.active {
+div[class*="content-"].active {
     display: flex;
     position: absolute;
     background-color: var(--color-white);
@@ -488,7 +492,6 @@ div.active ul {
         display: flex;
     }
 }
-
 /* end button lists */
 
 /* cards */
@@ -691,6 +694,14 @@ div.active ul {
     gap: 1rem;
     padding: 1rem;
 }
+
+.object_container.full_grid {
+    grid-column: 1 / -1;
+    gap: 1rem;
+    padding: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /* end full width containers */
 
 /* center container */
@@ -715,7 +726,11 @@ div.active ul {
     }
 
     .object_container.forms{
-            grid-column-end: span 8;
+        grid-column-end: span 8;
+    }
+
+    .object_container.full_info {
+        flex-direction: column;
     }
 }
 
@@ -778,7 +793,7 @@ div.active ul {
 
 }
 .client_details {
-    min-width: 10rem;
+    min-width: 5rem;
     padding: 1rem;
 }
 
@@ -1832,6 +1847,160 @@ ul {list-style-type: none;}
 }
 /* end extra */
 
+/* viewer */
+.person_list_container {
+    width: 15rem;
+    flex-direction: row;
+    padding-right: 1rem;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--color-darkest);
+}
+
+.person_list {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.person_button {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    padding: 0.2rem;
+    background-color: var(--color-white);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--color-darkest);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.person_button:hover {
+    background-color: var(--color-grey-lightest);
+    cursor: pointer;
+}
+
+.person_button:active {
+    background-color: var(--color-grey-light);
+}
+
+.person_button.selected {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.person_button.selected p {
+    color: var(--color-white);
+}
+
+.person_form {
+    display: flex;
+    gap: 1rem;
+    max-height: 1,5rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--color-darkest);
+    border-radius: 25px;
+}
+
+.person_form input {
+    border-width: 0px;
+    border: none;
+    outline: none;
+    margin: 0.4rem;
+}
+
+.person_form input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.person_viewer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+div[class*="info-"] {
+    display:none;
+}
+
+div[class*="info-"].active {
+    display: flex;
+    flex-direction: column;
+}
+
+.person_header {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-darkest);
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1.5rem;
+}
+
+.person_header .client_photo {
+    min-width: 5rem;
+    border-radius: 100rem;
+}
+
+.person_body {
+    margin-top: 1rem;
+    min-height: 50vh;
+}
+
+.person_options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.person_options >* {
+    width: 5rem;
+    margin: 0;
+    margin-left: 0.5rem;
+}
+
+.person_list select {
+    display: none;
+    border-radius: 0.2rem;
+    height: 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    .person_header >* {
+        flex-shrink: 1;
+    }
+
+    .person_header {
+        flex-direction: column;
+    }
+
+    .person_list .person_button {
+        display: none;
+    }
+
+    .person_list select {
+        display: flex;
+    }
+
+    .person_list_container {
+        border-right-width: 0px;
+        width: 100%;
+    }
+
+    .person_header {
+        align-items: center;
+    }
+}
+/* end viewer */
+
 /* icons */
 .icon {
     -webkit-mask-size: contain;
@@ -1843,6 +2012,13 @@ ul {list-style-type: none;}
     width: 20px;
     height: 30px;
     background-color: var(--color-grey);
+}
+
+.icon.search {
+    -webkit-mask-image: url("../img/loupe.svg");
+    mask-image: url("../img/loupe.svg");
+    align-self: center;
+    margin-right: 0.5rem;
 }
 
 .icon.home {

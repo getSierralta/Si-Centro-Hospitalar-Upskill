@@ -62,7 +62,6 @@
         </div>
         <!--/Info Box-->
         <!--Cards-->
-        <!--CHANGE TO DROPDOWN FOR MOBILE-->
         <ul class="button_group">
             <a href="#/" class="butts">Análises Clínicas</a>
             <a href="#/" class="butts">Atendimento Urgente 24h</a>

@@ -1,5 +1,5 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
 public enum Especialidade {
-    Osteopatia, Cardiologia, Oncologia, Ginecologia, Radiologia, Fisioteratia, Geral
+    OSTEOPATIA, CARDIOLOGIA, ONCOLOGIA, GINECOLOGIA, RADIOLOGIA, FISIOTERAPIA, GERAL
 }

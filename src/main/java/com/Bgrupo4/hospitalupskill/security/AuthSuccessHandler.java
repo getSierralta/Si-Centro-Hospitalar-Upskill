@@ -43,7 +43,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         if(role.contains("ROLE_UTENTE")) {
             targetUrl = "/utente/profileutente";
         }else if(role.contains("ROLE_MEDICO")) {
-            targetUrl = "/medico/profile";
+            targetUrl = "/medico/profilemedico";
         }else if(role.contains("ROLE_EMPLOYEE")) {
             targetUrl = "/employee/profile";
         }else if(role.contains("ROLE_ADMIN")) {
