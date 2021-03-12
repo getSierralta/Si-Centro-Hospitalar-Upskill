@@ -102,7 +102,7 @@
                     <div class="consultas check-in">
                         <p class="dark font-medium margin-small">CHECKIN</p>
                         <p class="green margin-small check-in-text">Introduza o número da consulta</p>
-                            <form action="#" class="column">
+                            <form method="post" action="/employee/checkin" class="column">
                                 <input  class="margin-small button btn-white" type="text" name="checkin" id="checkin" placeholder="Nº de Consulta">
                                 <button class="dark font-medium check-in-btn" type="submit">EFECTUAR CHECKIN ></button>
                             </form>
