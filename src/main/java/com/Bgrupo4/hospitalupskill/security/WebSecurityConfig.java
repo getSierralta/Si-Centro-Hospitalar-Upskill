@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.httpBasic();
                 .formLogin().loginPage("/login")
                 .successHandler(successHandler)
-                //.permitAll().defaultSuccessUrl(authSuccessHandler().determineTargetUrl(), true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()
