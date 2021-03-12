@@ -12,112 +12,79 @@
 </head>
 
 <body>
-   <nav class="nav-row">
-               <div class="medium">
-                   <a href="/employee/profile">
-                       <div class="icon home"></div>
-                       <span class="none">Perfil</span>
-                   </a>
-               </div>
-               <div class="medium ">
-                   <a href="/employee/check-in">
-                       <div class="icon medico"></div>
-                       <span class="none">Check-in</span>
-                   </a>
-               </div>
-               <div class="medium ">
-                   <a href="employee/calendariogeral">
-                       <div class="icon calendario"></div>
-                       <span class="none">Calendário geral</span>
-                   </a>
-               </div>
-               <div class="medium ">
-                   <a href="employee/show-all-utentes">
-                       <div class="icon calendario"></div>
-                       <span class="none">Utentes</span>
-                   </a>
-               </div>
-               <div class="medium ">
-                   <a href="employee/payments">
-                       <div class="icon contactos"></div>
-                       <span class="none">Pagamentos</span>
-                   </a>
-               </div>
-               <div class="medium">
-                   <a href="employee/saladeespera">
-                       <div class="icon consulta"></div>
-                           <span class="none">Sala de Espera</span>
-                   </a>
-               </div>
-               <div class="medium">
-                   <a href="employee/settings">
-                       <div class="icon tools"></div>
-                       <span class="none">Definições</span>
-                   </a>
-               </div>
-               <div class="medium">
-                   <a href="/logout">
-                       <div class="icon logout"></div>
-                       <span class="none">LogOut</span>
-                   </a>
-               </div>
-           </nav>
-        <main class="main">
-
-            <!-- Inicio Main Container -->
-            <div class="main__container">
-                <!-- Header - Div Horizontal de cima-->
-                <header class="header">
-
-                    <img src="../img/header.svg">
-
-                    <div class="main__titulo">
-                        <h3 class="dark spacing">CUIDE DE SI E DOS SEUS.</h3>
-
-
-                        <p class="medium small">O Centro Hospitalar Upskill inspira-nos nos seus clientes para estar na vanguarda na
-                            protecção das famílias. Estamos mais inovadores na prestação de cuidados de saúde, mais próximos e mais ágeis.
-                        </p>
-                    </div>
-                </header>
-                <!-- FIM - Header - Div Horizontal de cima-->
-
-                <div class="vista-geral">
-                    <h3 class="light small">VISTA GERAL</h3>
+    <nav class="nav-row">
+                <div class="medium">
+                    <a href="/profile">
+                        <div class="icon home"></div>
+                        <span class="none">Perfil</span>
+                    </a>
                 </div>
+                <div class="medium ">
+                    <a href="/employee/check-in">
+                        <div class="icon medico"></div>
+                        <span class="none">Check-in</span>
+                    </a>
+                </div>
+                <div class="medium ">
+                    <a href="/calendariogeral">
+                        <div class="icon calendario"></div>
+                        <span class="none">Calendário geral</span>
+                    </a>
+                </div>
+                <div class="medium ">
+                    <a href="/show-all-utentes">
+                        <div class="icon calendario"></div>
+                        <span class="none">Utentes</span>
+                    </a>
+                </div>
+                <div class="medium ">
+                    <a href="/payments">
+                        <div class="icon contactos"></div>
+                        <span class="none">Pagamentos</span>
+                    </a>
+                </div>
+                <div class="medium">
+                    <a href="/saladeespera">
+                        <div class="icon consulta"></div>
+                            <span class="none">Sala de Espera</span>
+                    </a>
+                </div>
+                <div class="medium">
+                    <a href="/settings">
+                        <div class="icon tools"></div>
+                        <span class="none">Definições</span>
+                    </a>
+                </div>
+                <div class="medium">
+                    <a href="/logout">
+                        <div class="icon logout"></div>
+                        <span class="none">LogOut</span>
+                    </a>
+                </div>
+            </nav>
 
-                <!-- Inicio Div meio-->
-                <div class="middle">
-                    <div class="consultas">
-                        <div class="top"><img class="margin-bottom-small" src="../img/notes.svg">
-                            <p class="dark font-large">4 <span class="light font-large">UTENTES</span></p>
-                            <p class="dark small">A AGUARDAR CONSUTLA</p>
+        <!-- MAIN - Div horizontal central -->
+        <main class="full_main">
+                <div class="white_box">
+                    <img class="log-in_logo" src="/img/logo.svg" alt="logo">
+                    <!-- JWT api/login -->
+                    <form class="log-in" method="post" action="/employee/check-in" id="check-in">
+                        <input type="text" name="utenteUsername" placeholder="utenteUsername" required="required" />
+                        <input type="text" name="doctorUsername" placeholder="doctorUsername" required="required" />
+                        <input type="text" name="appointment" placeholder="appointment" required="required" />
+                        <label for="categoria">Categoria:</label>
+                        <select name="categoria" id="categoria"><br>
+                          <c:forEach items="${categorias}" var="categoria">
+                            <option value="${categoria}">${categoria}</option>
+                          </c:forEach>
+                        </select>
+                        <div class="greenbutt">
+                            <button type="submit" class="medium">Check-in</button>
                         </div>
-                        <p class="margin-medium light small">2 utentes estão atrasados</p>
-                        <button class="button dark-small" type="button"><b>VER LISTA DE ESPERA</b></button>
-                    </div>
+                    </form>
 
-                    <div class="consultas check-in">
-                        <p class="dark font-medium margin-small">CHECKIN</p>
-                        <p class="green margin-small check-in-text">Introduza o número da consulta</p>
-                            <form method="post" action="/employee/checkin" class="column">
-                                <input  class="margin-small button btn-white" type="text" name="checkin" id="checkin" placeholder="Nº de Consulta">
-                                <button class="dark font-medium check-in-btn" type="submit">EFECTUAR CHECKIN ></button>
-                            </form>
-                    </div>
-                    <!-- Div horizontal do fundo -->
                 </div>
-                <!-- FIM Div do meio -->
-                <section class="news">
-                    <div class="icon left-arrow margin-small"></div>
-                    <img src="../img/news.png" class="margin-small">
-                    <div class="icon right-arrow margin-small"></div>
-                </section>
-                <!-- FIM - Div horizontal do fundo -->
-            </div>
-            <!-- Fim DIV main__container-->
-
-        </main>
+            </main>
         <!-- FIM - MAIN - Div horizontal central -->
     </div>
 </body>

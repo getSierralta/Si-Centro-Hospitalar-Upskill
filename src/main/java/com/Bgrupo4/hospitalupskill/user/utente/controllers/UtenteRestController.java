@@ -11,16 +11,11 @@ import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 

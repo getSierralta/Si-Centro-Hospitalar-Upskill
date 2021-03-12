@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
+import com.Bgrupo4.hospitalupskill.user.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import java.util.Collections;
                                                 // @UniqueConstraint(name = "user_username_unique", columnNames = "username"),
                                                 //@UniqueConstraint(name = "user_nif_unique", columnNames = "nif")})
 public class Employee extends ApplicationUser {
+
 
     /*
     @OneToMany

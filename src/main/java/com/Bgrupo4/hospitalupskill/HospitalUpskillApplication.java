@@ -27,6 +27,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Calendar;
@@ -54,7 +55,6 @@ public class HospitalUpskillApplication {
 			// FOR TESTING PURPOSES
 
 			//USERS
-
 			Utente utente = new Utente("2", "Joao", "utente", "utente@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");
 			applicationUserService.enableAndSave(utente);
 			applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo", "Paraguana", "914789651", new GregorianCalendar(1970, Calendar.JULY, 15), "apo", "123456789"));

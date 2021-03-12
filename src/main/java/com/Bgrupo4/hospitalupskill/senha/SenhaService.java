@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.print.Doc;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -71,5 +69,13 @@ public class SenhaService {
                 return "C" + Senha.contadorC++;
 
         }
+    }
+
+    public List<String> getCategorias() {
+        List<String> categorias = new ArrayList<>();
+        for(SenhaCategoria categoria : SenhaCategoria.values()) {
+            categorias.add(categoria.name());
+        }
+        return categorias;
     }
 }
