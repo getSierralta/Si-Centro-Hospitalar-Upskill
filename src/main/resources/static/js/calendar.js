@@ -23,10 +23,62 @@ function openModal(monthName, daySquare, month){
     const especialidade = st[5];
     const day = daySquare.innerText;
     const dia = "2021-"+month.toString()+"-"+day.toString();
-    console.log(dia);
+    const vagas = document.getElementById("vagas");
+    vagas.innerHTML = "";
     fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${dia}`)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data =>         
+            data.forEach(element => { 
+                const sidebar__list = document.createElement('li'); 
+                sidebar__list.classList.add('sidebar__list-item');
+
+                const time = document.createElement('span'); 
+                time.classList.add('list-item__time');
+                time.innerText = element.time;
+
+                const title = document.createElement('span'); 
+                title.classList.add('list-item__title');
+                title.innerText = element.doctor.name;
+
+                const button = document.createElement('button'); 
+                button.innerText = "Marcar Consulta";
+
+
+                const icon = document.createElement('div'); 
+                icon.classList.add('icon');
+                icon.classList.add('consulta');
+
+                button.appendChild(icon);
+                
+                button.addEventListener('click', () => {
+                    marcarConsulta(element);
+                });
+
+                sidebar__list.appendChild(time);
+                sidebar__list.appendChild(title);
+                sidebar__list.appendChild(button);
+                vagas.appendChild(sidebar__list);
+            })
+        );  
+}
+
+function marcarConsulta(vaga){
+    const popUp = document.getElementById("popup");
+    popUp.style.visibility = 'visible';
+    popUp.style.opacity = '1';
+    const popUpContent = document.getElementById("popup__content");
+    popUpContent.style.opacity = '1';
+    popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
+    //color: var(--color-grey);
+      //  position: absolute;
+        //top: 2.5rem;
+        //right: 2.5rem;
+        //font-size: 3rem;
+        //text-decoration: none;
+        //display: inline-block;
+        //transform: all .2s;
+        //line-height: 1;
+    console.log(vaga);
 }
 
 function load(){  
