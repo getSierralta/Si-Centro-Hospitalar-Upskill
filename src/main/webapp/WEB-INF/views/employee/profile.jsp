@@ -71,7 +71,7 @@
             </div>
            <div class="flex">
                 <div class="client_details">
-                    <p>Data de Nascimento: &nbsp;${employee.getBirthday()}</p>
+                    <p>Data de Nascimento: &nbsp;${employee.getDataDeNascimento()}</p>
                     <p>Numero de Identidade Fiscal:&nbsp; ${employee.getNif()}</p>
                 </div>
            </div>

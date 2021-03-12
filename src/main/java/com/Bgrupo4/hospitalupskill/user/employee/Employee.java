@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -31,7 +32,7 @@ public class Employee extends ApplicationUser {
         //this.unidade = unidade;
     }
 
-    public Employee(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, String birthday, String role) {
+    public Employee(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String role) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, role);
     }
 }

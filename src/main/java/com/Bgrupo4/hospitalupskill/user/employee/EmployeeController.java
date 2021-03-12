@@ -26,10 +26,10 @@ public class EmployeeController {
 
     private final ConsultasService consultasService;
     private final EmployeeService employeeService;
-    private final Appointment appointment;
     private final SenhaService senhaService;
 
     @GetMapping(value = "/profile")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public String showProfile(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Employee employee = employeeService.getLogged(auth);
@@ -45,6 +45,7 @@ public class EmployeeController {
         return "/employee/check-in";
     }*/
 
+    /*
     //GET do formulário
     @GetMapping(value = "/check-in")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
@@ -52,7 +53,7 @@ public class EmployeeController {
         map.put("appointment", consultasService.getAppointment(appointment.getId()));
         return "/employee/checkin";
     }
-
+*/
     //POST do formulário
     @PostMapping(path = "/check-in", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
