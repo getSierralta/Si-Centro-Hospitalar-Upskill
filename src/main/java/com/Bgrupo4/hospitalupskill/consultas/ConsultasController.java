@@ -61,11 +61,6 @@ public class ConsultasController {
     public ResponseEntity<Vaga> cancelAppointment (@PathVariable Long id) {
         return ResponseEntity.ok(consultasService.cancelAppointment(id));
     }
-/*
-    @PatchMapping("/appointments/{id}")
-    public ResponseEntity<Appointment> updateAppointment (@RequestBody AppointmentCreationRequest request, @PathVariable Long id) {
-        return ResponseEntity.ok(consultasService.updateAppointment(id, request));
-    }*/
 
 
     @GetMapping("/vagas")

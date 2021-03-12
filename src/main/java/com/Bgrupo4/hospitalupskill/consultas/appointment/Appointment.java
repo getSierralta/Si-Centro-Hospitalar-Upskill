@@ -18,6 +18,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Appointment")
 @Table(name = "appointment")
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Appointment{
 
     @Id
@@ -60,45 +62,12 @@ public class Appointment{
         this.especialidade = especialidade;
     }
 
-    /*
-    @SneakyThrows
-    @Override
-    public int compareTo(Appointment o) {
-        String[] oDate = o.getDate().split("-");
-        String[] myDate = this.getDate().split("-");
-        String[] oTime = o.getTime().split(":");
-        String[] myTime = this.getTime().split(":");
+    public String getDataString(){
+        return (date.get(Calendar.DATE))+"/"+ (date.get(Calendar.MONTH))+"/"+ (date.get(Calendar.YEAR));
+    }
 
-        if (oDate.length != 3 || myDate.length != 3){
-            throw new Exception(String.format("A data da consulta %s %s ou a data da consulta %s %s esta mal formatada", o.getId(), o.getDate(), this.getId(), this.getDate()));
-        }
-        if (oTime.length != 2 || myTime.length != 2){
-            throw new Exception(String.format("A hora da consulta %s %s ou a data da consulta %s %s esta mal formatada", o.getId(), o.getTime(), this.getId(), this.getTime()));
-        }
-        if (oDate[0].equals(myDate[0]) && oDate[1].equals(myDate[1]) && oDate[2].equals(myDate[2])){
-            return 0;
-        }
-        if (Integer.parseInt(myDate[0]) > Integer.parseInt(myDate[0])
-                || (oDate[0].equals(myDate[0]) && Integer.parseInt(myDate[1]) > Integer.parseInt(myDate[1]))
-                || (oDate[0].equals(myDate[0]) && myDate[1].equals(oDate[1]) && Integer.parseInt(myDate[2]) > Integer.parseInt(myDate[2]))
-                || (oDate[0].equals(myDate[0]) && myDate[1].equals(oDate[1]) && myDate[2].equals(oDate[2]) && Integer.parseInt(myTime[0]) > Integer.parseInt(myTime[0]))
-                || (oDate[0].equals(myDate[0]) && myDate[1].equals(oDate[1]) && myDate[2].equals(oDate[2]) && myTime[0].equals(oTime[0]) && Integer.parseInt(myTime[1]) > Integer.parseInt(myTime[1]))){
-            return 1;
-        }
-        return -1;
-    }
-*/
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "id=" + id +
-                ", date='" + date + '\'' +
-                ", doctor=" + doctor +
-                ", utente=" + utente +
-                ", status=" + status +
-                ", especialidade='" + especialidade + '\'' +
-                '}';
-    }
+
+
 
 
 }

@@ -97,7 +97,7 @@
                         <p class="title"><b> Data do Proximo Agendamento</b></p>
                         <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
                         <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
-                        <p>Data: &nbsp;${consulta.getDate()}</p>
+                        <p>Data: &nbsp;${consulta.getDataString()}</p>
                         <p>Hora: &nbsp;${consulta.getTime()}</p>
                     </div>
                     <div class="middle">

@@ -108,7 +108,7 @@ public class ApplicationUser implements UserDetails {
 
 
     public String getDataDeNascimento(){
-        return (dataDeNascimento.get(3))+"-"+ (dataDeNascimento.get(2))+"-"+ (dataDeNascimento.get(1));
+        return (dataDeNascimento.get(Calendar.DATE))+"/"+ (dataDeNascimento.get(Calendar.MONTH))+"/"+ (dataDeNascimento.get(Calendar.YEAR));
     }
 
 

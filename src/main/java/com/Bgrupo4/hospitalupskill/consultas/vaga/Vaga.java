@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.consultas.vaga;
 
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Vaga")
 @Table(name = "vaga")
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Vaga {
 
     @Id
@@ -60,5 +62,8 @@ public class Vaga {
                 ", doctor=" + doctor.getId() +
                 ", free=" + free +
                 '}';
+    }
+    public String getDataString(){
+        return (date.get(Calendar.DATE))+"/"+ (date.get(Calendar.MONTH))+"/"+ (date.get(Calendar.YEAR));
     }
 }

@@ -102,20 +102,18 @@ public class UtenteService {
 
 
     public Appointment getNextAppointment(Utente utente) {
-        List<Appointment> appointment = getAppointments(utente);
+        List<Appointment> appointment = consultasService.getAppointmentsUtenteOrderByDate(utente);
         if (appointment.isEmpty()){
             throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        //Collections.sort(appointment);
         return appointment.get(0);
     }
 
     public Receita getLastReceita(Utente utente) {
-        List<Receita> receitas = getReceitas(utente);
+        List<Receita> receitas = receitaService.getReceitasByUtenteOrderByDate(utente);
         if (receitas.isEmpty()){
-            throw new EntityNotFoundException(String.format("O utente %s não tem receitas marcadas", utente.getUsername()));
+            throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        Collections.sort(receitas);
         return receitas.get(0);
     }
 

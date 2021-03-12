@@ -51,21 +51,6 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteId(id);
     }
 
-    /*
-    //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
-    public Appointment getNextAppointment() {
-        List<Appointment> appointments = appointmentRepository.findAll();
-        appointments.sort(Comparator.comparing(Appointment::getDate).thenComparing(Appointment::getTime));
-        for(Appointment appointment: appointments){
-            if(appointment.getDate().isAfter(java.time.LocalDate.now())){
-                if(appointment.getTime().isAfter(java.time.LocalTime.now())){
-                    return appointment;
-                }
-            }
-        }
-        return null;
-    }*/
-
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
         //todo verificar se o appoinment ja existe(?)
@@ -127,23 +112,6 @@ public class ConsultasService {
     }
 
 
-/*
-    public Appointment updateAppointment(Long id, AppointmentCreationRequest request) {
-        Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
-        Optional<Utente> utente = utenteRepository.findById(request.getUtente());
-        Optional<Appointment> optionalAppointment  = appointmentRepository.findById(id);
-        if (!doctor.isPresent() || !utente.isPresent() || !optionalAppointment.isPresent()) {
-            throw new EntityNotFoundException(String.format("Utente %s, appointment %s ou Medico %s não foi encontrado",request.getUtente(), id, request.getDoctor()));
-        }
-        Appointment appointment = optionalAppointment.get();
-        appointment.setDate(request.getDate());
-        appointment.setTime();
-        appointment.setDoctor(doctor.get());
-        appointment.setUtente(utente.get());
-        appointment.setStatus(Status.valueOf(request.getStatus()));
-        return appointmentRepository.save(appointment);
-    }*/
-
     public Vaga cancelAppointment(Long id){
         Optional<Appointment> appointment = appointmentRepository.findById(id);
         if (!appointment.isPresent()) {
@@ -158,8 +126,6 @@ public class ConsultasService {
             vaga.setDate(appointment1.getDate());
             vaga.setTime(appointment1.getTime());
         });
-        //todo
-        //appointmentRepository.updateById();
         return vagaRepository.save(vaga);
     }
 
@@ -175,10 +141,7 @@ public class ConsultasService {
         return vagaRepository.findAll();
     }
 
-    public List<Vaga> getVagas(String especialidade) {
-        //return vagaRepository.findAllByEspecialidade(especialidade);
-        return null;
-    }
+
 
     public List<Vaga> getVagas(Long id) {
         return vagaRepository.findAllByDoctorId(id);
@@ -213,5 +176,11 @@ public class ConsultasService {
     }
 
 
+    public List<Appointment> getAppointmentsUtenteOrderByDate(Utente utente) {
+        return appointmentRepository.findAllByUtenteOrderByDateAsc(utente);
+    }
 
+    public List<Vaga> getVagas(String especialidade) {
+        return appointmentRepository.findAllByEspecialidade(especialidade);
+    }
 }
