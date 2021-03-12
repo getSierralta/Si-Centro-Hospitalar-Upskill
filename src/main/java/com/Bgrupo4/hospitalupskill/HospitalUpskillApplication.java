@@ -79,7 +79,7 @@ public class HospitalUpskillApplication {
 			receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
 */
 			vagaService.createVagasThisMonth();
-			//vagaService.createVagasNextMonth();
+			vagaService.createVagasNextMonth();
 
 		};
 	}

@@ -49,6 +49,7 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.createAppointment(id, utente));
     }
 
+
     @PostMapping("/appointments")
     public ResponseEntity<Appointment> createAppointment (@RequestBody AppointmentCreationRequest request) {
         return ResponseEntity.ok(consultasService.createAppointment(request));
