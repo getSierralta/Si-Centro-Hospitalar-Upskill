@@ -6,6 +6,8 @@ const selectedDay = document.getElementById('selectedDay');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let lastDaySquare = null;
 const dt = new Date();
+const popUp = document.getElementById("popup");
+const popUpContent = document.getElementById("popup__content");
 
 
 function openModal(monthName, daySquare, month){
@@ -43,7 +45,6 @@ function openModal(monthName, daySquare, month){
                 const button = document.createElement('button'); 
                 button.innerText = "Marcar Consulta";
 
-
                 const icon = document.createElement('div'); 
                 icon.classList.add('icon');
                 icon.classList.add('consulta');
@@ -51,7 +52,7 @@ function openModal(monthName, daySquare, month){
                 button.appendChild(icon);
                 
                 button.addEventListener('click', () => {
-                    marcarConsulta(element);
+                    abrirPopUp(element);
                 });
 
                 sidebar__list.appendChild(time);
@@ -62,23 +63,57 @@ function openModal(monthName, daySquare, month){
         );  
 }
 
-function marcarConsulta(vaga){
-    const popUp = document.getElementById("popup");
+function abrirPopUp(vaga){
+    //popup
+    
     popUp.style.visibility = 'visible';
     popUp.style.opacity = '1';
-    const popUpContent = document.getElementById("popup__content");
+    
     popUpContent.style.opacity = '1';
     popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
-    //color: var(--color-grey);
-      //  position: absolute;
-        //top: 2.5rem;
-        //right: 2.5rem;
-        //font-size: 3rem;
-        //text-decoration: none;
-        //display: inline-block;
-        //transform: all .2s;
-        //line-height: 1;
+    
+    //butons
+    document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
+    document.getElementById("marcarConsulta").addEventListener('click',  () => {
+        marcarConsulta(vaga);
+    });
+
+    //content 
+    const content = document.getElementById('content');
+    content.innerHTML = "";
+    const title = document.createElement('p'); 
+    title.innerHTML = "A sua consulta: ";
+    const id = document.createElement('p'); 
+    id.innerHTML = "Id: "+vaga.id;
+    const ti = vaga.date.split("T");
+    const date = document.createElement('p'); 
+    date.innerHTML = "Data: "+ti[0];
+    const time = document.createElement('p'); 
+    time.innerHTML = "Hora: "+vaga.time;
+    const es = document.createElement('p'); 
+    es.innerHTML = "Especialidade: "+vaga.especialidade;
+    const medico = document.createElement('p'); 
+    medico.innerHTML = "Medico: "+vaga.doctor.name;
+
+    content.appendChild(title);
+    content.appendChild(id);
+    content.appendChild(date);
+    content.appendChild(time);
+    content.appendChild(es);
+    content.appendChild(medico);
+    
+}
+
+function marcarConsulta(vaga){
     console.log(vaga);
+}
+
+function closePopUp(){
+    popUp.style.visibility = 'hidden';
+    popUp.style.opacity = '0';
+    
+    popUpContent.style.opacity = '0';
+    popUpContent.style.transform = 'translate(-50%, -50%) scale(.25)';
 }
 
 function load(){  
