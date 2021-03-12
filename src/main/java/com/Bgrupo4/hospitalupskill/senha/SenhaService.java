@@ -86,4 +86,8 @@ public class SenhaService {
     public Optional<Senha> getSenhaById(Long id) {
         return senhaRepository.findById(id);
     }
+
+    public List<Senha> getSenhas() {
+        return senhaRepository.getAllValidSenhas(Calendar.getInstance().getTime());
+    }
 }

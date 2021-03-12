@@ -91,11 +91,9 @@
                         <h1>Numeros no ecrã</h1>
                     </div>
                     <div class="tracknumberutente__ecra">
-                        <span>A12</span>
-                        <span>B23</span>
-                        <span>C34</span>
-                        <span>D45</span>
-                        <span>E56</span>
+                        <c:forEach items="${senhas}" var="senha">
+                            <span>${senha.getNumeroSenha()}</span>
+                        </c:forEach>
                     </div>
                     <div class="middle">
                         <button class="btn-green-small">Chamar próximo utente</button>
@@ -103,8 +101,23 @@
                 </div>
 
             </div>
+            <div class="card big profileutente__consulta">
+                <div class="profileutente__consulta__header">
+                    <div class="smallpadding">
+                        <h1>Numeros na Sala de Espera</h1>
+                    </div>
+                    <div class="tracknumberutente__ecra">
+                        <c:forEach items="${senhas}" var="senha">
+                            <span>${senha.getNumeroSenha()}</span>
+                        </c:forEach>
+                    </div>
+                    <div class="middle">
+                        <button class="btn-green-small">Chamar próximo utente</button>
+                    </div>
+                </div>
+            </div>
 
-         </div>
+        </div>
         <!--/Info Box-->
         <!--Cards-->
 

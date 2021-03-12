@@ -32,6 +32,7 @@ public class EmployeeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Employee employee = employeeService.getLogged(auth);
         map.put("employee", employee);
+        map.put("senhas", senhaService.getSenhas());
         return "/employee/profile";
     }
 

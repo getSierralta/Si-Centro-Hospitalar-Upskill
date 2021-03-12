@@ -14,8 +14,8 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-@Entity(name = "Senhas")
-@Table(name ="senhas")
+@Entity(name = "Senha")
+@Table(name ="senha")
 @AllArgsConstructor
 @Getter
 @Setter
@@ -52,6 +52,8 @@ public class Senha {
 
     @Column(name= "time", nullable = false)
     private String time;
+
+    private boolean foiAtentido = false;
 
     public Senha(String numeroSenha, Utente utente, Doctor doctor, Appointment appointment, Date date, String time) {
         this.numeroSenha = numeroSenha;
