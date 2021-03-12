@@ -2,6 +2,11 @@ package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.senha.SenhaCategoria;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
@@ -9,11 +14,12 @@ import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.employee.Employee;
-import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import lombok.AllArgsConstructor;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +39,7 @@ public class HospitalUpskillApplication {
 	public final static Unidade upskill =  new Unidade(121, "Upskill", "upskill@upskill.upskill", "Avenida Up n. Skill","Sintra", "456456665", "UpPhoto");
 	private final ApplicationUserService applicationUserService;
 	private final ConsultasService consultasService;
+	private final SenhaService senhaService;
 	private final ReceitaService receitaService;
 	private final VagaService vagaService;
 
@@ -84,6 +91,14 @@ public class HospitalUpskillApplication {
 			vagaService.createVagasThisMonth();
 			vagaService.createVagasNextMonth();
 
+			for (int i = 8; i < 20; i++) {
+				applicationUserService.enableAndSave(new Utente(String.valueOf(i),"Utente " + String.valueOf(i),
+						"utente" + String.valueOf(i), "utente" + String.valueOf(i) + "@utente.com", "123", "apolice"));
+
+				System.out.println(senhaService.createSenha(doctor, utente, appointment, SenhaCategoria.INFORMACAO));
+				System.out.println(senhaService.createSenha(doctor, utente, appointment, SenhaCategoria.REGISTAR_PRESENCA));
+
+			}
 		};
 	}
 }
