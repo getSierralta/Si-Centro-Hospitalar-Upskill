@@ -78,4 +78,8 @@ public class SenhaService {
         }
         return categorias;
     }
+
+    public Optional<Senha> getSenhaById(Long id) {
+        return senhaRepository.findById(id);
+    }
 }

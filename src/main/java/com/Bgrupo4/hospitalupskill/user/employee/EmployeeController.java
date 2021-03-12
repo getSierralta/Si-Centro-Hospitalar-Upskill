@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -53,6 +55,14 @@ public class EmployeeController {
     @PostMapping(path = "/check-in", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public RedirectView getSenha(SenhaRequest request){
-        return new RedirectView("/employee/check-in/"+ senhaService.createSenha(request));
+        Senha senha = senhaService.createSenha(request);
+        return new RedirectView("/employee/check-in/"+senha.getId());
+    }
+
+    @GetMapping(value = "/check-in/{id}")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showSenha(@PathVariable("id") Long id, ModelMap map){
+        map.put("senha", senhaService.getSenhaById(id));
+        return "/employee/senha";
     }
 }
