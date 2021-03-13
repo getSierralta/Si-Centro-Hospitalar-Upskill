@@ -816,7 +816,12 @@ div.active ul {
     align-items: flex-start;
     min-width: 100%;
     background: var(--grey-background);
-
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow: scroll;
+}
+.card.big.profileutente__consulta::-webkit-scrollbar {
+    display: none;
 }
 .profileutente__consulta--img{
     width: 30%;

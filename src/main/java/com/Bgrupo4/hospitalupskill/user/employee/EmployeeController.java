@@ -1,16 +1,14 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
-import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
-import com.Bgrupo4.hospitalupskill.senha.Senha;
-import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
-import com.Bgrupo4.hospitalupskill.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.consultas.senha.Senha;
+import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaRequest;
+import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.salaDeEspera;
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
 
 @Controller
 @RequestMapping(path = "employee")
@@ -35,17 +33,10 @@ public class EmployeeController {
         Employee employee = employeeService.getLogged(auth);
         map.put("employee", employee);
         map.put("senhas", senhaService.getSenhas());
-        map.put("salaDeEspera", salaDeEspera);
+        map.put("salaDeEspera", ECRA);
         return "/employee/profile";
     }
 
-    /*@GetMapping(value = "/check-in")
-    public String showCheckIn(ModelMap map) throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Employee employee = employeeService.getLogged(auth);
-        map.put("employee", employee);
-        return "/employee/check-in";
-    }*/
 
     //GET do formulário
     @GetMapping(value = "/check-in")

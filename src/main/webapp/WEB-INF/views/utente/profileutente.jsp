@@ -94,20 +94,22 @@
                 </div>
                 <div class="profileutente__consulta__header">
                     <div class="smallpadding">
-                        <p class="title"><b> Data do Proximo Agendamento</b></p>
-                        <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
-                        <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
-                        <p>Data: &nbsp;${consulta.getDataString()}</p>
-                        <p>Hora: &nbsp;${consulta.getTime()}</p>
+                        <div id="consultaUtente">
+                            <p class="title"><b> Data do Proximo Agendamento</b></p>
+                            <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
+                            <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
+                            <p>Data: &nbsp;${consulta.getDataString()}</p>
+                            <p>Hora: &nbsp;${consulta.getTime()}</p>
+                        </div>
                     </div>
                     <div class="middle">
-                        <button class="btn-green-small">Check-in</button>
-                        <button class="btn-green-small">Ver no calendario</button>
+                        <button class="btn-green-small" onclick="checkin(${consulta.getId()})">Check-in</button>
+                        <button class="btn-green-small" onclick="information()">Senha de informação</button>
                     </div>
                 </div>
 
             </div>
-            <div class="card big profileutente__consulta scroll">
+            <div class="card big profileutente__consulta">
                 <div class="profileutente__consulta--img">
                     <img width="100%" src="../img/imgpills.jpg" alt="consulta">
                 </div>
@@ -126,14 +128,8 @@
 
             </div>
          </div>
-        <!--/Info Box-->
-        <!--Cards-->
-
-
-
-        <!--/Cards-->
     </main>
-    <!--/Main-->
+    <script src="../../js/checkin.js"></script>
 </body>
 
 </html>

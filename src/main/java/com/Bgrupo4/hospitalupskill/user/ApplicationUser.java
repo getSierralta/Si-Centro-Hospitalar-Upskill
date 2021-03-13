@@ -105,12 +105,9 @@ public class ApplicationUser implements UserDetails {
         this.dataDeNascimento = birthday;
     }
 
-
-
     public String getDataDeNascimento(){
-        return (dataDeNascimento.get(Calendar.DATE))+"/"+ (dataDeNascimento.get(Calendar.MONTH))+"/"+ (dataDeNascimento.get(Calendar.YEAR));
+        return (dataDeNascimento.get(Calendar.DATE))+"/"+ (dataDeNascimento.get(Calendar.MONTH)+1)+"/"+ (dataDeNascimento.get(Calendar.YEAR));
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

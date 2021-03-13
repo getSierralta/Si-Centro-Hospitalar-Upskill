@@ -64,6 +64,6 @@ public class Vaga {
                 '}';
     }
     public String getDataString(){
-        return (date.get(Calendar.DATE))+"/"+ (date.get(Calendar.MONTH))+"/"+ (date.get(Calendar.YEAR));
+        return (date.get(Calendar.DATE))+"/"+ (date.get(Calendar.MONTH)+1)+"/"+ (date.get(Calendar.YEAR));
     }
 }

@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.registration.token;
+package com.Bgrupo4.hospitalupskill.user.registration.token;
 
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.Getter;

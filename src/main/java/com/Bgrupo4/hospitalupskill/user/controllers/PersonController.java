@@ -1,12 +1,8 @@
-package com.Bgrupo4.hospitalupskill.controllers;
+package com.Bgrupo4.hospitalupskill.user.controllers;
 
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PersonController {

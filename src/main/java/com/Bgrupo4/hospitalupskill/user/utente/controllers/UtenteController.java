@@ -1,7 +1,9 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
-import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.consultas.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
+import com.Bgrupo4.hospitalupskill.consultas.senha.Senha;
+import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +28,7 @@ public class UtenteController {
 
     private final UtenteService utenteService;
     private final CalendarioService calendarioService;
+    private final SenhaService senhaService;
 
 
     @GetMapping(value = "/profileutente")
@@ -45,6 +50,8 @@ public class UtenteController {
         return "utente/profileutente";
     }
 
+
+
     @GetMapping(value = "/formularioCalendario")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showFormularioCalendario(ModelMap map){
@@ -64,8 +71,6 @@ public class UtenteController {
     public String showCalendarioGeralError(@PathVariable String especialidade){
         return "utente/calendariogeralutente";
     }
-
-
 
     @GetMapping(value = "/checkinutente")
     @PreAuthorize("hasRole('ROLE_UTENTE')")

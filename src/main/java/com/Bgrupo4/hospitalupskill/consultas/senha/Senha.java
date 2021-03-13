@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.senha;
+package com.Bgrupo4.hospitalupskill.consultas.senha;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -39,7 +38,7 @@ public class Senha {
     private Utente utente;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id", nullable = false)
+    @JoinColumn(name = "doctor_id")
     @JsonManagedReference
     private Doctor doctor;
 
@@ -54,6 +53,7 @@ public class Senha {
     private String time;
 
     private boolean foiAtentido = false;
+
 
     public Senha(String numeroSenha, Utente utente, Doctor doctor, Appointment appointment, Date date, String time) {
         this.numeroSenha = numeroSenha;

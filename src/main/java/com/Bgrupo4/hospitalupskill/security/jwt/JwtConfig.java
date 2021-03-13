@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.jwt;
+package com.Bgrupo4.hospitalupskill.security.jwt;
 
 import com.google.common.net.HttpHeaders;
 import org.springframework.boot.context.properties.ConfigurationProperties;

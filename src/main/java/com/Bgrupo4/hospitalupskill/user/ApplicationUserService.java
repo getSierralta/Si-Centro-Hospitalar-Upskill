@@ -1,14 +1,13 @@
 package com.Bgrupo4.hospitalupskill.user;
 
-import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationTokenService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -71,8 +71,6 @@
                 <a href="/log-in" class="green">Log In</a>
             </div>
     </main>
-    <!--/Main-->
-    <script src="js/login.js"></script>
 </body>
 
 </html>
