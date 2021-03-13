@@ -1,7 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user;
 
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;

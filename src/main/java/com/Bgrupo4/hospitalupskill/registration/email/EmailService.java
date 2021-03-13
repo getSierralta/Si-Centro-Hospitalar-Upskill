@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.user.registration.email;
+package com.Bgrupo4.hospitalupskill.registration.email;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

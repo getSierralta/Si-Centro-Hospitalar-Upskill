@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.user.controllers;
+package com.Bgrupo4.hospitalupskill.controllers;
 
 
 import org.springframework.stereotype.Controller;

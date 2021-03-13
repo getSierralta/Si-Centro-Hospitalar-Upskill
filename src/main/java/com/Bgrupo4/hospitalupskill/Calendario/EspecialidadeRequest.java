@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.consultas.Calendario;
+package com.Bgrupo4.hospitalupskill.Calendario;
 
 import lombok.Data;
 

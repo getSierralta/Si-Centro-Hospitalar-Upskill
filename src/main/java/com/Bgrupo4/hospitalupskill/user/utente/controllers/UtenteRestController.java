@@ -1,12 +1,12 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 
-import com.Bgrupo4.hospitalupskill.consultas.Calendario.EspecialidadeRequest;
-import com.Bgrupo4.hospitalupskill.consultas.senha.Senha;
-import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
-import com.Bgrupo4.hospitalupskill.user.registration.RegistrationService;
+import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;

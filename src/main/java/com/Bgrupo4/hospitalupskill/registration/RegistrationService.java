@@ -1,8 +1,8 @@
-package com.Bgrupo4.hospitalupskill.user.registration;
+package com.Bgrupo4.hospitalupskill.registration;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationToken;
-import com.Bgrupo4.hospitalupskill.user.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
+import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

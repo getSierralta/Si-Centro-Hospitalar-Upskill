@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.consultas.senha;
+package com.Bgrupo4.hospitalupskill.senha;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;

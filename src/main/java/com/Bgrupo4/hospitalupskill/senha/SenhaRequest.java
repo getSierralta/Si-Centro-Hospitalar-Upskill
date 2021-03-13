@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.consultas.senha;
+package com.Bgrupo4.hospitalupskill.senha;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
-import com.Bgrupo4.hospitalupskill.consultas.senha.Senha;
-import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaRequest;
-import com.Bgrupo4.hospitalupskill.consultas.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
