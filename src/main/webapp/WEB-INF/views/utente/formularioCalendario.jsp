@@ -12,36 +12,41 @@
 </head>
 
 <body class="container blue">
-    <!--Horizontal Nav-->
     <nav class="nav-row">
         <div class="medium">
-            <a href="/">
+            <a href="/utente/profileutente">
                 <div class="icon home"></div>
-                <span class="none">Inicio</span>
-            </a>
-        </div>
-        <div class="medium ">
-            <a href="/about-us">
-                <div class="icon informacao"></div>
-                <span class="none">Sobre Nós</span>
+                <span class="none">Perfil</span>
             </a>
         </div>
         <div class="medium">
-            <a href="/services">
-                <div class="icon medico"></div>
-                <span class="none">Serviços</span>
+            <a href="/utente/tracknumberutente">
+                <div class="icon consulta"></div>
+                <span class="none">Track Numbers</span>
             </a>
         </div>
         <div class="medium ">
-            <a href="/contacts">
-                <div class="icon contactos"></div>
-                <span class="none">Contactos</span>
+            <a href="/utente/formularioCalendario">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario geral</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/utente/calendarutente">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario Pessoal</span>
             </a>
         </div>
         <div class="medium">
-            <a href="/login">
-                <div class="icon utente"></div>
-                <span class="none">Log-In</span>
+            <a href="/utente/settings">
+                <div class="icon tools"></div>
+                <span class="none">Settings</span>
+            </a>
+        </div>
+        <div class="medium">
+            <a href="/logout">
+                <div class="icon logout"></div>
+                <span class="none">LogOut</span>
             </a>
         </div>
     </nav>

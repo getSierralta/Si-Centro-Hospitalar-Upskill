@@ -18,12 +18,6 @@
                     <span class="none">Perfil</span>
                 </a>
             </div>
-            <div class="medium ">
-                <a href="/utente/checkinutente">
-                    <div class="icon medico"></div>
-                    <span class="none">Check-in</span>
-                </a>
-            </div>
             <div class="medium">
                 <a href="/utente/tracknumberutente">
                     <div class="icon consulta"></div>
@@ -40,12 +34,6 @@
                 <a href="/utente/calendarutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario Pessoal</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="/utente/contactsutente">
-                    <div class="icon contactos"></div>
-                    <span class="none">Support</span>
                 </a>
             </div>
             <div class="medium">

@@ -61,7 +61,7 @@ function giveError(div){
         error.style.maxHeight = "65%";
        // div.appendChild(error);    
         const error2 = document.createElement('p'); 
-        error2.innerText = "Olha sinceiramente tipo um de dois né? Ou não é hoje o já pediste uma senha, nao é por questionar a tua inteligencia nem nada é só uma informação, a quem lhe fique o chapeu né";
+        error2.innerText = "Olha sinceiramente tipo um de dois né? Ou não é hoje o já pediste uma senha, nao é por questionar a tua inteligencia nem nada é só uma informação, se lhe serve a carapuça né";
         div.appendChild(error2);
     }else{
         div.innerHTML = consulta;
