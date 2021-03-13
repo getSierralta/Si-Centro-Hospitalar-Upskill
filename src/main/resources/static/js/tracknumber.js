@@ -18,7 +18,6 @@ function selectSenha(id){
     .then(response => response.json())
     .then(data =>         
             data.forEach(element => { 
-                console.log(element);
                 category.innerText = element.categoria;
                 number.innerText = element.numeroSenha;
                 div.appendChild(category);
