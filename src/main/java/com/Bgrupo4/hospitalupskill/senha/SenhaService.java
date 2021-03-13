@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -41,6 +42,7 @@ public class SenhaService {
         senha.setDate(Calendar.getInstance().getTime());
         senha.setTime(String.valueOf(LocalTime.now()));
         senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
+        senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
         return senhaRepository.save(senha);
     }
 
@@ -65,11 +67,11 @@ public class SenhaService {
                 senha.setDate(Calendar.getInstance().getTime());
                 senha.setTime(String.valueOf(LocalTime.now()));
                 senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
+                senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
                 return senhaRepository.save(senha);
             }
             throw new IllegalArgumentException("Já foi tirada a senha para a consulta: "+appointment.getId());
         }
-        System.out.println("-------------------------"+getDataString());
         throw new IllegalArgumentException(String.format("A consulta %s é no dia %s", appointment.getId(), appointment.getDataString()));
     }
 
@@ -83,6 +85,7 @@ public class SenhaService {
         senha.setDate(Calendar.getInstance().getTime());
         senha.setTime(String.valueOf(LocalTime.now()));
         senha.setNumeroSenha(getSenha(SenhaCategoria.INFORMACAO.name()));
+        senha.setCategoria(SenhaCategoria.INFORMACAO.name());
         return senhaRepository.save(senha);
     }
 
@@ -116,5 +119,9 @@ public class SenhaService {
 
     public List<Senha> getSenhas() {
         return senhaRepository.getAllValidSenhas(Calendar.getInstance().getTime());
+    }
+
+    public List<Senha> getSenhasByUtente(Utente utente) {
+        return senhaRepository.getAllByUtenteAndDate(utente, Calendar.getInstance().getTime());
     }
 }

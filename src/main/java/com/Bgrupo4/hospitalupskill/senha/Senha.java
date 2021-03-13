@@ -4,10 +4,8 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,6 +17,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Senha {
 
     public static int contadorA = 0;
@@ -54,25 +53,6 @@ public class Senha {
 
     private boolean foiAtentido = false;
 
+    private String categoria;
 
-    public Senha(String numeroSenha, Utente utente, Doctor doctor, Appointment appointment, Date date, String time) {
-        this.numeroSenha = numeroSenha;
-        this.utente = utente;
-        this.doctor = doctor;
-        this.appointment = appointment;
-        this.date = date;
-        this.time = time;
-    }
-
-    @Override
-    public String toString() {
-        return "Senha{" +
-                "id=" + id +
-                ", numeroSenha='" + numeroSenha + '\'' +
-                ", utente=" + utente +
-                ", doctor=" + doctor +
-                ", appointment=" + appointment +
-                ", date='" + date + '\'' +
-                '}';
-    }
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityNotFoundException;
 
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(path = "utente")
@@ -47,6 +49,17 @@ public class UtenteController {
         return "utente/profileutente";
     }
 
+    @GetMapping(value = "/tracknumberutente")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public String showTrackNumber(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        System.out.println(senhaService.getSenhasByUtente(utente));
+        map.put("senhas", senhaService.getSenhasByUtente(utente));
+        map.put("ecra", ECRA);
+        return "utente/tracknumberutente";
+    }
+
 
 
     @GetMapping(value = "/formularioCalendario")
@@ -69,34 +82,14 @@ public class UtenteController {
         return "utente/calendariogeralutente";
     }
 
-    @GetMapping(value = "/checkinutente")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showCheckIn(){
-        return "utente/check-in-utente";
-    }
 
-    @GetMapping(value = "/tracknumberutente")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showTrackNumber(){
-        return "utente/tracknumberutente";
-    }
 
-    @GetMapping(value = "/getnumber")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showGetNumber(){
-        return "utente/getnumber";
-    }
+
 
     @GetMapping(value = "/bills")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showBills(){
         return "utente/bills";
-    }
-
-    @GetMapping(value = "/contactsutente")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showContacts(){
-        return "utente/contactsutente";
     }
 
     @GetMapping(value = "/settings")

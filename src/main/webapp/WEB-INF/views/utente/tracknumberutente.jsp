@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,33 +53,21 @@
     <main class="main">
         <!--Info Box-->
         <div class="object_container full_info numbers">
-            <div class="number">B45</div>
-            <div class="number">C56</div>
-            <div class="number">D67</div>
-            <div class="number">F78</div>
-            <div class="number">G89</div>
-            <div class="number">H91</div>
-            <div class="number">I12</div>
-            <div class="number">B45</div>
-            <div class="number">C56</div>
-            <div class="number">D67</div>
-            <div class="number">F78</div>
-            <div class="number">G89</div>
-            <div class="number">H91</div>
-            <div class="number">I12</div>
+            <c:forEach items="${senhas}" var="senha">
+                <div class="number" onclick="selectSenha(${senha.getId()})">${senha.getNumeroSenha()}</div>
+            </c:forEach>
         </div>
         <!--/Info Box-->
         <!--Cards-->
-        <div class="card big tracknumberutente">
-            <div class="tracknumberutente__category">
-                {senha.category}
+        <div class="card big tracknumberutente" id="trackNumberDiv">
+            <div class="tracknumberutente__category" id="trackNumberCategory">
+
             </div>
-            <div class="tracknumberutente__number">
-                B45
+            <div class="tracknumberutente__number" id="trackNumberNumber">
+
             </div>
-            <div class="tracknumberutente__tempo">
-                <p>Tempo Estimado</p>
-                <span>13min</span>
+            <div class="tracknumberutente__tempo" id="trackNumberTime">
+
             </div>
         </div>
 
@@ -88,11 +77,9 @@
                 Numeros no ecrã
             </div>
             <div class="tracknumberutente__ecra">
-                <span>A12</span>
-                <span>B23</span>
-                <span>C34</span>
-                <span>D45</span>
-                <span>E56</span>
+                <c:forEach items="${ecra}" var="sala">
+                    <span>${sala.getNumeroSenha()}</span>
+                </c:forEach>
             </div>
             <p class="tracknumberutente__tetris" onclick="startTetris()">Tetris</p>
             <div id="tetrisbox" class="tetris">
@@ -106,6 +93,7 @@
     </main>
     <!--/Main-->
     <script src="../js/tetris.js"></script>
+    <script src="../../js/tracknumber.js"></script>
 </body>
 
 </html>

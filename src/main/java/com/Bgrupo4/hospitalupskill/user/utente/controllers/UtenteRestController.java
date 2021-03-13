@@ -80,7 +80,6 @@ public class UtenteRestController {
         return senhas;
     }
 
-
     @GetMapping(path = "/check-in")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public List<Senha> getSenha() throws Exception {
@@ -88,6 +87,16 @@ public class UtenteRestController {
         Utente utente = utenteService.getLogged(auth);
         List<Senha> senhas = new ArrayList<>();
         senhas.add(senhaService.createSenha(utente));
+        return senhas;
+    }
+
+    @GetMapping(path = "/senhas/{id}")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public List<Senha> getSenha(@PathVariable String id) throws Exception {
+        List<Senha> senhas = new ArrayList<>();
+        if (senhaService.getSenhaById(Long.valueOf(id)).isPresent()){
+            senhas.add(senhaService.getSenhaById(Long.valueOf(id)).get());
+        }
         return senhas;
     }
 
