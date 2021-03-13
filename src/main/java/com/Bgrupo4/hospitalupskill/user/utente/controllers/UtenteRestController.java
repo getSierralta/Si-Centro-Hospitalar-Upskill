@@ -10,6 +10,7 @@ import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -47,6 +48,15 @@ public class UtenteRestController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/utente/register");
         return modelAndView;
+    }
+
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView update(UtenteUpdateRequest request) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        utenteService.updateUtente(utente, request);
+        return new RedirectView("/utente/settings");
     }
 
     @GetMapping(value = "/register")
