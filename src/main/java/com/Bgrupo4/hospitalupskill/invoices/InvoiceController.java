@@ -4,19 +4,13 @@ import lombok.AllArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -47,7 +41,7 @@ public class InvoiceController {
         invoiceRequest.put("name", invoiceParam.getName());
         invoiceRequest.put("email", invoiceParam.getEmail());
         invoiceRequest.put("nif", invoiceParam.getNif());
-        invoiceRequest.put("duedate", date.toString());
+        invoiceRequest.put("duedate", date.toString()); // sends correct date but returns from serro as issuedate
         for (InvoiceItem item : invoiceParam.getItems()) {
             JSONObject thisItem = new JSONObject();
             thisItem.put("description", item.getDescription());
@@ -56,50 +50,47 @@ public class InvoiceController {
         }
         invoiceRequest.put("items", allItems);
 
-        String requestUrl = "https://serro.pt/invoices/802244746/create";
-        InvoiceResponse response = restTemplate.postForObject(requestUrl, new HttpEntity<>(invoiceRequest.toString(), headers), InvoiceResponse.class);
         JSONObject requestResponse = new JSONObject();
 
-        if(response == null || response.status.equals("error")) {
-            if (HttpStatus.BAD_REQUEST.isError()) {
-                requestResponse.put("status", "error");
-                requestResponse.put("error", "validationError");
+        try {
+            String requestUrl = "https://serro.pt/invoices/802244746/create";
+            InvoiceResponse response = restTemplate.postForObject(requestUrl, new HttpEntity<>(invoiceRequest.toString(), headers), InvoiceResponse.class);
+
+            Invoice invoice = response.getInvoice();
+            JSONArray invoiceSummary = new JSONArray();
+            JSONObject thisInvoice = new JSONObject();
+
+            String payStatus = "paid";
+            if (invoice.getPaidDate() == null) {
+                payStatus = "unpaid";
             }
-            if (HttpStatus.NOT_FOUND.isError()) {
-                requestResponse.put("status", "error");
-                requestResponse.put("error", "Company with that nif not found");
-            }
-            return requestResponse;
+
+            thisInvoice.put("id", invoice.getId()); // add <propriedades do cliente>
+            thisInvoice.put("issuedDate", invoice.getIssuedDate());
+            thisInvoice.put("status", payStatus);
+            thisInvoice.put("url", invoice.getUrl());
+
+            invoiceSummary.add(thisInvoice);
+
+            requestResponse.put("status", "success");
+            requestResponse.put("invoice", invoiceSummary);
+
+        } catch(HttpClientErrorException.BadRequest e) {
+            requestResponse.put("status", "error");
+            requestResponse.put("error", "validationError");
+        } catch (HttpClientErrorException.NotFound e) {
+            requestResponse.put("status", "error");
+            requestResponse.put("error", "Company with that nif not found");
         }
-
-        Invoice invoice = response.getInvoice();
-        JSONArray invoiceSummary = new JSONArray();
-        JSONObject thisInvoice = new JSONObject();
-
-        String payStatus = "paid";
-        if (invoice.getPaidDate() == null) {
-            payStatus = "unpaid";
-        }
-
-        thisInvoice.put("id", invoice.getId()); // add <propriedades do cliente>
-        thisInvoice.put("issuedDate", invoice.getIssuedDate());
-        thisInvoice.put("status", payStatus);
-        thisInvoice.put("url", invoice.getUrl());
-
-        invoiceSummary.add(thisInvoice);
-
-        requestResponse.put("status", "success");
-        requestResponse.put("invoice", invoiceSummary);
-
         return requestResponse;
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('medico:read')")
-    public ModelAndView getInvoice(@RequestBody InvoiceAuth invoiceAuth) {
+    public ModelAndView getInvoice(@RequestBody InvoiceRequest invoiceRequest) {
         URL requestUrl = null;
         try {
-            requestUrl = new URL("https://serro.pt/invoices/" + invoiceAuth.getNif() + "/get/" + invoiceAuth.getId());
+            requestUrl = new URL("https://serro.pt/invoices/802244746/get/" + invoiceRequest.getId());
         } catch (Exception e) {
             JSONObject requestResponse = new JSONObject();
             requestResponse.put("status", "error");
@@ -111,31 +102,52 @@ public class InvoiceController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('medico:read')")
-    public void getInfo(@RequestBody InvoiceAuth invoiceAuth) {
-        String requestUrl = "https://serro.pt/invoices/" + invoiceAuth.getNif() + "/get/" + invoiceAuth.getId();
+    public JSONObject getInfo(@RequestBody InvoiceRequest invoiceRequest) {
         JSONObject requestResponse = new JSONObject();
 
-        // UNDER CONSTRUCTION
-            Invoice response = restTemplate.getForObject(requestUrl, Invoice.class);
+        try {
+            String requestUrl = "https://serro.pt/invoices/802244746/info/" + invoiceRequest.getId();
+            InvoiceResponse response = restTemplate.getForObject(requestUrl, InvoiceResponse.class);
             JSONObject thisInvoice = new JSONObject();
             JSONArray invoiceSummary = new JSONArray();
 
+            Invoice invoice = response.getInvoice();
+
             String payStatus = "paid";
-            if (response.getPaidDate() == null) {
+            if (invoice.getPaidDate() == null) {
                 payStatus = "unpaid";
             }
 
-            requestResponse.put("id", response.getId()); // add <propriedades do cliente>
-            thisInvoice.put("issuedDate", response.getIssuedDate());
+            requestResponse.put("id", invoice.getId()); // add <propriedades do cliente>
+            thisInvoice.put("issuedDate", invoice.getIssuedDate());
             thisInvoice.put("status", payStatus);
-            thisInvoice.put("url", response.getUrl());
+            thisInvoice.put("url", invoice.getUrl());
 
             invoiceSummary.add(thisInvoice);
 
             requestResponse.put("status", "success");
             requestResponse.put("invoice", invoiceSummary);
-        // THIS IS MADNESS
 
+        } catch(Exception e) {
+            requestResponse.put("status", "error");
+            requestResponse.put("error", "Invoice not found");
+        }
+
+        return requestResponse;
     }
 
+    @RequestMapping(value = "/pay", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('medico:read')")
+    public void payInvoice(@RequestBody InvoiceRequest invoiceRequest) {
+        String requestUrl = "https://serro.pt/invoices/802244746/pay/" + invoiceRequest.getId();
+        // this doesn't work yet
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('medico:read')")
+    public void getList(@RequestBody InvoiceRequest invoiceRequest) {
+        String requestUrl = "https://serro.pt/invoices/802244746/list";
+        ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
+        // this can access and create a list of faturas. i'm confused on how to sort and filter
+    }
 }
