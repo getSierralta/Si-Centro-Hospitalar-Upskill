@@ -26,12 +26,7 @@
                     <span class="none">Registar Novo</span>
                 </a>
             </div>
-            <div class="medium">
-                <a href="lista-utentes">
-                    <div class="icon consulta"></div>
-                    <span class="none">Utentes</span>
-                </a>
-            </div>
+
             <div class="medium ">
                 <a href="lista-employees">
                     <div class="icon calendario"></div>
@@ -50,12 +45,7 @@
                     <span class="none">Administradores</span>
                 </a>
             </div>
-            <div class="medium">
-                <a href="settings">
-                    <div class="icon tools"></div>
-                    <span class="none">Settings</span>
-                </a>
-            </div>
+
             <div class="medium">
                 <a href="/logout">
                     <div class="icon logout"></div>

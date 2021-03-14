@@ -18,12 +18,6 @@
                     <span class="none">Perfil</span>
                 </a>
             </div>
-            <div class="medium ">
-                <a href="register-employee">
-                    <div class="icon utente"></div>
-                    <span class="none">Registar Novo</span>
-                </a>
-            </div>
             <div class="medium">
                 <a href="lista-utentes">
                     <div class="icon consulta"></div>
@@ -46,12 +40,6 @@
                 <a href="lista-admin">
                     <div class="icon support"></div>
                     <span class="none">Administradores</span>
-                </a>
-            </div>
-            <div class="medium">
-                <a href="settings">
-                    <div class="icon tools"></div>
-                    <span class="none">Settings</span>
                 </a>
             </div>
             <div class="medium">
@@ -82,50 +70,37 @@
                     <p>Localidade:  &nbsp;${admin.getLocalidade()} </p>
                     <p>Telemovel: &nbsp; ${admin.getPhone()} </p>
             </div>
-            <div class="middle">
-                <a href="utente/files" class="btn-green-small">Ficheiros</a>
-                <a href="utente/bills" class="btn-green-small">Faturas</a>
-            </div>
         </div>
-        <div class="card big profileutente__consulta client_info">
-            <div class="card big profileutente__consulta">
-                <div class="profileutente__consulta--img">
-                    <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-                </div>
-                <div class="profileutente__consulta__header">
-                    <div class="smallpadding">
-                        <p class="title"><b> Data do Proximo Agendamento</b></p>
-                        <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
-                        <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
-                        <p>Data: &nbsp;${consulta.getDate()}</p>
-                        <p>Hora: &nbsp;${consulta.getTime()}</p>
-                    </div>
-                    <div class="middle">
-                        <button class="btn-green-small">Check-in</button>
-                        <button class="btn-green-small">Ver no calendario</button>
-                    </div>
-                </div>
 
-            </div>
-            <div class="card big profileutente__consulta scroll">
-                <div class="profileutente__consulta--img">
-                    <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-                </div>
-                <div class="profileutente__consulta__header">
-                    <p class="title"><b>Ultima Receita Medica</b></p>
-                    <div class="padding medicamentos">
-                        <c:forEach items = "${receita.getMedicamentos()}"  var = "medicamento">
-                                <p>${medicamento.getMedicamento()} &nbsp; ${medicamento.getQuantidade()}</p>
-                        </c:forEach>
-                    </div>
-                    <div class="padding">
-                        <p><b>Recurso Executante:&nbsp;</b> ${receita.getDoctor().getName()}</p>
-                        <p><b>Data:&nbsp;</b> ${receita.getDate()}</p>
-                    </div>
-                </div>
 
-            </div>
-         </div>
+         <div class="card big profileutente__consulta client_info">
+             <div class="card big profileutente__consulta">
+                 <div class="profileutente__consulta--img">
+                     <img width="100%" src="../img/imgbear.jpg" alt="consulta">
+                 </div>
+                 <div class="profileutente__consulta__header">
+                     <div class="greenbutt">
+                         <a href="register-employee">
+                             <div class="icon utente"></div>
+                             <span class="none">Registar Novo Colaborador</span>
+                         </a>
+                     </div>
+                 </div>
+             </div>
+             <div class="card big profileutente__consulta">
+                 <div class="profileutente__consulta--img">
+                     <img width="100%" src="../img/imgpills.jpg" alt="consulta">
+                 </div>
+                 <div class="greenbutt">
+                     <a href="settings">
+                         <div class="icon tools"></div>
+                         <span class="none">Settings</span>
+                     </a>
+                 </div>
+
+             </div>
+          </div>
+
         <!--/Info Box-->
         <!--Cards-->
 

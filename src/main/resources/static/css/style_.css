@@ -347,6 +347,7 @@ input:not([type = checkbox]), textarea{
     border-radius: 0.2rem;
 }
 
+
 .greenbutt > h3 {
     color: var(--color-white);
     font-size: 85%;
