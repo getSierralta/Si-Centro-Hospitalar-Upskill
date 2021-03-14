@@ -27,7 +27,7 @@ public class InvoiceController {
     RestTemplate restTemplate;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVE', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public JSONObject postInvoice(@RequestBody Invoice invoiceParam) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -86,7 +86,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVE', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public ModelAndView getInvoice(@RequestBody InvoiceRequest invoiceRequest) {
         URL requestUrl = null;
         try {
@@ -101,7 +101,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVE', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public JSONObject getInfo(@RequestBody InvoiceRequest invoiceRequest) {
         JSONObject requestResponse = new JSONObject();
 
@@ -137,14 +137,14 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVE', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public void payInvoice(@RequestBody InvoiceRequest invoiceRequest) {
         String requestUrl = "https://serro.pt/invoices/802244746/pay/" + invoiceRequest.getId();
         // this doesn't work yet
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVE', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public void getList(@RequestBody InvoiceRequest invoiceRequest) {
         String requestUrl = "https://serro.pt/invoices/802244746/list";
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
