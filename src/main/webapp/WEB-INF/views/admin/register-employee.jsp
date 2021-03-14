@@ -1,0 +1,94 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="/css/responsivestyle.css">
+    <title>Register New Employee</title>
+</head>
+<body class="container blue ">
+    <!--Horizontal Nav-->
+       <nav class="nav-row">
+           <div class="medium">
+               <a href="profile">
+                   <div class="icon home"></div>
+                   <span class="none">Perfil</span>
+               </a>
+           </div>
+           <div class="medium ">
+               <a href="register-employee">
+                   <div class="icon utente"></div>
+                   <span class="none">Registar Novo</span>
+               </a>
+           </div>
+           <div class="medium">
+               <a href="lista-utentes">
+                   <div class="icon consulta"></div>
+                   <span class="none">Utentes</span>
+               </a>
+           </div>
+           <div class="medium ">
+               <a href="lista-employees">
+                   <div class="icon calendario"></div>
+                   <span class="none">Employees</span>
+               </a>
+           </div>
+           <div class="medium ">
+               <a href="lista-medicos">
+                   <div class="icon medico"></div>
+                   <span class="none">Medicos</span>
+               </a>
+           </div>
+           <div class="medium ">
+               <a href="lista-admin">
+                   <div class="icon support"></div>
+                   <span class="none">Administradores</span>
+               </a>
+           </div>
+           <div class="medium">
+               <a href="settings">
+                   <div class="icon tools"></div>
+                   <span class="none">Settings</span>
+               </a>
+           </div>
+           <div class="medium">
+               <a href="/logout">
+                   <div class="icon logout"></div>
+                   <span class="none">LogOut</span>
+               </a>
+           </div>
+       </nav>
+    <!--/Horizontal Nav-->
+    <!--Main-->
+    <main class="main">
+            <div class="object_container half_info" id="reg_image">
+            <!--BUG: this divs border radius not working-->
+                <img class="photo" src="/img/imgdoc.jpg" alt="img doctora">
+            </div>
+            <div class="object_container forms">
+                <form class="log-in column" id="register" action="/utente/register" method="POST">
+                    <input type="text" name="username" placeholder="User Name" required="required" />
+                        <input type="text" name="name" placeholder="Nome Completo" required="required" />
+                        <input type="text" name="numUtente" placeholder="Numero de Utente" required="required" />
+                        <input type="text" name="nif" placeholder="Nif" required="required" />
+                        <textarea name="morada" rows="2" cols="30"  placeholder="Morada" required="required"></textarea>
+                        <input type="text" name="localidade" placeholder="Localidade" />
+                        <input type="email" name="email" placeholder="E-mail" required="required" />
+                        <input type="text" name="telemovel" placeholder="Telemovel" required="required" />
+                        <input type="text" name="apolice" placeholder="Apolice" required="required" />
+                        <input type="date" placeholder="Data de nascimento" name="dataDeNascimento" onfocus="(this.type='date')"
+                        onblur="(this.type='text')" required="required" />
+                        <input type="password" name="password" placeholder="Password" required="required" />
+                        <div class="form-label">
+                            <input type="checkbox" value="element" name="condicao" required="required" checked = "checked"/>
+                            <a href="#"><span class="light small">Aceita os</span> termos e condições?</a>
+                        </div>
+                    <button class="greenbutt" type="submit">Register</button>
+                </form>
+                <a href="/log-in" class="green">Log In</a>
+            </div>
+    </main>
+</body>
+
+</html>

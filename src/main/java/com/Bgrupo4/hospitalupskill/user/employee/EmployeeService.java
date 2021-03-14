@@ -28,7 +28,7 @@ public class EmployeeService {
     private final ApplicationUserService applicationUserService;
     private final UtenteService utenteService;
 
-    public Optional<Employee> getUserById(Long id) {
+    public Optional<Employee> getEmployeeById(Long id) {
         return employeeRepository.findById(id);
     }
 
