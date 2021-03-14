@@ -14,8 +14,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -144,5 +148,16 @@ public class UtenteService {
 
     private List<Receita> getReceitas(Utente utente) {
         return receitaService.getReceitasByUtente(utente.getId());
+    }
+
+    public Utente updateUtente(Utente utente, MultipartFile imageFile) throws  Exception{
+        //maybe this folder doesnt exist
+        //TODO importante ten que trocar isto para os vossos pcs
+        String folder = "C:\\Users\\sierr\\Desktop\\springSecurity\\B-grupo4\\src\\main\\resources\\static\\img/";
+        byte[] bytes = imageFile.getBytes();
+        Path path = Paths.get(folder+imageFile.getOriginalFilename());
+        Files.write(path, bytes);
+        utente.setProfilePicture(imageFile.getOriginalFilename());
+        return utenteRepository.save(utente);
     }
 }

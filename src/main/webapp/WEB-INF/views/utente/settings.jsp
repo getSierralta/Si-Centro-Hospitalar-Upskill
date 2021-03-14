@@ -59,7 +59,6 @@
                 <input type="text" name="telemovel" placeholder="${utente.getPhone()}"  />
                 <input type="text" name="apolice" placeholder="${utente.getApolice()}"  />
                 <input type="password" name="password" placeholder="Password" required />
-                <!--<input type="file" id="img" name="img">-->
                 <button class="greenbutt" type="submit">Salvar</button>
             </form>
         </div>
@@ -67,14 +66,19 @@
         </div>
         <div class="card medium settings">
             <div class="password ">
-                <p>Trocar Palavra Passe</p>
+                <form method="post" enctype="multipart/form-data" action="/utente/uploadImage" class="log-in">
+                    <input type="file" name="imageFile">
+                    <button type="submit">Trocar foto de perfil</button>
+                </form>
+                <!--<p>Trocar Palavra Passe</p>
+
                 <form action="#">
                     <input type="password" path="password" placeholder="Old Password" required />
                     <input type="password" path="password" placeholder="Password"  />
                     <input type="password" path="password" placeholder="Repeat Password"  />
                     <button class="greenbutt" type="submit">Salvar</button>
                 </form>
-                <a href="#" class="green">Forgot password?</a>
+                <a href="#" class="green">Forgot password?</a>-->
             </div>
             <div class="password">
                 <p>Eliminar conta</p>
