@@ -4,13 +4,16 @@ server:
     include-binding-errors: always
 
 spring:
+  devtools:
+    restart:
+     exclude: "static/**,public/**"
   datasource:
     password: root
     url: jdbc:mysql://localhost:3306/db_centrohospitalar?useTimezone=true&serverTimezone=UTC
     username: root
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect

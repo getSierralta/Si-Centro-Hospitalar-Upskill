@@ -49,6 +49,24 @@
           </div>
       </nav>
     <main class="main">
+        <div class="object_container full_info">
+            <div class="flex">
+                <div class="client_photo">
+                    <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
+                </div>
+                <div class="client_details">
+                     <p>Data de Nascimento: &nbsp;${utente.getDataDeNascimento()}</p>
+                     <p>Numero de Utente: &nbsp; ${utente.getNumUtente()}</p>
+                     <p>Numero de Identidade Fiscal:&nbsp; ${utente.getNif()}</p>
+                </div>
+            </div>
+            <div class="client_info">
+                 <p>Morada: &nbsp; ${utente.getMorada()}</p>
+                <p>E-mail: &nbsp; ${utente.getEmail()}</p>
+                <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
+                <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
+            </div>
+         </div>
 
         <div class="card medium settings">
             <img class="settings_logo" src="/img/logo.svg" alt="logo">
