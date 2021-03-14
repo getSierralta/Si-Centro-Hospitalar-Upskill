@@ -299,3 +299,4 @@ function playTetris(){
     update();
 
 }
+

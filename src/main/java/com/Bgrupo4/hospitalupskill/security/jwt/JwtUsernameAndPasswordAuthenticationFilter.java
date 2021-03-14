@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.jwt;
+package com.Bgrupo4.hospitalupskill.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;

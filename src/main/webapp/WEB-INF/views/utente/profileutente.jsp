@@ -13,43 +13,31 @@
 <body class="container">
         <nav class="nav-row">
             <div class="medium">
-                <a href="utente/profileutente">
+                <a href="/utente/profileutente">
                     <div class="icon home"></div>
                     <span class="none">Perfil</span>
                 </a>
             </div>
-            <div class="medium ">
-                <a href="utente/checkinutente">
-                    <div class="icon medico"></div>
-                    <span class="none">Check-in</span>
-                </a>
-            </div>
             <div class="medium">
-                <a href="utente/tracknumberutente">
+                <a href="/utente/tracknumberutente">
                     <div class="icon consulta"></div>
                     <span class="none">Track Numbers</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="utente/calendariogeralutente">
+                <a href="/utente/formularioCalendario">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario geral</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="utente/calendarutente">
+                <a href="/utente/calendarutente">
                     <div class="icon calendario"></div>
                     <span class="none">Calendario Pessoal</span>
                 </a>
             </div>
-            <div class="medium ">
-                <a href="utente/contactsutente">
-                    <div class="icon contactos"></div>
-                    <span class="none">Support</span>
-                </a>
-            </div>
             <div class="medium">
-                <a href="utente/settings">
+                <a href="/utente/settings">
                     <div class="icon tools"></div>
                     <span class="none">Settings</span>
                 </a>
@@ -71,7 +59,7 @@
             </div>
            <div class="flex">
                 <div class="client_details">
-                    <p>Data de Nascimento: &nbsp;${utente.getBirthday()}</p>
+                    <p>Data de Nascimento: &nbsp;${utente.getDataDeNascimento()}</p>
                     <p>Numero de Utente: &nbsp; ${utente.getNumUtente()}</p>
                     <p>Numero de Identidade Fiscal:&nbsp; ${utente.getNif()}</p>
                 </div>
@@ -83,8 +71,8 @@
                     <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
             </div>
             <div class="middle">
-                <a href="utente/files" class="btn-green-small">Ficheiros</a>
-                <a href="utente/bills" class="btn-green-small">Faturas</a>
+                <a href="/utente/files" class="btn-green-small">Ficheiros</a>
+                <a href="/utente/bills" class="btn-green-small">Faturas</a>
             </div>
         </div>
         <div class="card big profileutente__consulta client_info">
@@ -94,20 +82,22 @@
                 </div>
                 <div class="profileutente__consulta__header">
                     <div class="smallpadding">
-                        <p class="title"><b> Data do Proximo Agendamento</b></p>
-                        <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
-                        <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
-                        <p>Data: &nbsp;${consulta.getDate()}</p>
-                        <p>Hora: &nbsp;${consulta.getTime()}</p>
+                        <div id="consultaUtente">
+                            <p class="title"><b> Data do Proximo Agendamento</b></p>
+                            <p>Especialidade: &nbsp;${consulta.getEspecialidade()}</p>
+                            <p>Recurso Executante:&nbsp; ${consulta.getDoctor().getName()}</p>
+                            <p>Data: &nbsp;${consulta.getDataString()}</p>
+                            <p>Hora: &nbsp;${consulta.getTime()}</p>
+                        </div>
                     </div>
                     <div class="middle">
-                        <button class="btn-green-small">Check-in</button>
-                        <button class="btn-green-small">Ver no calendario</button>
+                        <button class="btn-green-small" onclick="checkin(${consulta.getId()})">Check-in</button>
+                        <button class="btn-green-small" onclick="information()">Senha de informação</button>
                     </div>
                 </div>
 
             </div>
-            <div class="card big profileutente__consulta scroll">
+            <div class="card big profileutente__consulta">
                 <div class="profileutente__consulta--img">
                     <img width="100%" src="../img/imgpills.jpg" alt="consulta">
                 </div>
@@ -126,14 +116,8 @@
 
             </div>
          </div>
-        <!--/Info Box-->
-        <!--Cards-->
-
-
-
-        <!--/Cards-->
     </main>
-    <!--/Main-->
+    <script src="../../js/checkin.js"></script>
 </body>
 
 </html>

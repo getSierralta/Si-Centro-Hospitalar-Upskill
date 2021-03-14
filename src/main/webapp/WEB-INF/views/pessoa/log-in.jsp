@@ -66,9 +66,6 @@
             <p style="font-weight: bolder;"><a href="/registration">Create account</a></p>
         </div>
     </main>
-    <!--/Main-->
-
-    <script src="js/login.js"></script>
 </body>
 
 </html>

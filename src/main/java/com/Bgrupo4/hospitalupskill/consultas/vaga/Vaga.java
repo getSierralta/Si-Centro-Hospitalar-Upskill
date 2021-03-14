@@ -2,13 +2,15 @@ package com.Bgrupo4.hospitalupskill.consultas.vaga;
 
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -17,6 +19,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Vaga")
 @Table(name = "vaga")
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Vaga {
 
     @Id
@@ -25,10 +28,12 @@ public class Vaga {
     private Long id;
 
     @Column(name= "date", nullable = false)
-    private String date;
+    @Temporal(TemporalType.DATE)
+    private Calendar date;
 
     @Column(name= "time", nullable = false)
     private String time;
+
 
     @Column(name= "especialidade", nullable = false)
     private String especialidade;
@@ -41,7 +46,7 @@ public class Vaga {
 
     private boolean free = true;
 
-    public Vaga(String date, String time, String especialidade, Doctor doctor) {
+    public Vaga(Calendar date, String time, String especialidade, Doctor doctor) {
         this.date = date;
         this.time = time;
         this.especialidade = especialidade;
@@ -53,10 +58,12 @@ public class Vaga {
         return "Vaga{" +
                 "id=" + id +
                 ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
                 ", especialidade='" + especialidade + '\'' +
-                ", doctor=" + doctor +
+                ", doctor=" + doctor.getId() +
                 ", free=" + free +
                 '}';
+    }
+    public String getDataString(){
+        return (date.get(Calendar.DATE))+"/"+ (date.get(Calendar.MONTH)+1)+"/"+ (date.get(Calendar.YEAR));
     }
 }

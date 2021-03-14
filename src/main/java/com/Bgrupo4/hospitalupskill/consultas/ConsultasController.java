@@ -6,10 +6,17 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequ
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -20,6 +27,7 @@ public class ConsultasController {
     //todo: authorization
 
     private final ConsultasService consultasService;
+    private final UtenteService utenteService;
 
     @GetMapping("/appointments")
     public ResponseEntity getAppointments(@RequestParam(required = false) Long id) {
@@ -34,19 +42,24 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.getAppointment(id));
     }
 
+    @PostMapping("/appointments/utente/{id}/{especialidade}")
+    public ResponseEntity<Appointment> createAppointmentUtente(@PathVariable Long id, @PathVariable String especialidade) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        return ResponseEntity.ok(consultasService.createAppointment(id, utente));
+    }
+
+
     @PostMapping("/appointments")
     public ResponseEntity<Appointment> createAppointment (@RequestBody AppointmentCreationRequest request) {
         return ResponseEntity.ok(consultasService.createAppointment(request));
     }
 
+
+
     @DeleteMapping("/appointments/{id}")
     public ResponseEntity<Vaga> cancelAppointment (@PathVariable Long id) {
         return ResponseEntity.ok(consultasService.cancelAppointment(id));
-    }
-
-    @PatchMapping("/appointments/{id}")
-    public ResponseEntity<Appointment> updateAppointment (@RequestBody AppointmentCreationRequest request, @PathVariable Long id) {
-        return ResponseEntity.ok(consultasService.updateAppointment(id, request));
     }
 
 

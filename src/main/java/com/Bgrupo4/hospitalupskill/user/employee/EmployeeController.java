@@ -1,56 +1,63 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
-import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
 
-import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.upskill;
-
-@RestController
-@RequestMapping("/api/employee")
+@Controller
+@RequestMapping(path = "employee")
 @AllArgsConstructor
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+    private final SenhaService senhaService;
 
-    @GetMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:read')")
-    public Optional<Employee> getUser(@PathVariable("id") Long id){
-        return employeeService.getUserById(id);
+    @GetMapping(value = "/profile")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showProfile(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Employee employee = employeeService.getLogged(auth);
+        map.put("employee", employee);
+        map.put("senhas", senhaService.getSenhas());
+        map.put("salaDeEspera", ECRA);
+        return "/employee/profile";
     }
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('colaborador:read')")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+
+    //GET do formulário
+    @GetMapping(value = "/check-in")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showCheckInFormulario(ModelMap map){
+        map.put("categorias", senhaService.getCategorias());
+        return "/employee/check-in";
     }
 
-    @DeleteMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
-    public void deleteEmployee(@PathVariable("id") Long id){
-        employeeService.deleteEmployee(id);
+    //POST do formulário
+    @PostMapping(path = "/check-in", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public RedirectView getSenha(SenhaRequest request){
+        Senha senha = senhaService.createSenha(request);
+        return new RedirectView("/employee/check-in/"+senha.getId());
     }
 
-    @PostMapping
-    @PreAuthorize("hasAuthority('colaborador:write')")
-    public void registerNewEmployee(@Validated @RequestBody Employee employee) {
-        employeeService.registerEmployee(employee);
-    }
-
-    @PutMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
-    public void updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeRequest request) {
-        employeeService.updateEmployee(id, request);
+    @GetMapping(value = "/check-in/{id}")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showSenha(@PathVariable("id") Long id, ModelMap map){
+        map.put("senha", senhaService.getSenhaById(id));
+        return "/employee/senha";
     }
 }

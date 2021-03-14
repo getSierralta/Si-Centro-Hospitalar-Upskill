@@ -5,7 +5,7 @@ import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
-import com.Bgrupo4.hospitalupskill.email.EmailSender;
+import com.Bgrupo4.hospitalupskill.registration.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
@@ -66,6 +66,7 @@ public class UtenteService {
         }
         System.out.println("inside the register 2");
         //Todo we should check the request before doing the user cause it gives error if the user is not complete
+        String[] data = request.getDataDeNascimento().split("-");
         String token = applicationUserService.singUpUser(new Utente(
                 request.getNif(),
                 request.getName(),
@@ -75,7 +76,7 @@ public class UtenteService {
                 request.getMorada(),
                 request.getLocalidade(),
                 request.getTelemovel(),
-                request.getDataDeNascimento(),
+                new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
                 request.getApolice(),
                 request.getNumUtente()));
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;
@@ -101,20 +102,18 @@ public class UtenteService {
 
 
     public Appointment getNextAppointment(Utente utente) {
-        List<Appointment> appointment = getAppointments(utente);
+        List<Appointment> appointment = consultasService.getAppointmentsUtenteOrderByDate(utente);
         if (appointment.isEmpty()){
             throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        Collections.sort(appointment);
         return appointment.get(0);
     }
 
     public Receita getLastReceita(Utente utente) {
-        List<Receita> receitas = getReceitas(utente);
+        List<Receita> receitas = receitaService.getReceitasByUtenteOrderByDate(utente);
         if (receitas.isEmpty()){
-            throw new EntityNotFoundException(String.format("O utente %s não tem receitas marcadas", utente.getUsername()));
+            throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        Collections.sort(receitas);
         return receitas.get(0);
     }
 

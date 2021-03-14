@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,7 @@ public class ReceitaService {
         receita.setDoctor(doctor.get());
         receita.setUtente(utente.get());
         receita.setAppointment(appointmentOptional.get());
-        receita.setDate(String.valueOf(LocalDate.now()));
+        receita.setDate(Calendar.getInstance().getTime());
         return receitaRepository.save(receita);
     }
 
@@ -63,4 +64,7 @@ public class ReceitaService {
         return medicamentoRepository.findAllByReceita(id);
     }
 
+    public List<Receita> getReceitasByUtenteOrderByDate(Utente utente) {
+        return receitaRepository.findAllByUtenteOrderByDateAsc(utente);
+    }
 }

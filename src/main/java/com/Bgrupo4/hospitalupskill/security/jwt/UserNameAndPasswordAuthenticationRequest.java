@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.jwt;
+package com.Bgrupo4.hospitalupskill.security.jwt;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

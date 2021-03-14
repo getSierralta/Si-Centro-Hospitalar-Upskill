@@ -1,11 +1,11 @@
 package com.Bgrupo4.hospitalupskill.user;
 
-import com.Bgrupo4.hospitalupskill.user.employee.Employee;
-import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +54,12 @@ public class ApplicationUserService implements UserDetailsService {
         }
     }
 
-
+    //Boiler Plate code
+    //Salvar utilizador
     public void enableAndSave(Utente user){
         boolean userExist = utenteRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
+            throw new IllegalStateException("Este utilizador já se encontra registrado");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -68,7 +69,7 @@ public class ApplicationUserService implements UserDetailsService {
     public void enableAndSave(Doctor user){
         boolean userExist = doctorRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
+            throw new IllegalStateException("Este utilizador já se encontra registrado");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -79,7 +80,7 @@ public class ApplicationUserService implements UserDetailsService {
     public void enableAndSave(Employee user){
         boolean userExist = employeeRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
+            throw new IllegalStateException("Este utilizador já se encontra registrado");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);

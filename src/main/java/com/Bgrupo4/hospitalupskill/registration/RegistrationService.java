@@ -1,6 +1,5 @@
 package com.Bgrupo4.hospitalupskill.registration;
 
-import com.Bgrupo4.hospitalupskill.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationToken;
 import com.Bgrupo4.hospitalupskill.registration.token.ConfirmationTokenService;
@@ -18,7 +17,7 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
 
     @Transactional
-    public String confirmToken(String token) {
+    public boolean confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
@@ -36,7 +35,7 @@ public class RegistrationService {
 
         confirmationTokenService.setConfirmedAt(token);
         applicationUserService.enableUser(confirmationToken.getUser().getEmail(), confirmationToken.getUser().getUserRole().name());
-        return "confirmed";
+        return true;
     }
 
 

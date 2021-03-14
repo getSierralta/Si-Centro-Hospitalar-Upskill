@@ -17,9 +17,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.print.Doc;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,21 +51,6 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteId(id);
     }
 
-    /*
-    //Ver custom queries, devem ser mais eficientes do que isto mas eu tive um B muito fraquinho nesse teste
-    public Appointment getNextAppointment() {
-        List<Appointment> appointments = appointmentRepository.findAll();
-        appointments.sort(Comparator.comparing(Appointment::getDate).thenComparing(Appointment::getTime));
-        for(Appointment appointment: appointments){
-            if(appointment.getDate().isAfter(java.time.LocalDate.now())){
-                if(appointment.getTime().isAfter(java.time.LocalTime.now())){
-                    return appointment;
-                }
-            }
-        }
-        return null;
-    }*/
-
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
         //todo verificar se o appoinment ja existe(?)
@@ -77,6 +65,9 @@ public class ConsultasService {
         BeanUtils.copyProperties(request, appointment);
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
+        appointment.setDate(vaga.get().getDate());
+        appointment.setTime(vaga.get().getTime());
+        appointment.setEspecialidade(vaga.get().getEspecialidade());
         return appointmentRepository.save(appointment);
     }
 
@@ -89,29 +80,37 @@ public class ConsultasService {
         }
         Appointment appointment = new Appointment();
         vagaOptional.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
-        appointment.setDate(vaga.getDate());
-        appointment.setTime(vaga.getTime());
-        appointment.setEspecialidade(vaga.getEspecialidade());
+        appointment.setDate(vagaOptional.get().getDate());
+        appointment.setTime(vagaOptional.get().getTime());
+        appointment.setEspecialidade(vagaOptional.get().getEspecialidade());
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utenteOpt.get());
         return appointmentRepository.save(appointment);
     }
 
-    public Appointment updateAppointment(Long id, AppointmentCreationRequest request) {
-        Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
-        Optional<Utente> utente = utenteRepository.findById(request.getUtente());
-        Optional<Appointment> optionalAppointment  = appointmentRepository.findById(id);
-        if (!doctor.isPresent() || !utente.isPresent() || !optionalAppointment.isPresent()) {
-            throw new EntityNotFoundException(String.format("Utente %s, appointment %s ou Medico %s não foi encontrado",request.getUtente(), id, request.getDoctor()));
+    public Appointment createAppointment(Long id, Utente utente) {
+        Optional<Vaga> vagaOptional = vagaRepository.findById(id);
+        if (vagaOptional.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Vaga %s não foi encontrada", id));
         }
-        Appointment appointment = optionalAppointment.get();
-        appointment.setDate(request.getDate());
-        appointment.setTime(request.getTime());
-        appointment.setDoctor(doctor.get());
-        appointment.setUtente(utente.get());
-        appointment.setStatus(Status.valueOf(request.getStatus()));
-        return appointmentRepository.save(appointment);
+        Vaga vaga = vagaOptional.get();
+        if (vaga.isFree()) {
+            Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
+            if (doctor.isEmpty()) {
+                throw new EntityNotFoundException(String.format("Medico %s não foi encontrada", vaga.getDoctor().getUsername()));
+            }
+            Appointment appointment = new Appointment();
+            updateVaga(vaga.getId(), false);
+            appointment.setDate(vaga.getDate());
+            appointment.setTime(vaga.getTime());
+            appointment.setEspecialidade(vaga.getEspecialidade());
+            appointment.setDoctor(doctor.get());
+            appointment.setUtente(utente);
+            return appointmentRepository.save(appointment);
+        }
+        throw new IllegalArgumentException(String.format("A vaga %s ja foi prenchida", vaga.getId()));
     }
+
 
     public Vaga cancelAppointment(Long id){
         Optional<Appointment> appointment = appointmentRepository.findById(id);
@@ -123,10 +122,10 @@ public class ConsultasService {
             appointment1.setStatus(Status.CANCELLED);
             vaga.setDate(appointment1.getDate());
             vaga.setDoctor(appointment1.getDoctor());
+            vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade());
+            vaga.setDate(appointment1.getDate());
             vaga.setTime(appointment1.getTime());
         });
-        //todo
-        //appointmentRepository.updateById();
         return vagaRepository.save(vaga);
     }
 
@@ -142,10 +141,7 @@ public class ConsultasService {
         return vagaRepository.findAll();
     }
 
-    public List<Vaga> getVagas(String especialidade) {
-        //return vagaRepository.findAllByEspecialidade(especialidade);
-        return null;
-    }
+
 
     public List<Vaga> getVagas(Long id) {
         return vagaRepository.findAllByDoctorId(id);
@@ -164,6 +160,7 @@ public class ConsultasService {
     public Vaga createVaga(Vaga vaga) {
         return vagaRepository.save(vaga);
     }
+
     public void deleteVaga(Long id) {
         vagaRepository.deleteById(id);
     }
@@ -178,4 +175,12 @@ public class ConsultasService {
         return vagaRepository.save(vaga1);
     }
 
+
+    public List<Appointment> getAppointmentsUtenteOrderByDate(Utente utente) {
+        return appointmentRepository.findAllByUtenteOrderByDateAsc(utente);
+    }
+
+    public List<Vaga> getVagas(String especialidade) {
+        return appointmentRepository.findAllByEspecialidade(especialidade);
+    }
 }

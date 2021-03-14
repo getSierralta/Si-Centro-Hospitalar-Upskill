@@ -9,4 +9,6 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 
 
     List<Receita> findAllByUtenteId(Long id);
+
+    List<Receita> findAllByUtenteOrderByDateAsc(Utente utente);
 }

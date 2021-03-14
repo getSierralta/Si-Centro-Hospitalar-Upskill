@@ -1,7 +1,7 @@
 package com.Bgrupo4.hospitalupskill.security;
 
-import com.Bgrupo4.hospitalupskill.auth.AuthenticationProviderImpl;
-import com.Bgrupo4.hospitalupskill.jwt.JwtConfig;
+import com.Bgrupo4.hospitalupskill.security.auth.AuthenticationProviderImpl;
+import com.Bgrupo4.hospitalupskill.security.jwt.JwtConfig;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -11,16 +11,12 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.firewall.HttpFirewall;
-import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.SecretKey;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -46,20 +42,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 //.addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/utente/register","/utente/register/**", "/css/**","/files/**"
-                        ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration").permitAll()
+                .antMatchers("/utente/register","/utente/register/**", "/css/**", "*/css/**","/files/**"
+                        ,"/img/**","/js/**","/","/login","/about-us","/services", "/contacts", "/registration"
+                        ,"/403","/404","/500", "**/calendariogeralutente/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
-                /*.formLogin().loginPage("/login")
+                //.httpBasic();
+                .formLogin().loginPage("/login")
                 .successHandler(successHandler)
-                //.permitAll().defaultSuccessUrl(authSuccessHandler().determineTargetUrl(), true)
                 .and().rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)).key("somethingverysecured")
                 //Todo: make the key secure
                 .and().logout()
                 .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/");*/
+                .logoutSuccessUrl("/");
     }
 
 
@@ -67,7 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){

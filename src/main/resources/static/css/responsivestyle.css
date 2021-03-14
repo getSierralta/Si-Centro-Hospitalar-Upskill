@@ -816,7 +816,12 @@ div.active ul {
     align-items: flex-start;
     min-width: 100%;
     background: var(--grey-background);
-
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow: scroll;
+}
+.card.big.profileutente__consulta::-webkit-scrollbar {
+    display: none;
 }
 .profileutente__consulta--img{
     width: 30%;
@@ -1370,6 +1375,10 @@ input[type=file]{
 	background: var(--grey-background);
 }
 
+#backButton, #nextButton{
+    margin: 0 1rem;
+}
+
 .title-bar {
 	width: 100%;
 	display: table;
@@ -1518,6 +1527,9 @@ input[type=file]{
 .calendar__week .vaga .calendar__date{
     color: var(--color-secondary);
 }
+.color-green{
+    color: var(--color-secondary);
+}
 .calendar__week .full .calendar__date{
     text-decoration: line-through;
     text-decoration-color: var(--color-ternary);
@@ -1588,6 +1600,54 @@ input[type=file]{
         font-size: 1rem;
     }
 }
+
+/* calendar pop up */
+
+.popup__content__consulta{
+    margin: 2rem;
+}
+
+#marcarConsulta{
+    display: flex;
+    align-items: center;
+    background: var(--color-secondary);
+    transition: all .3s ease-in-out;
+    color: var(--color-white);
+    padding: .1rem .5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+#title{
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+#content{
+    padding: 2rem;
+    font-size: 1rem;
+}
+#marcarConsulta .icon.consulta{
+   background-color: var(--color-white);
+   margin-right: .5rem
+}
+#cancelarConsulta{
+    display: flex;
+    align-items: center;
+    background: var(--color-grey);
+    transition: all .3s ease-in-out;
+    color: var(--color-darkest);
+    padding: .1rem .5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+
 
 /* extra */
 .white_box {
