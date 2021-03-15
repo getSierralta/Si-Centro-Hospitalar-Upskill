@@ -21,10 +21,7 @@ import javax.print.Doc;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -89,7 +86,7 @@ public class ConsultasService {
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
         Optional<Vaga> vaga = vagaRepository.findById(request.getVaga());
         if (!doctor.isPresent() || !utente.isPresent() || !vaga.isPresent()) {
-            throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado",request.getUtente(), request.getVaga(), request.getDoctor()));
+            throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado", request.getUtente(), request.getVaga(), request.getDoctor()));
         }
         Appointment appointment = new Appointment();
         vaga.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
@@ -142,7 +139,7 @@ public class ConsultasService {
         throw new IllegalArgumentException(String.format("A vaga %s ja foi prenchida", vaga.getId()));
     }
 
-    public Vaga cancelAppointment(Long id){
+    public Vaga cancelAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
         if (!appointment.isPresent()) {
             throw new EntityNotFoundException(String.format("A marcação %s nao foi encontrada", id));
@@ -181,4 +178,15 @@ public class ConsultasService {
         vaga1.setFree(free);
         return vagaRepository.save(vaga1);
     }
+
+    public List<Appointment> getAppointmentsUtenteByDate(Utente utente, String dia) {
+        String[] split = dia.split("-");
+        String[] m = split[1].split("");
+        String[] d = split[2].split("");
+        String month = m.length == 2 ? split[1] : "0" + split[1];
+        String day = d.length == 2 ? split[2] : "0" + split[2];
+        return appointmentRepository.findAllByUtenteAndDate(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
+    }
+
 }
+

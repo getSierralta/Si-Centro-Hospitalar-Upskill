@@ -1607,7 +1607,7 @@ input[type=file]{
     margin: 2rem;
 }
 
-#marcarConsulta{
+#marcarConsulta,  #checkIn{
     display: flex;
     align-items: center;
     background: var(--color-secondary);
@@ -1618,6 +1618,7 @@ input[type=file]{
     margin-top: 1rem;
     cursor: pointer;
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 #title{
@@ -1631,11 +1632,11 @@ input[type=file]{
     padding: 2rem;
     font-size: 1rem;
 }
-#marcarConsulta .icon.consulta{
+#marcarConsulta .icon.consulta, #checkIn .icon.consulta {
    background-color: var(--color-white);
    margin-right: .5rem
 }
-#cancelarConsulta{
+#cancelarConsulta, #fecharConsulta{
     display: flex;
     align-items: center;
     background: var(--color-grey);

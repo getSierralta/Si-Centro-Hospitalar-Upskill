@@ -101,22 +101,24 @@
                         </div>                    
                     </div> 
                     
-                    <div class="flex">
-                                               
-                        <button id="cancelarConsulta" >
-                            cancelar
+                    <div class="flex">                                               
+                        <button id="fecharConsulta" >
+                            Fechar
                         </button>
-                        <button id="marcarConsulta">
+                        <button id="checkIn">
                             <div class="icon consulta"></div>
-                            Marcar Consulta
-                        </button>  
+                            Check-in
+                        </button> 
+                        <button id="cancelarConsulta" >
+                            Cancelar
+                        </button> 
                     </div>
                </div>
             </div>
         </div>
 
     </main>
-    <script src="../../js/calendar.js"></script>
+    <script src="../../js/calendarpersonal.js"></script>
 </body>
 
 </html>
