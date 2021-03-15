@@ -56,4 +56,20 @@ public class Invoice {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", nif='" + nif + '\'' +
+                ", dueDate='" + dueDate + '\'' +
+                ", issuedDate='" + issuedDate + '\'' +
+                ", paidDate='" + paidDate + '\'' +
+                ", value='" + value + '\'' +
+                ", items=" + items +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
