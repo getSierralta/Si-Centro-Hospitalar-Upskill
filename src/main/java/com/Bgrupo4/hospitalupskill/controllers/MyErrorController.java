@@ -27,7 +27,7 @@ public class MyErrorController implements ErrorController {
                 return "500";
             }
         }
-        return "error";
+        return "pessoa/error";
     }
 
     @Override

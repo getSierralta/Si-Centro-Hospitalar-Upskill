@@ -1,0 +1,66 @@
+package com.Bgrupo4.hospitalupskill.user.admin.controllers;
+
+
+import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.controllers.DoctorManagementController;
+import com.Bgrupo4.hospitalupskill.user.employee.controllers.EmployeeRestController;
+import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+
+@Controller
+@RequestMapping("/admin")
+@RequiredArgsConstructor
+public class AdminController {
+
+    private final DoctorManagementController doctorManagementController;
+    private final UtenteManagementController utenteManagementController;
+    private final AdminManagementController adminManagementController;
+    private final EmployeeRestController employeeRestController;
+
+    @GetMapping(value = "/profile")
+    public String showProfile(){
+        return "/admin/profile";
+    }
+
+    @GetMapping(value = "/lista-utentes")
+    public String showUtentes(ModelMap map) {
+        map.put("utenteList", utenteManagementController.getAllUtentes());
+        return "/admin/lista-utentes";
+    }
+
+    @GetMapping(value = "/lista-medicos")
+    public String showDoctors(ModelMap map) {
+        map.put("doctorList", doctorManagementController.getAllDoctors());
+        return "/admin/lista-medicos";
+    }
+
+    @GetMapping(value = "/lista-employees")
+    public String showEmployees(ModelMap map) {
+        map.put("employeeList", employeeRestController.getAllEmployees());
+        return "/admin/lista-employees";
+    }
+
+    @GetMapping(value = "/lista-admin")
+    public String showAdmins(ModelMap map) {
+        map.put("adminList", adminManagementController.getAllAdmin());
+        return "/admin/lista-admin";
+    }
+
+    @GetMapping(value = "/settings")
+    public String showSettings(){
+        return "/admin/settings";
+    }
+
+    @GetMapping(value = "/register-employee")
+    public String showRegisterEmployee(ModelMap map) {
+        map.put("especialidades", Especialidade.values());
+        return "/admin/register-employee";
+    }
+
+}
