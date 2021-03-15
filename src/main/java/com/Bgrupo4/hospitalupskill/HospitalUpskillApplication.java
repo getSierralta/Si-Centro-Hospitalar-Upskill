@@ -64,7 +64,7 @@ public class HospitalUpskillApplication {
 
             Vaga vaga = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 25), "14:30", Especialidade.CARDIOLOGIA.name(), doctor);
             Vaga vaga1 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate()), "16:30", Especialidade.CARDIOLOGIA.name(), doctor);
-            Vaga vaga2 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 15), "15:30", Especialidade.CARDIOLOGIA.name(), doctor);
+            Vaga vaga2 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 17), "15:30", Especialidade.CARDIOLOGIA.name(), doctor);
             Vaga vaga3 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 16), "13:30", Especialidade.CARDIOLOGIA.name(), doctor);
             consultasService.createVaga(vaga);
             consultasService.createVaga(vaga1);
