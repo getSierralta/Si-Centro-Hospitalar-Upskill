@@ -58,7 +58,8 @@ public class AdminManagementController {
         adminService.updateAdmin(id, request);
     }
 
-    @RequestMapping(value = "/register-employee", method = RequestMethod.POST)
+    @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView adminregister(AdminRegistrationRequest request) {
         adminService.registerNew(request);
         ModelAndView modelAndView = new ModelAndView();

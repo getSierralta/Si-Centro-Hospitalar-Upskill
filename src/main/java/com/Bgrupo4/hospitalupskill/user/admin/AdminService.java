@@ -55,7 +55,7 @@ public class AdminService {
         String[] data = request.getDataDeNascimento().split("-");
         switch (request.getRole()) {
             case "employee":
-                applicationUserService.singUpEmployee(new Employee(
+                applicationUserService.enableAndSave(new Employee(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
@@ -68,7 +68,7 @@ public class AdminService {
                         UserRole.COLABORADOR.toString()));
                 break;
             case "doctor":
-                applicationUserService.singUpDoctor(new Doctor(
+                applicationUserService.enableAndSave(new Doctor(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
@@ -95,7 +95,7 @@ public class AdminService {
             //            UserRole.RESPONSAVEL.toString()));
             //    break;
             case "admin":
-                applicationUserService.singUpAdmin(new Admin(
+                applicationUserService.enableAndSave(new Admin(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
