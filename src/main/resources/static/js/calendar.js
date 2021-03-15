@@ -123,7 +123,7 @@ function marcarConsulta(vaga){
             content.innerHTML = "";
             const error = document.createElement('img'); 
             error.classList.add('inversed');
-            error.src = "/img/jenipurr-chile-29.svg";
+            error.src = "/img/britney-squirrels-booked-33.svg";
             content.appendChild(error);
         }   
         if(xhr.status == 200){

@@ -2082,6 +2082,11 @@ div[class*="info-"].active {
     mask-image: url("../img/technical-support.svg");
 }
 
+.icon.notes{
+    -webkit-mask-image: url("../img/notes.svg");
+    mask-image: url("../img/notes.svg");
+}
+
 .icon.left-arrow {
     -webkit-mask-image: url("../img/expand-arrow.svg");
     mask-image: url("../img/expand-arrow.svg");
