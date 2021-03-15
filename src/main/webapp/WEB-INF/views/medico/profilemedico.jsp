@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/responsivestyle.css">
     <title>Medico</title>
 </head>
-
+<body>
 <nav class="nav-row">
             <div class="medium">
                 <a href="/medico/profilemedico">
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="medium">
-                <a href="/utente/settings">
+                <a href="/medico/settings">
                     <div class="icon tools"></div>
                     <span class="none">Settings</span>
                 </a>

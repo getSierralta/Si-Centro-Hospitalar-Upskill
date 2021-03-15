@@ -96,7 +96,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE')")
     public List<Vaga> getVagas(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         return vagaService.getVagas(especialidade, dia);
     }
@@ -130,7 +130,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}/one")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE')")
     public List<Vaga> getOneVaga(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         List<Vaga> vaga = new ArrayList<>();
         vaga.add(vagaService.getOneVaga(especialidade, dia));

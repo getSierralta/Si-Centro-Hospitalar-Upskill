@@ -11,33 +11,39 @@
 </head>
 
 <body class="container">
-       <nav class="nav-row">
+   <nav class="nav-row">
            <div class="medium">
-               <a href="/utente/profileutente">
+               <a href="/medico/profilemedico">
                    <div class="icon home"></div>
                    <span class="none">Perfil</span>
                </a>
            </div>
            <div class="medium">
-               <a href="/utente/tracknumberutente">
-                   <div class="icon consulta"></div>
-                   <span class="none">Track Numbers</span>
+               <a href="/medico/salaDeEspera">
+                   <div class="icon informacao"></div>
+                   <span class="none">Comenzar Consulta</span>
+               </a>
+           </div>
+           <div class="medium">
+               <a href="/medico/salaDeEspera">
+                   <div class="icon notes"></div>
+                   <span class="none">Lista de espera</span>
                </a>
            </div>
            <div class="medium ">
-               <a href="/utente/formularioCalendario">
+               <a href="/medico/formularioCalendario">
                    <div class="icon calendario"></div>
                    <span class="none">Calendario geral</span>
                </a>
            </div>
            <div class="medium ">
-               <a href="/utente/calendarutente">
+               <a href="/medico/calendarmedico">
                    <div class="icon calendario"></div>
                    <span class="none">Calendario Pessoal</span>
                </a>
            </div>
            <div class="medium">
-               <a href="/utente/settings">
+               <a href="/medico/settings">
                    <div class="icon tools"></div>
                    <span class="none">Settings</span>
                </a>
@@ -50,7 +56,7 @@
            </div>
        </nav>
     <main class="main">
-        <div id="flag">false</div>
+
         <div class="card map calendar-contain--body">
             <main class="calendar-contain">
                 <section class="title-bar">
@@ -101,22 +107,24 @@
                         </div>                    
                     </div> 
                     
-                    <div class="flex">
-                                               
-                        <button id="cancelarConsulta" >
-                            cancelar
+                    <div class="flex">                                               
+                        <button id="fecharConsulta" >
+                            Fechar
                         </button>
-                        <button id="marcarConsulta">
+                        <button id="checkIn">
                             <div class="icon consulta"></div>
-                            Marcar Consulta
-                        </button>  
+                            Check-in
+                        </button> 
+                        <button id="cancelarConsulta" >
+                            Cancelar
+                        </button> 
                     </div>
                </div>
             </div>
         </div>
 
     </main>
-    <script src="../../js/calendar.js"></script>
+    <script src="../../js/calendarpersonal.js"></script>
 </body>
 
 </html>

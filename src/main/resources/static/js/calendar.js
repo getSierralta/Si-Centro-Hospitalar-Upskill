@@ -9,9 +9,11 @@ const dt = new Date();
 const popUp = document.getElementById("popup");
 const popUpContent = document.getElementById("popup__content");
 let id = null;
-const url = window.location.href;
-const st = url.split("/");
+const es = window.location.href;
+const st = es.split("/");
 const especialidade = st[5];
+const flag = document.getElementById('flag');
+
 
 function openModal(monthName, daySquare, month){
     if(lastDaySquare != null){
@@ -73,14 +75,7 @@ function abrirPopUp(vaga){
     popUpContent.style.opacity = '1';
     popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
     
-    document.getElementById("cancelarConsulta").removeEventListener('click',  () => {
-        marcarConsulta(vaga);
-    });
-    //butons
-    document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
-    document.getElementById("marcarConsulta").addEventListener('click',  () => {
-        marcarConsulta(vaga);
-    });
+    
 
     //content 
     const content = document.getElementById('content');
@@ -105,15 +100,37 @@ function abrirPopUp(vaga){
     content.appendChild(time);
     content.appendChild(es);
     content.appendChild(medico);
-    
+    if(flag.innerText === "true"){
+        console.log("it got here");
+        const insertUtente = document.createElement('input'); 
+        insertUtente.name = "utente";
+        insertUtente.placeholder = "Id do Utente: ";
+        insertUtente.id = "insertUtente";
+        content.appendChild(insertUtente);
+    } 
+
+    document.getElementById("cancelarConsulta").removeEventListener('click',  () => {
+        marcarConsulta(vaga);
+    });
+    //butons
+    document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
+    document.getElementById("marcarConsulta").addEventListener('click',  () => {
+        marcarConsulta(vaga);
+    });  
 }
 
 function marcarConsulta(vaga){
-    let xhr = new XMLHttpRequest();
+    let url;
     id = null;
     id = vaga.id;
-
-    const url = `http://localhost:8080/api/consultas/appointments/utente/${id}/${vaga.especialidade}`;
+    if(flag.innerText === "true"){
+        const utente = document.getElementById("insertUtente").value;
+        url = `http://localhost:8080/api/consultas/appointments/${utente}/${id}`;
+        console.log(utente);
+    } else{
+        url = `http://localhost:8080/api/consultas/appointments/utente/${id}`;
+    }  
+    let xhr = new XMLHttpRequest();    
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(); 
@@ -125,7 +142,15 @@ function marcarConsulta(vaga){
             error.classList.add('inversed');
             error.src = "/img/britney-squirrels-booked-33.svg";
             content.appendChild(error);
-        }   
+        }  
+        if(xhr.status == 400){
+            const content = document.getElementById('content');
+            content.innerHTML = "";
+            const confirm = document.createElement('img'); 
+            confirm.classList.add('inversed');
+            confirm.src = " /img/lady-panda-bad-request-30.svg";
+            content.appendChild(confirm);
+        }    
         if(xhr.status == 200){
             const content = document.getElementById('content');
             content.innerHTML = "";
@@ -184,11 +209,9 @@ function load(){
         const dateSquare = document.createElement('span');
         dateSquare.classList.add('calendar__date');
         daySquare.appendChild(dateSquare);
-        //const dayString = `${month + 1}/${i - paddingDays}/${year}`;
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
             const d = year + "-"+month+ "-"+dateSquare.innerText;
-            //http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}/one
             fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}`)
             .then(response => response.json())
             .then(data => data.length === 0 ? daySquare.classList.add('full') : daySquare.classList.add('color-green'));  
