@@ -37,18 +37,12 @@ public class DoctorController {
         return "medico/formularioCalendario";
     }
 
-    @GetMapping(value = "/calendariomedico/{especialidade}")
+    @GetMapping(value = "/calendarioEmployee/{especialidade}")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showCalendarioGeral(@PathVariable String especialidade){
         return "medico/calendariomedico";
     }
 
-
-    @GetMapping(value = "/calendariomedico/{especialidade}/error")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
-    public String showCalendarioGeralError(@PathVariable String especialidade){
-        return "medico/calendariomedico";
-    }
 
     @GetMapping(value = "/lista-utentes")
     public String showUtentes(ModelMap map) {

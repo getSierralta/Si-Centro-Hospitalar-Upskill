@@ -96,7 +96,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}")
-    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
     public List<Vaga> getVagas(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         return vagaService.getVagas(especialidade, dia);
     }

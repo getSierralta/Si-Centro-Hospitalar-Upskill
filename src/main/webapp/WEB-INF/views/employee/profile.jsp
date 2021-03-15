@@ -25,31 +25,31 @@
                 </a>
             </div>
             <div class="medium ">
-                <a href="employee/calendariogeral">
+                <a href="/employee/formularioCalendario">
                     <div class="icon calendario"></div>
                     <span class="none">Calendário geral</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="employee/show-all-utentes">
+                <a href="/employee/show-all-utentes">
                     <div class="icon calendario"></div>
                     <span class="none">Utentes</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="employee/payments">
+                <a href="/employee/payments">
                     <div class="icon contactos"></div>
                     <span class="none">Pagamentos</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="employee/saladeespera">
+                <a href="/employee/saladeespera">
                     <div class="icon consulta"></div>
                         <span class="none">Sala de Espera</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="employee/settings">
+                <a href="/employee/settings">
                     <div class="icon tools"></div>
                     <span class="none">Definições</span>
                 </a>
