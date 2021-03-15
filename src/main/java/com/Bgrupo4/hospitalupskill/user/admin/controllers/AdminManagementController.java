@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
+import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
@@ -16,19 +17,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/admin")
 @AllArgsConstructor
 public class AdminManagementController {
 
     @Autowired
     private AdminService adminService;
 
+    private final RegistrationService registrationService;
     private final AdminRepository adminRepository;
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('colaborador:read')")
-    public Optional<Admin> getAdmin(@PathVariable("id") Long id){
+    public Optional<Admin> getAdmin(@PathVariable("id") Long id) {
         return adminService.getUserById(id);
     }
 
@@ -40,7 +41,7 @@ public class AdminManagementController {
 
     @DeleteMapping(path = "{id}")
     @PreAuthorize("hasAuthority('colaborador:write')")
-    public void deleteAdmin(@PathVariable("id") Long id){
+    public void deleteAdmin(@PathVariable("id") Long id) {
         adminService.deleteAdmin(id);
     }
 
@@ -56,19 +57,9 @@ public class AdminManagementController {
         adminService.updateAdmin(id, request);
     }
 
-    public Admin getLogged(Authentication auth) throws Exception {
-        String principal = auth.getPrincipal().toString();
-        String[] split = principal.split("username='");
-        String[] split2 = split[1].split("',");
-        Optional<Admin> admin = getUserByUsername(split2[0]);
-        if (admin.isEmpty()){
-            throw new Exception("There's no logged person");
-        }
-        return admin.get();
-    }
 
     @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ModelAndView adminregister(AdminRegistrationRequest request){
+    public ModelAndView adminregister(AdminRegistrationRequest request) {
         adminService.registerNew(request);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/register-success");
@@ -76,11 +67,6 @@ public class AdminManagementController {
     }
 
 
-
-
-    public Optional<Admin> getUserByUsername(String username) {
-        return adminRepository.findByUsername(username);
-    }
 }
 
 

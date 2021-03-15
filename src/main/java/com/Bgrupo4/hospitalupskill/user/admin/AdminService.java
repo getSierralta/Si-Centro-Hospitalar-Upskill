@@ -7,6 +7,7 @@ import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -107,4 +108,21 @@ public class AdminService {
                 break;
         }
     }
+
+
+    public Admin getLogged(Authentication auth) throws Exception {
+        String principal = auth.getPrincipal().toString();
+        String[] split = principal.split("username='");
+        String[] split2 = split[1].split("',");
+        Optional<Admin> admin = getUserByUsername(split2[0]);
+        if (admin.isEmpty()){
+            throw new Exception("There's no logged person");
+        }
+        return admin.get();
+    }
+
+    public Optional<Admin> getUserByUsername(String username) {
+        return adminRepository.findByUsername(username);
+    }
+
 }

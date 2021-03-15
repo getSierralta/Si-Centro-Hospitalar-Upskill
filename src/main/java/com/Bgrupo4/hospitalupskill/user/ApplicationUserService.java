@@ -46,11 +46,17 @@ public class ApplicationUserService implements UserDetailsService {
                 utenteRepository.enableUser(email);
                 break;
             case "MEDICO":
+                doctorRepository.enableUser(email);
+                break;
             case "MEDICO_RESPONSAVEL":
                 doctorRepository.enableUser(email);
                 break;
             case "RESPONSAVEL":
+                employeeRepository.enableUser(email);
+                break;
             case "COLABORADOR":
+                employeeRepository.enableUser(email);
+                break;
             case "ADMIN":
                 adminRepository.enableUser(email);
                 break;

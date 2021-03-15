@@ -59,11 +59,7 @@ public class AdminController {
 
     @GetMapping(value = "/register-employee")
     public String showRegisterEmployee(ModelMap map) {
-        ArrayList<String> especilidades = new ArrayList<>();
-        for(Especialidade especiaidade : Especialidade.values()){
-            especilidades.add(especiaidade.toString());
-        }
-        map.put("especialidades", especilidades);
+        map.put("especialidades", Especialidade.values());
         return "/admin/register-employee";
     }
 
