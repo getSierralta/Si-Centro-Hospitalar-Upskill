@@ -1,14 +1,8 @@
 package com.Bgrupo4.hospitalupskill.user.admin;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 public class AdminRegistrationRequest {
     private final String nif;
     private final String name;

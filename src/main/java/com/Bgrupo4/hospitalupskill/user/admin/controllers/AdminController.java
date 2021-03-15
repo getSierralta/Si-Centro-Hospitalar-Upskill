@@ -1,11 +1,16 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 
+import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.controllers.DoctorManagementController;
 import com.Bgrupo4.hospitalupskill.user.employee.controllers.EmployeeRestController;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +28,17 @@ public class AdminController {
     private final AdminManagementController adminManagementController;
     private final EmployeeRestController employeeRestController;
 
+    @Autowired
+    AdminService adminService;
+
     @GetMapping(value = "/profile")
-    public String showProfile(){
+    public String showProfile(ModelMap map){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            map.put("admin", adminService.getLogged(auth));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "/admin/profile";
     }
 
@@ -53,14 +67,30 @@ public class AdminController {
     }
 
     @GetMapping(value = "/settings")
-    public String showSettings(){
+    public String showSettings(ModelMap map){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            map.put("admin", adminService.getLogged(auth));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "/admin/settings";
     }
 
     @GetMapping(value = "/register-employee")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String showRegisterEmployee(ModelMap map) {
         map.put("especialidades", Especialidade.values());
         return "/admin/register-employee";
     }
+
+    @GetMapping(value = "/register-success")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String showRegisterSuccess() {
+        return "/admin/register-success";
+    }
+
+
+
 
 }

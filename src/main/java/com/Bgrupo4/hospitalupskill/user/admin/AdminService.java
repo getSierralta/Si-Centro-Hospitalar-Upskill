@@ -7,6 +7,7 @@ import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,7 @@ public class AdminService {
         return adminRepository.save(admin1);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void registerNew(AdminRegistrationRequest request) {
         String[] data = request.getDataDeNascimento().split("-");
         switch (request.getRole()) {
