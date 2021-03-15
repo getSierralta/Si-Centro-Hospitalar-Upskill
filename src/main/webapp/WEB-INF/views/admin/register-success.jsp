@@ -55,7 +55,7 @@
     <!--Main-->
     <main class="full_main">
         <div class="white_box transparent_box">
-            <img class="inversed" src="/img/meowie-email-24.svg" alt="please confirm your email">
+            <img class="inversed" src="/img/corgi-maguire-registrado-sucesso-34.svg" alt="registado com sucesso">
         </div>
     </main>
     <!--/Main-->

@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
@@ -51,63 +52,67 @@ public class AdminService {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void registerNew(AdminRegistrationRequest request) {
-        String[] data = request.getDataDeNascimento().split("-");
-        switch (request.getRole()) {
-            case "employee":
-                applicationUserService.enableAndSave(new Employee(
-                        request.getNif(),
-                        request.getName(),
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        request.getMorada(),
-                        request.getLocalidade(),
-                        request.getTelemovel(),
-                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-                        UserRole.COLABORADOR.toString()));
-                break;
-            case "doctor":
-                applicationUserService.enableAndSave(new Doctor(
-                        request.getNif(),
-                        request.getName(),
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        request.getMorada(),
-                        request.getLocalidade(),
-                        request.getTelemovel(),
-                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-                        request.getCedula(),
-                        request.getEspecialidade()));
-                break;
-            //case "responsavel":
-            //    applicationUserService.singUpResponsavel(new Responsavel(
-            //            request.getNif(),
-            //            request.getName(),
-            //            request.getUsername(),
-            //            request.getEmail(),
-            //            request.getPassword(),
-            //            request.getMorada(),
-            //            request.getLocalidade(),
-            //            request.getTelemovel(),
-            //            new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-            //            UserRole.RESPONSAVEL.toString()));
-            //    break;
-            case "admin":
-                applicationUserService.enableAndSave(new Admin(
-                        request.getNif(),
-                        request.getName(),
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        request.getMorada(),
-                        request.getLocalidade(),
-                        request.getTelemovel(),
-                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-                        UserRole.ADMIN.toString()
-                        ));
-                break;
+    public void registerNew(AdminRegistrationRequest request) throws Exception {
+        try {
+            String[] data = request.getDataDeNascimento().split("-");
+            switch (request.getRole()) {
+                case "employee":
+                    applicationUserService.enableAndSave(new Employee(
+                            request.getNif(),
+                            request.getName(),
+                            request.getUsername(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            request.getMorada(),
+                            request.getLocalidade(),
+                            request.getTelemovel(),
+                            new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                            UserRole.COLABORADOR.toString()));
+                    break;
+                case "doctor":
+                    applicationUserService.enableAndSave(new Doctor(
+                            request.getNif(),
+                            request.getName(),
+                            request.getUsername(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            request.getMorada(),
+                            request.getLocalidade(),
+                            request.getTelemovel(),
+                            new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                            request.getCedula(),
+                            request.getEspecialidade()));
+                    break;
+                case "responsavel":
+                    applicationUserService.enableAndSave(new Employee(
+                            request.getNif(),
+                            request.getName(),
+                            request.getUsername(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            request.getMorada(),
+                            request.getLocalidade(),
+                            request.getTelemovel(),
+                            new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                            UserRole.RESPONSAVEL.toString()));
+                    break;
+                case "admin":
+                    applicationUserService.enableAndSave(new Admin(
+                            request.getNif(),
+                            request.getName(),
+                            request.getUsername(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            request.getMorada(),
+                            request.getLocalidade(),
+                            request.getTelemovel(),
+                            new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                            UserRole.ADMIN.toString()
+                    ));
+                    break;
+            }
+        }catch (Exception e){
+            throw new Exception();
         }
     }
 

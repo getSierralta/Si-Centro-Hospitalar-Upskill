@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -61,12 +62,15 @@ public class AdminManagementController {
     @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView adminregister(AdminRegistrationRequest request) {
-        adminService.registerNew(request);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/register-success");
+        try {
+            adminService.registerNew(request);
+            modelAndView.setViewName("/admin/register-success");
+        } catch (Exception e) {
+            modelAndView.setViewName("/admin/register-error");
+        }
         return modelAndView;
     }
-
 }
 
 

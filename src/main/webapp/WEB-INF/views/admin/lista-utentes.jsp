@@ -13,46 +13,44 @@
 </head>
 
 <body class="container blue">
-        <nav class="nav-row">
-            <div class="medium">
-                <a href="profile">
-                    <div class="icon home"></div>
-                    <span class="none">Perfil</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="register-employeer">
-                    <div class="icon utente"></div>
-                    <span class="none">Registar Novo</span>
-                </a>
-            </div>
-
-            <div class="medium ">
-                <a href="lista-employees">
-                    <div class="icon calendario"></div>
-                    <span class="none">Employees</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="lista-medicos">
-                    <div class="icon medico"></div>
-                    <span class="none">Medicos</span>
-                </a>
-            </div>
-            <div class="medium ">
-                <a href="lista-admin">
-                    <div class="icon support"></div>
-                    <span class="none">Administradores</span>
-                </a>
-            </div>
-
-            <div class="medium">
-                <a href="/logout">
-                    <div class="icon logout"></div>
-                    <span class="none">LogOut</span>
-                </a>
-            </div>
-        </nav>
+         <nav class="nav-row">
+                    <div class="medium">
+                        <a href="profile">
+                            <div class="icon home"></div>
+                            <span class="none">Perfil</span>
+                        </a>
+                    </div>
+                    <div class="medium">
+                        <a href="lista-utentes">
+                            <div class="icon consulta"></div>
+                            <span class="none">Utentes</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="lista-employees">
+                            <div class="icon calendario"></div>
+                            <span class="none">Employees</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="lista-medicos">
+                            <div class="icon medico"></div>
+                            <span class="none">Medicos</span>
+                        </a>
+                    </div>
+                    <div class="medium ">
+                        <a href="lista-admin">
+                            <div class="icon support"></div>
+                            <span class="none">Administradores</span>
+                        </a>
+                    </div>
+                    <div class="medium">
+                        <a href="/logout">
+                            <div class="icon logout"></div>
+                            <span class="none">LogOut</span>
+                        </a>
+                    </div>
+                </nav>
     <!--Main-->
     <main class="main">
         <!--Header-->
@@ -64,7 +62,7 @@
         <div class="object_container full_grid">
             <div class="person_list_container">
                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="utente">
+                    <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
                 <div class="person_list">
@@ -85,13 +83,16 @@
                                 <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                             </div>
                             <div class="client_details">
-                                <p><b>${utente.getName()}</b><br>
-                                <b>${utente.getNif()}</b></p>
+                                <p><b>User Name:</b> &nbsp;${utente.getUsername()}</p>
+                                <p><b>Nome:</b> &nbsp;${utente.getName()}</p>
+                                <p><b>Data de Nascimento:</b> &nbsp;${utente.getDataDeNascimento()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${utente.getCedula()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Next appointment</b> N/A</p>
-                                <p><b>Last appointment</b> N/A</p>
-                                <p><b>Email</b> ${utente.getEmail()}</p>
+                               <p><b>Morada:</b> &nbsp;${utente.getMorada()}</p>
+                               <p><b>E-mail:</b> &nbsp;${utente.getEmail()}</p>
+                               <p><b>Localidade:</b>  &nbsp;${utente.getLocalidade()} </p>
+                               <p><b>Telemovel:</b> &nbsp; ${utente.getPhone()} </p>
                             </div>
                         </div>
                         <div class="person_body">

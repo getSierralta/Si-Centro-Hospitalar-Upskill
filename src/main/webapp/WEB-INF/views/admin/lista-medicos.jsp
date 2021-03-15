@@ -65,20 +65,24 @@
         <div class="object_container full_grid">
             <div class="person_list_container">
                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="utente">
+                    <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
+                 <form class="person_form" id="searchPerson" action="#" method="POST">
+                     <input type="text" name="seguro" placeholder="Especialidade">
+                     <button type="submit" class="icon search"></button>
+                 </form>
                 <div class="person_list">
-                    <c:forEach var="medico" items="${medicoList}">
+                    <c:forEach var="doctor" items="${doctorList}">
                         <a href="#/" class="person_button">
-                            <p>${medico.getName()}</p>
-                            <p>${medico.getNif()}</p>
+                            <p>${doctor.getName()}</p>
+                            <p>${doctor.getNif()}</p>
                         </a>
                     </c:forEach>
                 </div>
             </div>
             <div class="person_viewer">
-                <c:forEach var="utente" items="${utenteList}" varStatus="loop">
+                <c:forEach var="doctor" items="${doctorList}" varStatus="loop">
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
@@ -86,13 +90,18 @@
                                 <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                             </div>
                             <div class="client_details">
-                                <p><b>${medico.getName()}</b><br>
-                                <b>${medico.getNif()}</b></p>
+                                <p><b>User Name:</b> &nbsp;${doctor.getUsername()}</p>
+                                <p><b>Nome:</b> &nbsp;${doctor.getName()}</p>
+                                <p><b>Data de Nascimento:</b> &nbsp;${doctor.getDataDeNascimento()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${doctor.getNif()}</p>
+                                <p><b>Numero de Cedula:</b> &nbsp;${doctor.getNif()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Next appointment</b> N/A</p>
-                                <p><b>Last appointment</b> N/A</p>
-                                <p><b>Email</b> ${medico.getEmail()}</p>
+                               <p><b>Morada:</b> &nbsp;${doctor.getMorada()}</p>
+                               <p><b>E-mail:</b> &nbsp;${doctor.getEmail()}</p>
+                               <p><b>Localidade:</b>  &nbsp;${doctor.getLocalidade()} </p>
+                               <p><b>Telemovel:</b> &nbsp; ${doctor.getPhone()} </p>
+                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade()} </p>
                             </div>
                         </div>
                         <div class="person_body">

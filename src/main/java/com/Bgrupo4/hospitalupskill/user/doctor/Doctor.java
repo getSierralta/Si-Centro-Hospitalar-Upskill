@@ -45,22 +45,6 @@ public class Doctor extends ApplicationUser {
     @Column(name= "especialidade", nullable = false, columnDefinition = "TEXT")
     private String especialidade;
 
-    /*@OneToMany
-    @JoinColumn(nullable = false,name = "unidade")
-    private Unidade unidade;*/
-
-    public Doctor(String nif, String name, String username, String email, String password, String role, String cedula) {
-        super(nif, name, username, email, password, role);
-        this.cedula = cedula;
-    }
-
-    public Doctor(String nif, String name, String username, String email, String password, String role, Unidade unidade, String cedula, String especialidade) {
-        super(nif, name, username, email, password, role);
-        this.cedula = cedula;
-        this.especialidade = especialidade;
-        //this.unidade = unidade;
-    }
-
     public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, String especialidade) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.MEDICO.name());
         this.cedula = cedula;

@@ -59,8 +59,10 @@
             </div>
            <div class="flex">
                 <div class="client_details">
-                    <p>Data de Nascimento: &nbsp;${admin.getDataDeNascimento()}</p>
-                    <p>Numero de Identidade Fiscal:&nbsp; ${admin.getNif()}</p>
+                     <p>User Name: &nbsp;${admin.getUsername()}</p>
+                     <p>Nome: &nbsp;${admin.getName()}</p>
+                     <p>Data de Nascimento: &nbsp;${admin.getDataDeNascimento()}</p>
+                     <p>Numero de Identidade Fiscal:&nbsp; ${admin.getNif()}</p>
                 </div>
            </div>
             <div class="client_info">

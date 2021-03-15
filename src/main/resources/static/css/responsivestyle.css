@@ -1904,6 +1904,7 @@ ul {list-style-type: none;}
 }
 
 .person_form {
+    margin-top: 0.5rem;
     display: flex;
     gap: 1rem;
     max-height: 1,5rem;
