@@ -45,7 +45,6 @@ public class HospitalUpskillApplication {
     CommandLineRunner commandLineRunner() {
         return args -> {
             // FOR TESTING PURPOSES
-/*
 
             //USERS
             Utente utente = new Utente("2", "Joao", "utente", "utente@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");
@@ -92,7 +91,7 @@ public class HospitalUpskillApplication {
                         "utente" + (i), "utente" + (i) + "@utente.com", "123", "apolice"));
 
             }
-*/
+
 
         };
     }
