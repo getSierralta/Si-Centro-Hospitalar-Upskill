@@ -50,12 +50,13 @@ public class AdminService {
         return adminRepository.save(admin1);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     public void registerNew(AdminRegistrationRequest request) {
         String[] data = request.getDataDeNascimento().split("-");
+        System.out.println("-------------------------"+request.getRole() );
         switch (request.getRole()) {
             case "employee":
-                applicationUserService.singUpEmployee(new Employee(
+                applicationUserService.enableAndSave(new Employee(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
@@ -68,7 +69,7 @@ public class AdminService {
                         UserRole.COLABORADOR.toString()));
                 break;
             case "doctor":
-                applicationUserService.singUpDoctor(new Doctor(
+                applicationUserService.enableAndSave(new Doctor(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
@@ -81,21 +82,21 @@ public class AdminService {
                         request.getCedula(),
                         request.getEspecialidade()));
                 break;
-            //case "responsavel":
-            //    applicationUserService.singUpResponsavel(new Responsavel(
-            //            request.getNif(),
-            //            request.getName(),
-            //            request.getUsername(),
-            //            request.getEmail(),
-            //            request.getPassword(),
-            //            request.getMorada(),
-            //            request.getLocalidade(),
-            //            request.getTelemovel(),
-            //            new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-            //            UserRole.RESPONSAVEL.toString()));
-            //    break;
+            case "responsavel":
+               applicationUserService.enableAndSave(new Employee(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                       UserRole.RESPONSAVEL.toString()));
+                break;
             case "admin":
-                applicationUserService.singUpAdmin(new Admin(
+                applicationUserService.enableAndSave(new Admin(
                         request.getNif(),
                         request.getName(),
                         request.getUsername(),
@@ -110,7 +111,6 @@ public class AdminService {
                 break;
         }
     }
-
 
     public Admin getLogged(Authentication auth) throws Exception {
         String principal = auth.getPrincipal().toString();

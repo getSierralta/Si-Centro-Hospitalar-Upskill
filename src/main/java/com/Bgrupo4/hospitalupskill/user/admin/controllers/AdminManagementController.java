@@ -24,43 +24,45 @@ public class AdminManagementController {
 
     @Autowired
     private AdminService adminService;
-
     private final RegistrationService registrationService;
     private final AdminRepository adminRepository;
 
     @GetMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:read')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Optional<Admin> getAdmin(@PathVariable("id") Long id) {
         return adminService.getUserById(id);
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('colaborador:read')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Admin> getAllAdmin() {
         return adminService.getAllAdmins();
     }
 
     @DeleteMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteAdmin(@PathVariable("id") Long id) {
         adminService.deleteAdmin(id);
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('colaborador:write')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void registerNewAdmin(@Validated @RequestBody Admin admin) {
         adminService.registerAdmin(admin);
     }
 
     @PutMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateAdmin(@PathVariable("id") Long id, @RequestBody AdminRequest request) {
         adminService.updateAdmin(id, request);
     }
 
-    @RequestMapping(value = "/register-employee", method = RequestMethod.POST)
+    @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView adminregister(AdminRegistrationRequest request) {
+        System.out.println("--------------------------- entrou aqui");
         adminService.registerNew(request);
+        System.out.println("--------------------------- saiu daqui aqui");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/register-success");
         return modelAndView;

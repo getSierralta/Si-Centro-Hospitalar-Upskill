@@ -164,6 +164,7 @@ public class ApplicationUserService implements UserDetailsService {
         employeeRepository.save(employee);
     }
 
+
     public void singUpDoctor(Doctor doctor){
         boolean doctorExist = doctorRepository.findByUsername(doctor.getUsername()).isPresent();
         if (doctorExist){
