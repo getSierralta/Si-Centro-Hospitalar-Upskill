@@ -98,12 +98,12 @@ public class UtenteController {
         return "utente/bills";
     }
 
-    /*
-    @GetMapping(value = "/formularioCalendario")
+
+    @GetMapping(value = "/calendarutente")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showCalendarioPessoal(){
-        return "utente/formularioCalendario";
-    }*/
+        return "utente/calendarutente";
+    }
 
 
 
