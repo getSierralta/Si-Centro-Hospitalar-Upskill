@@ -10,6 +10,7 @@ import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,9 +18,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.mail.Multipart;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +50,30 @@ public class UtenteRestController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/utente/register");
         return modelAndView;
+    }
+
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView update(UtenteUpdateRequest request) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        utenteService.updateUtente(utente, request);
+        return new RedirectView("/utente/settings");
+    }
+
+    @PostMapping(path = "/uploadImage")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView updateImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        try {
+            utenteService.updateUtente(utente, imageFile);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("-------------- eror saving photo");
+            return new RedirectView("/500");
+        }
+        return new RedirectView("/utente/settings");
     }
 
     @GetMapping(value = "/register")

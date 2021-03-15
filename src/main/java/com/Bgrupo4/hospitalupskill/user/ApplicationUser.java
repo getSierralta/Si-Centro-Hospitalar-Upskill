@@ -11,10 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -63,7 +60,7 @@ public class ApplicationUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    private String profilePicture = "";
+    private String profilePicture = setPic();
 
     private Boolean locked = false;
     private Boolean enabled = false;
@@ -123,6 +120,21 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    private String setPic(){
+        switch (new Random().nextInt(3)){
+            case 0:
+                return "jenipurr.png";
+            case 1:
+                return "buffallo.png";
+            case 2:
+                return "capyvario.png";
+            case 3:
+                return  "llama.png";
+            default:
+                return "";
+        }
     }
 
     private UserRole getRole(String role){
