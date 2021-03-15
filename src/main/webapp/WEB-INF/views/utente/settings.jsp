@@ -55,6 +55,7 @@
                     <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
                 </div>
                 <div class="client_details">
+                      <p>${utente.getName()}</p>
                      <p>Data de Nascimento: &nbsp;${utente.getDataDeNascimento()}</p>
                      <p>Numero de Utente: &nbsp; ${utente.getNumUtente()}</p>
                      <p>Numero de Identidade Fiscal:&nbsp; ${utente.getNif()}</p>
