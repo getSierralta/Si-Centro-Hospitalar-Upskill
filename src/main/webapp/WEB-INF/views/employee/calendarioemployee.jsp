@@ -114,7 +114,7 @@
                         </div>                    
                     </div> 
                     
-                    <div class="flex">
+                    <div class="flex" id="buttons">
                                                
                         <button id="cancelarConsulta" >
                             cancelar

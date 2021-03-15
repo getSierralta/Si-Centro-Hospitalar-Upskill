@@ -82,8 +82,8 @@ function abrirPopUp(vaga){
     content.innerHTML = "";
     const title = document.createElement('p'); 
     title.innerHTML = "A sua consulta: ";
-    const id = document.createElement('p'); 
-    id.innerHTML = "Id: "+vaga.id;
+    const id2 = document.createElement('p'); 
+    id2.innerHTML = "Id: "+vaga.id;
     const ti = vaga.date.split("T");
     const date = document.createElement('p'); 
     date.innerHTML = "Data: "+ti[0];
@@ -95,7 +95,7 @@ function abrirPopUp(vaga){
     medico.innerHTML = "Medico: "+vaga.doctor.name;
 
     content.appendChild(title);
-    content.appendChild(id);
+    content.appendChild(id2);
     content.appendChild(date);
     content.appendChild(time);
     content.appendChild(es);
@@ -108,56 +108,49 @@ function abrirPopUp(vaga){
         content.appendChild(insertUtente);
     } 
 
-    document.getElementById("cancelarConsulta").removeEventListener('click',  () => {
-        marcarConsulta(vaga);
-    });
-    //butons
-    document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
-    document.getElementById("marcarConsulta").addEventListener('click',  () => {
-        marcarConsulta(vaga);
-    });  
-}
+    const flex = document.getElementById("buttons");
+    flex.innerHTML = "";
 
-function marcarConsulta(vaga){
-    let url;
-    id = null;
-    id = vaga.id;
-    if(flag.innerText === "true"){
-        const utente = document.getElementById("insertUtente").value;
-        url = `http://localhost:8080/api/consultas/appointments/${utente}/${id}`;
-    } else{
-        url = `http://localhost:8080/api/consultas/appointments/utente/${id}`;
-    }  
-    let xhr = new XMLHttpRequest();    
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(); 
-    xhr.onloadend = function() {
-        if(xhr.status == 500){
-            const content = document.getElementById('content');
-            content.innerHTML = "";
-            const error = document.createElement('img'); 
-            error.classList.add('inversed');
-            error.src = "/img/britney-squirrels-booked-33.svg";
-            content.appendChild(error);
+    const cancelarConsulta = document.createElement('button');
+    cancelarConsulta.id = "cancelarConsulta";
+    cancelarConsulta.addEventListener('click', closePopUp);
+    cancelarConsulta.innerText = "cancelar";
+    const marcarConsulta = document.createElement('button');
+    marcarConsulta.id = "marcarConsulta";
+    marcarConsulta.addEventListener('click',  () => {
+        let url;
+        id = null;
+        id = vaga.id;
+        if(flag.innerText === "true"){
+            const utente = document.getElementById("insertUtente").value;
+            url = `http://localhost:8080/api/consultas/appointments/${utente}/${id}`;
+        } else{
+            url = `http://localhost:8080/api/consultas/appointments/utente/${id}`;
         }  
-        if(xhr.status == 400){
-            const content = document.getElementById('content');
+        let xhr = new XMLHttpRequest();    
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(); 
+        const content = document.getElementById('content');
+        xhr.onloadend = function() {
             content.innerHTML = "";
-            const confirm = document.createElement('img'); 
-            confirm.classList.add('inversed');
-            confirm.src = " /img/lady-panda-bad-request-30.svg";
-            content.appendChild(confirm);
-        }    
-        if(xhr.status == 200){
-            const content = document.getElementById('content');
-            content.innerHTML = "";
-            const confirm = document.createElement('img'); 
-            confirm.classList.add('inversed');
-            confirm.src = " /img/lamma-del-rey-vaga-31.svg";
-            content.appendChild(confirm);
-        }   
-    }
+            const img = document.createElement('img'); 
+            img.classList.add('inversed');
+            if(xhr.status == 500){ 
+                img.src = "/img/britney-squirrels-booked-33.svg";
+            }  
+            if(xhr.status == 400){
+                img.src = " /img/lady-panda-bad-request-30.svg";
+            }    
+            if(xhr.status == 200){
+                img.src = " /img/lamma-del-rey-vaga-31.svg";
+            } 
+            content.appendChild(img);  
+        }
+    });  
+    marcarConsulta.innerText = "Marcar consulta";
+    flex.appendChild(cancelarConsulta);
+    flex.appendChild(marcarConsulta);
 }
 
 function closePopUp(){

@@ -16,6 +16,7 @@ import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -99,6 +100,12 @@ public class UtenteRestController {
     @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
     public List<Vaga> getVagas(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         return vagaService.getVagas(especialidade, dia);
+    }
+
+    @GetMapping(path = "/cancelar/{id}")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public ResponseEntity<Appointment> cancelAppoinment(@PathVariable("id") String id) {
+        return ResponseEntity.ok(consultasService.cancelAppointment(Long.valueOf(id)));
     }
 
     @GetMapping(path = "/checkin/{id}")

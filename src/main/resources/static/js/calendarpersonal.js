@@ -74,23 +74,14 @@ function abrirPopUp(appointment){
     popUpContent.style.opacity = '1';
     popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
     
-    document.getElementById("checkIn").removeEventListener('click',  () => {
-        checkIn(appointment);
-    });
-    //butons
-    document.getElementById("fecharConsulta").addEventListener('click', closePopUp);
-    document.getElementById("cancelarConsulta").addEventListener('click', closePopUp);
-    document.getElementById("checkIn").addEventListener('click',  () => {
-        checkIn(appointment);
-    });
-
+  
     //content 
     
     content.innerHTML = "";
     const title = document.createElement('p'); 
     title.innerHTML = "A sua consulta: ";
-    const id = document.createElement('p'); 
-    id.innerHTML = "Id: "+appointment.id;
+    const id2 = document.createElement('p'); 
+    id2.innerHTML = "Id: "+appointment.id;
     const ti = appointment.date.split("T");
     const date = document.createElement('p'); 
     date.innerHTML = "Data: "+ti[0];
@@ -102,16 +93,42 @@ function abrirPopUp(appointment){
     medico.innerHTML = "Medico: "+appointment.doctor.name;
 
     content.appendChild(title);
-    content.appendChild(id);
+    content.appendChild(id2);
     content.appendChild(date);
     content.appendChild(time);
     content.appendChild(es);
     content.appendChild(medico);
-    
-}
 
-function checkIn(appointment){
-    id = null;
+    const flex = document.getElementById("buttons");
+    flex.innerHTML = "";
+
+    const fecharConsulta = document.createElement('button');
+    fecharConsulta.id = "cancelarConsulta";
+    fecharConsulta.addEventListener('click', closePopUp);
+    fecharConsulta.innerText = "fechar";
+    const cancelarConsulta = document.createElement('button');
+    cancelarConsulta.id = "cancelarConsulta";
+    cancelarConsulta.addEventListener('click',  () => {
+        id = null;
+        id = appointment.id;
+        const url = `http://localhost:8080/utente/cancelar/${id}`;
+        fetch(url)
+        .then(response => response.status == 500 ? giveError2() : response.json())
+        .then(data =>  { 
+                    content.innerHTML = "";
+                    const success = document.createElement('img'); 
+                    success.classList.add('inversed');
+                    success.src = "/img/borat.gif";
+                    success.style.maxHeight = "80%";
+                    content.appendChild(success);
+                }
+            ); 
+    });
+    cancelarConsulta.innerText = "Cancelar consulta";
+    const checkIn = document.createElement('button');
+    checkIn.id = "checkIn";
+    checkIn.addEventListener('click',  () => {
+        id = null;
     id = appointment.id;
     const url = `http://localhost:8080/utente/checkin/${id}`;
     fetch(url)
@@ -132,7 +149,15 @@ function checkIn(appointment){
                 content.appendChild(senha);
             })
         );  
+    });  
+    checkIn.innerText = "Registrar chegada";
+    flex.appendChild(cancelarConsulta);
+    flex.appendChild(checkIn);
+    flex.appendChild(fecharConsulta);
+    
 }
+
+
 
 
 function giveError(){
@@ -145,6 +170,15 @@ function giveError(){
     const error2 = document.createElement('p'); 
     error2.innerText = "Olha sinceiramente tipo um de dois né? Ou não é hoje o já pediste uma senha, nao é por questionar a tua inteligencia nem nada é só uma informação, se lhe serve a carapuça né";
     content.appendChild(error2);    
+}
+
+function giveError2(){
+    content.innerHTML = "";
+    const error = document.createElement('img'); 
+    error.classList.add('inversed');
+    error.src = "/img/jenipurr-chile-29.svg";
+    error.style.maxHeight = "65%";
+    div.appendChild(error);     
 }
 
 function closePopUp(){

@@ -139,21 +139,24 @@ public class ConsultasService {
         throw new IllegalArgumentException(String.format("A vaga %s ja foi prenchida", vaga.getId()));
     }
 
-    public Vaga cancelAppointment(Long id) {
+    public Appointment cancelAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
-        if (!appointment.isPresent()) {
+        if (appointment.isEmpty()) {
             throw new EntityNotFoundException(String.format("A marcação %s nao foi encontrada", id));
         }
-        Vaga vaga = new Vaga();
-        appointment.ifPresent(appointment1 -> {
+        if (appointment.get().getStatus() == Status.OPEN){
+            Vaga vaga = new Vaga();
+            Appointment appointment1 = appointment.get();
             appointment1.setStatus(Status.CANCELLED);
             vaga.setDate(appointment1.getDate());
             vaga.setDoctor(appointment1.getDoctor());
             vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade());
             vaga.setDate(appointment1.getDate());
             vaga.setTime(appointment1.getTime());
-        });
-        return vagaRepository.save(vaga);
+            vagaRepository.save(vaga);
+            return appointmentRepository.save(appointment1);
+        }
+        throw new IllegalArgumentException("Cannot cancel an appointment in other state than OPEN");
     }
 
 

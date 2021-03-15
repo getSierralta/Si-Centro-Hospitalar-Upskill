@@ -67,12 +67,6 @@ public class ConsultasController {
 
 
 
-    @DeleteMapping("/appointments/{id}")
-    public ResponseEntity<Vaga> cancelAppointment (@PathVariable Long id) {
-        return ResponseEntity.ok(consultasService.cancelAppointment(id));
-    }
-
-
     @GetMapping("/vagas")
     public ResponseEntity getVagas(@RequestParam(required = false) Long id) {
         if (id == null) {
