@@ -1,9 +1,9 @@
 package com.Bgrupo4.hospitalupskill.user.admin;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
-public class AdminRegistrationRequest {
+public class DoctorRegistrationRequest {
     private final String nif;
     private final String name;
     private final String username;
@@ -13,6 +13,6 @@ public class AdminRegistrationRequest {
     private final String localidade;
     private final String telemovel;
     private final String dataDeNascimento;
-    private final String role;
-
+    private final String cedula;
+    private final String especialidade;
 }

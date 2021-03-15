@@ -29,10 +29,6 @@ public class Employee extends ApplicationUser {
     public Employee() {
     }
 
-    public Employee(String nif, String name, String username, String email, String password, String role, Unidade unidade) {
-        super(nif, name, username, email, password, role);
-        //this.unidade = unidade;
-    }
 
     public Employee(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String role) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, role);

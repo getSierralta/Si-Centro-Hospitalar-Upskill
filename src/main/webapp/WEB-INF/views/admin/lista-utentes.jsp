@@ -86,7 +86,7 @@
                                 <p><b>User Name:</b> &nbsp;${utente.getUsername()}</p>
                                 <p><b>Nome:</b> &nbsp;${utente.getName()}</p>
                                 <p><b>Data de Nascimento:</b> &nbsp;${utente.getDataDeNascimento()}</p>
-                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${utente.getCedula()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${utente.getNif()}</p>
                             </div>
                             <div class="client_info">
                                <p><b>Morada:</b> &nbsp;${utente.getMorada()}</p>

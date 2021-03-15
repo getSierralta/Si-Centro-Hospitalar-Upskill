@@ -71,6 +71,19 @@ public class AdminManagementController {
         }
         return modelAndView;
     }
+
+    @PostMapping(path = "/register-doctor", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView adminregister(DoctorRegistrationRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            adminService.registerNew(request);
+            modelAndView.setViewName("/admin/register-success");
+        } catch (Exception e) {
+            modelAndView.setViewName("/admin/register-error");
+        }
+        return modelAndView;
+    }
 }
 
 

@@ -69,20 +69,6 @@ public class AdminService {
                             new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
                             UserRole.COLABORADOR.toString()));
                     break;
-                case "doctor":
-                    applicationUserService.enableAndSave(new Doctor(
-                            request.getNif(),
-                            request.getName(),
-                            request.getUsername(),
-                            request.getEmail(),
-                            request.getPassword(),
-                            request.getMorada(),
-                            request.getLocalidade(),
-                            request.getTelemovel(),
-                            new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
-                            request.getCedula(),
-                            request.getEspecialidade()));
-                    break;
                 case "responsavel":
                     applicationUserService.enableAndSave(new Employee(
                             request.getNif(),
@@ -111,6 +97,28 @@ public class AdminService {
                     ));
                     break;
             }
+        }catch (Exception e){
+            throw new Exception();
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void registerNew(DoctorRegistrationRequest request) throws Exception {
+        try {
+            String[] data = request.getDataDeNascimento().split("-");
+                applicationUserService.enableAndSave(new Doctor(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                        request.getCedula(),
+                        request.getEspecialidade()
+                        ));
         }catch (Exception e){
             throw new Exception();
         }

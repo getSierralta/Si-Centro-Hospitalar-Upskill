@@ -94,7 +94,7 @@
                                 <p><b>Nome:</b> &nbsp;${doctor.getName()}</p>
                                 <p><b>Data de Nascimento:</b> &nbsp;${doctor.getDataDeNascimento()}</p>
                                 <p><b>Numero de Identidade Fiscal:</b> &nbsp;${doctor.getNif()}</p>
-                                <p><b>Numero de Cedula:</b> &nbsp;${doctor.getNif()}</p>
+                                <p><b>Numero de Cedula:</b> &nbsp;${doctor.getCedula()}</p>
                             </div>
                             <div class="client_info">
                                <p><b>Morada:</b> &nbsp;${doctor.getMorada()}</p>

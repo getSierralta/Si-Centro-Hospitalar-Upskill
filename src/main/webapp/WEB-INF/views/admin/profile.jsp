@@ -82,8 +82,14 @@
                  <div class="profileutente__consulta__header">
                      <div class="greenbutt">
                          <a href="register-employee">
-                             <div class="icon utente"></div>
+                             <div class="icon calendario"></div>
                              <span class="none">Registar Novo Colaborador</span>
+                         </a>
+                     </div>
+                     <div class="greenbutt">
+                         <a href="register-doctor">
+                             <div class="icon medico"></div>
+                             <span class="none">Registar Novo Médico</span>
                          </a>
                      </div>
                  </div>
