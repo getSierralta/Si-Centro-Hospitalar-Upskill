@@ -101,7 +101,6 @@ function abrirPopUp(vaga){
     content.appendChild(es);
     content.appendChild(medico);
     if(flag.innerText === "true"){
-        console.log("it got here");
         const insertUtente = document.createElement('input'); 
         insertUtente.name = "utente";
         insertUtente.placeholder = "Id do Utente: ";
@@ -126,7 +125,6 @@ function marcarConsulta(vaga){
     if(flag.innerText === "true"){
         const utente = document.getElementById("insertUtente").value;
         url = `http://localhost:8080/api/consultas/appointments/${utente}/${id}`;
-        console.log(utente);
     } else{
         url = `http://localhost:8080/api/consultas/appointments/utente/${id}`;
     }  
