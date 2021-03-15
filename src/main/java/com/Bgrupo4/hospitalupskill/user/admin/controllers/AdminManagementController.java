@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,15 +58,13 @@ public class AdminManagementController {
         adminService.updateAdmin(id, request);
     }
 
-
-    @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "/register-employee", method = RequestMethod.POST)
     public ModelAndView adminregister(AdminRegistrationRequest request) {
         adminService.registerNew(request);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/admin/register-success");
         return modelAndView;
     }
-
 
 }
 

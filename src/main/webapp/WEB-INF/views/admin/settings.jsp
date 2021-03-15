@@ -56,8 +56,7 @@
         <div class="object_container full_info">
            <div class="flex">
                  <div class="client_details">
-                     <p>Data de Nascimento: &nbsp;${admin.getBirthday()}</p>
-                     <p>Numero de Utente: &nbsp; ${admin.getNumUtente()}</p>
+                     <p>Data de Nascimento: &nbsp;${admin.getDataDeNascimento()}</p>
                      <p>Numero de Identidade Fiscal:&nbsp; ${admin.getNif()}</p>
                  </div>
               </div>
