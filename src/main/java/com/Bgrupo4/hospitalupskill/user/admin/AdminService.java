@@ -78,19 +78,19 @@ public class AdminService {
                         request.getCedula(),
                         request.getEspecialidade()));
                 break;
-            case "responsavel":
-                applicationUserService.singUpResponsavel(new Responsavel(
-                        request.getNif(),
-                        request.getName(),
-                        request.getUsername(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        request.getMorada(),
-                        request.getLocalidade(),
-                        request.getTelemovel(),
-                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
-                        UserRole.RESPONSAVEL.toString()));
-                break;
+            //case "responsavel":
+            //    applicationUserService.singUpResponsavel(new Responsavel(
+            //            request.getNif(),
+            //            request.getName(),
+            //            request.getUsername(),
+            //            request.getEmail(),
+            //            request.getPassword(),
+            //            request.getMorada(),
+            //            request.getLocalidade(),
+            //            request.getTelemovel(),
+            //            new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+            //            UserRole.RESPONSAVEL.toString()));
+            //    break;
             case "admin":
                 applicationUserService.singUpAdmin(new Admin(
                         request.getNif(),
@@ -101,7 +101,9 @@ public class AdminService {
                         request.getMorada(),
                         request.getLocalidade(),
                         request.getTelemovel(),
-                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])), ));
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                        UserRole.ADMIN.toString()
+                        ));
                 break;
         }
     }

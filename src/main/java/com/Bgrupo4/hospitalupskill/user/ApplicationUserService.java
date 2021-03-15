@@ -148,39 +148,37 @@ public class ApplicationUserService implements UserDetailsService {
         return token;
     }
 
-    public String singUpEmployee(Employee employee){
+    public void singUpEmployee(Employee employee){
         boolean employeeExist = employeeRepository.findByUsername(employee.getUsername()).isPresent();
         if (employeeExist){
-            // TODO check of attributes are the same and
-            // TODO if email not confirmed send confirmation email.
             throw new IllegalStateException("Este usuario ja esta registrado");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(employee.getPassword());
         employee.setPassword(encodedPassword);
         employeeRepository.save(employee);
-        //Send confirmation token
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), employee);
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-        return token;
     }
 
-    public String singUpNew(Utente user){
-        boolean userExist = utenteRepository.findByUsername(user.getUsername()).isPresent();
-        if (userExist){
-            // TODO check of attributes are the same and
-            // TODO if email not confirmed send confirmation email.
+    public void singUpDoctor(Doctor doctor){
+        boolean doctorExist = doctorRepository.findByUsername(doctor.getUsername()).isPresent();
+        if (doctorExist){
             throw new IllegalStateException("Este usuario ja esta registrado");
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        utenteRepository.save(user);
-        //Send confirmation token
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), user);
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-        return token;
+        String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
+        doctor.setPassword(encodedPassword);
+        doctorRepository.save(doctor);
     }
+
+    public void singUpAdmin(Admin admin){
+        boolean adminExist = adminRepository.findByUsername(admin.getUsername()).isPresent();
+        if (adminExist){
+            throw new IllegalStateException("Este usuario ja esta registrado");
+        }
+        String encodedPassword = bCryptPasswordEncoder.encode(admin.getPassword());
+        admin.setPassword(encodedPassword);
+        adminRepository.save(admin);
+    }
+
+
 
 
 }

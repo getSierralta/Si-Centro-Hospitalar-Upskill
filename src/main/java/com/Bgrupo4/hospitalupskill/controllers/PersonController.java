@@ -15,7 +15,6 @@ public class PersonController {
     }
 
 
-
     @GetMapping(value = "/login")
     public String showLogIn() {
         return "/pessoa/log-in";

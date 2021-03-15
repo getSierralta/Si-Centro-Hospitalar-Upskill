@@ -1,16 +1,16 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
-import com.Bgrupo4.hospitalupskill.user.admin.Admin;
-import com.Bgrupo4.hospitalupskill.user.admin.AdminRepository;
-import com.Bgrupo4.hospitalupskill.user.admin.AdminRequest;
-import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
+import com.Bgrupo4.hospitalupskill.user.admin.*;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +67,20 @@ public class AdminManagementController {
         return admin.get();
     }
 
+    @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ModelAndView adminregister(AdminRegistrationRequest request){
+        adminService.registerNew(request);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/admin/register-success");
+        return modelAndView;
+    }
+
+
+
+
     public Optional<Admin> getUserByUsername(String username) {
         return adminRepository.findByUsername(username);
     }
 }
+
+
