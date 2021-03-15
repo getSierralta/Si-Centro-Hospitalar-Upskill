@@ -2,6 +2,8 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 
 import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
@@ -32,11 +34,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UtenteRestController {
 
-    @Autowired
-    private UtenteService utenteService;
+    private final UtenteService utenteService;
     private final RegistrationService registrationService;
     private final VagaService vagaService;
     private final SenhaService senhaService;
+    private final ConsultasService consultasService;
 
     @GetMapping(path = "{id}")
     public Optional<Utente> getUser(@PathVariable("id") Long id){
@@ -141,5 +143,14 @@ public class UtenteRestController {
     public RedirectView getEspecialidade(EspecialidadeRequest request){
         return new RedirectView("/utente/calendariogeralutente/"+request.getEspecialidade());
     }
+
+    @GetMapping(path = "/calendarutente/{dia}")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public List<Appointment> getAppoinments(@PathVariable("dia") String dia) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        return consultasService.getAppointmentsUtenteByDate(utente,dia);
+    }
+
 
 }
