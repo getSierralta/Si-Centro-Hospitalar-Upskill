@@ -31,7 +31,6 @@ public class InvoiceController {
     public JSONObject postInvoice(@RequestBody Invoice invoiceParam) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date date = df.parse(invoiceParam.getDueDate());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -41,7 +40,7 @@ public class InvoiceController {
         invoiceRequest.put("name", invoiceParam.getName());
         invoiceRequest.put("email", invoiceParam.getEmail());
         invoiceRequest.put("nif", invoiceParam.getNif());
-        invoiceRequest.put("duedate", date.toString()); // sends correct date but returns from serro as issuedate
+        invoiceRequest.put("dueDate", invoiceParam.getDueDate());
         for (InvoiceItem item : invoiceParam.getItems()) {
             JSONObject thisItem = new JSONObject();
             thisItem.put("description", item.getDescription());
@@ -76,6 +75,7 @@ public class InvoiceController {
             requestResponse.put("invoice", invoiceSummary);
 
         } catch(HttpClientErrorException.BadRequest e) {
+            e.printStackTrace();
             requestResponse.put("status", "error");
             requestResponse.put("error", "validationError");
         } catch (HttpClientErrorException.NotFound e) {
@@ -149,5 +149,8 @@ public class InvoiceController {
         String requestUrl = "https://serro.pt/invoices/802244746/list";
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
         // this can access and create a list of faturas. i'm confused on how to sort and filter
+        for (Invoice invoice : responseEntity.getBody().getInvoices()){
+            System.out.println(invoice);
+        }
     }
 }

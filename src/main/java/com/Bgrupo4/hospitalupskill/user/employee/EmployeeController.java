@@ -60,4 +60,18 @@ public class EmployeeController {
         map.put("senha", senhaService.getSenhaById(id));
         return "/employee/senha";
     }
+
+    @GetMapping(value = "/utente-bills")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public String showBills(ModelMap map){
+        map.put("categorias", senhaService.getCategorias());
+        return "/employee/utente-bills";
+    }
+
+    @GetMapping(value = "/new-bill")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public String createBills(ModelMap map){
+        map.put("categorias", senhaService.getCategorias());
+        return "/employee/new-bill";
+    }
 }
