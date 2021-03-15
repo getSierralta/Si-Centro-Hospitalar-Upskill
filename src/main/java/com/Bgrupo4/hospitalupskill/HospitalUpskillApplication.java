@@ -84,7 +84,7 @@ public class HospitalUpskillApplication {
             vagaService.createVagasNextMonth();
 
 
-          //  ECRA.add(senhaService.createSenha(appointment.getId()));
+           ECRA.add(senhaService.createSenha(appointment.getId()));
 
             for (int i = 8; i < 20; i++) {
                 applicationUserService.enableAndSave(new Utente(String.valueOf(i), "Utente " + (i),
