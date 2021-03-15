@@ -178,7 +178,7 @@ function giveError2(){
     error.classList.add('inversed');
     error.src = "/img/jenipurr-chile-29.svg";
     error.style.maxHeight = "65%";
-    div.appendChild(error);     
+    content.appendChild(error);     
 }
 
 function closePopUp(){
