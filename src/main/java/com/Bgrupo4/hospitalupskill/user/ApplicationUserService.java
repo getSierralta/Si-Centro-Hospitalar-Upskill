@@ -148,6 +148,23 @@ public class ApplicationUserService implements UserDetailsService {
         return token;
     }
 
+    public String singUpEmployee(Employee employee){
+        boolean employeeExist = employeeRepository.findByUsername(employee.getUsername()).isPresent();
+        if (employeeExist){
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
+            throw new IllegalStateException("Este usuario ja esta registrado");
+        }
+        String encodedPassword = bCryptPasswordEncoder.encode(employee.getPassword());
+        employee.setPassword(encodedPassword);
+        employeeRepository.save(employee);
+        //Send confirmation token
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), employee);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        return token;
+    }
+
     public String singUpNew(Utente user){
         boolean userExist = utenteRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){

@@ -1,10 +1,16 @@
 package com.Bgrupo4.hospitalupskill.user.admin;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
+import com.Bgrupo4.hospitalupskill.user.UserRole;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +46,63 @@ public class AdminService {
         Admin admin1 = admin.get();
         admin1.setMorada(request.getMorada());
         return adminRepository.save(admin1);
+    }
+
+    public void registerNew(AdminRegistrationRequest request) {
+        String[] data = request.getDataDeNascimento().split("-");
+        switch (request.getRole()) {
+            case "employee":
+                applicationUserService.singUpEmployee(new Employee(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                        UserRole.COLABORADOR.toString()));
+                break;
+            case "doctor":
+                applicationUserService.singUpDoctor(new Doctor(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                        request.getCedula(),
+                        request.getEspecialidade()));
+                break;
+            case "responsavel":
+                applicationUserService.singUpResponsavel(new Responsavel(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                        UserRole.RESPONSAVEL.toString()));
+                break;
+            case "admin":
+                applicationUserService.singUpAdmin(new Admin(
+                        request.getNif(),
+                        request.getName(),
+                        request.getUsername(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getMorada(),
+                        request.getLocalidade(),
+                        request.getTelemovel(),
+                        new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])), ));
+                break;
+        }
     }
 }
