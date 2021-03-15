@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="/css/responsivestyle.css">
-    <title>Register New Employee</title>
+    <title>Register New Doctor</title>
 </head>
 <body class="container blue ">
     <!--Horizontal Nav-->
@@ -63,7 +63,8 @@
                         onblur="(this.type='text')" required="required" />
                         <input type="password" name="password" placeholder="Password" required="required" />
                         <input type="text" name="cedula" placeholder="Cedula" />
-                        <select class="greenbutt" name="especialidade" id="especialidae">
+                        <select class="greenbutt" name="especialidade" id="especialidade" required="required">
+                            <option disabled selected value> Especialidade: </option>
                             <option value="GERAL">Geral</option>
                             <option value="OSTEOPATIA">Osteopatia</option>
                             <option value="CARDIOLOGIA">Cardiologia</option>

@@ -70,8 +70,7 @@
                 <div class="person_list">
                     <c:forEach var="employee" items="${employeeList}">
                         <a href="#/" class="person_button">
-                            <p>${employee.getName()}</p>
-                            <p>${employee.getNif()}</p>
+                            <p>${employee.getUsername()}</p>
                         </a>
                     </c:forEach>
                 </div>
