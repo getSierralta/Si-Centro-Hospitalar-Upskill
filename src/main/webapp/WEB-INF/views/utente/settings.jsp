@@ -78,7 +78,7 @@
                 <input type="text" path="localidade" placeholder="{client.localidade}" />
                 <input type="text" path="telemovel" placeholder="{client.telemovel}"  />
                 <input type="password" path="password" placeholder="Password" required />
-                <input type="file" id="img" name="img">
+                <input type="file" id="img" name="img" >
                 <button class="greenbutt" type="submit">Salvar</button>
             </form>
         </div>

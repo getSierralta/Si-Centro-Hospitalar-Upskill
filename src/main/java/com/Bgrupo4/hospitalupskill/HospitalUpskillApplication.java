@@ -89,11 +89,9 @@ public class HospitalUpskillApplication {
 
             for (int i = 8; i < 20; i++) {
                 applicationUserService.enableAndSave(new Utente(String.valueOf(i), "Utente " + (i),
-                        "utente" + (i), "utente" + (i) + "@utente.com", "123", "apolice"));
+                        "utente" + (i), "utente" + (i) + "@utente.com", "123", "San Juan", "Las Cumaraguas", "914789651", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), "lice", "123456789"));
 
             }
-
-
         };
     }
 }

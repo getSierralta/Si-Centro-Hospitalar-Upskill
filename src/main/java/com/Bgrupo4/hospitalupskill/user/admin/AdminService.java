@@ -4,15 +4,12 @@ import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +49,7 @@ public class AdminService {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void registerNew(AdminRegistrationRequest request) throws Exception {
+    public void registerNew(AdminRequest request) throws Exception {
         try {
             String[] data = request.getDataDeNascimento().split("-");
             switch (request.getRole()) {
@@ -135,6 +132,8 @@ public class AdminService {
         }
         return admin.get();
     }
+
+
 
     public Optional<Admin> getUserByUsername(String username) {
         return adminRepository.findByUsername(username);
