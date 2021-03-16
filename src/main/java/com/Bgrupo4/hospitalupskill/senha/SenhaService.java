@@ -124,4 +124,9 @@ public class SenhaService {
     public List<Senha> getSenhasByUtente(Utente utente) {
         return senhaRepository.getAllByUtenteAndDate(utente, Calendar.getInstance().getTime());
     }
+
+    public List<Senha> getSenhasByMedico(Doctor doctor) {
+        return senhaRepository.getAllByDoctorAndDate(doctor, Calendar.getInstance().getTime());
+    }
+
 }

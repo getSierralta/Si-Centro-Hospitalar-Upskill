@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -21,6 +22,7 @@ public class DoctorController {
     private final UtenteManagementController utenteManagementController;
     private final DoctorService doctorService;
     private final CalendarioService calendarioService;
+    private final SenhaService senhaService;
 
     @GetMapping(value = "/profilemedico")
     public String showProfile(ModelMap map) throws Exception {
@@ -48,5 +50,13 @@ public class DoctorController {
     public String showUtentes(ModelMap map) {
         map.put("utenteList", utenteManagementController.getAllUtentes());
         return "/medico/lista-utentes";
+    }
+
+    @GetMapping(value = "/salaDeEspera")
+    public String showSalaDeEspera(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("utenteList", senhaService.getSenhasByMedico(doctor));
+        return "/medico/salaDeEspera";
     }
 }

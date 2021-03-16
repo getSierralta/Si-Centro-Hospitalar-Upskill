@@ -88,15 +88,15 @@ public class HospitalUpskillApplication {
             receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
 
             vagaService.createVagasThisMonth();
-            vagaService.createVagasNextMonth();
+            //vagaService.createVagasNextMonth();
 
 
-           //ECRA.add(senhaService.createSenha(appointment.getId()));
+           ECRA.add(senhaService.createSenha(appointment.getId()));
 
             for (int i = 8; i < 20; i++) {
                 applicationUserService.enableAndSave(new Utente(String.valueOf(i), "Utente " + (i),
                         "utente" + (i), "utente" + (i) + "@utente.com", "123", "apolice"));
-
+                ECRA.add(senhaService.createSenha(utente));
             }
 
 
