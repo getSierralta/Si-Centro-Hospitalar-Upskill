@@ -1,13 +1,16 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
+import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,5 +51,11 @@ public class DoctorManagementController {
     @PreAuthorize("hasAuthority('medico:write')")
     public void updateDoctor(@PathVariable("id") Long id, @RequestBody DoctorRequest request) {
         doctorService.updateDoctor(id, request);
+    }
+
+    @PostMapping(path = "/calendariomedico", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    public RedirectView getEspecialidade(EspecialidadeRequest request){
+        return new RedirectView("/medico/calendariomedico/"+request.getEspecialidade());
     }
 }

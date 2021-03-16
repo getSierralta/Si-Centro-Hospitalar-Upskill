@@ -68,14 +68,14 @@
                     <img class="log-in_logo" src="/img/logo.svg" alt="logo">
 
 
-                        <div class="consultas check-in">
-                            <p class="dark font-medium margin-small">CHECKIN</p>
-                            <p class="green margin-small check-in-text">Introduza o número da consulta</p>
-                                <form class="log-in" method="post" action="/employee/check-in" id="check-in">
-                                    <input  class="margin-small button btn-white" type="text" name="appointment" id="appointment" placeholder="Número da Consulta">
-                                    <button class="dark font-medium check-in-btn" type="submit">EFECTUAR CHECKIN</button>
-                                </form>
-                        </div>
+                    <div class="consultas check-in">
+                        <p class="dark font-medium margin-small">CHECKIN</p>
+                        <p class="green margin-small check-in-text">Introduza o número da consulta</p>
+                            <form class="log-in" method="post" action="/employee/check-in" id="check-in">
+                                <input  class="margin-small button btn-white" type="text" name="appointment" id="appointment" placeholder="Número da Consulta">
+                                <button class="dark font-medium check-in-btn" type="submit">EFECTUAR CHECKIN</button>
+                            </form>
+                    </div>
 
                 </div>
             </main>

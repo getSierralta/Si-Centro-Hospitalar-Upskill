@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/consultas")
@@ -42,11 +43,20 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.getAppointment(id));
     }
 
-    @PostMapping("/appointments/utente/{id}/{especialidade}")
-    public ResponseEntity<Appointment> createAppointmentUtente(@PathVariable Long id, @PathVariable String especialidade) throws Exception {
+    @PostMapping("/appointments/utente/{id}")
+    public ResponseEntity<Appointment> createAppointmentUtente(@PathVariable Long id) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Utente utente = utenteService.getLogged(auth);
         return ResponseEntity.ok(consultasService.createAppointment(id, utente));
+    }
+
+    @PostMapping("/appointments/{utente}/{id}")
+    public ResponseEntity<Appointment> createAppointmentEmployee(@PathVariable Long id, @PathVariable Long utente) throws Exception {
+        Optional<Utente> utente2 = utenteService.getUserById(utente);
+        if (utente2.isPresent()){
+            return ResponseEntity.ok(consultasService.createAppointment(id, utente2.get()));
+        }
+        throw new EntityNotFoundException("Usuario não encontrado");
     }
 
 
@@ -55,12 +65,6 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.createAppointment(request));
     }
 
-
-
-    @DeleteMapping("/appointments/{id}")
-    public ResponseEntity<Vaga> cancelAppointment (@PathVariable Long id) {
-        return ResponseEntity.ok(consultasService.cancelAppointment(id));
-    }
 
 
     @GetMapping("/vagas")

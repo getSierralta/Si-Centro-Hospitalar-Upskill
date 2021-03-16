@@ -50,7 +50,7 @@
            </div>
        </nav>
     <main class="main">
-
+        <div id="flag">false</div>
         <div class="card map calendar-contain--body">
             <main class="calendar-contain">
                 <section class="title-bar">
@@ -101,7 +101,7 @@
                         </div>                    
                     </div> 
                     
-                    <div class="flex">
+                    <div class="flex" id="buttons">
                                                
                         <button id="cancelarConsulta" >
                             cancelar

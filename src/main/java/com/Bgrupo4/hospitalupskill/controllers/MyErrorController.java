@@ -26,8 +26,11 @@ public class MyErrorController implements ErrorController {
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 return "500";
             }
+            else if(statusCode == HttpStatus.BAD_REQUEST.value()) {
+                return "400";
+            }
         }
-        return "error";
+        return "pessoa/error";
     }
 
     @Override

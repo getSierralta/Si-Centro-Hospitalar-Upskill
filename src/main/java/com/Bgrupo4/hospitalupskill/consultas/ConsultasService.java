@@ -21,10 +21,7 @@ import javax.print.Doc;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -35,14 +32,6 @@ public class ConsultasService {
     private final DoctorRepository doctorRepository;
     private final UtenteRepository utenteRepository;
 
-    public Appointment getAppointment(Long id) {
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
-        if (appointment.isPresent()) {
-            return appointment.get();
-        }
-        throw new EntityNotFoundException(String.format("Cant' find appointment %s", id));
-    }
-
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
     }
@@ -51,6 +40,45 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteId(id);
     }
 
+    public List<Vaga> getVagas() {
+        return vagaRepository.findAll();
+    }
+
+    public List<Vaga> getVagas(Long id) {
+        return vagaRepository.findAllByDoctorId(id);
+    }
+
+    public Vaga createVaga(Vaga vaga) {
+        return vagaRepository.save(vaga);
+    }
+
+    public void deleteVaga(Long id) {
+        vagaRepository.deleteById(id);
+    }
+
+    public List<Appointment> getAppointmentsUtenteOrderByDate(Utente utente) {
+        return appointmentRepository.findAllByUtenteOrderByDateAsc(utente);
+    }
+
+    public List<Vaga> getVagas(String especialidade) {
+        return appointmentRepository.findAllByEspecialidade(especialidade);
+    }
+
+    public Appointment getAppointment(Long id) {
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        if (appointment.isPresent()) {
+            return appointment.get();
+        }
+        throw new EntityNotFoundException(String.format("Cant' find appointment %s", id));
+    }
+
+    public Vaga getVaga(Long id) {
+        Optional<Vaga> vaga = vagaRepository.findById(id);
+        if (vaga.isPresent()) {
+            return vaga.get();
+        }
+        throw new EntityNotFoundException(String.format("Cant' find vaga %s", id));
+    }
 
     public Appointment createAppointment(AppointmentCreationRequest request) {
         //todo verificar se o appoinment ja existe(?)
@@ -58,7 +86,7 @@ public class ConsultasService {
         Optional<Utente> utente = utenteRepository.findById(request.getUtente());
         Optional<Vaga> vaga = vagaRepository.findById(request.getVaga());
         if (!doctor.isPresent() || !utente.isPresent() || !vaga.isPresent()) {
-            throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado",request.getUtente(), request.getVaga(), request.getDoctor()));
+            throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado", request.getUtente(), request.getVaga(), request.getDoctor()));
         }
         Appointment appointment = new Appointment();
         vaga.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
@@ -111,41 +139,26 @@ public class ConsultasService {
         throw new IllegalArgumentException(String.format("A vaga %s ja foi prenchida", vaga.getId()));
     }
 
-
-    public Vaga cancelAppointment(Long id){
+    public Appointment cancelAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
-        if (!appointment.isPresent()) {
+        if (appointment.isEmpty()) {
             throw new EntityNotFoundException(String.format("A marcação %s nao foi encontrada", id));
         }
-        Vaga vaga = new Vaga();
-        appointment.ifPresent(appointment1 -> {
+        if (appointment.get().getStatus() == Status.OPEN){
+            Vaga vaga = new Vaga();
+            Appointment appointment1 = appointment.get();
             appointment1.setStatus(Status.CANCELLED);
             vaga.setDate(appointment1.getDate());
             vaga.setDoctor(appointment1.getDoctor());
             vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade());
             vaga.setDate(appointment1.getDate());
             vaga.setTime(appointment1.getTime());
-        });
-        return vagaRepository.save(vaga);
-    }
-
-    public Vaga getVaga(Long id) {
-        Optional<Vaga> vaga = vagaRepository.findById(id);
-        if (vaga.isPresent()) {
-            return vaga.get();
+            vagaRepository.save(vaga);
+            return appointmentRepository.save(appointment1);
         }
-        throw new EntityNotFoundException(String.format("Cant' find vaga %s", id));
+        throw new IllegalArgumentException("Cannot cancel an appointment in other state than OPEN");
     }
 
-    public List<Vaga> getVagas() {
-        return vagaRepository.findAll();
-    }
-
-
-
-    public List<Vaga> getVagas(Long id) {
-        return vagaRepository.findAllByDoctorId(id);
-    }
 
     public Vaga createVaga(VagaCreationRequest request) {
         Optional<Doctor> doctor = doctorRepository.findById(request.getDoctor());
@@ -157,13 +170,7 @@ public class ConsultasService {
         vaga.setDoctor(doctor.get());
         return vagaRepository.save(vaga);
     }
-    public Vaga createVaga(Vaga vaga) {
-        return vagaRepository.save(vaga);
-    }
 
-    public void deleteVaga(Long id) {
-        vagaRepository.deleteById(id);
-    }
 
     public Vaga updateVaga(Long id, Boolean free) {
         Optional<Vaga> vaga = vagaRepository.findById(id);
@@ -175,12 +182,14 @@ public class ConsultasService {
         return vagaRepository.save(vaga1);
     }
 
-
-    public List<Appointment> getAppointmentsUtenteOrderByDate(Utente utente) {
-        return appointmentRepository.findAllByUtenteOrderByDateAsc(utente);
+    public List<Appointment> getAppointmentsUtenteByDate(Utente utente, String dia) {
+        String[] split = dia.split("-");
+        String[] m = split[1].split("");
+        String[] d = split[2].split("");
+        String month = m.length == 2 ? split[1] : "0" + split[1];
+        String day = d.length == 2 ? split[2] : "0" + split[2];
+        return appointmentRepository.findAllByUtenteAndDate(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 
-    public List<Vaga> getVagas(String especialidade) {
-        return appointmentRepository.findAllByEspecialidade(especialidade);
-    }
 }
+

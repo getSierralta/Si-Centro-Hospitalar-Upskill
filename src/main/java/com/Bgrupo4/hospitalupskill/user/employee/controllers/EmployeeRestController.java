@@ -1,14 +1,20 @@
-package com.Bgrupo4.hospitalupskill.user.employee;
+package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
+import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,17 +25,16 @@ import java.util.Optional;
 public class EmployeeRestController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    private final UtenteService utenteService;
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/find-employee/{id}")
     @PreAuthorize("hasAuthority('colaborador:read')")
-    public Optional<Employee> getUser(@PathVariable("id") Long id){
-        return employeeService.getUserById(id);
+    public Optional<Employee> getEmployee(@PathVariable("id") Long id){
+        return employeeService.getEmployeeById(id);
     }
 
-    @GetMapping
+    @GetMapping(path = "/find-employee/all")
     @PreAuthorize("hasAuthority('colaborador:read')")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
@@ -47,29 +52,15 @@ public class EmployeeRestController {
         employeeService.registerEmployee(employee);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping("/update-employee/{id}")
     @PreAuthorize("hasAuthority('colaborador:write')")
-    public void updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeRequest request) {
-        employeeService.updateEmployee(id, request);
+    public ResponseEntity<Employee> updateEmployee(@RequestBody EmployeeRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.updateEmployee(id, request));
     }
 
-    /* UTENTE */
-    // UTENTE MANAGEMENT
-
-    //TODO rever
-    @GetMapping(path = "/find-utente/all")
-    public List<Utente> getAllUtentes() {
-        return utenteService.getAllUtentes();
-    }
-
-    @GetMapping(path = "/find-utente/{id}")
-    public Optional<Utente> getUtenteById(@PathVariable("id") Long id) {
-        return utenteService.getUserById(id);
-    }
-
-    @PostMapping("/update-utente/{id}")
-    //@PreAuthorize
-    public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
-        return ResponseEntity.ok(utenteService.updateUtente(id, request));
+    @PostMapping(path = "/calendario", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public RedirectView getEspecialidade(EspecialidadeRequest request){
+        return new RedirectView("/employee/calendarioemployee/"+request.getEspecialidade());
     }
 }

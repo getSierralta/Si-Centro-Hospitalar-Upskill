@@ -1,8 +1,11 @@
-package com.Bgrupo4.hospitalupskill.user.employee;
+package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
+import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +28,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final SenhaService senhaService;
+    private final CalendarioService calendarioService;
 
     @GetMapping(value = "/profile")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
@@ -73,5 +77,18 @@ public class EmployeeController {
     public String createBills(ModelMap map){
         map.put("categorias", senhaService.getCategorias());
         return "/employee/new-bill";
+    }
+
+    @GetMapping(value = "/formularioCalendario")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showFormularioCalendario(ModelMap map){
+        map.put("especialidades", calendarioService.getEspecialidades());
+        return "employee/formularioCalendario";
+    }
+
+    @GetMapping(value = "/calendarioemployee/{especialidade}")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showCalendarioGeral(@PathVariable String especialidade){
+        return "employee/calendarioemployee";
     }
 }

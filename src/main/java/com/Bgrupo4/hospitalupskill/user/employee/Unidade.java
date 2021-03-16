@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;

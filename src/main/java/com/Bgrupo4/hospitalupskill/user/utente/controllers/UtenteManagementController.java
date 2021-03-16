@@ -32,11 +32,12 @@ public class UtenteManagementController {
         return utenteService.getAllUtentes();
     }
 
+    /*
     @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
     public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
-
+*/
 
 }

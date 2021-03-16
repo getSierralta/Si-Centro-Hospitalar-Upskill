@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -48,37 +49,35 @@
           </div>
       </nav>
     <main class="main">
-        <!--Info Box-->
         <div class="object_container full_info">
             <div class="flex">
                 <div class="client_photo">
-                    <img class="inversed" src="/img/imgclient.jpeg" alt="client">
+                    <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
                 </div>
                 <div class="client_details">
-                     <p><b>utente.getName()</b></p>
-                     <p><b>utente.getBirthday()</b></p>
-                     <p><b>utente.getNumUtente()</b></p>
+                      <p>${utente.getName()}</p>
+                     <p>Data de Nascimento: &nbsp;${utente.getDataDeNascimento()}</p>
+                     <p>Numero de Utente: &nbsp; ${utente.getNumUtente()}</p>
+                     <p>Numero de Identidade Fiscal:&nbsp; ${utente.getNif()}</p>
                 </div>
-                </div>
-                <div class="client_info">
-                    <p><b>Morada: </b> utente.getNumUtente()</p>
-                    <p><b>E-mail: </b> utente.getMorada()</p>
-                    <p><b>Localidade: </b> utente.getLocalidade() </p>
-                    <p><b>Telemovel: </b> utente.getPhone() </p>
-                </div>
+            </div>
+            <div class="client_info">
+                 <p>Morada: &nbsp; ${utente.getMorada()}</p>
+                <p>E-mail: &nbsp; ${utente.getEmail()}</p>
+                <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
+                <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
+            </div>
          </div>
-        <!--/Info Box-->
-        <!--Cards-->
+
         <div class="card medium settings">
             <img class="settings_logo" src="/img/logo.svg" alt="logo">
-            <form action="#" class="log-in">
-                <input type="text" path="userName" placeholder="{client.userName}"/>
-                <input type="text" path="nome" placeholder="{client.name}"/>
-                <textarea name="message" rows="2" cols="30" path="morada" placeholder="{client.morada}"></textarea>
-                <input type="text" path="localidade" placeholder="{client.localidade}" />
-                <input type="text" path="telemovel" placeholder="{client.telemovel}"  />
-                <input type="password" path="password" placeholder="Password" required />
-                <input type="file" id="img" name="img">
+            <form action="/utente/update" method="POST" class="log-in">
+                <input type="text" name="name" placeholder="${utente.getName()}"/>
+                <textarea name="morada" rows="2" cols="30"  placeholder="${utente.getMorada()}"></textarea>
+                <input type="text" name="localidade" placeholder="${utente.getLocalidade()}" />
+                <input type="text" name="telemovel" placeholder="${utente.getPhone()}"  />
+                <input type="text" name="apolice" placeholder="${utente.getApolice()}"  />
+                <input type="password" name="password" placeholder="Password" required />
                 <button class="greenbutt" type="submit">Salvar</button>
             </form>
         </div>
@@ -86,14 +85,19 @@
         </div>
         <div class="card medium settings">
             <div class="password ">
-                <p>Trocar Palavra Passe</p>
+                <form method="post" enctype="multipart/form-data" action="/utente/uploadImage" class="log-in">
+                    <input type="file" name="imageFile">
+                    <button type="submit">Trocar foto de perfil</button>
+                </form>
+                <!--<p>Trocar Palavra Passe</p>
+
                 <form action="#">
                     <input type="password" path="password" placeholder="Old Password" required />
                     <input type="password" path="password" placeholder="Password"  />
                     <input type="password" path="password" placeholder="Repeat Password"  />
                     <button class="greenbutt" type="submit">Salvar</button>
                 </form>
-                <a href="#" class="green">Forgot password?</a>
+                <a href="#" class="green">Forgot password?</a>-->
             </div>
             <div class="password">
                 <p>Eliminar conta</p>
