@@ -11,13 +11,14 @@ $(document).ready(function() {
 			x++; //text box increment
 			i++;
 			$(wrapper).append(
-                '<input type="text" name="items['+i+'].description" placeholder="Descrição" required="required" ><input type="text" name="items['+i+'].value" placeholder="Value" required="required" ><a href="#" class="remove_field">Remover Item</a></div>'
+                '<div><input type="text" name="items['+i+'].description" placeholder="Descrição" required="required" ><input type="text" name="items['+i+'].value" placeholder="Value" required="required" ><a href="#" class="remove_field">Remover Item</a></div>'
                 ); //add input box
 		}
 	});
-
 	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-		e.preventDefault(); $(this).parent('div').remove(); x--;
+		e.preventDefault(); $(this).parent('div').remove();
+		i--;
+		x--;
 	})
 });
 

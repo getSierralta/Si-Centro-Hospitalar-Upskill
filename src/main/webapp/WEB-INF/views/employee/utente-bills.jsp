@@ -89,12 +89,12 @@
             </div>
             <!--/Files Nav-->
             <!--Cards-->
-                <c:forEach var="file" items="${fileList}">
-                    <div class="card small">
-                        <embed class="card small" src=${file} height="100%"></embed>
-                    </div>
-                </c:forEach>
-             <!--/Cards-->
+            <c:forEach var="invoice" items="${invoiceList}">
+                <div class="card small">
+                    <embed class="card small" src=${invoice} height="100%"></embed>
+                </div>
+            </c:forEach>
+            <!--/Cards-->
         </div>
         <!--/Main-->
     </div>

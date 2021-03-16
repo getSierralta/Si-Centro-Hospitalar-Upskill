@@ -69,8 +69,6 @@
             <!--Form-->
             <div class="object_container forms full">
                 <form class="log-in column" id="invoice" action="/invoices/802244746/process" method="POST" modelAttribute="Invoice" enctype="multipart/form-data">
-                    <input type="text" name="name" placeholder="Nome do Utente" required="required" />
-                    <input type="text" name="email" placeholder="Email" required="required" />
                     <input type="text" name="nif" placeholder="NIF" required="required" />
                     <input type="date" name="dueDate" placeholder="Data Limite" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" />
                     <div class="input_fields_wrap" name="items">
