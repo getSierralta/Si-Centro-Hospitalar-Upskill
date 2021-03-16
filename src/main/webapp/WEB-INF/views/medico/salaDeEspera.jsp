@@ -26,6 +26,12 @@
                         <span class="none">Lista de espera</span>
                     </a>
                 </div>
+                 <div class="medium">
+                         <a href="/medico/ongoing">
+                             <div class="icon informacao"></div>
+                             <span class="none">Consulta</span>
+                         </a>
+                  </div>
                 <div class="medium ">
                     <a href="/medico/formularioCalendario">
                         <div class="icon calendario"></div>
@@ -76,17 +82,22 @@
                             </div>
                             <div class="client_details">
                                 <p><b>${utente.getUtente().getName()}</b><br>
-                                <b>${utente.getUtente().getNif()}</b></p>
+                                <p>Data de Nascimento: &nbsp;${utente.getUtente().getDataDeNascimento()}</p>
+                                <p>Numero de Utente: &nbsp; ${utente.getUtente().getNumUtente()}</p>
+                                <p>Numero de Identidade Fiscal:&nbsp; ${utente.getUtente().getNif()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Email</b> ${utente.getUtente().getEmail()}</p>
+                                 <p>Morada: &nbsp; ${utente.getUtente().getMorada()}</p>
+                                <p>E-mail: &nbsp; ${utente.getUtente().getEmail()}</p>
+                                <p>Localidade:  &nbsp;${utente.getUtente().getLocalidade()} </p>
+                                <p>Telemovel: &nbsp; ${utente.getUtente().getPhone()} </p>
                             </div>
                         </div>
                         <div class="person_body" id="body">
-                            <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
+
                         </div>
                         <div class="person_options" id="buttons">
-                            <button class="greenbutt" onclick="start(${utente.getId()})">START</button>
+                            <a class="greenbutt" id="start" href="/medico/ongoing/${utente.getId()}">START</a>
                         </div>
                     </div>
                 </c:forEach>
@@ -94,7 +105,6 @@
         </div>
     </main>
     <script src="../js/buttlist.js"></script>
-     <script src="../js/consulta.js"></script>
 </body>
 
 </html>

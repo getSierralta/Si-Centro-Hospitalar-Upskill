@@ -4,6 +4,9 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaRepository;
@@ -35,6 +38,7 @@ public class ConsultasService {
     private final DoctorRepository doctorRepository;
     private final UtenteRepository utenteRepository;
     private final SenhaRepository senhaRepository;
+    private final RelatorioRepository relatorioRepository;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -202,10 +206,32 @@ public class ConsultasService {
         }
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.GOING);
-        appointment.setStartedAt(String.valueOf(LocalTime.now()));
+        if (appointment.getStartedAt() != null){
+            appointment.setStartedAt(String.valueOf(LocalTime.now()));
+        }
         senha.setFoiAtentido(true);
         senhaRepository.save(senha);
         return appointmentRepository.save(appointment);
+    }
+
+    public List<Senha> getSenhasOnGoingAppoinmentByMedico(Doctor doctor) {
+        List<Senha> senhas = new ArrayList<>();
+        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.GOING)){
+            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
+        }
+        return senhas;
+    }
+
+    public Relatorio createRelatorio(Doctor doctor, Utente utente, RelatorioRequest request) {
+        if (request.getRelatorio() != null){
+            Relatorio relatorio = new Relatorio();
+            relatorio.setDate(Calendar.getInstance().getTime());
+            relatorio.setDoctor(doctor);
+            relatorio.setUtente(utente);
+            relatorio.setDescription(request.getRelatorio());
+            return relatorioRepository.save(relatorio);
+        }
+        throw new IllegalArgumentException("No description");
     }
 }
 

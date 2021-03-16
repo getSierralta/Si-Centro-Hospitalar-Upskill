@@ -3,6 +3,7 @@ package com.Bgrupo4.hospitalupskill.user.utente;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
@@ -41,6 +42,10 @@ public class Utente extends ApplicationUser {
     @JsonBackReference
     @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Medicamento> medicamentos;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Relatorio> relatorio;
 
     @JsonBackReference
     @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)

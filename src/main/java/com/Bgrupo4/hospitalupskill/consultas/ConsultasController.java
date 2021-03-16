@@ -3,14 +3,19 @@ package com.Bgrupo4.hospitalupskill.consultas;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -23,15 +28,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api/consultas")
 @RequiredArgsConstructor
+@RequestMapping(value = "/api/consultas")
 public class ConsultasController {
-
-    //todo: authorization
 
     private final ConsultasService consultasService;
     private final UtenteService utenteService;
     private final SenhaService senhaService;
+    private final DoctorService doctorService;
 
     @GetMapping("/appointments")
     public ResponseEntity getAppointments(@RequestParam(required = false) Long id) {
@@ -121,4 +125,6 @@ public class ConsultasController {
     public ResponseEntity<Vaga> closeVaga (@PathVariable Long id) {
         return ResponseEntity.ok(consultasService.updateVaga(id, false));
     }
+
+
 }

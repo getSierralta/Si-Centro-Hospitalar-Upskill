@@ -1,10 +1,13 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +16,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/medico")
@@ -23,6 +30,9 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final CalendarioService calendarioService;
     private final SenhaService senhaService;
+    private final ConsultasService consultasService;
+    private final UtenteService utenteService;
+
 
     @GetMapping(value = "/profilemedico")
     public String showProfile(ModelMap map) throws Exception {
@@ -56,7 +66,23 @@ public class DoctorController {
     public String showSalaDeEspera(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
-        map.put("utenteList", senhaService.getSenhasByMedico(doctor));
+        List<Senha> senhas = new ArrayList<>();
+        senhas.addAll(consultasService.getSenhasOnGoingAppoinmentByMedico(doctor));
+        senhas.addAll(senhaService.getSenhasByMedico(doctor));
+        map.put("utenteList", senhas);
         return "/medico/salaDeEspera";
+    }
+
+    @GetMapping(value = "/ongoing/{id}")
+    public String showOnGoing(ModelMap map, @PathVariable String id) throws Exception {
+        if(senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
+            throw new EntityNotFoundException("Senha não existe: "+id);
+        }
+        Senha senha = senhaService.getSenhaById(Long.valueOf(id)).get();
+        if (utenteService.getUserById(senha.getUtente().getId()).isEmpty()){
+            throw new EntityNotFoundException("Utente não existe: "+senha.getUtente().getId());
+        }
+        map.put("utente", utenteService.getUserById(senha.getUtente().getId()).get());
+        return "/medico/ongoing";
     }
 }

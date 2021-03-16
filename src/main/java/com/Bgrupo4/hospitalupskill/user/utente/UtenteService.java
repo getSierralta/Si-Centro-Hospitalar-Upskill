@@ -95,13 +95,20 @@ public class UtenteService {
             throw new EntityNotFoundException(String.format("Utente %s não foi encontrado", id));
         }
         Utente utente1 = utente.get();
-        utente1.setName(request.getName());
-        utente1.setUsername(request.getUsername());
-        utente1.setApolice(request.getApolice());
-
+        if (!request.getApolice().isEmpty()){
+            utente1.setApolice(request.getApolice());
+        }
+        if (!request.getLocalidade().isEmpty()){
+            utente1.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            utente1.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            utente1.setPhone(request.getTelemovel());
+        }
         return utenteRepository.save(utente1);
     }
-
     public Utente updateUtente(Utente utente, UtenteUpdateRequest request) {
        // if ( passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()).matches(utente.getPassword())){
             if (!request.getApolice().isEmpty()){

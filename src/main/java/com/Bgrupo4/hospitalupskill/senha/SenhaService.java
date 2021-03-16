@@ -129,4 +129,5 @@ public class SenhaService {
         return senhaRepository.getAllByDoctorAndDate(doctor, Calendar.getInstance().getTime());
     }
 
+
 }
