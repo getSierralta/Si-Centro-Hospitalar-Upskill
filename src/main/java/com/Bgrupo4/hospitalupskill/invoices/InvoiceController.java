@@ -26,6 +26,15 @@ public class InvoiceController {
     @Autowired
     RestTemplate restTemplate;
 
+    @RequestMapping(value = "/process", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    public Invoice processInvoice(@ModelAttribute Invoice invoice) throws ParseException {
+        String date = invoice.getDueDate();
+        invoice.setDueDate(date + "T00:00Z");
+        postInvoice(invoice);
+        return invoice;
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public JSONObject postInvoice(@RequestBody Invoice invoiceParam) throws ParseException {

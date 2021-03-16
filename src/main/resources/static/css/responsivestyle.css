@@ -702,6 +702,10 @@ div.active ul {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.object_container.forms.full{
+    grid-column: 1 / -1;
+}
 /* end full width containers */
 
 /* center container */
