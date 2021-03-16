@@ -39,7 +39,7 @@ public class DoctorController {
         return "medico/formularioCalendario";
     }
 
-    @GetMapping(value = "/calendarioEmployee/{especialidade}")
+    @GetMapping(value = "/calendariomedico/{especialidade}")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showCalendarioGeral(@PathVariable String especialidade){
         return "medico/calendariomedico";
