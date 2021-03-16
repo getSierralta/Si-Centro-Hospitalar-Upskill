@@ -100,10 +100,10 @@
                         <p>EDITAR UTILIZADOR</p>
                         <br>
                             <div class="flex">
-
-                                <form class="log-in" action="lista-admin" method="POST">
+                                <form class="log-in" form action="update" method="POST">
                                     <input type="text" path="userName" placeholder="Alterar User Name"/>
                                     <input type="text" path="nome" placeholder="Alterar Nome"/>
+                                    <input type="text" path="nif" value=${admin.getNif()} style="display:none;"/>
                                     <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
                                     <input type="text" path="localidade" placeholder="Alterar Localidade" />
                                     <input type="text" path="telemovel" placeholder="Alterar Telemovel" />

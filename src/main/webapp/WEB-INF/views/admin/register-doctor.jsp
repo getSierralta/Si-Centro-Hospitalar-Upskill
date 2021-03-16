@@ -51,7 +51,7 @@
     <!--Main-->
     <main class="main">
             <div class="object_container forms">
-                <form class="log-in column" id="doctorregister" action="register-doctor" method="POST">
+                <form class="log-in column" action="register-doctor" method="POST">
                     <input type="text" name="username" placeholder="User Name" required="required" />
                         <input type="text" name="name" placeholder="Nome Completo" required="required" />
                         <input type="text" name="nif" placeholder="Nif" required="required" />

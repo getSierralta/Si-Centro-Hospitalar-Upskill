@@ -3,13 +3,18 @@ package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,13 +52,12 @@ public class AdminManagementController {
         adminService.registerAdmin(admin);
     }
 
-    @PutMapping(path = "{id}")
+
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView updateAdmin(@PathVariable("id") Long id, @RequestBody AdminRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-        adminService.updateAdmin(id, request);
-        modelAndView.setViewName("/admin/lista-admin");
-        return modelAndView;
+    public RedirectView update(AdminRequest request) throws Exception {
+        adminService.updateAdmin(Long.parseLong(request.getNif()), request);
+        return new RedirectView("/admin/lista-admin");
     }
 
 
