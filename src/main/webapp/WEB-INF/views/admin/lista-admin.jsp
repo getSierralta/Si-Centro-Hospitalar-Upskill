@@ -101,13 +101,12 @@
                         <br>
                             <div class="flex">
 
-                                <form action="#" class="log-in">
+                                <form class="log-in" action="lista-admin" method="POST">
                                     <input type="text" path="userName" placeholder="Alterar User Name"/>
                                     <input type="text" path="nome" placeholder="Alterar Nome"/>
                                     <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
                                     <input type="text" path="localidade" placeholder="Alterar Localidade" />
                                     <input type="text" path="telemovel" placeholder="Alterar Telemovel" />
-                                    <input type="password" path="password" placeholder="Password" required />
                                     <input type="file" id="img" name="img">
                                     <button class="greenbutt" type="submit">Salvar</button>
                                 </form>

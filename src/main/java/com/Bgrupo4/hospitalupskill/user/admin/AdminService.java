@@ -1,12 +1,20 @@
 package com.Bgrupo4.hospitalupskill.user.admin;
 
+import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -17,9 +25,15 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class AdminService {
-    private final static String USER_NOT_FOUND_MSG = "O administrador %s não foi encontrado";
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final AdminRepository adminRepository;
+    private final EmployeeRepository employeeRepository;
+    private final UtenteRepository utenteRepository;
+    private final DoctorRepository doctorRepository;
+
     private final ApplicationUserService applicationUserService;
 
     public Optional<Admin> getUserById(Long id) {
@@ -38,15 +52,67 @@ public class AdminService {
         applicationUserService.enableAndSave(admin);
     }
 
-    public Admin updateAdmin(Long id, AdminRequest request) {
+    public void updateAdmin(Long id, AdminRequest request) {
         Optional<Admin> admin = adminRepository.findById(id);
         if (admin.isEmpty()) {
             throw new EntityNotFoundException(String.format("Administrador %s não foi encontrado", id));
         }
-        Admin admin1 = admin.get();
-        admin1.setMorada(request.getMorada());
-        return adminRepository.save(admin1);
+        ApplicationUser user = requestProcess(admin.get(), request);
+        adminRepository.save((Admin) user);
     }
+
+    public void updateEmployee(Long id, AdminRequest request) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Colaborador %s não foi encontrado", id));
+        }
+        ApplicationUser user = requestProcess(employee.get(), request);
+        employeeRepository.save((Employee) user);
+    }
+
+    public void updateUtente(Long id, AdminRequest request) {
+        Optional<Utente> utente = utenteRepository.findById(id);
+        if (utente.isEmpty()) {
+            throw new EntityNotFoundException(String.format("Utente %s não foi encontrado", id));
+        }
+        ApplicationUser user = requestProcess(utente.get(), request);
+        utenteRepository.save((Utente) user);
+    }
+
+    public ApplicationUser requestProcess(ApplicationUser user, AdminRequest request){
+        if(!request.getUsername().isEmpty()){
+            user.setUsername(request.getUsername());
+        }
+        if(!request.getName().isEmpty()){
+            user.setName(request.getName());
+        }
+        if(!request.getPassword().isEmpty()){
+            String encodedPassword = bCryptPasswordEncoder.encode(request.getPassword());
+            user.setPassword(encodedPassword);
+        }
+        if(!request.getMorada().isEmpty()){
+            user.setMorada(request.getMorada());
+        }
+        if(!request.getLocalidade().isEmpty()){
+            user.setLocalidade(request.getLocalidade());
+        }
+        if(!request.getTelemovel().isEmpty()){
+            user.setPhone(request.getTelemovel());
+        }
+        if(!request.getDataDeNascimento().isEmpty()){
+            String[] data = request.getDataDeNascimento().split("-");
+            user.setDataDeNascimento(
+                    new GregorianCalendar(
+                            Integer.parseInt(data[0]),
+                            Integer.parseInt(data[1]),
+                            Integer.parseInt(data[2])
+                    )
+            );
+        }
+        return user;
+    }
+
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void registerNew(AdminRequest request) throws Exception {
@@ -100,7 +166,7 @@ public class AdminService {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void registerNew(DoctorRegistrationRequest request) throws Exception {
+    public void registerNew(DoctorRequest request) throws Exception {
         try {
             String[] data = request.getDataDeNascimento().split("-");
                 applicationUserService.enableAndSave(new Doctor(

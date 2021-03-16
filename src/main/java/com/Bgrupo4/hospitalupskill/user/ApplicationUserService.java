@@ -40,6 +40,7 @@ public class ApplicationUserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.confirmationTokenService = confirmationTokenService;
     }
+
     public void enableUser(String email, String userRole) {
         switch (userRole) {
             case "UTENTE":
@@ -65,6 +66,7 @@ public class ApplicationUserService implements UserDetailsService {
                 break;
         }
     }
+
 
     //Boiler Plate code
     //Salvar utilizador
@@ -152,35 +154,6 @@ public class ApplicationUserService implements UserDetailsService {
         ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), user);
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
-    }
-
-    public void alterUtente(Long id, String setter, String value){
-        Utente user = utenteRepository.getOne(id);
-        switch (setter){
-            case "userName":
-                user.setUsername(value);
-                break;
-            case "nome":
-                user.setName(value);
-                break;
-            case "morada":
-                user.setMorada(value);
-                break;
-            case "localidade":
-                user.setLocalidade(value);
-                break;
-            case "telemovel":
-                user.setPhone(value);
-                break;
-            case "image":
-                user.setProfilePicture(value);
-                break;
-            case "password":
-                String encodedPassword = bCryptPasswordEncoder.encode(value);
-                user.setPassword(encodedPassword);
-                break;
-        }
-        utenteRepository.save(user);
     }
 
 }

@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,8 +22,6 @@ public class AdminManagementController {
     @Autowired
     private AdminService adminService;
 
-    private final RegistrationService registrationService;
-    private final AdminRepository adminRepository;
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('colaborador:read')")
@@ -49,10 +48,14 @@ public class AdminManagementController {
     }
 
     @PutMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
-    public void updateAdmin(@PathVariable("id") Long id, @RequestBody AdminRequest request) {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView updateAdmin(@PathVariable("id") Long id, @RequestBody AdminRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
         adminService.updateAdmin(id, request);
+        modelAndView.setViewName("/admin/lista-admin");
+        return modelAndView;
     }
+
 
     @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -69,7 +72,7 @@ public class AdminManagementController {
 
     @PostMapping(path = "/register-doctor", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView adminregister(DoctorRegistrationRequest request) {
+    public ModelAndView doctorregister(DoctorRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         try {
             adminService.registerNew(request);
@@ -77,16 +80,6 @@ public class AdminManagementController {
         } catch (Exception e) {
             modelAndView.setViewName("/admin/register-error");
         }
-        return modelAndView;
-    }
-
-    @PostMapping(path = "/lista-utentes", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView adminregister() {
-        ModelAndView modelAndView = new ModelAndView();
-
-
-        modelAndView.setViewName("/admin/lista-utentes");
         return modelAndView;
     }
 
