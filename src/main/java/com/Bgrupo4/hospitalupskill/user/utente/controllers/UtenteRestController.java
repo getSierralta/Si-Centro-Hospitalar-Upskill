@@ -2,6 +2,8 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 
 import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
@@ -10,16 +12,20 @@ import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.mail.Multipart;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,11 +35,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UtenteRestController {
 
-    @Autowired
-    private UtenteService utenteService;
+    private final UtenteService utenteService;
     private final RegistrationService registrationService;
     private final VagaService vagaService;
     private final SenhaService senhaService;
+    private final ConsultasService consultasService;
 
     @GetMapping(path = "{id}")
     public Optional<Utente> getUser(@PathVariable("id") Long id){
@@ -47,6 +53,30 @@ public class UtenteRestController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/utente/register");
         return modelAndView;
+    }
+
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView update(UtenteUpdateRequest request) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        utenteService.updateUtente(utente, request);
+        return new RedirectView("/utente/settings");
+    }
+
+    @PostMapping(path = "/uploadImage")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public RedirectView updateImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        try {
+            utenteService.updateUtente(utente, imageFile);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("-------------- eror saving photo");
+            return new RedirectView("/500");
+        }
+        return new RedirectView("/utente/settings");
     }
 
     @GetMapping(value = "/register")
@@ -67,9 +97,15 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
     public List<Vaga> getVagas(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         return vagaService.getVagas(especialidade, dia);
+    }
+
+    @GetMapping(path = "/cancelar/{id}")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public ResponseEntity<Appointment> cancelAppoinment(@PathVariable("id") String id) {
+        return ResponseEntity.ok(consultasService.cancelAppointment(Long.valueOf(id)));
     }
 
     @GetMapping(path = "/checkin/{id}")
@@ -101,7 +137,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}/one")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE')")
     public List<Vaga> getOneVaga(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         List<Vaga> vaga = new ArrayList<>();
         vaga.add(vagaService.getOneVaga(especialidade, dia));
@@ -114,5 +150,14 @@ public class UtenteRestController {
     public RedirectView getEspecialidade(EspecialidadeRequest request){
         return new RedirectView("/utente/calendariogeralutente/"+request.getEspecialidade());
     }
+
+    @GetMapping(path = "/calendarutente/{dia}")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public List<Appointment> getAppoinments(@PathVariable("dia") String dia) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        return consultasService.getAppointmentsUtenteByDate(utente,dia);
+    }
+
 
 }

@@ -9,11 +9,10 @@ const dt = new Date();
 const popUp = document.getElementById("popup");
 const popUpContent = document.getElementById("popup__content");
 let id = null;
-const es = window.location.href;
-const st = es.split("/");
+const url = window.location.href;
+const st = url.split("/");
 const especialidade = st[5];
-const flag = document.getElementById('flag');
-
+const content = document.getElementById('content');
 
 function openModal(monthName, daySquare, month){
     if(lastDaySquare != null){
@@ -30,7 +29,7 @@ function openModal(monthName, daySquare, month){
     const dia = "2021-"+month.toString()+"-"+day.toString();
     const vagas = document.getElementById("vagas");
     vagas.innerHTML = "";
-    fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${dia}`)
+    fetch(`http://localhost:8080/utente/calendarutente/${dia}`)
     .then(response => response.json())
     .then(data =>         
             data.forEach(element => { 
@@ -43,10 +42,10 @@ function openModal(monthName, daySquare, month){
 
                 const title = document.createElement('span'); 
                 title.classList.add('list-item__title');
-                title.innerText = element.doctor.name;
+                title.innerText = element.especialidade;
 
                 const button = document.createElement('button'); 
-                button.innerText = "Marcar Consulta";
+                button.innerText = "Ver Consulta";
 
                 const icon = document.createElement('div'); 
                 icon.classList.add('icon');
@@ -66,7 +65,7 @@ function openModal(monthName, daySquare, month){
         );  
 }
 
-function abrirPopUp(vaga){
+function abrirPopUp(appointment){
     //popup
     
     popUp.style.visibility = 'visible';
@@ -75,24 +74,23 @@ function abrirPopUp(vaga){
     popUpContent.style.opacity = '1';
     popUpContent.style.transform = 'translate(-50%,-50%) scale(1)';
     
-    
-
+  
     //content 
-    const content = document.getElementById('content');
+    
     content.innerHTML = "";
     const title = document.createElement('p'); 
     title.innerHTML = "A sua consulta: ";
     const id2 = document.createElement('p'); 
-    id2.innerHTML = "Id: "+vaga.id;
-    const ti = vaga.date.split("T");
+    id2.innerHTML = "Id: "+appointment.id;
+    const ti = appointment.date.split("T");
     const date = document.createElement('p'); 
     date.innerHTML = "Data: "+ti[0];
     const time = document.createElement('p'); 
-    time.innerHTML = "Hora: "+vaga.time;
+    time.innerHTML = "Hora: "+appointment.time;
     const es = document.createElement('p'); 
-    es.innerHTML = "Especialidade: "+vaga.especialidade;
+    es.innerHTML = "Especialidade: "+appointment.especialidade;
     const medico = document.createElement('p'); 
-    medico.innerHTML = "Medico: "+vaga.doctor.name;
+    medico.innerHTML = "Medico: "+appointment.doctor.name;
 
     content.appendChild(title);
     content.appendChild(id2);
@@ -100,57 +98,87 @@ function abrirPopUp(vaga){
     content.appendChild(time);
     content.appendChild(es);
     content.appendChild(medico);
-    if(flag.innerText === "true"){
-        const insertUtente = document.createElement('input'); 
-        insertUtente.name = "utente";
-        insertUtente.placeholder = "Id do Utente: ";
-        insertUtente.id = "insertUtente";
-        content.appendChild(insertUtente);
-    } 
 
     const flex = document.getElementById("buttons");
     flex.innerHTML = "";
 
+    const fecharConsulta = document.createElement('button');
+    fecharConsulta.id = "cancelarConsulta";
+    fecharConsulta.addEventListener('click', closePopUp);
+    fecharConsulta.innerText = "fechar";
     const cancelarConsulta = document.createElement('button');
     cancelarConsulta.id = "cancelarConsulta";
-    cancelarConsulta.addEventListener('click', closePopUp);
-    cancelarConsulta.innerText = "cancelar";
-    const marcarConsulta = document.createElement('button');
-    marcarConsulta.id = "marcarConsulta";
-    marcarConsulta.addEventListener('click',  () => {
-        let url;
+    cancelarConsulta.addEventListener('click',  () => {
         id = null;
-        id = vaga.id;
-        if(flag.innerText === "true"){
-            const utente = document.getElementById("insertUtente").value;
-            url = `http://localhost:8080/api/consultas/appointments/${utente}/${id}`;
-        } else{
-            url = `http://localhost:8080/api/consultas/appointments/utente/${id}`;
-        }  
-        let xhr = new XMLHttpRequest();    
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(); 
-        const content = document.getElementById('content');
-        xhr.onloadend = function() {
-            content.innerHTML = "";
-            const img = document.createElement('img'); 
-            img.classList.add('inversed');
-            if(xhr.status == 500){ 
-                img.src = "/img/britney-squirrels-booked-33.svg";
-            }  
-            if(xhr.status == 400){
-                img.src = " /img/lady-panda-bad-request-30.svg";
-            }    
-            if(xhr.status == 200){
-                img.src = " /img/lamma-del-rey-vaga-31.svg";
-            } 
-            content.appendChild(img);  
-        }
+        id = appointment.id;
+        const url = `http://localhost:8080/utente/cancelar/${id}`;
+        fetch(url)
+        .then(response => response.status == 500 ? giveError2() : response.json())
+        .then(data =>  { 
+                    content.innerHTML = "";
+                    const success = document.createElement('img'); 
+                    success.classList.add('inversed');
+                    success.src = "/img/borat.gif";
+                    success.style.maxHeight = "80%";
+                    content.appendChild(success);
+                }
+            ); 
+    });
+    cancelarConsulta.innerText = "Cancelar consulta";
+    const checkIn = document.createElement('button');
+    checkIn.id = "checkIn";
+    checkIn.addEventListener('click',  () => {
+        id = null;
+    id = appointment.id;
+    const url = `http://localhost:8080/utente/checkin/${id}`;
+    fetch(url)
+    .then(response => response.status == 500 ? giveError() : response.json())
+    .then(data =>         
+            data.forEach(element => { 
+                content.innerHTML = "";               
+                const senha = document.createElement('div'); 
+                senha.innerText = element.numeroSenha;
+                senha.classList.add('tracknumberutente__number');
+                senha.style.maxHeight = "65%";
+                const title = document.createElement('p'); 
+                const b = document.createElement('b'); 
+                b.innerText = "Numero de senha: ";
+                senha.classList.add('tracknumberutente__number');
+                title.appendChild(b);
+                content.appendChild(title);
+                content.appendChild(senha);
+            })
+        );  
     });  
-    marcarConsulta.innerText = "Marcar consulta";
+    checkIn.innerText = "Registrar chegada";
     flex.appendChild(cancelarConsulta);
-    flex.appendChild(marcarConsulta);
+    flex.appendChild(checkIn);
+    flex.appendChild(fecharConsulta);
+    
+}
+
+
+
+
+function giveError(){
+    content.innerHTML = "";
+    const error = document.createElement('img'); 
+    error.classList.add('inversed');
+    error.src = "/img/jenipurr-chile-29.svg";
+    error.style.maxHeight = "65%";
+    // div.appendChild(error);    
+    const error2 = document.createElement('p'); 
+    error2.innerText = "Olha sinceiramente tipo um de dois né? Ou não é hoje o já pediste uma senha, nao é por questionar a tua inteligencia nem nada é só uma informação, se lhe serve a carapuça né";
+    content.appendChild(error2);    
+}
+
+function giveError2(){
+    content.innerHTML = "";
+    const error = document.createElement('img'); 
+    error.classList.add('inversed');
+    error.src = "/img/jenipurr-chile-29.svg";
+    error.style.maxHeight = "65%";
+    content.appendChild(error);     
 }
 
 function closePopUp(){
@@ -200,10 +228,12 @@ function load(){
         const dateSquare = document.createElement('span');
         dateSquare.classList.add('calendar__date');
         daySquare.appendChild(dateSquare);
+        //const dayString = `${month + 1}/${i - paddingDays}/${year}`;
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
             const d = year + "-"+month+ "-"+dateSquare.innerText;
-            fetch(`http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}`)
+            //http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}/one
+            fetch(`http://localhost:8080/utente/calendarutente/${d}`)
             .then(response => response.json())
             .then(data => data.length === 0 ? daySquare.classList.add('full') : daySquare.classList.add('color-green'));  
         }else{

@@ -50,7 +50,7 @@
            </div>
        </nav>
     <main class="main">
-        <div id="flag">false</div>
+
         <div class="card map calendar-contain--body">
             <main class="calendar-contain">
                 <section class="title-bar">
@@ -102,21 +102,23 @@
                     </div> 
                     
                     <div class="flex" id="buttons">
-                                               
-                        <button id="cancelarConsulta" >
-                            cancelar
+                        <button id="fecharConsulta" >
+                            Fechar
                         </button>
-                        <button id="marcarConsulta">
+                        <button id="checkIn">
                             <div class="icon consulta"></div>
-                            Marcar Consulta
-                        </button>  
+                            Check-in
+                        </button> 
+                        <button id="cancelarConsulta" >
+                            Cancelar
+                        </button> 
                     </div>
                </div>
             </div>
         </div>
 
     </main>
-    <script src="../../js/calendar.js"></script>
+    <script src="../../js/calendarpersonal.js"></script>
 </body>
 
 </html>

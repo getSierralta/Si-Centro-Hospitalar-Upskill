@@ -53,7 +53,67 @@ public class Invoice {
         return items;
     }
 
+    public void addItem(InvoiceItem invoiceItem) {
+        items.add(invoiceItem);
+    }
+
     public String getUrl() {
         return url;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setIssuedDate(String issuedDate) {
+        this.issuedDate = issuedDate;
+    }
+
+    public void setPaidDate(String paidDate) {
+        this.paidDate = paidDate;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setItems(List<InvoiceItem> items) {
+        this.items = items;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", nif='" + nif + '\'' +
+                ", dueDate='" + dueDate + '\'' +
+                ", issuedDate='" + issuedDate + '\'' +
+                ", paidDate='" + paidDate + '\'' +
+                ", value='" + value + '\'' +
+                ", items=" + items +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

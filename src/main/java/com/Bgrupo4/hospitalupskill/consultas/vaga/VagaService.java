@@ -1,7 +1,9 @@
 package com.Bgrupo4.hospitalupskill.consultas.vaga;
 
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -109,4 +111,6 @@ public class VagaService {
         String day = d.length == 2 ? split[2] : "0"+split[2];
         return vagaRepository.findFirstByEspecialidadeAndDate(especialidade, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
+
+
 }

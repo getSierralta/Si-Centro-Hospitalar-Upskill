@@ -5,15 +5,16 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -60,6 +61,14 @@ public class UtenteController {
         return "utente/tracknumberutente";
     }
 
+    @GetMapping(value = "/settings")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public String showSetting(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        map.put("utente", utente);
+        return "utente/settings";
+    }
 
 
     @GetMapping(value = "/formularioCalendario")
@@ -83,19 +92,17 @@ public class UtenteController {
     }
 
 
-
-
-
     @GetMapping(value = "/bills")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showBills(){
         return "utente/bills";
     }
 
-    @GetMapping(value = "/settings")
+
+    @GetMapping(value = "/calendarutente")
     @PreAuthorize("hasRole('ROLE_UTENTE')")
-    public String showSettings(){
-        return "utente/settings";
+    public String showCalendarioPessoal(){
+        return "utente/calendarutente";
     }
 
 

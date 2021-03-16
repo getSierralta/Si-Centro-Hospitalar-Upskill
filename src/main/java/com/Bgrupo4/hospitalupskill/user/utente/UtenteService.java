@@ -8,13 +8,18 @@ import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.registration.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
+import com.Bgrupo4.hospitalupskill.security.PasswordEncoder;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -31,6 +36,7 @@ public class UtenteService {
     private final RegistrationService registrationService;
     private final ConsultasService consultasService;
     private final ReceitaService receitaService;
+    private final PasswordEncoder passwordEncoder;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -76,7 +82,7 @@ public class UtenteService {
                 request.getMorada(),
                 request.getLocalidade(),
                 request.getTelemovel(),
-                new GregorianCalendar(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2])),
+                new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
                 request.getApolice(),
                 request.getNumUtente()));
         String link = "http://localhost:8080/utente/register/confirm?token=" + token;
@@ -96,10 +102,33 @@ public class UtenteService {
         return utenteRepository.save(utente1);
     }
 
+    public Utente updateUtente(Utente utente, UtenteUpdateRequest request) {
+       // if ( passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()).matches(utente.getPassword())){
+            if (!request.getApolice().isEmpty()){
+                utente.setApolice(request.getApolice());
+            }
+            if (!request.getLocalidade().isEmpty()){
+                utente.setLocalidade(request.getLocalidade());
+            }
+            if (!request.getMorada().isEmpty()){
+                utente.setMorada(request.getMorada());
+            }
+            if (!request.getTelemovel().isEmpty()){
+                utente.setPhone(request.getTelemovel());
+            }
+            if (!request.getName().isEmpty()){
+                utente.setName(request.getName());
+            }
+
+            return utenteRepository.save(utente);
+        //}
+        //throw new IllegalArgumentException("Palavra passe incorrect");
+    }
+
+
     public List<Appointment> getAppointments(Utente utente){
         return consultasService.getAppointmentsUtente(utente.getId());
     }
-
 
     public Appointment getNextAppointment(Utente utente) {
         List<Appointment> appointment = consultasService.getAppointmentsUtenteOrderByDate(utente);
@@ -119,5 +148,16 @@ public class UtenteService {
 
     private List<Receita> getReceitas(Utente utente) {
         return receitaService.getReceitasByUtente(utente.getId());
+    }
+
+    public Utente updateUtente(Utente utente, MultipartFile imageFile) throws  Exception{
+        //maybe this folder doesnt exist
+        //TODO importante ten que trocar isto para os vossos pcs
+        String folder = "C:\\Users\\sierr\\Desktop\\springSecurity\\B-grupo4\\src\\main\\resources\\static\\img/";
+        byte[] bytes = imageFile.getBytes();
+        Path path = Paths.get(folder+imageFile.getOriginalFilename());
+        Files.write(path, bytes);
+        utente.setProfilePicture(imageFile.getOriginalFilename());
+        return utenteRepository.save(utente);
     }
 }
