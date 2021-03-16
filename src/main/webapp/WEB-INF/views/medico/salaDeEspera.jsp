@@ -72,7 +72,6 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header" id="header">
                             <div class="client_photo">
-                                <!--MUDAR SRC PARA "img/imgnome.jpg"-->
                                 <img class="inversed" src="../img/${utente.getUtente().getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
