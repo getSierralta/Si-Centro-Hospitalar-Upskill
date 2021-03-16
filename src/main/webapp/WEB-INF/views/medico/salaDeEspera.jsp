@@ -66,9 +66,16 @@
                 </form>
                 <div class="person_list">
                     <c:forEach var="utente" items="${utenteList}">
-                        <a href="#/" class="person_button">
-                            <p>${utente.getUtente().getName()}</p>
-                            <p>${utente.getAppointment().getTime()}</p>
+                         <c:choose>
+                            <c:when test="${utente.getAppointment().getId()} == 1">
+                                <a href="#/" class="person_button" style="background-color: #ed7828;">
+                            </c:when >
+                             <c:otherwise>
+                                  <a href="#/" class="person_button">
+                               </c:otherwise>
+                         </c:choose>
+                          <p>${utente.getUtente().getName()}</p>
+                          <p>${utente.getAppointment().getTime()}</p>
                         </a>
                     </c:forEach>
                 </div>

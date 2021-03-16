@@ -104,14 +104,14 @@ function start(){
                 const fecharConsultaUtente = document.createElement('button');
                 fecharConsultaUtente.classList.add("btn-green");
                 fecharConsultaUtente.addEventListener('click', () => { 
-                    fecharConsulta(senha.utente)
+                    fecharConsulta()
                 });
                 fecharConsultaUtente.innerText = "Fechar Consulta"; 
 
                 const marcarAusenciaUtente = document.createElement('button');
                 marcarAusenciaUtente.classList.add("btn-green");
                 marcarAusenciaUtente.addEventListener('click', () => {
-                    marcarAusencia(senha.utente)
+                    marcarAusencia()
                 });
                 marcarAusenciaUtente.innerText = "Marcar Ausencia"; 
 
@@ -272,13 +272,53 @@ function sendFormRelatorio(id, body){
     xhr.send(formData);
    
 }
-function marcarAusencia(utente){
-    console.log("marcarAusencia");
-    console.log(utente); 
+function marcarAusencia(){
+    let xhr = new XMLHttpRequest();    
+    xhr.open("POST", `/api/utentes/marcarausencia/${senha.appointment.id}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(); 
+    xhr.onloadend = function() {
+        body.innerHTML = "";
+        const img = document.createElement('img'); 
+        img.style.maxHeight = "50%";
+        img.style.maxWidth = "50%";
+        
+        if(xhr.status == 500){ 
+            img.src = "/img/britney-squirrels-booked-33.svg";            
+        }  
+        if(xhr.status == 400){
+         img.src = " /img/lady-panda-bad-request-30.svg";
+        }    
+        if(xhr.status == 200){
+            img.src = " /img/borat.gif";
+            window.location.href = "/medico/salaDeEspera";
+        } 
+        body.appendChild(img);   
+    }
 }
 function fecharConsulta(utente){
-    console.log("fecharConsulta");
-    console.log(utente); 
+    let xhr = new XMLHttpRequest();    
+    xhr.open("POST", `/api/utentes/fecharconsulta/${senha.appointment.id}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(); 
+    xhr.onloadend = function() {
+        body.innerHTML = "";
+        const img = document.createElement('img'); 
+        img.style.maxHeight = "50%";
+        img.style.maxWidth = "50%";
+        
+        if(xhr.status == 500){ 
+            img.src = "/img/britney-squirrels-booked-33.svg";            
+        }  
+        if(xhr.status == 400){
+         img.src = " /img/lady-panda-bad-request-30.svg";
+        }    
+        if(xhr.status == 200){
+            img.src = " /img/borat.gif";
+            window.location.href = "/medico/salaDeEspera";
+        } 
+        body.appendChild(img);   
+    }
 }
 
 function giveError(){

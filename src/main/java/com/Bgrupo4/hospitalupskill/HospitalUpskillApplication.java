@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
@@ -87,6 +88,7 @@ public class HospitalUpskillApplication {
             receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
             receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
 
+
             vagaService.createVagasThisMonth();
             //vagaService.createVagasNextMonth();
 
@@ -94,9 +96,12 @@ public class HospitalUpskillApplication {
            ECRA.add(senhaService.createSenha(appointment.getId()));
 
             for (int i = 8; i < 20; i++) {
-                applicationUserService.enableAndSave(new Utente(String.valueOf(i), "Utente " + (i),
-                        "utente" + (i), "utente" + (i) + "@utente.com", "123", "apolice"));
-                ECRA.add(senhaService.createSenha(utente));
+                Utente utente1 = new Utente(String.valueOf(i), "Utente " + (i), "Utente " + (i), "Utente " + (i)+"@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");
+                applicationUserService.enableAndSave(utente1);
+                Vaga vaga8 = consultasService.createVaga(new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate()), "16:30", Especialidade.CARDIOLOGIA.name(), doctor));
+                Appointment appointment2 = consultasService.createAppointment(vaga8, utente1);
+                ECRA.add(senhaService.createSenha(appointment2.getId()));
+                ECRA.add(senhaService.createSenha(utente1));
             }
 
 

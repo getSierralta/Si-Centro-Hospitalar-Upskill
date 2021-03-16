@@ -68,6 +68,7 @@ public class DoctorController {
         Doctor doctor = doctorService.getLogged(auth);
         List<Senha> senhas = new ArrayList<>();
         senhas.addAll(consultasService.getSenhasOnGoingAppoinmentByMedico(doctor));
+        senhas.addAll(consultasService.getSenhasLateAppoinmentByMedico(doctor));
         senhas.addAll(senhaService.getSenhasByMedico(doctor));
         map.put("utenteList", senhas);
         return "/medico/salaDeEspera";

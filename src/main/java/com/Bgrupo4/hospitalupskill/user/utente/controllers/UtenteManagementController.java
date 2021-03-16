@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
@@ -47,6 +48,18 @@ public class UtenteManagementController {
     @PreAuthorize("hasAuthority('utente:write')")
     public ResponseEntity<Utente> updateUtente(UtenteRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
+    }
+
+    @PostMapping("/fecharconsulta/{id}")
+    @PreAuthorize("hasAuthority('utente:write')")
+    public ResponseEntity<Appointment> fecharconsulta(@PathVariable Long id) {
+        return ResponseEntity.ok(consultasService.fecharConsulta(id));
+    }
+
+    @PostMapping("/marcarausencia/{id}")
+    @PreAuthorize("hasAuthority('utente:write')")
+    public ResponseEntity<Appointment> marcarAusencia(@PathVariable Long id) {
+        return ResponseEntity.ok(consultasService.marcarAusencia(id));
     }
 
     @PostMapping("/relatorio/{id}")

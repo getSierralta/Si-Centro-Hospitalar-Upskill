@@ -214,13 +214,7 @@ public class ConsultasService {
         return appointmentRepository.save(appointment);
     }
 
-    public List<Senha> getSenhasOnGoingAppoinmentByMedico(Doctor doctor) {
-        List<Senha> senhas = new ArrayList<>();
-        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.GOING)){
-            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
-        }
-        return senhas;
-    }
+
 
     public Relatorio createRelatorio(Doctor doctor, Utente utente, RelatorioRequest request) {
         if (request.getRelatorio() != null){
@@ -232,6 +226,44 @@ public class ConsultasService {
             return relatorioRepository.save(relatorio);
         }
         throw new IllegalArgumentException("No description");
+    }
+
+    public Appointment marcarAusencia(Long id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não existe" + id);
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.LATE);
+
+        return appointmentRepository.save(appointment);
+    }
+
+    public Appointment fecharConsulta(Long id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não existe" + id);
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.CLOSED);
+
+        return appointmentRepository.save(appointment);
+    }
+
+    public List<Senha> getSenhasOnGoingAppoinmentByMedico(Doctor doctor) {
+        List<Senha> senhas = new ArrayList<>();
+        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.GOING)){
+            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
+        }
+        return senhas;
+    }
+
+    public List<Senha> getSenhasLateAppoinmentByMedico(Doctor doctor) {
+        List<Senha> senhas = new ArrayList<>();
+        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.LATE)){
+            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
+        }
+        return senhas;
     }
 }
 
