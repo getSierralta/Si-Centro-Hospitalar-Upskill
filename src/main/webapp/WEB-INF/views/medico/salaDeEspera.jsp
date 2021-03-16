@@ -70,7 +70,7 @@
             <div class="person_viewer">
                 <c:forEach var="utente" items="${utenteList}" varStatus="loop">
                     <div id="thisone" class="info-${loop.count}">
-                        <div class="person_header">
+                        <div class="person_header" id="header">
                             <div class="client_photo">
                                 <!--MUDAR SRC PARA "img/imgnome.jpg"-->
                                 <img class="inversed" src="../img/${utente.getUtente().getProfilePicture()}" alt="client">
@@ -83,10 +83,10 @@
                                 <p><b>Email</b> ${utente.getUtente().getEmail()}</p>
                             </div>
                         </div>
-                        <div class="person_body">
+                        <div class="person_body" id="body">
                             <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
                         </div>
-                        <div class="person_options">
+                        <div class="person_options" id="buttons">
                             <button class="greenbutt" onclick="start(${utente.getId()})">START</button>
                         </div>
                     </div>

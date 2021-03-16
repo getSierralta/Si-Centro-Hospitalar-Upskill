@@ -6,6 +6,8 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequ
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class ConsultasController {
 
     private final ConsultasService consultasService;
     private final UtenteService utenteService;
+    private final SenhaService senhaService;
 
     @GetMapping("/appointments")
     public ResponseEntity getAppointments(@RequestParam(required = false) Long id) {
@@ -88,6 +91,21 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.getVagas(especialidade));
     }
 
+    @GetMapping("/senha/{id}")
+    public ResponseEntity<Senha> getSenha(@PathVariable String id) {
+        if (senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
+            throw new EntityNotFoundException("Senha não existe: "+id);
+        }
+        return ResponseEntity.ok(senhaService.getSenhaById(Long.valueOf(id)).get());
+    }
+    @PostMapping("/senha/{id}")
+    public ResponseEntity<Appointment> startConsulta(@PathVariable String id) {
+        Optional<Senha> senhaOptional = senhaService.getSenhaById(Long.valueOf(id));
+        if (senhaOptional.isEmpty()){
+            throw new EntityNotFoundException("Senha não existe: "+id);
+        }
+        return ResponseEntity.ok(consultasService.startConsulta(senhaOptional.get()));
+    }
     @PostMapping("/vagas")
     public ResponseEntity<Vaga> createVaga(@RequestBody VagaCreationRequest request) {
         return ResponseEntity.ok(consultasService.createVaga(request));

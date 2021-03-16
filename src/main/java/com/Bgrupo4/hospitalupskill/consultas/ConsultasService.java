@@ -8,6 +8,9 @@ import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaRepository;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaRepository;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -31,6 +34,7 @@ public class ConsultasService {
     private final VagaRepository vagaRepository;
     private final DoctorRepository doctorRepository;
     private final UtenteRepository utenteRepository;
+    private final SenhaRepository senhaRepository;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -191,5 +195,17 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteAndDate(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 
+    public Appointment startConsulta(Senha senha) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(senha.getAppointment().getId());
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não encontrada: "+senha.getAppointment().getId());
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.GOING);
+        appointment.setStartedAt(String.valueOf(LocalTime.now()));
+        senha.setFoiAtentido(true);
+        senhaRepository.save(senha);
+        return appointmentRepository.save(appointment);
+    }
 }
 
