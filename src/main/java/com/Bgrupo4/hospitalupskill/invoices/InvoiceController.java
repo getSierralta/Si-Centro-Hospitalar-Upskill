@@ -14,11 +14,13 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/invoices/802244746")
@@ -41,8 +43,15 @@ public class InvoiceController {
         invoice.setDueDate(date + "T00:00Z");
         return postInvoice(invoice);
     }
-
-    // back-end > ext api
+/*
+    @RequestMapping(value = "/getSortedList", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    public List<Invoice> getSortedList(String sort) {
+        sort = "nif";
+        return getList(sort);
+    }
+*/
+    // back-end > serro.pt
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public JSONObject postInvoice(@RequestBody Invoice invoiceParam) throws ParseException {
@@ -144,10 +153,25 @@ public class InvoiceController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList(@RequestBody InvoiceRequest invoiceRequest) {
+    public List<Invoice> getList() {
         String requestUrl = "https://serro.pt/invoices/802244746/list";
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
-        // this can access and create a list of faturas. i'm confused on how to sort and filter
-        return Objects.requireNonNull(responseEntity.getBody()).getInvoices();
+        List<Invoice> invoices = responseEntity.getBody().getInvoices();
+/*
+        if (sort.equals("default")) {
+            invoices = responseEntity.getBody().getInvoices();
+        }
+
+        if (sort.equals("nif")) {
+            invoices = invoices.stream().sorted(Comparator.comparing(Invoice::getNif)).collect(Collectors.toList());
+        }
+
+        // TEST
+        for (Invoice invoice : invoices) {
+            System.out.println(invoice.getNif());
+        }
+        //
+*/
+        return invoices;
     }
 }

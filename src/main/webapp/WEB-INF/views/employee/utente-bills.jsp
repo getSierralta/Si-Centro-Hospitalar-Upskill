@@ -75,7 +75,7 @@
                     <button class="greenbutt" type="submit">Pesquisar</button>
                 </form>
                 <div class="item_order light small">
-                    <div class="custom-select" style="width:200px;">
+                    <div class="select" style="width:200px;">
                         <select>
                             <option value="ordenar">Ordenar por:</option>
                             <option value="nomeASC">Nome ascendente </option>
@@ -90,9 +90,13 @@
             <!--/Files Nav-->
             <!--Cards-->
             <c:forEach var="invoice" items="${invoiceList}">
-                <div class="card small">
-                    <embed class="card small" src=${invoice} height="100%"></embed>
-                </div>
+                    <div class="card small invoice">
+                        <p><b>ID </b>${invoice.getId()}</p><br><br>
+                        <p><b>UTENTE </b>${invoice.getName()}</p>
+                        <p><b>NIF </b>${invoice.getNif()}</p><br><br>
+                        <p><b>DATA </b>${invoice.getIssuedDate()}</p>
+                        <p><b>LIMITE </b>${invoice.getDueDate()}</p>
+                    </div>
             </c:forEach>
             <!--/Cards-->
         </div>
