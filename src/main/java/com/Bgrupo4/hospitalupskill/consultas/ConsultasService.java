@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRequest;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
@@ -39,6 +41,7 @@ public class ConsultasService {
     private final UtenteRepository utenteRepository;
     private final SenhaRepository senhaRepository;
     private final RelatorioRepository relatorioRepository;
+    private final ReceitaRepository receitaRepository;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -215,8 +218,6 @@ public class ConsultasService {
         return appointmentRepository.save(appointment);
     }
 
-
-
     public Relatorio createRelatorio(Doctor doctor, Utente utente, RelatorioRequest request) {
         if (request.getRelatorio() != null){
             Relatorio relatorio = new Relatorio();
@@ -227,6 +228,18 @@ public class ConsultasService {
             return relatorioRepository.save(relatorio);
         }
         throw new IllegalArgumentException("No description");
+    }
+
+    public Receita createReceita(Doctor doctor, Utente utente, ReceitaRequest request) {
+        if (request.getRelatorio() != null){
+            Receita receita = new Receita();
+            receita.setDate(Calendar.getInstance().getTime());
+            receita.setDoctor(doctor);
+            receita.setUtente(utente);
+            receita.setDescription(request.getRelatorio());
+            return receitaRepository.save(receita);
+        }
+        throw new IllegalArgumentException("No Receita");
     }
 
     public Appointment marcarAusencia(Long id) {
@@ -273,5 +286,7 @@ public class ConsultasService {
         }
         return senhas;
     }
+
+
 }
 

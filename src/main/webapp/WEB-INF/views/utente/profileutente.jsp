@@ -104,9 +104,9 @@
                 <div class="profileutente__consulta__header">
                     <p class="title"><b>Ultima Receita Medica</b></p>
                     <div class="padding medicamentos">
-                        <c:forEach items = "${receita.getMedicamentos()}"  var = "medicamento">
-                                <p>${medicamento.getMedicamento()} &nbsp; ${medicamento.getQuantidade()}</p>
-                        </c:forEach>
+                        <p>
+                            ${receita.getDescription()}
+                        </>
                     </div>
                     <div class="padding">
                         <p><b>Recurso Executante:&nbsp;</b> ${receita.getDoctor().getName()}</p>

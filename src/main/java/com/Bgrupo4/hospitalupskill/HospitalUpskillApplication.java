@@ -1,13 +1,10 @@
 package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
-import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
-import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
@@ -82,12 +79,10 @@ public class HospitalUpskillApplication {
             consultasService.createAppointment(vaga, utente);
             consultasService.createAppointment(vaga2, utente);
 
-            Receita receita = receitaService.createReceita(appointment);
-
-            receitaService.addMedicamento(new Medicamento("Ibuprofen", "2 veces por dia"), receita);
-            receitaService.addMedicamento(new Medicamento("Pokemon", "1 veces por semana"), receita);
-            receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
-            receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
+            Receita receita = receitaService.createReceita(appointment, "Ibuprofen 2 veces por dia."
+                    +"\n Pokemon 1 vez por semana."
+                    +"\n Doremon 2 colheres cada 8 horas."
+                    +"\n Pandemonium cada vez que doe a cabeça.");
 
 
             vagaService.createVagasThisMonth();

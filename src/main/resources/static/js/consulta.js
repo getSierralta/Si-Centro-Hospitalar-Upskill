@@ -89,14 +89,14 @@ function start(){
                 const receitaUtente = document.createElement('button');
                 receitaUtente.classList.add("btn-green");
                 receitaUtente.addEventListener('click', () => { 
-                    receita(senha.utente, body)
+                    relatorio(senha.utente, body, false)
                 });
                 receitaUtente.innerText = "Criar Receita"; 
 
                 const relatorioUtente = document.createElement('button');
                 relatorioUtente.classList.add("btn-green");
                 relatorioUtente.addEventListener('click', () => {
-                    relatorio(senha.utente, body)
+                    relatorio(senha.utente, body, true)
                 });
                 relatorioUtente.innerText = "Escrever Relatorio"; 
 
@@ -194,7 +194,7 @@ function sendFormEdit(id){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/jenipurr-chile-29.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
@@ -211,14 +211,47 @@ function sendFormEdit(id){
 
 
 function historial(utente, body){
-    console.log("historia");
-    console.log(utente); 
-    console.log(body);
-}
-function receita(utente, body){
+    body.innerHTML = "";
+    const containerButton = document.createElement("div");
+    containerButton.classList.add("flex");
+    const containerbody = document.createElement("div");
+    containerbody.classList.add("flex");
+    const btnReceitas = document.createElement("button");
+    btnReceitas.classList.add("btn-green");
+    btnReceitas.addEventListener('click', () => {
+        verCoisas("receitas", utente, containerbody)
+    });
+    btnReceitas.innerText = "Receitas";
+    btnReceitas.type = "button";
+    const btnRelatorios = document.createElement("button");
+    btnRelatorios.classList.add("btn-green");
+    btnRelatorios.addEventListener('click', () => {
+        verCoisas("relatorios", utente, containerbody)
+    });
+    btnRelatorios.innerText = "Relatorios";
+    btnRelatorios.type = "button";
+    const btnConsultas = document.createElement("button");
+    btnConsultas.classList.add("btn-green");
+    btnConsultas.addEventListener('click', () => {
+        verCoisas("consultas", utente, containerbody)
+    });
+    btnConsultas.innerText = "Consultas";
+    btnConsultas.type = "button";
+    containerButton.appendChild(btnReceitas);
+    containerButton.appendChild(btnRelatorios);
+    containerButton.appendChild(btnConsultas);
+    body.appendChild(containerButton);
+    body.appendChild(containerbody);
     
 }
-function relatorio(utente, body){
+
+function verCoisas(tipo, utente, containerbody){
+    console.log(tipo);
+    console.log(utente);
+    console.log(containerbody);
+}
+
+function relatorio(utente, body, boolean){
     body.innerHTML = "";
     body.style.display = "flex";
     body.style.alignItems = "center";
@@ -226,13 +259,18 @@ function relatorio(utente, body){
     const container = document.createElement('div');
     container.style.maxWidth = "50%";
     container.classList.add = "flex";
+    container.style.textAlign = "center";
 
     const form = document.createElement("form");  
     form.classList.add("log-in");
     form.id = "relatorioUtenteFormulario";
 
     const title = document.createElement("h3");
-    title.innerText = "Escrever Relatorio";
+    if(boolean === true){
+        title.innerText = "Escrever Relatorio";
+    }else{
+        title.innerText = "Escrever Receita";
+    }   
 
     const relatorio = document.createElement("textarea");
     relatorio.name = "relatorio";
@@ -244,7 +282,12 @@ function relatorio(utente, body){
     button.classList.add("greenbutt");
     button.innerText = "Salvar";
     button.addEventListener('click', () => {
-        sendFormRelatorio(utente.id, body)
+        if(boolean === true){
+            sendFormRelatorio(utente.id, body, true)
+        }else{
+            sendFormRelatorio(utente.id, body, false)
+        }
+        
     });
     button.type = "button";
                 
@@ -257,9 +300,13 @@ function relatorio(utente, body){
     body.appendChild(container);  
 }
 
-function sendFormRelatorio(id, body){
+function sendFormRelatorio(id, body, boolean){
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `/api/utentes/relatorio/${id}`); 
+    if(boolean === true){
+        xhr.open("POST", `/api/utentes/relatorio/${id}`); 
+    }else{
+        xhr.open("POST", `/api/utentes/receita/${id}`); 
+    }    
     xhr.onload = function(event){ 
         body.innerHTML = "";
         const img = document.createElement('img'); 
@@ -267,7 +314,7 @@ function sendFormRelatorio(id, body){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/jenipurr-chile-29.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
@@ -306,7 +353,7 @@ function marcarAusencia(){
         body.appendChild(img);   
     }
 }
-function fecharConsulta(utente){
+function fecharConsulta(){
     let xhr = new XMLHttpRequest();    
     xhr.open("POST", `/api/utentes/fecharconsulta/${senha.appointment.id}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -332,7 +379,12 @@ function fecharConsulta(utente){
 }
 
 function giveError(){
-   console.log("error"); 
+    body.innerHTML = "";
+    const img = document.createElement('img'); 
+    img.style.maxHeight = "50%";
+    img.style.maxWidth = "50%";
+    img.src = "/img/jenipurr-chile-29.svg";            
+    body.appendChild(img);  
 }
 
 

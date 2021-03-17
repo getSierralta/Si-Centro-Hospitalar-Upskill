@@ -2,6 +2,8 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRequest;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
@@ -72,6 +74,18 @@ public class UtenteManagementController {
             throw new EntityNotFoundException("utente não existe: "+id);
         }
         return ResponseEntity.ok(consultasService.createRelatorio(doctor, utenteOptional.get(), request));
+    }
+
+    @PostMapping("/receita/{id}")
+    @PreAuthorize("hasAuthority('utente:write')")
+    public ResponseEntity<Receita> writeReceita(ReceitaRequest request, @PathVariable Long id) throws Exception {
+        Optional<Utente> utenteOptional = utenteService.getUserById(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        if (utenteOptional.isEmpty()){
+            throw new EntityNotFoundException("utente não existe: "+id);
+        }
+        return ResponseEntity.ok(consultasService.createReceita(doctor, utenteOptional.get(), request));
     }
 
 

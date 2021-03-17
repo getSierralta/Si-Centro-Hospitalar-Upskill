@@ -67,7 +67,7 @@
                 <div class="person_list">
                     <c:forEach var="utente" items="${utenteList}">
                          <c:choose>
-                            <c:when test="${utente.getAppointment().getId()} == 1">
+                            <c:when test="${utente.getAppointment().getStatus().name()} == 'LATE'">
                                 <a href="#/" class="person_button" style="background-color: #ed7828;">
                             </c:when >
                              <c:otherwise>
