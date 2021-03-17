@@ -2,7 +2,9 @@ package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteRegistrationRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,8 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,47 +26,64 @@ public class AdminManagementController {
 
     @Autowired
     private AdminService adminService;
-    private final RegistrationService registrationService;
-    private final AdminRepository adminRepository;
+
 
     @GetMapping(path = "{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('colaborador:read')")
     public Optional<Admin> getAdmin(@PathVariable("id") Long id) {
         return adminService.getUserById(id);
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('colaborador:read')")
     public List<Admin> getAllAdmin() {
         return adminService.getAllAdmins();
     }
 
     @DeleteMapping(path = "{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('colaborador:write')")
     public void deleteAdmin(@PathVariable("id") Long id) {
         adminService.deleteAdmin(id);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('colaborador:write')")
     public void registerNewAdmin(@Validated @RequestBody Admin admin) {
         adminService.registerAdmin(admin);
     }
 
-    @PutMapping(path = "{id}")
+
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void updateAdmin(@PathVariable("id") Long id, @RequestBody AdminRequest request) {
-        adminService.updateAdmin(id, request);
+    public RedirectView update(AdminRequest request) throws Exception {
+        adminService.updateAdmin(Long.parseLong(request.getNif()), request);
+        return new RedirectView("/admin/lista-admin");
     }
+
 
     @PostMapping(path = "/register-employee", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView adminregister(AdminRegistrationRequest request) {
-        System.out.println("--------------------------- entrou aqui");
-        adminService.registerNew(request);
-        System.out.println("--------------------------- saiu daqui aqui");
+    public ModelAndView adminregister(AdminRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/admin/register-success");
+        try {
+            adminService.registerNew(request);
+            modelAndView.setViewName("/admin/register-success");
+        } catch (Exception e) {
+            modelAndView.setViewName("/admin/register-error");
+        }
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/register-doctor", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView doctorregister(DoctorRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            adminService.registerNew(request);
+            modelAndView.setViewName("/admin/register-success");
+        } catch (Exception e) {
+            modelAndView.setViewName("/admin/register-error");
+        }
         return modelAndView;
     }
 

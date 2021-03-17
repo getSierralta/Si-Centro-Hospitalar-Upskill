@@ -40,6 +40,7 @@ public class ApplicationUserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.confirmationTokenService = confirmationTokenService;
     }
+
     public void enableUser(String email, String userRole) {
         switch (userRole) {
             case "UTENTE":
@@ -65,6 +66,7 @@ public class ApplicationUserService implements UserDetailsService {
                 break;
         }
     }
+
 
     //Boiler Plate code
     //Salvar utilizador
@@ -153,39 +155,5 @@ public class ApplicationUserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return token;
     }
-
-    public void singUpEmployee(Employee employee){
-        boolean employeeExist = employeeRepository.findByUsername(employee.getUsername()).isPresent();
-        if (employeeExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
-        }
-        String encodedPassword = bCryptPasswordEncoder.encode(employee.getPassword());
-        employee.setPassword(encodedPassword);
-        employeeRepository.save(employee);
-    }
-
-
-    public void singUpDoctor(Doctor doctor){
-        boolean doctorExist = doctorRepository.findByUsername(doctor.getUsername()).isPresent();
-        if (doctorExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
-        }
-        String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
-        doctor.setPassword(encodedPassword);
-        doctorRepository.save(doctor);
-    }
-
-    public void singUpAdmin(Admin admin){
-        boolean adminExist = adminRepository.findByUsername(admin.getUsername()).isPresent();
-        if (adminExist){
-            throw new IllegalStateException("Este usuario ja esta registrado");
-        }
-        String encodedPassword = bCryptPasswordEncoder.encode(admin.getPassword());
-        admin.setPassword(encodedPassword);
-        adminRepository.save(admin);
-    }
-
-
-
 
 }
