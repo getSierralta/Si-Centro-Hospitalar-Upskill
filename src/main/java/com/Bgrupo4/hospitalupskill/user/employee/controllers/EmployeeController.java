@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -29,6 +30,7 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final SenhaService senhaService;
     private final CalendarioService calendarioService;
+    private final InvoiceController invoiceController;
 
     @GetMapping(value = "/profile")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
@@ -68,7 +70,7 @@ public class EmployeeController {
     @GetMapping(value = "/utente-bills")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
     public String showBills(ModelMap map){
-        map.put("categorias", senhaService.getCategorias());
+        map.put("invoiceList", invoiceController.getList());
         return "/employee/utente-bills";
     }
 
