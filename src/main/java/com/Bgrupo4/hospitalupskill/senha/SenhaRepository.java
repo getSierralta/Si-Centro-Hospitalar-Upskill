@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.senha;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,7 @@ public interface SenhaRepository extends JpaRepository<Senha, Long> {
 
     @Query("SELECT u FROM Senha u WHERE u.utente = ?1 AND u.date = ?2 AND u.foiAtentido = 0")
     List<Senha> getAllByUtenteAndDate(Utente utente, Date now);
+
+    @Query("SELECT u FROM Senha u WHERE u.doctor = ?1 AND u.date = ?2 AND u.foiAtentido = 0")
+    List<Senha> getAllByDoctorAndDate(Doctor doctor, Date time);
 }

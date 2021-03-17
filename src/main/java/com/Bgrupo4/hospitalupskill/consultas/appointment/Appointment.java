@@ -34,12 +34,10 @@ public class Appointment{
     @Column(name= "time", nullable = false)
     private String time;
 
-
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
     @JsonManagedReference
     private Doctor doctor;
-
 
     @ManyToOne
     @JoinColumn(name = "utente_id", nullable = false)
@@ -52,6 +50,9 @@ public class Appointment{
 
     @Column(name= "especialidade", nullable = false)
     private String especialidade;
+
+    @Column(name= "startedAt")
+    private String startedAt;
 
 
     public Appointment(Calendar date, Doctor doctor, Utente utente, Status status, String especialidade) {

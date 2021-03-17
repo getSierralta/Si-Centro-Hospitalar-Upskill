@@ -1,6 +1,8 @@
 package com.Bgrupo4.hospitalupskill.consultas.appointment;
 
+import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -18,4 +20,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Vaga> findAllByEspecialidade(String especialidade);
 
     List<Appointment> findAllByUtenteAndDate(Utente utente, GregorianCalendar gregorianCalendar);
+
+    List<Appointment> findAllByDoctorAndStatus(Doctor doctor, Status going);
 }

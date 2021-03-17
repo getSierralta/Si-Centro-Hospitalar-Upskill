@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/responsivestyle.css">
+    <link rel="stylesheet" href="../../css/responsivestyle.css">
     <title>Medico</title>
 </head>
-<body>
-<nav class="nav-row">
+
+<body class="container blue">
+    <nav class="nav-row">
             <div class="medium">
                 <a href="/medico/profilemedico">
                     <div class="icon home"></div>
@@ -54,45 +55,24 @@
                 </a>
             </div>
         </nav>
-    <main class="main">
-            <!--Info Box-->
-            <div class="card big profileutente__consulta client_info principal">
-                <h1>Welcome back! &nbsp; ${medico.getName()}</h1>
-                <div class="client_photo">
-                    <img class="inversed" src="../img/${medico.getProfilePicture()}" alt="client">
-                </div>
-               <div class="flex">
-                    <div class="client_details">
-                        <p>Data de Nascimento: &nbsp;${medico.getDataDeNascimento()}</p>
-                        <p>Numero de Identidade Fiscal:&nbsp; ${medico.getNif()}</p>
+        <main class="main">
+            <div class="card fill ongoing">
+                    <div class="person_header" id="header">
+                        <div class="client_photo">
+                            <img class="inversed" src="../../img/${utente.getProfilePicture()}" alt="client">
+                        </div>
+
                     </div>
-               </div>
-                <div class="client_info">
-                        <p>Morada: &nbsp; ${medico.getMorada()}</p>
-                        <p>E-mail: &nbsp; ${medico.getEmail()}</p>
-                        <p>Localidade:  &nbsp;${medico.getLocalidade()} </p>
-                        <p>Telemovel: &nbsp; ${medico.getPhone()} </p>
-                </div>
+                    <div class="person_body" id="body">
+
+                    </div>
+                    <div class="person_options" id="buttons">
+
+                    </div>
             </div>
-            <div class="card big profileutente__consulta client_info">
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-
-                    </div>
-
-                </div>
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-                    </div>
-                </div>
-             </div>
-        </main>
+        </div>
+    </main>
+     <script src="../../js/consulta.js"></script>
 </body>
 
 </html>

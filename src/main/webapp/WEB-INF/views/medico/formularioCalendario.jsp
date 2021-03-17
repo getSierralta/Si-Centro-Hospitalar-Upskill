@@ -21,16 +21,16 @@
         </div>
         <div class="medium">
             <a href="/medico/salaDeEspera">
-                <div class="icon informacao"></div>
-                <span class="none">Comenzar Consulta</span>
-            </a>
-        </div>
-        <div class="medium">
-            <a href="/medico/salaDeEspera">
                 <div class="icon notes"></div>
                 <span class="none">Lista de espera</span>
             </a>
         </div>
+        <div class="medium">
+                <a href="/medico/ongoing">
+                    <div class="icon informacao"></div>
+                    <span class="none">Consulta</span>
+                </a>
+         </div>
         <div class="medium ">
             <a href="/medico/formularioCalendario">
                 <div class="icon calendario"></div>

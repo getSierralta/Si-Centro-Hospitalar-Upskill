@@ -55,4 +55,6 @@ public class Senha {
 
     private String categoria;
 
+    private String status;
+
 }

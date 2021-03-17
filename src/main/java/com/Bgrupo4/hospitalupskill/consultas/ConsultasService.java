@@ -4,10 +4,16 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaRepository;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaRepository;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -31,6 +37,8 @@ public class ConsultasService {
     private final VagaRepository vagaRepository;
     private final DoctorRepository doctorRepository;
     private final UtenteRepository utenteRepository;
+    private final SenhaRepository senhaRepository;
+    private final RelatorioRepository relatorioRepository;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -191,5 +199,71 @@ public class ConsultasService {
         return appointmentRepository.findAllByUtenteAndDate(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 
+    public Appointment startConsulta(Senha senha) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(senha.getAppointment().getId());
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não encontrada: "+senha.getAppointment().getId());
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.GOING);
+        if (appointment.getStartedAt() != null){
+            appointment.setStartedAt(String.valueOf(LocalTime.now()));
+        }
+        senha.setFoiAtentido(true);
+        senhaRepository.save(senha);
+        return appointmentRepository.save(appointment);
+    }
+
+
+
+    public Relatorio createRelatorio(Doctor doctor, Utente utente, RelatorioRequest request) {
+        if (request.getRelatorio() != null){
+            Relatorio relatorio = new Relatorio();
+            relatorio.setDate(Calendar.getInstance().getTime());
+            relatorio.setDoctor(doctor);
+            relatorio.setUtente(utente);
+            relatorio.setDescription(request.getRelatorio());
+            return relatorioRepository.save(relatorio);
+        }
+        throw new IllegalArgumentException("No description");
+    }
+
+    public Appointment marcarAusencia(Long id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não existe" + id);
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.LATE);
+
+        return appointmentRepository.save(appointment);
+    }
+
+    public Appointment fecharConsulta(Long id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        if (appointmentOptional.isEmpty()){
+            throw new EntityNotFoundException("Consulta não existe" + id);
+        }
+        Appointment appointment = appointmentOptional.get();
+        appointment.setStatus(Status.CLOSED);
+
+        return appointmentRepository.save(appointment);
+    }
+
+    public List<Senha> getSenhasOnGoingAppoinmentByMedico(Doctor doctor) {
+        List<Senha> senhas = new ArrayList<>();
+        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.GOING)){
+            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
+        }
+        return senhas;
+    }
+
+    public List<Senha> getSenhasLateAppoinmentByMedico(Doctor doctor) {
+        List<Senha> senhas = new ArrayList<>();
+        for (Appointment appointment: appointmentRepository.findAllByDoctorAndStatus(doctor, Status.LATE)){
+            senhas.addAll(senhaRepository.getAllByAppointment(appointment));
+        }
+        return senhas;
+    }
 }
 

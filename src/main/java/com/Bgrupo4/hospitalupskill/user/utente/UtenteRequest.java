@@ -1,17 +1,11 @@
 package com.Bgrupo4.hospitalupskill.user.utente;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 public class UtenteRequest {
-
-    private final String name;
-    private final String username;
+    private final String morada;
+    private final String localidade;
+    private final String telemovel;
     private final String apolice;
 }
