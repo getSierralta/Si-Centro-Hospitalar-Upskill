@@ -51,11 +51,6 @@ public class Utente extends ApplicationUser {
     @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Senha> senhas;
 
-    public Utente(String nif, String name, String username, String email, String password, String apolice) {
-        super(nif, name, username, email, password, UserRole.UTENTE.name());
-        this.apolice = apolice;
-    }
-
     public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String apolice, String numUtente) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.UTENTE.name());
         this.apolice = apolice;

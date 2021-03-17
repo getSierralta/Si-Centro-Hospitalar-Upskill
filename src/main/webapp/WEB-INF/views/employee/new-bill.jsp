@@ -56,7 +56,7 @@
         <div class="main">
             <!--Header-->
             <header class="header">
-                <h3 class="page_title">UTENTE BILLS</h3>
+                <h3 class="page_title">NEW BILL</h3>
             </header>
             <!--/Header-->
              <!--Info Box-->
@@ -67,23 +67,22 @@
             </div>
             <!--/Info Box-->
             <!--Form-->
-            <div class="object_container forms">
-                <form class="log-in column" id="register" action="/employee/new-bill" method="POST" enctype="multipart/form-data">
-                    <input type="text" name="name" placeholder="Nome do Utente" required="required" />
-                    <input type="text" name="email" placeholder="Email" required="required" />
+            <div class="object_container forms full">
+                <form class="log-in column" id="invoice" action="/invoices/802244746/process" method="POST" modelAttribute="Invoice" enctype="multipart/form-data">
                     <input type="text" name="nif" placeholder="NIF" required="required" />
-                    <input type="text" name="dueDate" placeholder="Data Limite" required="required" />
-
-                    <input type="text" name="description" placeholder="Descrição" required="required" />
-                    <input type="text" name="value" placeholder="Valor" required="required" />
-
-                    <button class="greenbutt" type="submit">Register</button>
+                    <input type="date" name="dueDate" placeholder="Data Limite" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" />
+                    <div class="input_fields_wrap" name="items">
+                        <input type="text" name="items[0].description" placeholder="Descrição" required="required" >
+                        <input type="text" name="items[0].value" placeholder="Value" required="required" >
+                        <button class="add_field_button">Adicionar Item</button>
+                    </div>
+                    <button class="greenbutt" type="submit">Submit</button>
                 </form>
             </div>
             <!--/Form-->
         </div>
         <!--/Main-->
     </div>
-    <script src="../js/buttlist.js"></script>
+    <script src="../js/invoice.js"></script>
 </body>
 </html>

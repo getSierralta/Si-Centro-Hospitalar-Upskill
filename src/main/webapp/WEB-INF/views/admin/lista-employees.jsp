@@ -64,20 +64,19 @@
         <div class="object_container full_grid">
             <div class="person_list_container">
                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="utente">
+                    <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
                 <div class="person_list">
-                    <c:forEach var="admin" items="${adminList}">
+                    <c:forEach var="employee" items="${employeeList}">
                         <a href="#/" class="person_button">
-                            <p>${admin.getName()}</p>
-                            <p>${admin.getNif()}</p>
+                            <p>${employee.getUsername()}</p>
                         </a>
                     </c:forEach>
                 </div>
             </div>
             <div class="person_viewer">
-                <c:forEach var="admin" items="${adminList}" varStatus="loop">
+                <c:forEach var="employee" items="${employeeList}" varStatus="loop">
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
@@ -85,13 +84,16 @@
                                 <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                             </div>
                             <div class="client_details">
-                                <p><b>${admin.getName()}</b><br>
-                                <b>${admin.getNif()}</b></p>
+                                <p><b>User Name:</b> &nbsp;${employee.getUsername()}</p>
+                                <p><b>Nome:</b> &nbsp;${employee.getName()}</p>
+                                <p><b>Data de Nascimento:</b> &nbsp;${employee.getDataDeNascimento()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${employee.getNif()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Next appointment</b> N/A</p>
-                                <p><b>Last appointment</b> N/A</p>
-                                <p><b>Email</b> ${admin.getEmail()}</p>
+                               <p><b>Morada:</b> &nbsp;${employee.getMorada()}</p>
+                               <p><b>E-mail:</b> &nbsp;${employee.getEmail()}</p>
+                               <p><b>Localidade:</b>  &nbsp;${employee.getLocalidade()} </p>
+                               <p><b>Telemovel:</b> &nbsp; ${employee.getPhone()} </p>
                             </div>
                         </div>
                         <div class="person_body">

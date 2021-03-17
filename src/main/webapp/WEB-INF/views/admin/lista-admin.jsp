@@ -64,14 +64,13 @@
         <div class="object_container full_grid">
             <div class="person_list_container">
                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="utente">
+                    <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
                 <div class="person_list">
                     <c:forEach var="admin" items="${adminList}">
                         <a href="#/" class="person_button">
-                            <p>${admin.getName()}</p>
-                            <p>${admin.getNif()}</p>
+                            <p>${admin.getUsername()}</p>
                         </a>
                     </c:forEach>
                 </div>
@@ -85,22 +84,71 @@
                                 <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                             </div>
                             <div class="client_details">
-                                <p><b>${admin.getName()}</b><br>
-                                <b>${admin.getNif()}</b></p>
+                                <p><b>User Name:</b> &nbsp;${admin.getUsername()}</p>
+                                <p><b>Nome:</b> &nbsp;${admin.getName()}</p>
+                                <p><b>Data de Nascimento:</b> &nbsp;${admin.getDataDeNascimento()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${admin.getNif()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Next appointment</b> N/A</p>
-                                <p><b>Last appointment</b> N/A</p>
-                                <p><b>Email</b> ${admin.getEmail()}</p>
+                               <p><b>Morada:</b> &nbsp;${admin.getMorada()}</p>
+                               <p><b>E-mail:</b> &nbsp;${admin.getEmail()}</p>
+                               <p><b>Localidade:</b>  &nbsp;${admin.getLocalidade()} </p>
+                               <p><b>Telemovel:</b> &nbsp; ${admin.getPhone()} </p>
                             </div>
                         </div>
                         <div class="person_body">
-                            <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
+                        <p>EDITAR UTILIZADOR</p>
+                        <br>
+                            <div class="flex">
+                                <form class="log-in" form action="update" method="POST">
+                                    <input type="text" path="userName" placeholder="Alterar User Name"/>
+                                    <input type="text" path="nome" placeholder="Alterar Nome"/>
+                                    <input type="text" path="nif" value=${admin.getNif()} style="display:none;"/>
+                                    <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
+                                    <input type="text" path="localidade" placeholder="Alterar Localidade" />
+                                    <input type="text" path="telemovel" placeholder="Alterar Telemovel" />
+                                    <input type="file" id="img" name="img">
+                                    <button class="greenbutt" type="submit">Salvar</button>
+                                </form>
+
+                                <div>
+                                <div class="role">
+                                    <p>TROCAR ROLE DO UTILIZADOR</p>
+                                    <form action="#">
+                                        <select class="greenbutt" name="role" id="role">
+                                            <option value="employee">Employee</option>
+                                            <option value="doctor">Doctor</option>
+                                            <option value="responsavel">Responsavel</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                        <button class="greenbutt" type="submit">Salvar</button>
+                                    </form>
+                                </div>
+                                <br>
+                                <div class="password ">
+                                    <p>TROCAR PALAVAR-PASSE</p>
+                                    <form action="#">
+                                        <input type="password" path="password" placeholder="Password"  />
+                                        <input type="password" path="password" placeholder="Repeat Password"  />
+                                        <button class="greenbutt" type="submit">Salvar</button>
+                                    </form>
+                                </div>
+                                </div>
+
+                                <div class="password">
+                                    <p>ELIMINAR CONTA</p>
+                                    <form action="#">
+                                        <div class="form-label">
+                                            <input type="checkbox" value="element" path="condicao" required="required" />
+                                            <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
+                                        </div>
+                                        <button class="greenbutt" type="submit">Apagar Conta</button>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="person_options">
-                            <button class="greenbutt" type="submit">EDIT</button>
-                            <button class="greenbutt" type="submit">DELETE</button>
-                        </div>
+
                     </div>
                 </c:forEach>
             </div>

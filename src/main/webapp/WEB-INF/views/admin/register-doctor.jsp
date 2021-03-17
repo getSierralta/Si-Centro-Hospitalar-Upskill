@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="/css/responsivestyle.css">
-    <title>Register New Employee</title>
+    <title>Register New Doctor</title>
 </head>
 <body class="container blue ">
     <!--Horizontal Nav-->
@@ -51,7 +51,7 @@
     <!--Main-->
     <main class="main">
             <div class="object_container forms">
-                <form class="log-in column" action="register-employee" method="POST">
+                <form class="log-in column" action="register-doctor" method="POST">
                     <input type="text" name="username" placeholder="User Name" required="required" />
                         <input type="text" name="name" placeholder="Nome Completo" required="required" />
                         <input type="text" name="nif" placeholder="Nif" required="required" />
@@ -62,10 +62,16 @@
                         <input type="date" placeholder="Data de nascimento" name="dataDeNascimento" onfocus="(this.type='date')"
                         onblur="(this.type='text')" required="required" />
                         <input type="password" name="password" placeholder="Password" required="required" />
-                        <select class="greenbutt" name="role" id="role">
-                            <option value="employee">Employee</option>
-                            <option value="responsavel">Responsavel</option>
-                            <option value="admin">Admin</option>
+                        <input type="text" name="cedula" placeholder="Cedula" />
+                        <select class="greenbutt" name="especialidade" id="especialidade" required="required">
+                            <option disabled selected value> Especialidade: </option>
+                            <option value="GERAL">Geral</option>
+                            <option value="OSTEOPATIA">Osteopatia</option>
+                            <option value="CARDIOLOGIA">Cardiologia</option>
+                            <option value="ONCOLOGIA">Oncologia</option>
+                            <option value="GINECOLOGIA">Ginecologia</option>
+                            <option value="RADIOLOGIA">Radiologia</option>
+                            <option value="FISIOTERAPIA">Fisioterapia</option>
                         </select>
                     <button class="green" type="submit">Register</button>
                 </form>

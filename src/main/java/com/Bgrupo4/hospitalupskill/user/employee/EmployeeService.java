@@ -1,8 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;

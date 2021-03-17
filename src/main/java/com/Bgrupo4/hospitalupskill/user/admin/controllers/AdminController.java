@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 
+import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.controllers.DoctorManagementController;
@@ -30,6 +31,9 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    CalendarioService calendarioService;
 
     @GetMapping(value = "/profile")
     public String showProfile(ModelMap map){
@@ -79,9 +83,14 @@ public class AdminController {
 
     @GetMapping(value = "/register-employee")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String showRegisterEmployee(ModelMap map) {
-        map.put("especialidades", Especialidade.values());
+    public String showRegisterEmployee() {
         return "/admin/register-employee";
+    }
+
+    @GetMapping(value = "/register-doctor")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String showRegisterDoctor(ModelMap map) {
+        return "/admin/register-doctor";
     }
 
     @GetMapping(value = "/register-success")

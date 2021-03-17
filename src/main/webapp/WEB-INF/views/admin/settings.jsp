@@ -56,6 +56,8 @@
         <div class="object_container full_info">
            <div class="flex">
                  <div class="client_details">
+                     <p>User Name: &nbsp;${admin.getUsername()}</p>
+                     <p>Nome: &nbsp;${admin.getName()}</p>
                      <p>Data de Nascimento: &nbsp;${admin.getDataDeNascimento()}</p>
                      <p>Numero de Identidade Fiscal:&nbsp; ${admin.getNif()}</p>
                  </div>
@@ -72,11 +74,11 @@
         <div class="card medium settings">
             <img class="settings_logo" src="/img/logo.svg" alt="logo">
             <form action="#" class="log-in">
-                <input type="text" path="userName" placeholder="{client.userName}"/>
-                <input type="text" path="nome" placeholder="{client.name}"/>
-                <textarea name="message" rows="2" cols="30" path="morada" placeholder="{client.morada}"></textarea>
-                <input type="text" path="localidade" placeholder="{client.localidade}" />
-                <input type="text" path="telemovel" placeholder="{client.telemovel}"  />
+                <input type="text" path="userName" placeholder="Alterar User Name"/>
+                <input type="text" path="nome" placeholder="Alterar Nome"/>
+                <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
+                <input type="text" path="localidade" placeholder="Alterar Localidade" />
+                <input type="text" path="telemovel" placeholder="Alterar Telemovel" />
                 <input type="password" path="password" placeholder="Password" required />
                 <input type="file" id="img" name="img">
                 <button class="greenbutt" type="submit">Salvar</button>
@@ -107,8 +109,6 @@
                 </form>
             </div>
         </div>
-
-
         <!--/Cards-->
     </main>
     <!--/Main-->
