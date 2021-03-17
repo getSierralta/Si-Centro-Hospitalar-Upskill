@@ -86,4 +86,6 @@ public class DoctorController {
         map.put("utente", utenteService.getUserById(senha.getUtente().getId()).get());
         return "/medico/ongoing";
     }
+
+
 }

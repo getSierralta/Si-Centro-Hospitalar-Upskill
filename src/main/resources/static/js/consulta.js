@@ -162,7 +162,6 @@ function edit(utente, body){
     button.addEventListener('click', () => {
         sendFormEdit(utente.id)
     });
-    button.type = "button";
                 
 
     form.appendChild(morada);
