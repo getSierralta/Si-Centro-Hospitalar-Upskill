@@ -210,6 +210,7 @@ public class ConsultasService {
             appointment.setStartedAt(String.valueOf(LocalTime.now()));
         }
         senha.setFoiAtentido(true);
+        senha.setStatus(Status.GOING.name());
         senhaRepository.save(senha);
         return appointmentRepository.save(appointment);
     }
@@ -247,6 +248,13 @@ public class ConsultasService {
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.CLOSED);
 
+        for (Senha senha :  getSenhasOnGoingAppoinmentByMedico(appointment.getDoctor())) {
+            if (senha.getAppointment().getId().equals(appointment.getId())){
+                senha.setStatus(Status.CLOSED.name());
+                senhaRepository.save(senha);
+                break;
+            }
+        }
         return appointmentRepository.save(appointment);
     }
 

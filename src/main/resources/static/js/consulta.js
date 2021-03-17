@@ -4,14 +4,23 @@ const id = st[5];
 let senha = null;
 
 function start(){
-    const url = `http://localhost:8080/api/consultas/senha/${id}`;
+    let url;
+    if(id == undefined){
+        url = `http://localhost:8080/api/consultas/ongoing`;
+    }else{
+        url = `http://localhost:8080/api/consultas/senha/${id}`;
+    }    
     fetch(url)
     .then(response => response.status == 500 ? giveError() : response.json())
     .then(data => {
             senha = data;
             console.log(senha);
-            let xhr = new XMLHttpRequest();    
-            xhr.open("POST", `http://localhost:8080/api/consultas/senha/${id}`, true);
+            let xhr = new XMLHttpRequest(); 
+            if(id == undefined){
+                xhr.open("POST", `http://localhost:8080/api/consultas/ongoing`, true);
+            }else{
+                xhr.open("POST", `http://localhost:8080/api/consultas/senha/${id}`, true);
+            }             
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(); 
             xhr.onloadend = function() {        
@@ -129,9 +138,7 @@ function edit(utente, body){
     container.style.maxWidth = "50%";
     container.classList.add = "flex";
 
-    const form = document.createElement("form");
-    //form.method = "POST";
-    //form.action = `/api/utentes/${utente.id}`;   
+    const form = document.createElement("form"); 
     form.classList.add("log-in");
     form.id = "editUtenteFormulario";
 
@@ -162,6 +169,7 @@ function edit(utente, body){
     button.addEventListener('click', () => {
         sendFormEdit(utente.id)
     });
+    button.type = "button";
                 
 
     form.appendChild(morada);
@@ -212,6 +220,9 @@ function receita(utente, body){
 }
 function relatorio(utente, body){
     body.innerHTML = "";
+    body.style.display = "flex";
+    body.style.alignItems = "center";
+    body.style.flexDirection = "column";
     const container = document.createElement('div');
     container.style.maxWidth = "50%";
     container.classList.add = "flex";
@@ -225,8 +236,8 @@ function relatorio(utente, body){
 
     const relatorio = document.createElement("textarea");
     relatorio.name = "relatorio";
-    relatorio.rows = "5";
-    relatorio.cols = "60";
+    relatorio.rows = "15";
+    relatorio.cols = "80";
 
     
     const button = document.createElement("button");
@@ -323,5 +334,6 @@ function fecharConsulta(utente){
 function giveError(){
    console.log("error"); 
 }
+
 
 start();

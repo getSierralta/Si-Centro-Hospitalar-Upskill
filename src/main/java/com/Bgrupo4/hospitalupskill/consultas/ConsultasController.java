@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
+import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 @RequiredArgsConstructor
@@ -72,8 +74,6 @@ public class ConsultasController {
         return ResponseEntity.ok(consultasService.createAppointment(request));
     }
 
-
-
     @GetMapping("/vagas")
     public ResponseEntity getVagas(@RequestParam(required = false) Long id) {
         if (id == null) {
@@ -102,6 +102,27 @@ public class ConsultasController {
         }
         return ResponseEntity.ok(senhaService.getSenhaById(Long.valueOf(id)).get());
     }
+
+    @GetMapping("/ongoing")
+    public ResponseEntity<Senha> getSenha() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        if (senhaService.getSenhasByStatus(Status.GOING.name(), doctor).isEmpty()){
+            throw new EntityNotFoundException("nao tem ongoing senha");
+        }
+        return ResponseEntity.ok(senhaService.getSenhasByStatus(Status.GOING.name(), doctor).get(0));
+    }
+
+    @PostMapping("/ongoing")
+    public ResponseEntity<Appointment> startOngoing() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        if (senhaService.getSenhasByStatus(Status.GOING.name(), doctor).isEmpty()){
+            throw new EntityNotFoundException("nao tem ongoing senha");
+        }
+        return ResponseEntity.ok(consultasService.getAppointment(senhaService.getSenhasByStatus(Status.GOING.name(), doctor).get(0).getAppointment().getId()));
+    }
+
     @PostMapping("/senha/{id}")
     public ResponseEntity<Appointment> startConsulta(@PathVariable String id) {
         Optional<Senha> senhaOptional = senhaService.getSenhaById(Long.valueOf(id));
@@ -110,6 +131,7 @@ public class ConsultasController {
         }
         return ResponseEntity.ok(consultasService.startConsulta(senhaOptional.get()));
     }
+
     @PostMapping("/vagas")
     public ResponseEntity<Vaga> createVaga(@RequestBody VagaCreationRequest request) {
         return ResponseEntity.ok(consultasService.createVaga(request));

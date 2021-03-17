@@ -100,8 +100,8 @@ public class HospitalUpskillApplication {
                 applicationUserService.enableAndSave(utente1);
                 Vaga vaga8 = consultasService.createVaga(new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate()), "16:30", Especialidade.CARDIOLOGIA.name(), doctor));
                 Appointment appointment2 = consultasService.createAppointment(vaga8, utente1);
-                ECRA.add(senhaService.createSenha(appointment2.getId()));
-                ECRA.add(senhaService.createSenha(utente1));
+                senhaService.createSenha(appointment2.getId());
+                senhaService.createSenha(utente1);
             }
 
 

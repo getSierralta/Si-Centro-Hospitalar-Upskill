@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/medico")
@@ -84,6 +86,22 @@ public class DoctorController {
             throw new EntityNotFoundException("Utente não existe: "+senha.getUtente().getId());
         }
         map.put("utente", utenteService.getUserById(senha.getUtente().getId()).get());
+        return "/medico/ongoing";
+    }
+
+    @GetMapping(value = "/ongoing")
+    public String showOnGoing(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        List<Senha> senha = consultasService.getSenhasOnGoingAppoinmentByMedico(doctor);
+        if (senha.isEmpty()){
+
+        }else{
+            if (utenteService.getUserById(senha.get(0).getUtente().getId()).isEmpty()){
+                throw new EntityNotFoundException("Utente não existe: "+senha.get(0).getUtente().getId());
+            }
+            map.put("utente", utenteService.getUserById(senha.get(0).getUtente().getId()).get());
+        }
         return "/medico/ongoing";
     }
 
