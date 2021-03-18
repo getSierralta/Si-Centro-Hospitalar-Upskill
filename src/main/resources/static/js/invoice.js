@@ -30,3 +30,35 @@ function submitform(){
     var formData = JSON.stringify($("#invoice").serializeArray());
     xhr.send(JSON.stringify(formData));
 };
+
+// INVOICE OVERLAY
+var $overlay = $('<div id="overlay"></div>');
+var $iframe = $('<iframe width="595" height="485" frameborder="0" marginwidth="0" margin="0" height="0" scrolling="no" allowfullscreen></iframe>');
+$overlay.append($iframe);
+
+$('body').append($overlay);
+
+$('a.card.small.invoice').click(function(event) {
+    event.preventDefault();
+    var id = $(this).attr("${invoice.getId()}");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', id, true);
+    var src = null;
+
+    $iframe.attr('src', src);
+    $overlay.show();
+});
+
+$overlay.click(function() {
+    $overlay.hide();
+    $iframe.attr('src', '');
+});
+// end invoice overlay
+
+/*
+$('#status').change(function(){
+    event.preventDefault();
+    $(this).closest('form').submit();
+});
+*/

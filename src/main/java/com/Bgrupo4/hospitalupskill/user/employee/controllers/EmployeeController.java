@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -13,11 +14,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
@@ -69,9 +69,19 @@ public class EmployeeController {
 
     @GetMapping(value = "/utente-bills")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String showBills(ModelMap map){
-        map.put("invoiceList", invoiceController.getList());
+    public String showBills(ModelMap map, @RequestParam (required = false) String search,
+                            @RequestParam (required = false) String status){
+        map.put("invoiceList", invoiceController.getList(search, status));
         return "/employee/utente-bills";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public ModelAndView getBill(@RequestParam String id){
+        InvoiceRequest invoiceRequest = new InvoiceRequest();
+        invoiceRequest.setId(id);
+        System.out.println("EC: " + id);
+        return invoiceController.getInvoice(invoiceRequest);
     }
 
     @GetMapping(value = "/new-bill")

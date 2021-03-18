@@ -104,6 +104,8 @@ public class InvoiceController {
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
     public ModelAndView getInvoice(@RequestBody InvoiceRequest invoiceRequest) {
+        System.out.println("IC: " + invoiceRequest);
+
         URL requestUrl = null;
         try {
             requestUrl = new URL("https://serro.pt/invoices/802244746/get/" + invoiceRequest.getId());
@@ -153,25 +155,33 @@ public class InvoiceController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList() {
+    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status) {
         String requestUrl = "https://serro.pt/invoices/802244746/list";
+
+        if (search != null) {
+            System.out.println(search);
+            if (search.contains(":")) {
+                String[] token = search.split(":");
+                if (token.length > 0) {
+                    String att = token[0];
+                    String value = token[1];
+                    requestUrl += "?" + att + "=" + value;
+                }
+            } else {
+                requestUrl += "?search=" + search;
+            }
+        }
+
+        if (status == null || status.isEmpty()) {
+            requestUrl += "";
+        } else {
+            requestUrl += "&status=" + status;
+        }
+
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
-        List<Invoice> invoices = responseEntity.getBody().getInvoices();
-/*
-        if (sort.equals("default")) {
-            invoices = responseEntity.getBody().getInvoices();
-        }
+        InvoiceResponse invoiceResponse = responseEntity.getBody();
+        List<Invoice> invoices = invoiceResponse.getInvoices();
 
-        if (sort.equals("nif")) {
-            invoices = invoices.stream().sorted(Comparator.comparing(Invoice::getNif)).collect(Collectors.toList());
-        }
-
-        // TEST
-        for (Invoice invoice : invoices) {
-            System.out.println(invoice.getNif());
-        }
-        //
-*/
         return invoices;
     }
 }
