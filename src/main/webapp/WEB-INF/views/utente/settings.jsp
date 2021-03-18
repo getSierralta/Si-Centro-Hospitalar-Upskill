@@ -89,27 +89,9 @@
                     <input type="file" name="imageFile">
                     <button type="submit">Trocar foto de perfil</button>
                 </form>
-                <!--<p>Trocar Palavra Passe</p>
 
-                <form action="#">
-                    <input type="password" path="password" placeholder="Old Password" required />
-                    <input type="password" path="password" placeholder="Password" />
-                    <input type="password" path="password" placeholder="Repeat Password" />
-                    <button class="greenbutt" type="submit">Salvar</button>
-                </form>
-                <a href="#" class="green">Forgot password?</a>-->
             </div>
-            <div class="password">
-                <p>Eliminar conta</p>
-                <form action="#">
-                    <input type="password" path="password" placeholder="Password"  />
-                    <div class="form-label">
-                        <input type="checkbox" value="element" path="condicao" required="required" />
-                        <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
-                    </div>
-                    <button class="apagar" type="submit">Apagar Conta</button>
-                </form>
-            </div>
+
         </div>
     </main>
 </body>
