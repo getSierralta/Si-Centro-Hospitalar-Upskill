@@ -29,7 +29,7 @@ function openModal(monthName, daySquare, month){
     const dia = "2021-"+month.toString()+"-"+day.toString();
     const vagas = document.getElementById("vagas");
     vagas.innerHTML = "";
-    fetch(`http://localhost:8080/utente/calendarutente/${dia}`)
+    fetch(`http://localhost:8080/api/doctors/calendarmedico/${dia}`)
     .then(response => response.json())
     .then(data =>         
             data.forEach(element => { 
@@ -42,7 +42,7 @@ function openModal(monthName, daySquare, month){
 
                 const title = document.createElement('span'); 
                 title.classList.add('list-item__title');
-                title.innerText = element.especialidade;
+                title.innerText = element.utente.name;
 
                 const button = document.createElement('button'); 
                 button.innerText = "Ver Consulta";
@@ -118,41 +118,14 @@ function abrirPopUp(appointment){
                     content.innerHTML = "";
                     const success = document.createElement('img'); 
                     success.classList.add('inversed');
-                    success.src = "/img/borat.gif";
+                    success.src = "/img/success.gif";
                     success.style.maxHeight = "80%";
                     content.appendChild(success);
                 }
             ); 
     });
     cancelarConsulta.innerText = "Cancelar consulta";
-    const checkIn = document.createElement('button');
-    checkIn.id = "checkIn";
-    checkIn.addEventListener('click',  () => {
-        id = null;
-    id = appointment.id;
-    const url = `http://localhost:8080/utente/checkin/${id}`;
-    fetch(url)
-    .then(response => response.status == 500 ? giveError() : response.json())
-    .then(data =>         
-            data.forEach(element => { 
-                content.innerHTML = "";               
-                const senha = document.createElement('div'); 
-                senha.innerText = element.numeroSenha;
-                senha.classList.add('tracknumberutente__number');
-                senha.style.maxHeight = "65%";
-                const title = document.createElement('p'); 
-                const b = document.createElement('b'); 
-                b.innerText = "Numero de senha: ";
-                senha.classList.add('tracknumberutente__number');
-                title.appendChild(b);
-                content.appendChild(title);
-                content.appendChild(senha);
-            })
-        );  
-    });  
-    checkIn.innerText = "Registrar chegada";
     flex.appendChild(cancelarConsulta);
-    flex.appendChild(checkIn);
     flex.appendChild(fecharConsulta);
     
 }
@@ -232,8 +205,7 @@ function load(){
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
             const d = year + "-"+month+ "-"+dateSquare.innerText;
-            //http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}/one
-            fetch(`http://localhost:8080/utente/calendarutente/${d}`)
+            fetch(`http://localhost:8080/api/doctors/calendarmedico/${d}`)
             .then(response => response.json())
             .then(data => data.length === 0 ? daySquare.classList.add('full') : daySquare.classList.add('color-green'));  
         }else{

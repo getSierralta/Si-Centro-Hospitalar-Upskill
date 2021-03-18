@@ -1,6 +1,9 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.Status;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +30,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class DoctorManagementController {
 
-    @Autowired
     private DoctorService doctorService;
+    private ConsultasService consultasService;
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('medico:read')")
@@ -87,5 +91,19 @@ public class DoctorManagementController {
             return new RedirectView("/500");
         }
         return new RedirectView("/medico/settings");
+    }
+
+    @GetMapping(path = "/calendarmedico/{dia}")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    public List<Appointment> getAppoinments(@PathVariable("dia") String dia) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        List<Appointment> appointments = new ArrayList<>();
+        for (Appointment appointment: consultasService.getAppointmentsMedicoByDate(doctor,dia)) {
+            if (appointment.getStatus() == Status.OPEN || appointment.getStatus() == Status.LATE ){
+                appointments.add(appointment);
+            }
+        }
+        return appointments;
     }
 }

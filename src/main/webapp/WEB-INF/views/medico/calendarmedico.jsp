@@ -93,31 +93,20 @@
                         <div class="popup__titulo__logo">
                             <img class="inversed" src="../../img/logo.svg" alt="logo">
                         </div>
-                    </div> 
-                    <div id="title">
-                        Obrigado Por escolher o centro hospitalar Upskill!
-                    </div>  
+                    </div>
                     <div class="popup__info">
                         <div class="popup__info__content" id="content">
-                            <p><b>id: 9</b></p>
-                            <p>date: "2021-03-13"</p>
-                            <p> time: "8:00"</p>
-                            <p>especialidade: "Cardiologia"</p>
-                            <p>Medico: "Thiago"</p>
-                        </div>                    
-                    </div> 
-                    
-                    <div class="flex">                                               
+
+                        </div>
+                    </div>
+
+                    <div class="flex" id="buttons">
                         <button id="fecharConsulta" >
                             Fechar
                         </button>
-                        <button id="checkIn">
-                            <div class="icon consulta"></div>
-                            Chamar Utente
-                        </button> 
                         <button id="cancelarConsulta" >
                             Cancelar
-                        </button> 
+                        </button>
                     </div>
                </div>
             </div>
