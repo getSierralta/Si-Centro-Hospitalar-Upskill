@@ -123,7 +123,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     private String setPic(){
-        switch (new Random().nextInt(3)){
+        switch (new Random().nextInt(4)){
             case 0:
                 return "jenipurr.png";
             case 1:

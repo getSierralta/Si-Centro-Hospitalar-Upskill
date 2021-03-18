@@ -52,7 +52,7 @@
         <div class="object_container full_info">
             <div class="flex">
                 <div class="client_photo">
-                    <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
+                    <img class="inversed" src="../imagens/${utente.getProfilePicture()}" alt="client">
                 </div>
                 <div class="client_details">
                       <p>${utente.getName()}</p>
@@ -65,7 +65,7 @@
                  <p>Morada: &nbsp; ${utente.getMorada()}</p>
                 <p>E-mail: &nbsp; ${utente.getEmail()}</p>
                 <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
-                <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
+                <p>Telemóvel: &nbsp; ${utente.getPhone()} </p>
             </div>
          </div>
 
@@ -89,27 +89,9 @@
                     <input type="file" name="imageFile">
                     <button type="submit">Trocar foto de perfil</button>
                 </form>
-                <!--<p>Trocar Palavra Passe</p>
 
-                <form action="#">
-                    <input type="password" path="password" placeholder="Old Password" required />
-                    <input type="password" path="password" placeholder="Password"  />
-                    <input type="password" path="password" placeholder="Repeat Password"  />
-                    <button class="greenbutt" type="submit">Salvar</button>
-                </form>
-                <a href="#" class="green">Forgot password?</a>-->
             </div>
-            <div class="password">
-                <p>Eliminar conta</p>
-                <form action="#">
-                    <input type="password" path="password" placeholder="Password"  />
-                    <div class="form-label">
-                        <input type="checkbox" value="element" path="condicao" required="required" />
-                        <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
-                    </div>
-                    <button class="apagar" type="submit">Apagar Conta</button>
-                </form>
-            </div>
+
         </div>
     </main>
 </body>

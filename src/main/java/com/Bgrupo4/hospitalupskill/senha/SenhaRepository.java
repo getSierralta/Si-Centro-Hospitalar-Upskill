@@ -24,4 +24,6 @@ public interface SenhaRepository extends JpaRepository<Senha, Long> {
 
     @Query("SELECT u FROM Senha u WHERE u.doctor = ?1 AND u.date = ?2 AND u.foiAtentido = 0")
     List<Senha> getAllByDoctorAndDate(Doctor doctor, Date time);
+
+    List<Senha> getAllByDoctorAndStatus(Doctor doctor, String name);
 }

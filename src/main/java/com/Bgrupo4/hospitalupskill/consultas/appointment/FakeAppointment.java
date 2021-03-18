@@ -1,13 +1,8 @@
 package com.Bgrupo4.hospitalupskill.consultas.appointment;
 
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaStatus;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 @Getter
 public class FakeAppointment {
@@ -26,7 +21,6 @@ public class FakeAppointment {
 
     private Appointment appointment = new Appointment();
 
-    private List<Medicamento> medicamentos = new ArrayList<>();
 
     public String getDataString(){
         return "Não tem consultas marcadas";

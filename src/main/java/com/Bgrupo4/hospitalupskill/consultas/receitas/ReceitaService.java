@@ -23,9 +23,8 @@ public class ReceitaService {
     private final DoctorRepository doctorRepository;
     private final AppointmentRepository appointmentRepository;
     private final UtenteRepository utenteRepository;
-    private final MedicamentoRepository medicamentoRepository;
 
-    public Receita createReceita(Appointment appointment) {
+    public Receita createReceita(Appointment appointment, String s) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(appointment.getId());
         if (appointmentOptional.isEmpty()) {
             throw new EntityNotFoundException(String.format("A consulta %s não existe", appointment.getId()));
@@ -39,29 +38,13 @@ public class ReceitaService {
         Receita receita = new Receita();
         receita.setDoctor(doctor.get());
         receita.setUtente(utente.get());
-        receita.setAppointment(appointmentOptional.get());
         receita.setDate(Calendar.getInstance().getTime());
+        receita.setDescription(s);
         return receitaRepository.save(receita);
     }
 
-
-    public Medicamento addMedicamento(Medicamento medicamento, Receita receita) {
-        Optional<Receita> receitaOptional = receitaRepository.findById(receita.getId());
-        if (receitaOptional.isEmpty()) {
-            throw new EntityNotFoundException(String.format("A receita %s não existe", receita.getId()));
-        }
-        medicamento.setReceita(receitaOptional.get());
-        medicamento.setUtente(receitaOptional.get().getUtente());
-        return medicamentoRepository.save(medicamento);
-    }
-
-
     public List<Receita> getReceitasByUtente(Long id) {
         return receitaRepository.findAllByUtenteId(id);
-    }
-
-    public List<Medicamento> getMedicamentosByReceita(Long id) {
-        return medicamentoRepository.findAllByReceita(id);
     }
 
     public List<Receita> getReceitasByUtenteOrderByDate(Utente utente) {

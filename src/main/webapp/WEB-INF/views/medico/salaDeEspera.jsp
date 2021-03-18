@@ -67,7 +67,7 @@
                 <div class="person_list">
                     <c:forEach var="utente" items="${utenteList}">
                          <c:choose>
-                            <c:when test="${utente.getAppointment().getId()} == 1">
+                            <c:when test="${utente.getAppointment().getStatus().name()} == 'LATE'">
                                 <a href="#/" class="person_button" style="background-color: #ed7828;">
                             </c:when >
                              <c:otherwise>
@@ -85,7 +85,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header" id="header">
                             <div class="client_photo">
-                                <img class="inversed" src="../img/${utente.getUtente().getProfilePicture()}" alt="client">
+                                <img class="inversed" src="../imagens/${utente.getUtente().getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>${utente.getUtente().getName()}</b><br>

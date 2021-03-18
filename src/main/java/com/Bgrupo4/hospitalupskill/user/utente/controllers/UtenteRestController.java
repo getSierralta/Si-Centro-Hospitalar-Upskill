@@ -103,7 +103,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/cancelar/{id}")
-    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
     public ResponseEntity<Appointment> cancelAppoinment(@PathVariable("id") String id) {
         return ResponseEntity.ok(consultasService.cancelAppointment(Long.valueOf(id)));
     }

@@ -37,5 +37,6 @@ public class Relatorio {
     @JsonManagedReference
     private Utente utente;
 
+    @Column(length = 2400)
     private String description;
 }

@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRequest;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
@@ -39,6 +41,7 @@ public class ConsultasService {
     private final UtenteRepository utenteRepository;
     private final SenhaRepository senhaRepository;
     private final RelatorioRepository relatorioRepository;
+    private final ReceitaRepository receitaRepository;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -206,15 +209,15 @@ public class ConsultasService {
         }
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.GOING);
+        appointment.setStartedAt(String.valueOf(LocalDate.now()));
         if (appointment.getStartedAt() != null){
             appointment.setStartedAt(String.valueOf(LocalTime.now()));
         }
         senha.setFoiAtentido(true);
+        senha.setStatus(Status.GOING.name());
         senhaRepository.save(senha);
         return appointmentRepository.save(appointment);
     }
-
-
 
     public Relatorio createRelatorio(Doctor doctor, Utente utente, RelatorioRequest request) {
         if (request.getRelatorio() != null){
@@ -226,6 +229,18 @@ public class ConsultasService {
             return relatorioRepository.save(relatorio);
         }
         throw new IllegalArgumentException("No description");
+    }
+
+    public Receita createReceita(Doctor doctor, Utente utente, ReceitaRequest request) {
+        if (request.getRelatorio() != null){
+            Receita receita = new Receita();
+            receita.setDate(Calendar.getInstance().getTime());
+            receita.setDoctor(doctor);
+            receita.setUtente(utente);
+            receita.setDescription(request.getRelatorio());
+            return receitaRepository.save(receita);
+        }
+        throw new IllegalArgumentException("No Receita");
     }
 
     public Appointment marcarAusencia(Long id) {
@@ -247,6 +262,13 @@ public class ConsultasService {
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.CLOSED);
 
+        for (Senha senha :  getSenhasOnGoingAppoinmentByMedico(appointment.getDoctor())) {
+            if (senha.getAppointment().getId().equals(appointment.getId())){
+                senha.setStatus(Status.CLOSED.name());
+                senhaRepository.save(senha);
+                break;
+            }
+        }
         return appointmentRepository.save(appointment);
     }
 
@@ -264,6 +286,16 @@ public class ConsultasService {
             senhas.addAll(senhaRepository.getAllByAppointment(appointment));
         }
         return senhas;
+    }
+
+
+    public List<Appointment> getAppointmentsMedicoByDate(Doctor doctor, String dia) {
+        String[] split = dia.split("-");
+        String[] m = split[1].split("");
+        String[] d = split[2].split("");
+        String month = m.length == 2 ? split[1] : "0" + split[1];
+        String day = d.length == 2 ? split[2] : "0" + split[2];
+        return appointmentRepository.findAllByDoctorAndDate(doctor, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 }
 

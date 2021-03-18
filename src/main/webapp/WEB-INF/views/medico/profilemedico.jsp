@@ -59,7 +59,7 @@
             <div class="card big profileutente__consulta client_info principal">
                 <h1>Welcome back! &nbsp; ${medico.getName()}</h1>
                 <div class="client_photo">
-                    <img class="inversed" src="../img/${medico.getProfilePicture()}" alt="client">
+                    <img class="inversed" src="../imagens/${medico.getProfilePicture()}" alt="client">
                 </div>
                <div class="flex">
                     <div class="client_details">

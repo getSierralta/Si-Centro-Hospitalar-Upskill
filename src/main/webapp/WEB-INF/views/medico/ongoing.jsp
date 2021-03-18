@@ -59,7 +59,7 @@
             <div class="card fill ongoing">
                     <div class="person_header" id="header">
                         <div class="client_photo">
-                            <img class="inversed" src="../../img/${utente.getProfilePicture()}" alt="client">
+                            <img class="inversed" src="../../imagens/${utente.getProfilePicture()}">
                         </div>
 
                     </div>

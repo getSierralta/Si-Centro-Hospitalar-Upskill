@@ -79,18 +79,20 @@ function abrirPopUp(appointment){
     
     content.innerHTML = "";
     const title = document.createElement('p'); 
-    title.innerHTML = "A sua consulta: ";
+    title.innerText = "A sua consulta: ";
     const id2 = document.createElement('p'); 
-    id2.innerHTML = "Id: "+appointment.id;
+    id2.innerText = "Id: "+appointment.id;
     const ti = appointment.date.split("T");
     const date = document.createElement('p'); 
-    date.innerHTML = "Data: "+ti[0];
+    date.innerText = "Data: "+ti[0];
     const time = document.createElement('p'); 
-    time.innerHTML = "Hora: "+appointment.time;
+    time.innerText = "Hora: "+appointment.time;
     const es = document.createElement('p'); 
-    es.innerHTML = "Especialidade: "+appointment.especialidade;
+    es.innerText = "Especialidade: "+appointment.especialidade;
     const medico = document.createElement('p'); 
-    medico.innerHTML = "Medico: "+appointment.doctor.name;
+    medico.innerText = "Medico: "+appointment.doctor.name;
+    const status = document.createElement('p'); 
+    status.innerText = "Status: "+appointment.status;
 
     content.appendChild(title);
     content.appendChild(id2);
@@ -98,6 +100,7 @@ function abrirPopUp(appointment){
     content.appendChild(time);
     content.appendChild(es);
     content.appendChild(medico);
+    content.appendChild(status);
 
     const flex = document.getElementById("buttons");
     flex.innerHTML = "";
@@ -118,7 +121,7 @@ function abrirPopUp(appointment){
                     content.innerHTML = "";
                     const success = document.createElement('img'); 
                     success.classList.add('inversed');
-                    success.src = "/img/borat.gif";
+                    success.src = "/img/success.gif";
                     success.style.maxHeight = "80%";
                     content.appendChild(success);
                 }
@@ -232,18 +235,14 @@ function load(){
         if(i > paddingDays){
             dateSquare.innerText = i - paddingDays;
             const d = year + "-"+month+ "-"+dateSquare.innerText;
-            //http://localhost:8080/utente/calendariogeralutente/${especialidade}/${d}/one
             fetch(`http://localhost:8080/utente/calendarutente/${d}`)
             .then(response => response.json())
             .then(data => data.length === 0 ? daySquare.classList.add('full') : daySquare.classList.add('color-green'));  
         }else{
             daySquare.classList.add('inactive');
         }
-        if(i - paddingDays < day && nav === 0 || nav < 0){
-            daySquare.classList.add('full');
-        }else{
-            daySquare.addEventListener('click', () => openModal(monthName, daySquare, month));
-        }
+        daySquare.addEventListener('click', () => openModal(monthName, daySquare, month));
+        
         week.push(daySquare);
         if(i === paddingDays + daysInMonth){
             for(var j = week.length; j < 7; j++){

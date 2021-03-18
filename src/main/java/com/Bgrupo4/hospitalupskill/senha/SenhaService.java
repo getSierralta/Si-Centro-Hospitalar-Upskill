@@ -130,4 +130,7 @@ public class SenhaService {
     }
 
 
+    public List<Senha> getSenhasByStatus(String name, Doctor doctor) {
+        return senhaRepository.getAllByDoctorAndStatus(doctor,name);
+    }
 }

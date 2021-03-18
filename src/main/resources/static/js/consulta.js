@@ -4,14 +4,23 @@ const id = st[5];
 let senha = null;
 
 function start(){
-    const url = `http://localhost:8080/api/consultas/senha/${id}`;
+    let url;
+    if(id == undefined){
+        url = `http://localhost:8080/api/consultas/ongoing`;
+    }else{
+        url = `http://localhost:8080/api/consultas/senha/${id}`;
+    }    
     fetch(url)
     .then(response => response.status == 500 ? giveError() : response.json())
     .then(data => {
             senha = data;
             console.log(senha);
-            let xhr = new XMLHttpRequest();    
-            xhr.open("POST", `http://localhost:8080/api/consultas/senha/${id}`, true);
+            let xhr = new XMLHttpRequest(); 
+            if(id == undefined){
+                xhr.open("POST", `http://localhost:8080/api/consultas/ongoing`, true);
+            }else{
+                xhr.open("POST", `http://localhost:8080/api/consultas/senha/${id}`, true);
+            }             
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(); 
             xhr.onloadend = function() {        
@@ -80,14 +89,14 @@ function start(){
                 const receitaUtente = document.createElement('button');
                 receitaUtente.classList.add("btn-green");
                 receitaUtente.addEventListener('click', () => { 
-                    receita(senha.utente, body)
+                    relatorio(senha.utente, body, false)
                 });
                 receitaUtente.innerText = "Criar Receita"; 
 
                 const relatorioUtente = document.createElement('button');
                 relatorioUtente.classList.add("btn-green");
                 relatorioUtente.addEventListener('click', () => {
-                    relatorio(senha.utente, body)
+                    relatorio(senha.utente, body, true)
                 });
                 relatorioUtente.innerText = "Escrever Relatorio"; 
 
@@ -129,9 +138,7 @@ function edit(utente, body){
     container.style.maxWidth = "50%";
     container.classList.add = "flex";
 
-    const form = document.createElement("form");
-    //form.method = "POST";
-    //form.action = `/api/utentes/${utente.id}`;   
+    const form = document.createElement("form"); 
     form.classList.add("log-in");
     form.id = "editUtenteFormulario";
 
@@ -162,6 +169,7 @@ function edit(utente, body){
     button.addEventListener('click', () => {
         sendFormEdit(utente.id)
     });
+    button.type = "button";
                 
 
     form.appendChild(morada);
@@ -186,13 +194,13 @@ function sendFormEdit(id){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/jenipurr-chile-29.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/borat.gif";
+           img.src = " /img/success.gif";
 
         } 
         body.appendChild(img);  
@@ -203,37 +211,134 @@ function sendFormEdit(id){
 
 
 function historial(utente, body){
-    console.log("historia");
-    console.log(utente); 
-    console.log(body);
-}
-function receita(utente, body){
+    body.innerHTML = "";
+    const containerButton = document.createElement("div");
+    containerButton.classList.add("flex");
+    const containerbody = document.createElement("div");
+    containerbody.classList.add("flex");
+    containerbody.classList.add("medicoContainerBody");
+    const btnReceitas = document.createElement("button");
+    btnReceitas.classList.add("btn-green");
+    btnReceitas.addEventListener('click', () => {
+        verCoisas("receitas", utente, containerbody)
+    });
+    btnReceitas.innerText = "Receitas";
+    btnReceitas.type = "button";
+    const btnRelatorios = document.createElement("button");
+    btnRelatorios.classList.add("btn-green");
+    btnRelatorios.addEventListener('click', () => {
+        verCoisas("relatorios", utente, containerbody)
+    });
+    btnRelatorios.innerText = "Relatorios";
+    btnRelatorios.type = "button";
+    const btnConsultas = document.createElement("button");
+    btnConsultas.classList.add("btn-green");
+    btnConsultas.addEventListener('click', () => {
+        verConsultas(utente, containerbody)
+    });
+    btnConsultas.innerText = "Consultas";
+    btnConsultas.type = "button";
+    containerButton.appendChild(btnReceitas);
+    containerButton.appendChild(btnRelatorios);
+    containerButton.appendChild(btnConsultas);
+    body.appendChild(containerButton);
+    body.appendChild(containerbody);
     
 }
-function relatorio(utente, body){
+
+function verCoisas(tipo, utente, containerbody){
+    containerbody.innerHTML = "";
+    console.log(tipo);
+    fetch(`http://localhost:8080/utente/${tipo}/${utente.id}`)
+    .then(response => response.json())
+    .then(data =>         
+            data.forEach(element => { 
+                const div = document.createElement("div");
+                div.classList.add("historialDiv");
+                const date = document.createElement("p");
+                date.innerText = element.date;
+                const medico = document.createElement("p");
+                medico.innerText = element.doctor.name;
+                const especialidade = document.createElement("p");
+                especialidade.innerText = element.doctor.especialidade;
+                const descrip = document.createElement("p");
+                descrip.innerText = element.description;
+                div.appendChild(date);
+                div.appendChild(medico);
+                div.appendChild(especialidade);
+                div.appendChild(descrip);
+                containerbody.appendChild(div);
+            })
+        ); 
+}
+
+function  verConsultas(utente, containerbody){
+    containerbody.innerHTML = "";
+    console.log("consultas");
+    fetch(`http://localhost:8080/utente/consultas/${utente.id}`)
+    .then(response => response.json())
+    .then(data =>         
+            data.forEach(element => { 
+                const div = document.createElement("div");
+                div.classList.add("historialDiv");
+                const date = document.createElement("p");
+                date.innerText = element.dataString;
+                const time = document.createElement("p");
+                time.innerText = element.time;
+                const medico = document.createElement("p");
+                medico.innerText = element.doctor.name;
+                const especialidade = document.createElement("p");
+                especialidade.innerText = element.doctor.especialidade;
+                const status = document.createElement("p");
+                status.innerText = element.status;
+                div.appendChild(date);
+                div.appendChild(time);
+                div.appendChild(medico);
+                div.appendChild(especialidade);
+                div.appendChild(status);
+                containerbody.appendChild(div);
+            })
+        ); 
+
+}
+
+function relatorio(utente, body, boolean){
     body.innerHTML = "";
+    body.style.display = "flex";
+    body.style.alignItems = "center";
+    body.style.flexDirection = "column";
     const container = document.createElement('div');
     container.style.maxWidth = "50%";
     container.classList.add = "flex";
+    container.style.textAlign = "center";
 
     const form = document.createElement("form");  
     form.classList.add("log-in");
     form.id = "relatorioUtenteFormulario";
 
     const title = document.createElement("h3");
-    title.innerText = "Escrever Relatorio";
+    if(boolean === true){
+        title.innerText = "Escrever Relatorio";
+    }else{
+        title.innerText = "Escrever Receita";
+    }   
 
     const relatorio = document.createElement("textarea");
     relatorio.name = "relatorio";
-    relatorio.rows = "5";
-    relatorio.cols = "60";
+    relatorio.rows = "15";
+    relatorio.cols = "80";
 
     
     const button = document.createElement("button");
     button.classList.add("greenbutt");
     button.innerText = "Salvar";
     button.addEventListener('click', () => {
-        sendFormRelatorio(utente.id, body)
+        if(boolean === true){
+            sendFormRelatorio(utente.id, body, true)
+        }else{
+            sendFormRelatorio(utente.id, body, false)
+        }
+        
     });
     button.type = "button";
                 
@@ -246,9 +351,13 @@ function relatorio(utente, body){
     body.appendChild(container);  
 }
 
-function sendFormRelatorio(id, body){
+function sendFormRelatorio(id, body, boolean){
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `/api/utentes/relatorio/${id}`); 
+    if(boolean === true){
+        xhr.open("POST", `/api/utentes/relatorio/${id}`); 
+    }else{
+        xhr.open("POST", `/api/utentes/receita/${id}`); 
+    }    
     xhr.onload = function(event){ 
         body.innerHTML = "";
         const img = document.createElement('img'); 
@@ -256,13 +365,13 @@ function sendFormRelatorio(id, body){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/jenipurr-chile-29.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/borat.gif";
+           img.src = " /img/success.gif";
 
         } 
         body.appendChild(img);  
@@ -289,13 +398,13 @@ function marcarAusencia(){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/borat.gif";
+            img.src = " /img/success.gif";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   
     }
 }
-function fecharConsulta(utente){
+function fecharConsulta(){
     let xhr = new XMLHttpRequest();    
     xhr.open("POST", `/api/utentes/fecharconsulta/${senha.appointment.id}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -313,7 +422,7 @@ function fecharConsulta(utente){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/borat.gif";
+            img.src = " /img/success.gif";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   
@@ -321,7 +430,13 @@ function fecharConsulta(utente){
 }
 
 function giveError(){
-   console.log("error"); 
+    body.innerHTML = "";
+    const img = document.createElement('img'); 
+    img.style.maxHeight = "50%";
+    img.style.maxWidth = "50%";
+    img.src = "/img/jenipurr-chile-29.svg";            
+    body.appendChild(img);  
 }
+
 
 start();

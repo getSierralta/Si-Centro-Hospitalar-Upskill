@@ -5,18 +5,22 @@ import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
 import com.Bgrupo4.hospitalupskill.registration.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.security.PasswordEncoder;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.nullness.Opt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,6 +41,7 @@ public class UtenteService {
     private final ConsultasService consultasService;
     private final ReceitaService receitaService;
     private final PasswordEncoder passwordEncoder;
+    private final RelatorioRepository relatorioRepository;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -158,13 +163,24 @@ public class UtenteService {
     }
 
     public Utente updateUtente(Utente utente, MultipartFile imageFile) throws  Exception{
-        //maybe this folder doesnt exist
-        //TODO importante ten que trocar isto para os vossos pcs
-        String folder = "C:\\Users\\sierr\\Desktop\\springSecurity\\B-grupo4\\src\\main\\resources\\static\\img/";
+        String folder = "/imagens/";
         byte[] bytes = imageFile.getBytes();
-        Path path = Paths.get(folder+imageFile.getOriginalFilename());
-        Files.write(path, bytes);
+        String rootDir = System.getProperty("user.dir");
+        Path path = Paths.get(rootDir + folder + imageFile.getOriginalFilename());
+        imageFile.transferTo(new File(String.valueOf(path)));
         utente.setProfilePicture(imageFile.getOriginalFilename());
         return utenteRepository.save(utente);
+    }
+
+    public List<Receita> getReceitasByUtente(Long id) {
+        return receitaService.getReceitasByUtente(id);
+    }
+
+    public List<Relatorio> getRelatorioByUtente(Long id) {
+        Optional<Utente> utenteOptional = utenteRepository.findById(id);
+        if (utenteOptional.isEmpty()){
+            throw new EntityNotFoundException("Utente not found: "+ id);
+        }
+        return relatorioRepository.findAllByUtente(utenteOptional.get());
     }
 }

@@ -55,7 +55,7 @@
         <div class="card big profileutente__consulta client_info principal">
             <h1>Welcome back! &nbsp; ${utente.getName()}</h1>
             <div class="client_photo">
-                <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
+                <img class="inversed" src="../imagens/${utente.getProfilePicture()}" alt="client">
             </div>
            <div class="flex">
                 <div class="client_details">
@@ -104,9 +104,9 @@
                 <div class="profileutente__consulta__header">
                     <p class="title"><b>Ultima Receita Medica</b></p>
                     <div class="padding medicamentos">
-                        <c:forEach items = "${receita.getMedicamentos()}"  var = "medicamento">
-                                <p>${medicamento.getMedicamento()} &nbsp; ${medicamento.getQuantidade()}</p>
-                        </c:forEach>
+                        <p>
+                            ${receita.getDescription()}
+                        </>
                     </div>
                     <div class="padding">
                         <p><b>Recurso Executante:&nbsp;</b> ${receita.getDoctor().getName()}</p>

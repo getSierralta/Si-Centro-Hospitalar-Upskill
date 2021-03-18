@@ -18,10 +18,10 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @Entity(name = "Receita")
 @Table(name = "receita")
-@NoArgsConstructor
-@ToString
 public class Receita{
 
     @Id
@@ -43,26 +43,7 @@ public class Receita{
     @JsonManagedReference
     private Utente utente;
 
-    @ManyToOne
-    @JoinColumn(name = "appointment_id", nullable = false)
-    @JsonManagedReference
-    private Appointment appointment;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "receita", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Medicamento> medicamentos;
-
-    @Column(name= "status", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ReceitaStatus status = ReceitaStatus.OPEN;
-
-    public Receita(Date date, Doctor doctor, Utente utente, Appointment appointment, List<Medicamento> medicamentos) {
-        this.date = date;
-        this.doctor = doctor;
-        this.utente = utente;
-        this.appointment = appointment;
-        this.medicamentos = medicamentos;
-    }
-
+    @Column(length = 1200)
+    private String description;
 
 }
