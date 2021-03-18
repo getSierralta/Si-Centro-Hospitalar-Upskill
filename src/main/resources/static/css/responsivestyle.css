@@ -314,6 +314,7 @@ img.inversed {
     color: var(--color-secondary);
     border-left: 1.5px solid var(--color-secondary);
     border-right: 1.5px solid var(--color-secondary);
+    margin-left: 40px;
 }
 
 .nav-row .medium a::after {
@@ -995,6 +996,32 @@ a.btn-green-small{
 }
 /* end client media */
 /* end client profile */
+
+/* medico historial */ 
+
+.medicoContainerBody{
+    margin: 2rem;
+    flex-wrap: wrap;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow: scroll;
+}
+.historialDiv{
+    background: var(--grey-background);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 10rem;
+    max-height: 10rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow: scroll;
+    border-radius: 5px;
+}
+
+.medicoContainerBody::-webkit-scrollbar,  .historialDiv::-webkit-scrollbar{
+    display: none;
+}
 
 /* pop up */
 .popup{

@@ -209,6 +209,7 @@ public class ConsultasService {
         }
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.GOING);
+        appointment.setStartedAt(String.valueOf(LocalDate.now()));
         if (appointment.getStartedAt() != null){
             appointment.setStartedAt(String.valueOf(LocalTime.now()));
         }

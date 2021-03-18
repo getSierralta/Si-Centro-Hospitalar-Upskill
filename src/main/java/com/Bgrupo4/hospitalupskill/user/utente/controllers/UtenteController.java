@@ -1,13 +1,18 @@
 package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 
 import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
+
+import java.util.List;
 
 import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
 
@@ -29,6 +36,7 @@ public class UtenteController {
     private final UtenteService utenteService;
     private final CalendarioService calendarioService;
     private final SenhaService senhaService;
+    private final ConsultasService consultasService;
 
 
     @GetMapping(value = "/profileutente")
@@ -103,6 +111,24 @@ public class UtenteController {
     @PreAuthorize("hasRole('ROLE_UTENTE')")
     public String showCalendarioPessoal(){
         return "utente/calendarutente";
+    }
+
+    @GetMapping(value = "/receitas/{id}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public ResponseEntity<List<Receita>> getReceita(@PathVariable("id") String id) {
+        return ResponseEntity.ok(utenteService.getReceitasByUtente(Long.valueOf(id)));
+    }
+
+    @GetMapping(value = "/relatorios/{id}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public ResponseEntity<List<Relatorio>> getRelatorios(@PathVariable("id") String id) {
+        return ResponseEntity.ok(utenteService.getRelatorioByUtente(Long.valueOf(id)));
+    }
+
+    @GetMapping(value = "/consultas/{id}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public ResponseEntity<List<Appointment>> getConsultas(@PathVariable("id") String id) {
+        return ResponseEntity.ok(consultasService.getAppointmentsUtente(Long.valueOf(id)));
     }
 
 

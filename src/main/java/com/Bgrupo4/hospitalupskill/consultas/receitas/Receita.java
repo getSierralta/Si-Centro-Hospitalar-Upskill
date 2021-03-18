@@ -43,6 +43,7 @@ public class Receita{
     @JsonManagedReference
     private Utente utente;
 
+    @Column(length = 1200)
     private String description;
 
 }

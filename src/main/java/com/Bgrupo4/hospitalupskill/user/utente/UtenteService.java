@@ -5,12 +5,15 @@ import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
+import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRepository;
 import com.Bgrupo4.hospitalupskill.registration.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.security.PasswordEncoder;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.nullness.Opt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -37,6 +40,7 @@ public class UtenteService {
     private final ConsultasService consultasService;
     private final ReceitaService receitaService;
     private final PasswordEncoder passwordEncoder;
+    private final RelatorioRepository relatorioRepository;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -166,5 +170,17 @@ public class UtenteService {
         Files.write(path, bytes);
         utente.setProfilePicture(imageFile.getOriginalFilename());
         return utenteRepository.save(utente);
+    }
+
+    public List<Receita> getReceitasByUtente(Long id) {
+        return receitaService.getReceitasByUtente(id);
+    }
+
+    public List<Relatorio> getRelatorioByUtente(Long id) {
+        Optional<Utente> utenteOptional = utenteRepository.findById(id);
+        if (utenteOptional.isEmpty()){
+            throw new EntityNotFoundException("Utente not found: "+ id);
+        }
+        return relatorioRepository.findAllByUtente(utenteOptional.get());
     }
 }

@@ -200,7 +200,7 @@ function sendFormEdit(id){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/borat.gif";
+           img.src = " /img/success.gif";
 
         } 
         body.appendChild(img);  
@@ -216,6 +216,7 @@ function historial(utente, body){
     containerButton.classList.add("flex");
     const containerbody = document.createElement("div");
     containerbody.classList.add("flex");
+    containerbody.classList.add("medicoContainerBody");
     const btnReceitas = document.createElement("button");
     btnReceitas.classList.add("btn-green");
     btnReceitas.addEventListener('click', () => {
@@ -233,7 +234,7 @@ function historial(utente, body){
     const btnConsultas = document.createElement("button");
     btnConsultas.classList.add("btn-green");
     btnConsultas.addEventListener('click', () => {
-        verCoisas("consultas", utente, containerbody)
+        verConsultas(utente, containerbody)
     });
     btnConsultas.innerText = "Consultas";
     btnConsultas.type = "button";
@@ -246,11 +247,59 @@ function historial(utente, body){
 }
 
 function verCoisas(tipo, utente, containerbody){
-
-    
+    containerbody.innerHTML = "";
     console.log(tipo);
-    console.log(utente);
-    console.log(containerbody);
+    fetch(`http://localhost:8080/utente/${tipo}/${utente.id}`)
+    .then(response => response.json())
+    .then(data =>         
+            data.forEach(element => { 
+                const div = document.createElement("div");
+                div.classList.add("historialDiv");
+                const date = document.createElement("p");
+                date.innerText = element.date;
+                const medico = document.createElement("p");
+                medico.innerText = element.doctor.name;
+                const especialidade = document.createElement("p");
+                especialidade.innerText = element.doctor.especialidade;
+                const descrip = document.createElement("p");
+                descrip.innerText = element.description;
+                div.appendChild(date);
+                div.appendChild(medico);
+                div.appendChild(especialidade);
+                div.appendChild(descrip);
+                containerbody.appendChild(div);
+            })
+        ); 
+}
+
+function  verConsultas(utente, containerbody){
+    containerbody.innerHTML = "";
+    console.log("consultas");
+    fetch(`http://localhost:8080/utente/consultas/${utente.id}`)
+    .then(response => response.json())
+    .then(data =>         
+            data.forEach(element => { 
+                const div = document.createElement("div");
+                div.classList.add("historialDiv");
+                const date = document.createElement("p");
+                date.innerText = element.dataString;
+                const time = document.createElement("p");
+                time.innerText = element.time;
+                const medico = document.createElement("p");
+                medico.innerText = element.doctor.name;
+                const especialidade = document.createElement("p");
+                especialidade.innerText = element.doctor.especialidade;
+                const status = document.createElement("p");
+                status.innerText = element.status;
+                div.appendChild(date);
+                div.appendChild(time);
+                div.appendChild(medico);
+                div.appendChild(especialidade);
+                div.appendChild(status);
+                containerbody.appendChild(div);
+            })
+        ); 
+
 }
 
 function relatorio(utente, body, boolean){
@@ -322,7 +371,7 @@ function sendFormRelatorio(id, body, boolean){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/borat.gif";
+           img.src = " /img/success.gif";
 
         } 
         body.appendChild(img);  
@@ -349,7 +398,7 @@ function marcarAusencia(){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/borat.gif";
+            img.src = " /img/success.gif";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   
@@ -373,7 +422,7 @@ function fecharConsulta(){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/borat.gif";
+            img.src = " /img/success.gif";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   
