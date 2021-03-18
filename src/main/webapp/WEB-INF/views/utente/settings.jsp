@@ -52,7 +52,7 @@
         <div class="object_container full_info">
             <div class="flex">
                 <div class="client_photo">
-                    <img class="inversed" src="../img/${utente.getProfilePicture()}" alt="client">
+                    <img class="inversed" src="../imagens/${utente.getProfilePicture()}" alt="client">
                 </div>
                 <div class="client_details">
                       <p>${utente.getName()}</p>
@@ -65,7 +65,7 @@
                  <p>Morada: &nbsp; ${utente.getMorada()}</p>
                 <p>E-mail: &nbsp; ${utente.getEmail()}</p>
                 <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
-                <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
+                <p>Telemóvel: &nbsp; ${utente.getPhone()} </p>
             </div>
          </div>
 
@@ -93,8 +93,8 @@
 
                 <form action="#">
                     <input type="password" path="password" placeholder="Old Password" required />
-                    <input type="password" path="password" placeholder="Password"  />
-                    <input type="password" path="password" placeholder="Repeat Password"  />
+                    <input type="password" path="password" placeholder="Password" />
+                    <input type="password" path="password" placeholder="Repeat Password" />
                     <button class="greenbutt" type="submit">Salvar</button>
                 </form>
                 <a href="#" class="green">Forgot password?</a>-->
