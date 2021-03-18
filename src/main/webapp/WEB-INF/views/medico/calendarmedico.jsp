@@ -113,7 +113,7 @@
                         </button>
                         <button id="checkIn">
                             <div class="icon consulta"></div>
-                            Check-in
+                            Chamar Utente
                         </button> 
                         <button id="cancelarConsulta" >
                             Cancelar
@@ -124,7 +124,7 @@
         </div>
 
     </main>
-    <script src="../../js/calendarpersonal.js"></script>
+    <script src="../../js/calendarpersonalmedico.js"></script>
 </body>
 
 </html>

@@ -59,12 +59,14 @@ public class DoctorController {
 
 
     @GetMapping(value = "/lista-utentes")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showUtentes(ModelMap map) {
         map.put("utenteList", utenteManagementController.getAllUtentes());
         return "/medico/lista-utentes";
     }
 
     @GetMapping(value = "/salaDeEspera")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showSalaDeEspera(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -77,6 +79,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/ongoing/{id}")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showOnGoing(ModelMap map, @PathVariable String id) throws Exception {
         if(senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
             throw new EntityNotFoundException("Senha não existe: "+id);
@@ -90,6 +93,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/ongoing")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showOnGoing(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -105,5 +109,19 @@ public class DoctorController {
         return "/medico/ongoing";
     }
 
+    @GetMapping(value = "/calendarmedico")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    public String showCalendarioPessoal(){
+        return "medico/calendarmedico";
+    }
+
+    @GetMapping(value = "/settings")
+    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    public String showSetting(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        return "medico/settings";
+    }
 
 }

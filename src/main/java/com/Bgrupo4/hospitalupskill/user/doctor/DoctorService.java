@@ -2,12 +2,17 @@ package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.print.Doc;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +63,36 @@ public class DoctorService{
             throw new Exception("There's no logged person");
         }
         return doctor.get();
+    }
+
+    public Doctor updateDoctor(Doctor doctor, DoctorUpdateRequest request) {
+        // if ( passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()).matches(utente.getPassword())){
+
+        if (!request.getLocalidade().isEmpty()){
+            doctor.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            doctor.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            doctor.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            doctor.setName(request.getName());
+        }
+
+        return doctorRepository.save(doctor);
+        //}
+        //throw new IllegalArgumentException("Palavra passe incorrect");
+    }
+
+    public Doctor updateDoctor(Doctor doctor, MultipartFile imageFile) throws  Exception{
+        String folder = "/imagens/";
+        byte[] bytes = imageFile.getBytes();
+        String rootDir = System.getProperty("user.dir");
+        Path path = Paths.get(rootDir + folder + imageFile.getOriginalFilename());
+        imageFile.transferTo(new File(String.valueOf(path)));
+        doctor.setProfilePicture(imageFile.getOriginalFilename());
+        return doctorRepository.save(doctor);
     }
 }
