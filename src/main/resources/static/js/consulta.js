@@ -246,6 +246,8 @@ function historial(utente, body){
 }
 
 function verCoisas(tipo, utente, containerbody){
+
+    
     console.log(tipo);
     console.log(utente);
     console.log(containerbody);
