@@ -21,9 +21,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     List<Vaga> findAllByEspecialidade(String especialidade);
 
-    List<Appointment> findAllByUtenteAndDate(Utente utente, GregorianCalendar gregorianCalendar);
+    List<Appointment> findAllByUtenteAndData(Utente utente, GregorianCalendar gregorianCalendar);
 
     List<Appointment> findAllByDoctorAndStatus(Doctor doctor, Status going);
 
-    List<Appointment> findAllByDoctorAndDate(Doctor doctor, GregorianCalendar gregorianCalendar);
+    List<Appointment> findAllByDoctorAndData(Doctor doctor, GregorianCalendar gregorianCalendar);
 }
