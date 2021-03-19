@@ -3,6 +3,8 @@ package com.Bgrupo4.hospitalupskill;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.listadeespera.ListaDeEsperaService;
+import com.Bgrupo4.hospitalupskill.listadeespera.ListaThread;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
@@ -37,6 +39,7 @@ public class HospitalUpskillApplication {
     private final VagaService vagaService;
     public static List<Senha> ECRA = new ArrayList<>();
     private final DoctorService doctorService;
+    private final ListaDeEsperaService listaDeEsperaService;
 
 
     public static void main(String[] args) {
@@ -107,9 +110,11 @@ public class HospitalUpskillApplication {
                 Appointment appointment2 = consultasService.createAppointment(vaga8, utente1);
                 senhaService.createSenha(appointment2.getId());
                 senhaService.createSenha(utente1);
+                listaDeEsperaService.add(utente1, cardiologia);
             }
 
-
+            Thread lista = new Thread(new ListaThread(listaDeEsperaService));
+            lista.start();
         };
     }
 }

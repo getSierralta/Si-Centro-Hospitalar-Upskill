@@ -14,15 +14,15 @@ import java.util.List;
 @Repository
 public interface SenhaRepository extends JpaRepository<Senha, Long> {
 
-    @Query("SELECT u FROM Senha u WHERE u.date = ?1 AND u.foiAtentido = 0")
+    @Query("SELECT u FROM Senha u WHERE u.data = ?1 AND u.foiAtentido = 0")
     List<Senha> getAllValidSenhas(Date time);
 
     List<Senha> getAllByAppointment(Appointment appointment);
 
-    @Query("SELECT u FROM Senha u WHERE u.utente = ?1 AND u.date = ?2 AND u.foiAtentido = 0")
+    @Query("SELECT u FROM Senha u WHERE u.utente = ?1 AND u.data = ?2 AND u.foiAtentido = 0")
     List<Senha> getAllByUtenteAndDate(Utente utente, Date now);
 
-    @Query("SELECT u FROM Senha u WHERE u.doctor = ?1 AND u.date = ?2 AND u.foiAtentido = 0")
+    @Query("SELECT u FROM Senha u WHERE u.doctor = ?1 AND u.data = ?2 AND u.foiAtentido = 0")
     List<Senha> getAllByDoctorAndDate(Doctor doctor, Date time);
 
     List<Senha> getAllByDoctorAndStatus(Doctor doctor, String name);

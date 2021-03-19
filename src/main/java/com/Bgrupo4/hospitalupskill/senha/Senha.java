@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -47,6 +48,10 @@ public class Senha {
     @Column(name= "date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    @Column(name= "data", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date data;
 
     @Column(name= "time", nullable = false)
     private String time;

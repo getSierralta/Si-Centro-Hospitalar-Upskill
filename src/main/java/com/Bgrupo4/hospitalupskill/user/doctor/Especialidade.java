@@ -3,6 +3,7 @@ package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.listadeespera.ListaDeEspera;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
@@ -21,8 +22,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Especialidade {
 
     @Id
-    @SequenceGenerator(name = "appointment_sequence", sequenceName = "appointment_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = SEQUENCE, generator = "appointment_sequence")
+    @SequenceGenerator(name = "especialidade_sequence", sequenceName = "especialidade_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "especialidadet_sequence")
     private Long id;
 
     private String especialidade;
@@ -33,11 +34,8 @@ public class Especialidade {
 
     @JsonBackReference
     @OneToMany(mappedBy = "especialidade",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Vaga> vagas;
+    private List<ListaDeEspera> listaDeEsperas;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "especialidade",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Appointment> appointments;
 
     public Especialidade(String especialidade) {
         this.especialidade = especialidade;

@@ -1703,7 +1703,7 @@ input[type=file]{
     padding: 2rem;
     font-size: 1rem;
 }
-#marcarConsulta .icon.consulta, #checkIn .icon.consulta {
+#marcarConsulta .icon.consulta, #marcarConsulta .icon.medico, #checkIn .icon.consulta {
    background-color: var(--color-white);
    margin-right: .5rem
 }
