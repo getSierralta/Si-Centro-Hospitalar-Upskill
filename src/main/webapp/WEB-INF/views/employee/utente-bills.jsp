@@ -68,10 +68,15 @@
             <!--/Info Box-->
             <!--Files Nav-->
             <div class="object_container item_nav">
-                <form class="item_form" id="searchFile" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="nome">
-                    <input type="date" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" id="date" placeholder="data" >
+                <form class="item_form" id="searchFile" action="#">
+                    <input id="search" type="text" name="search" placeholder="Pesquisa">
+                    <div id="status" class="select" style="width:150px;" name="status">
+                        <select name="status">
+                            <option value="">Estado</option>
+                            <option value="paid">Pago</option>
+                            <option value="unpaid">Por pagar</option>
+                        </select>
+                    </div>
                     <button class="greenbutt" type="submit">Pesquisar</button>
                 </form>
                 <div class="item_order light small">
@@ -90,18 +95,24 @@
             <!--/Files Nav-->
             <!--Cards-->
             <c:forEach var="invoice" items="${invoiceList}">
-                    <div class="card small invoice">
+                    <a class="card small invoice">
                         <p><b>ID </b>${invoice.getId()}</p><br><br>
                         <p><b>UTENTE </b>${invoice.getName()}</p>
                         <p><b>NIF </b>${invoice.getNif()}</p><br><br>
                         <p><b>DATA </b>${invoice.getIssuedDate()}</p>
                         <p><b>LIMITE </b>${invoice.getDueDate()}</p>
-                    </div>
+                        <c:if test="${empty invoice.getPaidDate()}">
+                            <form action="/invoices/802244746/pay" method="POST">
+                                <button type="submit" class="greenbutt" name="id" value="${invoice.getId()}" />PAGAR</button>
+                            </form>
+                        </c:if>
+                    </a>
             </c:forEach>
             <!--/Cards-->
         </div>
         <!--/Main-->
     </div>
     <script src="../js/buttlist.js"></script>
+    <script src="../js/invoice.js"></script>
 </body>
 </html>

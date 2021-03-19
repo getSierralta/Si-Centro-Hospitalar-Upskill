@@ -31,6 +31,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
+
 @Service
 @RequiredArgsConstructor
 public class ConsultasService {
@@ -210,12 +212,14 @@ public class ConsultasService {
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.GOING);
         appointment.setStartedAt(String.valueOf(LocalDate.now()));
+
         if (appointment.getStartedAt() != null){
             appointment.setStartedAt(String.valueOf(LocalTime.now()));
         }
         senha.setFoiAtentido(true);
         senha.setStatus(Status.GOING.name());
         senhaRepository.save(senha);
+        ECRA.remove(senha);
         return appointmentRepository.save(appointment);
     }
 
