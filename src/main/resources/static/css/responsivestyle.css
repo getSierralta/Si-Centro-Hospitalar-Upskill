@@ -340,6 +340,10 @@ img.inversed {
     .nav-row .medium .none{
         display: none;
     }
+
+    .nav-row .medium a:hover{
+        margin-left: 0px;
+    }
     .nav-row .medium a:hover::after{
         width: 0px;
     }

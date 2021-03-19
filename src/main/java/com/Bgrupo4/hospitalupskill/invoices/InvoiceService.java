@@ -1,13 +1,5 @@
 package com.Bgrupo4.hospitalupskill.invoices;
 
-import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
-import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.MedicamentoRepository;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,18 +10,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
