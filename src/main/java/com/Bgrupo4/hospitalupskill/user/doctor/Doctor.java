@@ -14,6 +14,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Getter
@@ -53,11 +54,13 @@ public class Doctor extends ApplicationUser {
     @JsonManagedReference
     private Especialidade especialidade;
 
-    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, Especialidade especialidade) {
+    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, Especialidade especialidade, UserRole userRole) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole.toString());
         this.cedula = cedula;
         this.especialidade = especialidade;
     }
+
+
 }
 
 
