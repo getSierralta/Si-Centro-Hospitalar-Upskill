@@ -183,4 +183,18 @@ public class UtenteService {
         }
         return relatorioRepository.findAllByUtente(utenteOptional.get());
     }
+
+    public boolean deleteUtente(Long id) {
+        Optional<Utente> utenteOptional = utenteRepository.findById(id);
+        if (utenteOptional.isEmpty()){
+            throw new EntityNotFoundException("Utente not found: "+ id);
+        }
+        try {
+            utenteRepository.delete(utenteOptional.get());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+    }
 }

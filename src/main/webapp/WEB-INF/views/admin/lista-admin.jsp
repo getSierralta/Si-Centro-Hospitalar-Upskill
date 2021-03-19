@@ -80,8 +80,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
-                                <!--MUDAR SRC PARA "img/imgnome.jpg"-->
-                                <img class="inversed" src="../img/imgclient.jpeg" alt="client">
+                                <img class="inversed" src="../imagens/${admin.getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>User Name:</b> &nbsp;${admin.getUsername()}</p>

@@ -53,9 +53,9 @@
     <main class="main">
         <!--Info Box-->
         <div class="card big profileutente__consulta client_info principal">
-            <h1>Welcome back! &nbsp; ${utente.getName()}</h1>
+            <h1>Welcome back! &nbsp; ${admin.getName()}</h1>
             <div class="client_photo">
-                <img class="inversed" src="/img/imgclient.jpeg" alt="client">
+                <img class="inversed" src="../imagens/${admin.getProfilePicture()}" alt="client">
             </div>
            <div class="flex">
                 <div class="client_details">
@@ -75,36 +75,22 @@
 
 
          <div class="card big profileutente__consulta client_info">
-             <div class="card big profileutente__consulta">
-                 <div class="profileutente__consulta--img">
-                     <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-                 </div>
-                 <div class="profileutente__consulta__header">
                      <div class="greenbutt">
-                         <a href="register-employee">
-                             <div class="icon calendario"></div>
-                             <span class="none">Registar Novo Colaborador</span>
+                         <a href="register-employee" id="marcarConsulta">
+                            <span class="icon consulta"></span>Registar Novo Colaborador
                          </a>
                      </div>
                      <div class="greenbutt">
-                         <a href="register-doctor">
+                         <a href="register-doctor" id="marcarConsulta">
                              <div class="icon medico"></div>
                              <span class="none">Registar Novo Médico</span>
                          </a>
                      </div>
-                 </div>
-             </div>
-             <div class="card big profileutente__consulta">
-                 <div class="profileutente__consulta--img">
-                     <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-                 </div>
-                 <div class="greenbutt">
-                     <a href="settings">
-                         <div class="icon tools"></div>
-                         <span class="none">Settings</span>
-                     </a>
-                 </div>
-
+                     <div class="greenbutt">
+                          <a href="settings" id="marcarConsulta">
+                             <span class="icon tools"></span>Settings
+                          </a>
+                      </div>
              </div>
           </div>
 

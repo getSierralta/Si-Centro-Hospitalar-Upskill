@@ -115,7 +115,7 @@
                                <p><b>E-mail:</b> &nbsp;${doctor.getEmail()}</p>
                                <p><b>Localidade:</b>  &nbsp;${doctor.getLocalidade()} </p>
                                <p><b>Telemovel:</b> &nbsp; ${doctor.getPhone()} </p>
-                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade()} </p>
+                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade().getEspecialidade()} </p>
                             </div>
                         </div>
                         <div class="person_body">

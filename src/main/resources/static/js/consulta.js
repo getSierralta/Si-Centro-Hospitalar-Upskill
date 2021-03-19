@@ -288,7 +288,7 @@ function  verConsultas(utente, containerbody){
                 const medico = document.createElement("p");
                 medico.innerText = element.doctor.name;
                 const especialidade = document.createElement("p");
-                especialidade.innerText = element.doctor.especialidade;
+                especialidade.innerText = element.doctor.especialidade.especialidade;
                 const status = document.createElement("p");
                 status.innerText = element.status;
                 div.appendChild(date);

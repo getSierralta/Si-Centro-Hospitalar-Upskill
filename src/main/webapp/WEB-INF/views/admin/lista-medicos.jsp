@@ -85,8 +85,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
-                                <!--MUDAR SRC PARA "img/imgnome.jpg"-->
-                                <img class="inversed" src="../img/imgclient.jpeg" alt="client">
+                                <img class="inversed" src="../imagens/${doctor.getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>User Name:</b> &nbsp;${doctor.getUsername()}</p>
@@ -100,7 +99,7 @@
                                <p><b>E-mail:</b> &nbsp;${doctor.getEmail()}</p>
                                <p><b>Localidade:</b>  &nbsp;${doctor.getLocalidade()} </p>
                                <p><b>Telemovel:</b> &nbsp; ${doctor.getPhone()} </p>
-                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade()} </p>
+                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade().getEspecialidade()} </p>
                             </div>
                         </div>
                         <div class="person_body">

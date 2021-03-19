@@ -78,8 +78,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
-                                <!--MUDAR SRC PARA "img/imgnome.jpg"-->
-                                <img class="inversed" src="../img/imgclient.jpeg" alt="client">
+                                <img class="inversed" src="../imagens/${utente.getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>User Name:</b> &nbsp;${utente.getUsername()}</p>
@@ -93,13 +92,18 @@
                                <p><b>Localidade:</b>  &nbsp;${utente.getLocalidade()} </p>
                                <p><b>Telemovel:</b> &nbsp; ${utente.getPhone()} </p>
                             </div>
+                            <div class="client_info flex">
+                                <button class="btn-green" type="button" onclick="verCoisas(${utente.getId()}, 'receitas')">RECEITAS</button>
+                                <button class="btn-green" type="button" onclick="verCoisas(${utente.getId()}, 'relatorios')">RELATORIOS</button>
+                                <button class="btn-green" type="button" onclick="consultas(${utente.getId()})">CONSULTAS</button>
+                             </div>
                         </div>
-                        <div class="person_body">
+                        <div class="person_body flex" id="body">
                             <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
                         </div>
                         <div class="person_options">
-                            <button class="greenbutt" type="submit">EDIT</button>
-                            <button class="greenbutt" type="submit">DELETE</button>
+                            <button class="greenbutt" type="button" onclick="edit(${utente.getId()})">EDIT</button>
+                            <button class="greenbutt" type="button" onclick="apagar(${utente.getId()})">DELETE</button>
                         </div>
                     </div>
                 </c:forEach>
@@ -109,6 +113,7 @@
     </main>
     <!--/Main-->
     <script src="../js/buttlist.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>

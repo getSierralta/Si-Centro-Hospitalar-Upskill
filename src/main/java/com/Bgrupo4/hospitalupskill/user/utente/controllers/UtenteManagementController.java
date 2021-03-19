@@ -51,6 +51,11 @@ public class UtenteManagementController {
     public ResponseEntity<Utente> updateUtente(UtenteRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Boolean> apagarUtente(@PathVariable Long id) {
+        return ResponseEntity.ok(utenteService.deleteUtente(id));
+    }
 
     @PostMapping("/fecharconsulta/{id}")
     @PreAuthorize("hasAuthority('utente:write')")

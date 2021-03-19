@@ -1035,6 +1035,8 @@ a.btn-green-small{
     margin: 1rem;
     max-width: 10rem;
     max-height: 10rem;
+    min-width: 10rem;
+    min-height: 10rem;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     overflow: scroll;
@@ -1688,8 +1690,7 @@ input[type=file]{
     border-radius: 5px;
     margin-top: 1rem;
     cursor: pointer;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: .5rem;
 }
 
 #title{
@@ -1703,7 +1704,7 @@ input[type=file]{
     padding: 2rem;
     font-size: 1rem;
 }
-#marcarConsulta .icon.consulta, #marcarConsulta .icon.medico, #checkIn .icon.consulta {
+#marcarConsulta .icon.consulta, #marcarConsulta .icon.medico, #checkIn .icon.consulta,  #marcarConsulta .icon.tools {
    background-color: var(--color-white);
    margin-right: .5rem
 }
@@ -1717,6 +1718,7 @@ input[type=file]{
     border-radius: 5px;
     margin-top: 1rem;
     cursor: pointer;
+    margin: .5rem;
 }
 
 
