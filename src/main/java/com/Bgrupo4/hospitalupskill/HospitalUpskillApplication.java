@@ -112,7 +112,6 @@ public class HospitalUpskillApplication {
                 senhaService.createSenha(utente1);
                 listaDeEsperaService.add(utente1, cardiologia);
             }
-
             Thread lista = new Thread(new ListaThread(listaDeEsperaService));
             lista.start();
         };
