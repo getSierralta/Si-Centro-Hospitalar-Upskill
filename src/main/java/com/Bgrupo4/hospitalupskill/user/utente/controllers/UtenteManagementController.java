@@ -11,6 +11,7 @@ import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -48,7 +49,7 @@ public class UtenteManagementController {
 
     @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
-    public ResponseEntity<Utente> updateUtente(UtenteRequest request, @PathVariable Long id) {
+    public ResponseEntity<Utente> updateUtente(UtenteUpdateRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
     @PostMapping("/delete/{id}")

@@ -95,60 +95,14 @@
                                <p><b>Telemovel:</b> &nbsp; ${admin.getPhone()} </p>
                             </div>
                         </div>
-                        <div class="person_body">
-                        <p>EDITAR UTILIZADOR</p>
-                        <br>
-                            <div class="flex">
-                                <form class="log-in" form action="update" method="POST">
-                                    <input type="text" path="userName" placeholder="Alterar User Name"/>
-                                    <input type="text" path="nome" placeholder="Alterar Nome"/>
-                                    <input type="text" path="nif" value=${admin.getNif()} style="display:none;"/>
-                                    <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
-                                    <input type="text" path="localidade" placeholder="Alterar Localidade" />
-                                    <input type="text" path="telemovel" placeholder="Alterar Telemovel" />
-                                    <input type="file" id="img" name="img">
-                                    <button class="greenbutt" type="submit">Salvar</button>
-                                </form>
-
-                                <div>
-                                <div class="role">
-                                    <p>TROCAR ROLE DO UTILIZADOR</p>
-                                    <form action="#">
-                                        <select class="greenbutt" name="role" id="role">
-                                            <option value="employee">Employee</option>
-                                            <option value="doctor">Doctor</option>
-                                            <option value="responsavel">Responsavel</option>
-                                            <option value="admin">Admin</option>
-                                        </select>
-                                        <button class="greenbutt" type="submit">Salvar</button>
-                                    </form>
-                                </div>
-                                <br>
-                                <div class="password ">
-                                    <p>TROCAR PALAVAR-PASSE</p>
-                                    <form action="#">
-                                        <input type="password" path="password" placeholder="Password"  />
-                                        <input type="password" path="password" placeholder="Repeat Password"  />
-                                        <button class="greenbutt" type="submit">Salvar</button>
-                                    </form>
-                                </div>
-                                </div>
-
-                                <div class="password">
-                                    <p>ELIMINAR CONTA</p>
-                                    <form action="#">
-                                        <div class="form-label">
-                                            <input type="checkbox" value="element" path="condicao" required="required" />
-                                            <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
-                                        </div>
-                                        <button class="greenbutt" type="submit">Apagar Conta</button>
-                                    </form>
-                                </div>
-
+                        <div class="person_body" id="body${admin.getId()}">
+                                <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
                             </div>
+                             <div class="person_options">
+                               <button class="greenbutt" type="button" onclick="edit(${admin.getId()}, 'admin')">EDIT</button>
+                               <button class="greenbutt" type="button" onclick="apagar(${admin.getId()}, 'admin')">DELETE</button>
+                           </div>
                         </div>
-
-                    </div>
                 </c:forEach>
             </div>
         </div>
@@ -156,6 +110,7 @@
     </main>
     <!--/Main-->
     <script src="../js/buttlist.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>

@@ -54,6 +54,9 @@
     <main class="main">
         <!--Info Box-->
         <div class="object_container full_info">
+            <div class="client_photo">
+                <img class="inversed" src="../imagens/${admin.getProfilePicture()}" alt="client">
+            </div>
            <div class="flex">
                  <div class="client_details">
                      <p>User Name: &nbsp;${admin.getUsername()}</p>
@@ -73,14 +76,12 @@
         <!--Cards-->
         <div class="card medium settings">
             <img class="settings_logo" src="/img/logo.svg" alt="logo">
-            <form action="#" class="log-in">
-                <input type="text" path="userName" placeholder="Alterar User Name"/>
-                <input type="text" path="nome" placeholder="Alterar Nome"/>
-                <textarea name="message" rows="2" cols="30" path="morada" placeholder="Alterar Morada"></textarea>
-                <input type="text" path="localidade" placeholder="Alterar Localidade" />
-                <input type="text" path="telemovel" placeholder="Alterar Telemovel" />
-                <input type="password" path="password" placeholder="Password" required />
-                <input type="file" id="img" name="img">
+            <form action="update" class="log-in" method="POST">
+                <input type="text" name="name" placeholder="Alterar Nome"/>
+                <textarea rows="2" cols="30" name="morada" placeholder="Alterar Morada"></textarea>
+                <input type="text" name="localidade" placeholder="Alterar Localidade" />
+                <input type="text" name="telemovel" placeholder="Alterar Telemovel" />
+                <input type="password" name="password" placeholder="Password" required />
                 <button class="greenbutt" type="submit">Salvar</button>
             </form>
         </div>
@@ -88,25 +89,12 @@
         </div>
         <div class="card medium settings">
             <div class="password ">
-                <p>Trocar Palavra Passe</p>
-                <form action="#">
-                    <input type="password" path="password" placeholder="Old Password" required />
-                    <input type="password" path="password" placeholder="Password"  />
-                    <input type="password" path="password" placeholder="Repeat Password"  />
-                    <button class="greenbutt" type="submit">Salvar</button>
-                </form>
-                <a href="#" class="green">Forgot password?</a>
-            </div>
-            <div class="password">
-                <p>Eliminar conta</p>
-                <form action="#">
-                    <input type="password" path="password" placeholder="Password"  />
-                    <div class="form-label">
-                        <input type="checkbox" value="element" path="condicao" required="required" />
-                        <a href="#"><span class="light small">Esta acção é irreversivel </span> tem certeza?</a>
-                    </div>
-                    <button class="apagar" type="submit">Apagar Conta</button>
-                </form>
+                <div class="password ">
+                    <form method="post" enctype="multipart/form-data" action="/admin/uploadImage" class="log-in">
+                        <input type="file" name="imageFile">
+                        <button type="submit">Trocar foto de perfil</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!--/Cards-->

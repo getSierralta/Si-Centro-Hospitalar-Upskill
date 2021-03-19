@@ -1,6 +1,6 @@
-const body = document.getElementById("body");
 
-function edit(id){
+function edit(id, tipo){
+    const body = document.getElementById("body"+id);
     body.innerHTML = "";
     const container = document.createElement('div');
     container.style.maxWidth = "50%";
@@ -9,6 +9,11 @@ function edit(id){
     const form = document.createElement("form"); 
     form.classList.add("log-in");
     form.id = "editUtenteFormulario";
+
+    const nome = document.createElement("input");
+    nome.type = "text";
+    nome.name = "name";
+    nome.placeholder = "Editar nome"; 
 
     const morada = document.createElement("textarea");
     morada.name = "morada";
@@ -25,25 +30,27 @@ function edit(id){
     telemovel.type = "text";
     telemovel.name = "telemovel";
     telemovel.placeholder = "Editar telemovel"; 
-       
-    const apolice = document.createElement("input");
-    apolice.type = "text";
-    apolice.name = "apolice";
-    apolice.placeholder = "Editar apolice"; 
-
+    
     const button = document.createElement("button");
     button.classList.add("greenbutt");
     button.innerText = "Salvar";
     button.addEventListener('click', () => {
-        sendFormEdit(id)
+        sendFormEdit(id, tipo)
     });
     button.type = "button";
                 
 
+    form.appendChild(nome);
     form.appendChild(morada);
     form.appendChild(localidade);
     form.appendChild(telemovel);
-    form.appendChild(apolice);
+    if(tipo == "utentes"){
+        const apolice = document.createElement("input");
+        apolice.type = "text";
+        apolice.name = "apolice";
+        apolice.placeholder = "Editar apolice"; 
+        form.appendChild(apolice);
+    }
     form.appendChild(button);
           
     container.appendChild(form);
@@ -52,9 +59,16 @@ function edit(id){
     body.appendChild(container);    
 }
 
-function sendFormEdit(id){
+function sendFormEdit(id, tipo){
+    const body = document.getElementById("body"+id);
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `/api/utentes/${id}`); 
+    let url;
+    if(tipo === "admin"){
+        url = `/admin/${id}`;
+    }else{
+        url = `/api/${tipo}/${id}`;
+    }
+    xhr.open("POST", url); 
     xhr.onload = function(event){ 
         body.innerHTML = "";
         const img = document.createElement('img'); 
@@ -77,9 +91,16 @@ function sendFormEdit(id){
     xhr.send(formData);
 }
 
-function apagar(id){
+function apagar(id, tipo){
+    const body = document.getElementById("body"+id);
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `/api/utentes/delete/${id}`); 
+    let url;
+    if(tipo === "admin"){
+        url = `/admin/delete/${id}`;
+    }else{
+        url = `/api/${tipo}/delete/${id}`;
+    }
+    xhr.open("POST", url); 
     xhr.onload = function(event){ 
         body.innerHTML = "";
         const img = document.createElement('img'); 
@@ -99,9 +120,11 @@ function apagar(id){
         body.appendChild(img);  
     }; 
     xhr.send();
+    window.location.reload();
 }
 
 function verCoisas(id, tipo){
+    const body = document.getElementById("body"+id);
     body.innerHTML = "";
     fetch(`http://localhost:8080/utente/${tipo}/${id}`)
     .then(response => response.json())
@@ -127,6 +150,7 @@ function verCoisas(id, tipo){
 }
 
 function consultas(id){
+    const body = document.getElementById("body"+id);
     body.innerHTML = "";
     fetch(`http://localhost:8080/utente/consultas/${id}`)
     .then(response => response.json())
@@ -155,6 +179,7 @@ function consultas(id){
 }
 
 function giveError(){
+    const body = document.getElementById("body"+id);
     body.innerHTML = "";
     const img = document.createElement('img'); 
     img.style.maxHeight = "50%";

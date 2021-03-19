@@ -14,5 +14,4 @@ public class AdminRequest {
     private final String telemovel;
     private final String dataDeNascimento;
     private final String role;
-
 }

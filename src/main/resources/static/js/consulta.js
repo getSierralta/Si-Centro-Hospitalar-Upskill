@@ -142,6 +142,11 @@ function edit(utente, body){
     form.classList.add("log-in");
     form.id = "editUtenteFormulario";
 
+    const nome = document.createElement("input");
+    nome.type = "text";
+    nome.name = "name";
+    nome.placeholder = utente.name; 
+
     const morada = document.createElement("textarea");
     morada.name = "morada";
     morada.rows = "2";
@@ -172,6 +177,7 @@ function edit(utente, body){
     button.type = "button";
                 
 
+    form.appendChild(nome);
     form.appendChild(morada);
     form.appendChild(localidade);
     form.appendChild(telemovel);

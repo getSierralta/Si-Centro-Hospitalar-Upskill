@@ -1,6 +1,7 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
@@ -48,7 +49,18 @@ public class DoctorService{
             throw new EntityNotFoundException(String.format("Médico %s não foi encontrado", id));
         }
         Doctor doctor1 = doctor.get();
-        doctor1.setMorada(request.getMorada());
+        if (!request.getLocalidade().isEmpty()){
+            doctor1.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            doctor1.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            doctor1.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            doctor1.setName(request.getName());
+        }
         return doctorRepository.save(doctor1);
     }
 

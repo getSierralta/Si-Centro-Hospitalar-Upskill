@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -37,10 +39,10 @@ public class EmployeeRestController {
         return employeeService.getAllEmployees();
     }
 
-    @DeleteMapping(path = "{id}")
+    @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('colaborador:write')")
-    public void deleteEmployee(@PathVariable("id") Long id){
-        employeeService.deleteEmployee(id);
+    public ResponseEntity<Employee> updateEmployee(EmployeeRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.updateEmployee(id, request));
     }
 
     @PostMapping
@@ -49,17 +51,17 @@ public class EmployeeRestController {
         employeeService.registerEmployee(employee);
     }
 
-    @PutMapping("/update-employee/{id}")
-    @PreAuthorize("hasAuthority('colaborador:write')")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody EmployeeRequest request, @PathVariable Long id) {
-        return ResponseEntity.ok(employeeService.updateEmployee(id, request));
-    }
+
 
     @PostMapping(path = "/calendario", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public RedirectView getEspecialidade(EspecialidadeRequest request){
         return new RedirectView("/employee/calendarioemployee/"+request.getEspecialidade());
     }
-
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void apagarEmployee(@PathVariable Long id) {
+        employeeService.deleteEmployee(id);
+    }
 
 }

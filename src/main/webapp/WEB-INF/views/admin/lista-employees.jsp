@@ -95,13 +95,13 @@
                                <p><b>Telemovel:</b> &nbsp; ${employee.getPhone()} </p>
                             </div>
                         </div>
-                        <div class="person_body">
+                        <div class="person_body" id="body${employee.getId()}">
                             <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
                         </div>
-                        <div class="person_options">
-                            <button class="greenbutt" type="submit">EDIT</button>
-                            <button class="greenbutt" type="submit">DELETE</button>
-                        </div>
+                         <div class="person_options">
+                           <button class="greenbutt" type="button" onclick="edit(${employee.getId()}, 'employee')">EDIT</button>
+                           <button class="greenbutt" type="button" onclick="apagar(${employee.getId()}, 'employee')">DELETE</button>
+                       </div>
                     </div>
                 </c:forEach>
             </div>
@@ -110,6 +110,7 @@
     </main>
     <!--/Main-->
     <script src="../js/buttlist.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>

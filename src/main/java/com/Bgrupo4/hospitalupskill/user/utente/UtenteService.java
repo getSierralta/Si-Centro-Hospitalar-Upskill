@@ -197,4 +197,29 @@ public class UtenteService {
         }
 
     }
+
+    public Utente updateUtente(Long id, UtenteUpdateRequest request) {
+        Optional<Utente> utenteOptional = utenteRepository.findById(id);
+        if (utenteOptional.isEmpty()){
+            throw new EntityNotFoundException("Utente nao encontrado: "+id);
+        }
+        Utente utente = utenteOptional.get();
+        if (!request.getApolice().isEmpty()){
+            utente.setApolice(request.getApolice());
+        }
+        if (!request.getLocalidade().isEmpty()){
+            utente.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            utente.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            utente.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            utente.setName(request.getName());
+        }
+
+        return utenteRepository.save(utente);
+    }
 }

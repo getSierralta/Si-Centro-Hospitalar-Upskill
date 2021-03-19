@@ -2,17 +2,20 @@ package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -55,9 +58,17 @@ public class AdminManagementController {
 
     @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public RedirectView update(AdminRequest request) throws Exception {
-        adminService.updateAdmin(Long.parseLong(request.getNif()), request);
-        return new RedirectView("/admin/lista-admin");
+    public RedirectView update(AdminUpdateRequest request) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Admin admin = adminService.getLogged(auth);
+        adminService.updateAdmin(admin, request);
+        return new RedirectView("/admin/settings");
+    }
+
+    @PostMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Admin> updateEmployee(AdminRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(adminService.updateAdmin(id, request));
     }
 
 
@@ -85,6 +96,26 @@ public class AdminManagementController {
             modelAndView.setViewName("/admin/register-error");
         }
         return modelAndView;
+    }
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void apagarAdmin(@PathVariable Long id) {
+        adminService.deleteAdmin(id);
+    }
+
+    @PostMapping(path = "/uploadImage")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public RedirectView updateImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Admin admin = adminService.getLogged(auth);
+        try {
+            adminService.updateAdmin(admin, imageFile);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new RedirectView("/500");
+        }
+        return new RedirectView("/admin/settings");
     }
 
 }

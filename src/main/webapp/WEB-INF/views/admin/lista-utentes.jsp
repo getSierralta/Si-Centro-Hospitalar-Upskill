@@ -98,12 +98,12 @@
                                 <button class="btn-green" type="button" onclick="consultas(${utente.getId()})">CONSULTAS</button>
                              </div>
                         </div>
-                        <div class="person_body flex" id="body">
+                        <div class="person_body flex" id="body${utente.getId()}">
                             <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
                         </div>
                         <div class="person_options">
-                            <button class="greenbutt" type="button" onclick="edit(${utente.getId()})">EDIT</button>
-                            <button class="greenbutt" type="button" onclick="apagar(${utente.getId()})">DELETE</button>
+                            <button class="greenbutt" type="button" onclick="edit(${utente.getId()}, 'utentes')">EDIT</button>
+                            <button class="greenbutt" type="button" onclick="apagar(${utente.getId()}, 'utentes')">DELETE</button>
                         </div>
                     </div>
                 </c:forEach>

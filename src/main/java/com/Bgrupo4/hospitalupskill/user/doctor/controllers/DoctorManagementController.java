@@ -8,8 +8,11 @@ import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorUpdateRequest;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,10 +57,11 @@ public class DoctorManagementController {
         doctorService.registerDoctor(doctor);
     }
 
-    @PutMapping(path = "{id}")
-    @PreAuthorize("hasAuthority('medico:write')")
-    public void updateDoctor(@PathVariable("id") Long id, @RequestBody DoctorRequest request) {
-        doctorService.updateDoctor(id, request);
+
+    @PostMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Doctor> updateEmployee(DoctorRequest request, @PathVariable Long id) {
+        return ResponseEntity.ok(doctorService.updateDoctor(id, request));
     }
 
     @PostMapping(path = "/calendariomedico", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -102,5 +106,11 @@ public class DoctorManagementController {
             }
         }
         return appointments;
+    }
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void apagarDoctor(@PathVariable Long id) {
+        doctorService.deleteDoctor(id);
     }
 }

@@ -50,13 +50,24 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Long id, EmployeeRequest request) {
-        Optional<Employee> employee = employeeRepository.findById(id);
-        if (!employee.isPresent()) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        if (employeeOptional.isEmpty()) {
             throw new EntityNotFoundException(String.format("Colaborador %s não foi encontrado", id));
         }
-        Employee employee1 = employee.get();
-        employee1.setMorada(request.getMorada());
-        return employeeRepository.save(employee1);
+        Employee employee = employeeOptional.get();
+        if (!request.getLocalidade().isEmpty()){
+            employee.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            employee.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            employee.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            employee.setName(request.getName());
+        }
+        return employeeRepository.save(employee);
     }
 
     // EMPLOYEE

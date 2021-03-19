@@ -14,8 +14,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
@@ -51,13 +56,25 @@ public class AdminService {
         applicationUserService.enableAndSave(admin);
     }
 
-    public void updateAdmin(Long id, AdminRequest request) {
+    public Admin updateAdmin(Long id, AdminRequest request) {
         Optional<Admin> admin = adminRepository.findById(id);
         if (admin.isEmpty()) {
             throw new EntityNotFoundException(String.format("Administrador %s não foi encontrado", id));
         }
-        ApplicationUser user = requestProcess(admin.get(), request);
-        adminRepository.save((Admin) user);
+        Admin admin1 = admin.get();
+        if (!request.getLocalidade().isEmpty()){
+            admin1.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            admin1.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            admin1.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            admin1.setName(request.getName());
+        }
+        return adminRepository.save(admin1);
     }
 
     public void updateEmployee(Long id, AdminRequest request) {
@@ -219,4 +236,29 @@ public class AdminService {
         return adminRepository.findByUsername(username);
     }
 
+    public Admin updateAdmin(Admin admin, MultipartFile imageFile) throws IOException {
+        String folder = "/imagens/";
+        byte[] bytes = imageFile.getBytes();
+        String rootDir = System.getProperty("user.dir");
+        Path path = Paths.get(rootDir + folder + imageFile.getOriginalFilename());
+        imageFile.transferTo(new File(String.valueOf(path)));
+        admin.setProfilePicture(imageFile.getOriginalFilename());
+        return adminRepository.save(admin);
+    }
+
+    public Admin updateAdmin(Admin admin, AdminUpdateRequest request) {
+        if (!request.getLocalidade().isEmpty()){
+            admin.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            admin.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            admin.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            admin.setName(request.getName());
+        }
+        return adminRepository.save(admin);
+    }
 }
