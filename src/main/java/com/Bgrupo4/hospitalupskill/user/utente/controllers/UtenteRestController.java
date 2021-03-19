@@ -71,7 +71,6 @@ public class UtenteRestController {
             utenteService.updateUtente(utente, imageFile);
         }catch (Exception e){
             e.printStackTrace();
-            System.out.println("-------------- eror saving photo");
             return new RedirectView("/500");
         }
         return new RedirectView("/utente/settings");
@@ -95,13 +94,13 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}")
-    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE','ROLE_MEDICO_RESPONSAVEL')")
     public List<Vaga> getVagas(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         return vagaService.getVagas(especialidade, dia);
     }
 
     @GetMapping(path = "/cancelar/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE','ROLE_MEDICO_RESPONSAVEL')")
     public ResponseEntity<Appointment> cancelAppoinment(@PathVariable("id") String id) {
         return ResponseEntity.ok(consultasService.cancelAppointment(Long.valueOf(id)));
     }
@@ -135,7 +134,7 @@ public class UtenteRestController {
     }
 
     @GetMapping(path = "/calendariogeralutente/{especialidade}/{dia}/one")
-    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ROLE_UTENTE', 'ROLE_MEDICO', 'ROLE_EMPLOYEE','ROLE_MEDICO_RESPONSAVEL')")
     public List<Vaga> getOneVaga(@PathVariable("especialidade") String especialidade, @PathVariable("dia") String dia) {
         List<Vaga> vaga = new ArrayList<>();
         vaga.add(vagaService.getOneVaga(especialidade, dia));
