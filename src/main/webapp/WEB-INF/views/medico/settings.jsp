@@ -41,6 +41,16 @@
                  <span class="none">Calendario Pessoal</span>
              </a>
          </div>
+         <c:set var = "role" value = "MEDICO_RESPONSAVEL"/>
+         <c:set var = "userRole" value = "${medico.getUserRole().toString()}"/>
+             <c:if test = "${role == userRole}">
+                 <div class="medium ">
+                     <a href="/medico/lista-medicos">
+                         <div class="icon medico"></div>
+                         <span class="none">Lista Medicos</span>
+                     </a>
+                 </div>
+             </c:if>
          <div class="medium">
              <a href="/medico/settings">
                  <div class="icon tools"></div>

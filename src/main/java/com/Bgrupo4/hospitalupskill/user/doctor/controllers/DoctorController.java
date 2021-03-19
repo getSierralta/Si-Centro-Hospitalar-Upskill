@@ -41,7 +41,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/formularioCalendario")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showFormularioCalendario(ModelMap map) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -51,7 +51,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/calendariomedico/{especialidade}")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showCalendarioGeral(@PathVariable String especialidade, ModelMap map) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -61,7 +61,7 @@ public class DoctorController {
 
 
     @GetMapping(value = "/lista-utentes")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showUtentes(ModelMap map) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -81,7 +81,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/salaDeEspera")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showSalaDeEspera(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -95,7 +95,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/ongoing/{id}")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showOnGoing(ModelMap map, @PathVariable String id) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -113,7 +113,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/ongoing")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showOnGoing(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -130,7 +130,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/calendarmedico")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showCalendarioPessoal(ModelMap map) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -139,7 +139,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/settings")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public String showSetting(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);

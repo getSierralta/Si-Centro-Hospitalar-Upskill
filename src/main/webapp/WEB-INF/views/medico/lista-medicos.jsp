@@ -9,59 +9,94 @@
     <link rel="stylesheet" href="../css/responsivestyle.css">
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
-    <title>Medico</title>
+    <title>Lista de Médicos</title>
 </head>
 
 <body class="container blue">
-    <!--Horizontal Nav-->
-    <nav class="nav-row">
-        <div class="medium">
-            <div class="icon home"></div>
-            <a href="/">Writing Tool</a>
-        </div>
-        <div class="medium ">
-            <div class="icon informacao"></div>
-            <a href="/about-us">Sala de Espera</a>
-        </div>
-        <div class="medium">
-            <div class="icon medico"></div>
-            <a href="/services">Calendário Pessoal</a>
-        </div>
-        <div class="medium ">
-            <div class="icon contactos"></div>
-            <a href="/contacts">Calendário Geral</a>
-        </div>
-        <div class="medium">
-            <div class="icon utente"></div>
-            <a href="/lista-utentes">Utentes</a>
-        </div>
-    </nav>
+        <nav class="nav-row">
+            <div class="medium">
+                <a href="/medico/profilemedico">
+                    <div class="icon home"></div>
+                    <span class="none">Perfil</span>
+                </a>
+            </div>
+            <div class="medium">
+                <a href="/medico/salaDeEspera">
+                    <div class="icon notes"></div>
+                    <span class="none">Lista de espera</span>
+                </a>
+            </div>
+            <div class="medium">
+                    <a href="/medico/ongoing">
+                        <div class="icon informacao"></div>
+                        <span class="none">Consulta</span>
+                    </a>
+             </div>
+            <div class="medium ">
+                <a href="/medico/formularioCalendario">
+                    <div class="icon calendario"></div>
+                    <span class="none">Calendario geral</span>
+                </a>
+            </div>
+            <div class="medium ">
+                <a href="/medico/calendarmedico">
+                    <div class="icon calendario"></div>
+                    <span class="none">Calendario Pessoal</span>
+                </a>
+            </div>
+            <c:set var = "role" value = "MEDICO_RESPONSAVEL"/>
+            <c:set var = "userRole" value = "${medico.getUserRole().toString()}"/>
+                <c:if test = "${role == userRole}">
+                    <div class="medium ">
+                        <a href="/medico/lista-medicos">
+                            <div class="icon medico"></div>
+                            <span class="none">Lista Medicos</span>
+                        </a>
+                    </div>
+                </c:if>
+            <div class="medium">
+                <a href="/medico/settings">
+                    <div class="icon tools"></div>
+                    <span class="none">Settings</span>
+                </a>
+            </div>
+            <div class="medium">
+                <a href="/logout">
+                    <div class="icon logout"></div>
+                    <span class="none">LogOut</span>
+                </a>
+            </div>
+        </nav>
+        </nav>
     <!--/Horizontal Nav-->
     <!--Main-->
     <main class="main">
         <!--Header-->
         <header class="header">
-            <h3 class="page_title white">LISTA DE UTENTES</h3>
+            <h3 class="page_title white">LISTA DE MEDICOS</h3>
         </header>
         <!--/Header-->
         <!--Viewer-->
         <div class="object_container full_grid">
             <div class="person_list_container">
                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="utente">
+                    <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
+                 <form class="person_form" id="searchPerson" action="#" method="POST">
+                     <input type="text" name="seguro" placeholder="Especialidade">
+                     <button type="submit" class="icon search"></button>
+                 </form>
                 <div class="person_list">
-                    <c:forEach var="utente" items="${utenteList}">
+                    <c:forEach var="doctor" items="${doctorList}">
                         <a href="#/" class="person_button">
-                            <p>${utente.getName()}</p>
-                            <p>${utente.getNif()}</p>
+                            <p>${doctor.getUsername()}</p>
                         </a>
                     </c:forEach>
                 </div>
             </div>
             <div class="person_viewer">
-                <c:forEach var="utente" items="${utenteList}" varStatus="loop">
+                <c:forEach var="doctor" items="${doctorList}" varStatus="loop">
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
@@ -69,13 +104,18 @@
                                 <img class="inversed" src="../img/imgclient.jpeg" alt="client">
                             </div>
                             <div class="client_details">
-                                <p><b>${utente.getName()}</b><br>
-                                <b>${utente.getNif()}</b></p>
+                                <p><b>User Name:</b> &nbsp;${doctor.getUsername()}</p>
+                                <p><b>Nome:</b> &nbsp;${doctor.getName()}</p>
+                                <p><b>Data de Nascimento:</b> &nbsp;${doctor.getDataDeNascimento()}</p>
+                                <p><b>Numero de Identidade Fiscal:</b> &nbsp;${doctor.getNif()}</p>
+                                <p><b>Numero de Cedula:</b> &nbsp;${doctor.getCedula()}</p>
                             </div>
                             <div class="client_info">
-                                <p><b>Next appointment</b> N/A</p>
-                                <p><b>Last appointment</b> N/A</p>
-                                <p><b>Email</b> ${utente.getEmail()}</p>
+                               <p><b>Morada:</b> &nbsp;${doctor.getMorada()}</p>
+                               <p><b>E-mail:</b> &nbsp;${doctor.getEmail()}</p>
+                               <p><b>Localidade:</b>  &nbsp;${doctor.getLocalidade()} </p>
+                               <p><b>Telemovel:</b> &nbsp; ${doctor.getPhone()} </p>
+                               <p><b>Especialidade:</b> &nbsp; ${doctor.getEspecialidade()} </p>
                             </div>
                         </div>
                         <div class="person_body">
