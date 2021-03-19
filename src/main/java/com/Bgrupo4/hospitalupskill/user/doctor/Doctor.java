@@ -50,8 +50,8 @@ public class Doctor extends ApplicationUser {
     @Column(name= "especialidade", nullable = false, columnDefinition = "TEXT")
     private String especialidade;
 
-    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, String especialidade) {
-        super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.MEDICO.name());
+    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, String especialidade, UserRole userRole) {
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole.toString());
         this.cedula = cedula;
         this.especialidade = especialidade;
     }

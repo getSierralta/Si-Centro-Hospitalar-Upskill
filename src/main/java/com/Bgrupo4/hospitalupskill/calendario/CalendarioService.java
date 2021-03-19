@@ -1,4 +1,4 @@
-package com.Bgrupo4.hospitalupskill.Calendario;
+package com.Bgrupo4.hospitalupskill.calendario;
 
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import org.springframework.stereotype.Service;

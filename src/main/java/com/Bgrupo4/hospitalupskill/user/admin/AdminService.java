@@ -167,6 +167,11 @@ public class AdminService {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void registerNew(DoctorRequest request) throws Exception {
+        UserRole userRole = UserRole.MEDICO;
+        if(request.getRole().equals("responsavel")){
+            userRole = UserRole.MEDICO_RESPONSAVEL;
+        }
+
         try {
             String[] data = request.getDataDeNascimento().split("-");
                 applicationUserService.enableAndSave(new Doctor(
@@ -180,7 +185,8 @@ public class AdminService {
                         request.getTelemovel(),
                         new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
                         request.getCedula(),
-                        request.getEspecialidade()
+                        request.getEspecialidade(),
+                        userRole
                         ));
         }catch (Exception e){
             throw new Exception();

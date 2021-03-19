@@ -1,13 +1,11 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
-import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
-import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/medico")
 @RequiredArgsConstructor
 public class DoctorController {
 
-    private final UtenteManagementController utenteManagementController;
     private final DoctorService doctorService;
     private final CalendarioService calendarioService;
     private final SenhaService senhaService;
@@ -46,23 +42,42 @@ public class DoctorController {
 
     @GetMapping(value = "/formularioCalendario")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
-    public String showFormularioCalendario(ModelMap map){
+    public String showFormularioCalendario(ModelMap map) throws Exception{
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
         map.put("especialidades", calendarioService.getEspecialidades());
         return "medico/formularioCalendario";
     }
 
     @GetMapping(value = "/calendariomedico/{especialidade}")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
-    public String showCalendarioGeral(@PathVariable String especialidade){
+    public String showCalendarioGeral(@PathVariable String especialidade, ModelMap map) throws Exception{
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
         return "medico/calendariomedico";
     }
 
 
     @GetMapping(value = "/lista-utentes")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
-    public String showUtentes(ModelMap map) {
-        map.put("utenteList", utenteManagementController.getAllUtentes());
+    public String showUtentes(ModelMap map) throws Exception{
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        map.put("utenteList", utenteService.getAllUtentes());
         return "/medico/lista-utentes";
+    }
+
+    @GetMapping(value = "/lista-medicos")
+    @PreAuthorize("hasRole('ROLE_MEDICO_RESPONSAVEL')")
+    public String showMedicos(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        map.put("doctorList", doctorService.getAllDoctors());
+        return "/medico/lista-medicos";
     }
 
     @GetMapping(value = "/salaDeEspera")
@@ -75,12 +90,17 @@ public class DoctorController {
         senhas.addAll(consultasService.getSenhasLateAppoinmentByMedico(doctor));
         senhas.addAll(senhaService.getSenhasByMedico(doctor));
         map.put("utenteList", senhas);
+        map.put("medico", doctor);
         return "/medico/salaDeEspera";
     }
 
     @GetMapping(value = "/ongoing/{id}")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
     public String showOnGoing(ModelMap map, @PathVariable String id) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+
         if(senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
             throw new EntityNotFoundException("Senha não existe: "+id);
         }
@@ -111,7 +131,10 @@ public class DoctorController {
 
     @GetMapping(value = "/calendarmedico")
     @PreAuthorize("hasRole('ROLE_MEDICO')")
-    public String showCalendarioPessoal(){
+    public String showCalendarioPessoal(ModelMap map) throws Exception{
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
         return "medico/calendarmedico";
     }
 
@@ -121,6 +144,7 @@ public class DoctorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
         map.put("medico", doctor);
+        System.out.println(doctor.getUserRole().toString());
         return "medico/settings";
     }
 

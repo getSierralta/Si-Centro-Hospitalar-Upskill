@@ -7,7 +7,6 @@ import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
@@ -55,17 +54,15 @@ public class HospitalUpskillApplication {
             applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo", "Paraguana", "914789651", new GregorianCalendar(1970, Calendar.JULY, 15), "apo", "123456789"));
             applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan", "Las Cumaraguas", "914789651", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), "lice", "123456789"));
             applicationUserService.enableAndSave(new Admin("1", "Max", "admin", "admin@admin.com", "123", "rua da joaquina", "Lisboa", "987654321", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), UserRole.ADMIN.name()));
-            Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", Especialidade.CARDIOLOGIA.name());
+            Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", Especialidade.CARDIOLOGIA.name(), UserRole.MEDICO_RESPONSAVEL);
             applicationUserService.enableAndSave(doctor);
-            applicationUserService.enableAndSave(new Employee("4", "Gabriel", "responsavel", "responsavel@responsavel.com", "123", UserRole.RESPONSAVEL.name(), upskill));
             applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), UserRole.COLABORADOR.name()));
-            applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", UserRole.COLABORADOR_RESPONSAVEL.name(), upskill));
-            applicationUserService.enableAndSave(new Doctor("10", "Peter Baker", "medico1", "medico1@medico.com", "123", "Guaquira", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", Especialidade.ONCOLOGIA.name()));
-            applicationUserService.enableAndSave(new Doctor("11", "Corgi Maguire", "medico2", "medico2@medico.com", "123", "Paraguana", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.FEBRUARY, 10), "cedula", Especialidade.FISIOTERAPIA.name()));
-            applicationUserService.enableAndSave(new Doctor("12", "Jenipuur Lopez", "medico3", "medico3@medico.com", "123", "El Serro", "Santa Ana", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", Especialidade.GINECOLOGIA.name()));
-            applicationUserService.enableAndSave(new Doctor("13", "David Meowie", "medico4", "medico4@medico.com", "123", "El Hato", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", Especialidade.RADIOLOGIA.name()));
-            applicationUserService.enableAndSave(new Doctor("14", "Mitch Connor", "medico5", "medico5@medico.com", "123", "Adicora", "Paraguana", "914789651", new GregorianCalendar(1998, Calendar.DECEMBER, 10), "cedula", Especialidade.GERAL.name()));
-            applicationUserService.enableAndSave(new Doctor("15", "Mark Buffalo", "medico6", "medico6@medico.com", "123", "Piedras Negras", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", Especialidade.OSTEOPATIA.name()));
+            applicationUserService.enableAndSave(new Doctor("10", "Peter Baker", "medico1", "medico1@medico.com", "123", "Guaquira", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", Especialidade.ONCOLOGIA.name(), UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("11", "Corgi Maguire", "medico2", "medico2@medico.com", "123", "Paraguana", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.FEBRUARY, 10), "cedula", Especialidade.FISIOTERAPIA.name(), UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("12", "Jenipuur Lopez", "medico3", "medico3@medico.com", "123", "El Serro", "Santa Ana", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", Especialidade.GINECOLOGIA.name(), UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("13", "David Meowie", "medico4", "medico4@medico.com", "123", "El Hato", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", Especialidade.RADIOLOGIA.name(), UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("14", "Mitch Connor", "medico5", "medico5@medico.com", "123", "Adicora", "Paraguana", "914789651", new GregorianCalendar(1998, Calendar.DECEMBER, 10), "cedula", Especialidade.GERAL.name(), UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("15", "Mark Buffalo", "medico6", "medico6@medico.com", "123", "Piedras Negras", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", Especialidade.OSTEOPATIA.name(), UserRole.MEDICO));
 
             //Appointments
 
@@ -81,12 +78,12 @@ public class HospitalUpskillApplication {
             consultasService.createAppointment(vaga, utente);
             consultasService.createAppointment(vaga2, utente);
 
-            Receita receita = receitaService.createReceita(appointment);
-
-            receitaService.addMedicamento(new Medicamento("Ibuprofen", "2 veces por dia"), receita);
-            receitaService.addMedicamento(new Medicamento("Pokemon", "1 veces por semana"), receita);
-            receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
-            receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
+            //Receita receita = receitaService.createReceita(appointment);
+            //
+            //receitaService.addMedicamento(new Medicamento("Ibuprofen", "2 veces por dia"), receita);
+            //receitaService.addMedicamento(new Medicamento("Pokemon", "1 veces por semana"), receita);
+            //receitaService.addMedicamento(new Medicamento("Doremon", "2 colheres cada 8 horas"), receita);
+            //receitaService.addMedicamento(new Medicamento("Pandemonium", "cada vez que does a cabeça"), receita);
 
 
             vagaService.createVagasThisMonth();

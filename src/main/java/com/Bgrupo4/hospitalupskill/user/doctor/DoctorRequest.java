@@ -15,4 +15,5 @@ public class DoctorRequest {
     private final String dataDeNascimento;
     private final String cedula;
     private final String especialidade;
+    private final String role;
 }
