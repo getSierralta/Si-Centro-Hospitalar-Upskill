@@ -260,7 +260,7 @@ function verCoisas(tipo, utente, containerbody){
                 const medico = document.createElement("p");
                 medico.innerText = element.doctor.name;
                 const especialidade = document.createElement("p");
-                especialidade.innerText = element.doctor.especialidade;
+                especialidade.innerText = element.doctor.especialidade.especialidade;
                 const descrip = document.createElement("p");
                 descrip.innerText = element.description;
                 div.appendChild(date);
