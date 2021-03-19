@@ -40,6 +40,7 @@ public class SenhaService {
         senha.setUtente(utenteOptional.get());
         senha.setAppointment(appointmentOptional.get());
         senha.setDate(Calendar.getInstance().getTime());
+        senha.setData(Calendar.getInstance().getTime());
         senha.setTime(String.valueOf(LocalTime.now()));
         senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
         senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
@@ -65,6 +66,7 @@ public class SenhaService {
                 senha.setUtente(utenteOptional.get());
                 senha.setAppointment(appointmentOptional.get());
                 senha.setDate(Calendar.getInstance().getTime());
+                senha.setData(Calendar.getInstance().getTime());
                 senha.setTime(String.valueOf(LocalTime.now()));
                 senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
                 senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
@@ -83,6 +85,7 @@ public class SenhaService {
         Senha senha = new Senha();
         senha.setUtente(utenteOptional.get());
         senha.setDate(Calendar.getInstance().getTime());
+        senha.setData(Calendar.getInstance().getTime());
         senha.setTime(String.valueOf(LocalTime.now()));
         senha.setNumeroSenha(getSenha(SenhaCategoria.INFORMACAO.name()));
         senha.setCategoria(SenhaCategoria.INFORMACAO.name());
