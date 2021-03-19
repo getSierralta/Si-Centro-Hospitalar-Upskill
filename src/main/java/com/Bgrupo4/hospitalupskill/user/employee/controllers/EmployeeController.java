@@ -1,6 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
-import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
 import com.Bgrupo4.hospitalupskill.senha.Senha;

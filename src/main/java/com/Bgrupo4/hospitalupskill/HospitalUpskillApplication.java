@@ -1,8 +1,10 @@
 package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
@@ -60,17 +62,17 @@ public class HospitalUpskillApplication {
             applicationUserService.enableAndSave(new Utente("8", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo", "Paraguana", "914789651", new GregorianCalendar(1970, Calendar.JULY, 15), "apo", "123456789"));
             applicationUserService.enableAndSave(new Utente("9", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan", "Las Cumaraguas", "914789651", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), "lice", "123456789"));
             applicationUserService.enableAndSave(new Admin("1", "Max", "admin", "admin@admin.com", "123", "rua da joaquina", "Lisboa", "987654321", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), UserRole.ADMIN.name()));
-            Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", cardiologia);
+            Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", cardiologia, UserRole.MEDICO_RESPONSAVEL);
             applicationUserService.enableAndSave(doctor);
             applicationUserService.enableAndSave(new Employee("4", "Gabriel", "responsavel", "responsavel@responsavel.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10),UserRole.RESPONSAVEL.name()));
             applicationUserService.enableAndSave(new Employee("5", "Max", "colaborador", "colaborador@colaborador.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), UserRole.COLABORADOR.name()));
-            applicationUserService.enableAndSave(new Doctor("10", "Peter Baker", "medico1", "medico1@medico.com", "123", "Guaquira", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", oncologia));
-            applicationUserService.enableAndSave(new Doctor("11", "Corgi Maguire", "medico2", "medico2@medico.com", "123", "Paraguana", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.FEBRUARY, 10), "cedula", fisioterapia));
-            applicationUserService.enableAndSave(new Doctor("12", "Jenipuur Lopez", "medico3", "medico3@medico.com", "123", "El Serro", "Santa Ana", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", ginecologia));
-            applicationUserService.enableAndSave(new Doctor("13", "David Meowie", "medico4", "medico4@medico.com", "123", "El Hato", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", radiologia));
-            applicationUserService.enableAndSave(new Doctor("14", "Mitch Connor", "medico5", "medico5@medico.com", "123", "Adicora", "Paraguana", "914789651", new GregorianCalendar(1998, Calendar.DECEMBER, 10), "cedula", geral));
-            applicationUserService.enableAndSave(new Doctor("15", "Mark Buffalo", "medico6", "medico6@medico.com", "123", "Piedras Negras", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", osteopatia));
-            applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", oncologia));
+            applicationUserService.enableAndSave(new Doctor("10", "Peter Baker", "medico1", "medico1@medico.com", "123", "Guaquira", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", oncologia,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("11", "Corgi Maguire", "medico2", "medico2@medico.com", "123", "Paraguana", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.FEBRUARY, 10), "cedula", fisioterapia,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("12", "Jenipuur Lopez", "medico3", "medico3@medico.com", "123", "El Serro", "Santa Ana", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", ,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("13", "David Meowie", "medico4", "medico4@medico.com", "123", "El Hato", "Pueblo Nuevo", "914789651", new GregorianCalendar(1998, Calendar.MARCH, 10), "cedula", radiologia,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("14", "Mitch Connor", "medico5", "medico5@medico.com", "123", "Adicora", "Paraguana", "914789651", new GregorianCalendar(1998, Calendar.DECEMBER, 10), "cedula", geral,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("15", "Mark Buffalo", "medico6", "medico6@medico.com", "123", "Piedras Negras", "Falcon", "914789651", new GregorianCalendar(1998, Calendar.JULY, 10), "cedula", osteopatia,UserRole.MEDICO));
+            applicationUserService.enableAndSave(new Doctor("6", "Thiago", "medico_responsavel", "medico_responsavel@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", oncologia,UserRole.MEDICO));
             applicationUserService.enableAndSave(new Employee("7", "Joao", "colaborador_responsavel", "colaborador_responsavel@colaborador.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10),UserRole.COLABORADOR_RESPONSAVEL.name()));
 
             //Appointments

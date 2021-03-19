@@ -73,6 +73,11 @@
                             <option value="RADIOLOGIA">Radiologia</option>
                             <option value="FISIOTERAPIA">Fisioterapia</option>
                         </select>
+                        select class="greenbutt" name="role" id="role" required="required">
+                             <option disabled selected value> Especialidade: </option>
+                             <option value="medico">Médico</option>
+                             <option value="responsavel">Médico Responsavel</option>
+                        </select>
                     <button class="green" type="submit">Register</button>
                 </form>
             </div>

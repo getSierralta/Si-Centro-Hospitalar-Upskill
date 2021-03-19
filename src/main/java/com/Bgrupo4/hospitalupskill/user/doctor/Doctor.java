@@ -54,7 +54,7 @@ public class Doctor extends ApplicationUser {
     private Especialidade especialidade;
 
     public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, Especialidade especialidade) {
-        super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.MEDICO.name());
+        super(nif, name, username, email, password, morada, localidade, phone, birthday, userRole.toString());
         this.cedula = cedula;
         this.especialidade = especialidade;
     }

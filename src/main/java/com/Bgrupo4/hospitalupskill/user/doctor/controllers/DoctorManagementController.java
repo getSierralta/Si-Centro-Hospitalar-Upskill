@@ -1,6 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.doctor.controllers;
 
-import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
+import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
@@ -8,10 +8,7 @@ import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorUpdateRequest;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -64,13 +61,13 @@ public class DoctorManagementController {
     }
 
     @PostMapping(path = "/calendariomedico", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public RedirectView getEspecialidade(EspecialidadeRequest request){
         return new RedirectView("/medico/calendariomedico/"+request.getEspecialidade());
     }
 
     @PostMapping(path = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public RedirectView update(DoctorUpdateRequest request) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -79,7 +76,7 @@ public class DoctorManagementController {
     }
 
     @PostMapping(path = "/uploadImage")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public RedirectView updateImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
@@ -94,7 +91,7 @@ public class DoctorManagementController {
     }
 
     @GetMapping(path = "/calendarmedico/{dia}")
-    @PreAuthorize("hasRole('ROLE_MEDICO')")
+    @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
     public List<Appointment> getAppoinments(@PathVariable("dia") String dia) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);

@@ -1,9 +1,8 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 
-import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
+import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.controllers.DoctorManagementController;
 import com.Bgrupo4.hospitalupskill.user.employee.controllers.EmployeeRestController;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/admin")
