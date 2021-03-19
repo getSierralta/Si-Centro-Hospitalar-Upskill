@@ -151,11 +151,11 @@ public class UtenteService {
     }
 
     public Receita getLastReceita(Utente utente) {
-        List<Receita> receitas = receitaService.getReceitasByUtenteOrderByDate(utente);
+        List<Receita> receitas = receitaService.getReceitasByUtente(utente.getId());
         if (receitas.isEmpty()){
             throw new EntityNotFoundException(String.format("O utente %s não tem consultas marcadas", utente.getUsername()));
         }
-        return receitas.get(0);
+        return receitas.get(receitas.size()-1);
     }
 
     private List<Receita> getReceitas(Utente utente) {

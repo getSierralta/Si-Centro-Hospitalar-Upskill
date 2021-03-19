@@ -102,11 +102,12 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("Utente %s, vaga %s ou Medico %s não foi encontrado", request.getUtente(), request.getVaga(), request.getDoctor()));
         }
         Appointment appointment = new Appointment();
-        vaga.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
+        updateVaga(vaga.get().getId(), false);
         BeanUtils.copyProperties(request, appointment);
         appointment.setDoctor(doctor.get());
         appointment.setUtente(utente.get());
         appointment.setDate(vaga.get().getDate());
+        appointment.setData(vaga.get().getData());
         appointment.setTime(vaga.get().getTime());
         appointment.setEspecialidade(vaga.get().getEspecialidade());
         return appointmentRepository.save(appointment);
@@ -120,8 +121,9 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("Utente %s ou vaga %s não foi encontrado", utente.getUsername(), vaga.getId()));
         }
         Appointment appointment = new Appointment();
-        vagaOptional.ifPresent(vaga1 -> updateVaga(vaga1.getId(), false));
+        updateVaga(vaga.getId(), false);
         appointment.setDate(vagaOptional.get().getDate());
+        appointment.setData(vagaOptional.get().getData());
         appointment.setTime(vagaOptional.get().getTime());
         appointment.setEspecialidade(vagaOptional.get().getEspecialidade());
         appointment.setDoctor(doctor.get());
@@ -143,6 +145,7 @@ public class ConsultasService {
             Appointment appointment = new Appointment();
             updateVaga(vaga.getId(), false);
             appointment.setDate(vaga.getDate());
+            appointment.setData(vaga.getData());
             appointment.setTime(vaga.getTime());
             appointment.setEspecialidade(vaga.getEspecialidade());
             appointment.setDoctor(doctor.get());
@@ -158,15 +161,18 @@ public class ConsultasService {
             throw new EntityNotFoundException(String.format("A marcação %s nao foi encontrada", id));
         }
         if (appointment.get().getStatus() == Status.OPEN){
-            Vaga vaga = new Vaga();
             Appointment appointment1 = appointment.get();
             appointment1.setStatus(Status.CANCELLED);
-            vaga.setDate(appointment1.getDate());
-            vaga.setDoctor(appointment1.getDoctor());
-            vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade());
-            vaga.setDate(appointment1.getDate());
-            vaga.setTime(appointment1.getTime());
-            vagaRepository.save(vaga);
+            if (appointment.get().getData().getTime().after(Calendar.getInstance().getTime())){
+                Vaga vaga = new Vaga();
+                vaga.setDate(appointment1.getDate());
+                vaga.setData(appointment1.getData());
+                vaga.setDoctor(appointment1.getDoctor());
+                vaga.setEspecialidade(appointment1.getDoctor().getEspecialidade().getEspecialidade());
+                vaga.setDate(appointment1.getDate());
+                vaga.setTime(appointment1.getTime());
+                vagaRepository.save(vaga);
+            }
             return appointmentRepository.save(appointment1);
         }
         throw new IllegalArgumentException("Cannot cancel an appointment in other state than OPEN");

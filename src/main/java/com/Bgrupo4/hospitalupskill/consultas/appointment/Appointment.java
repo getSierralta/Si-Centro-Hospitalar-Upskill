@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.consultas.appointment;
 
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -28,8 +29,12 @@ public class Appointment{
     private Long id;
 
     @Column(name= "date", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar date;
+
+    @Column(name= "data", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar data;
 
     @Column(name= "time", nullable = false)
     private String time;
@@ -48,8 +53,9 @@ public class Appointment{
     @Enumerated(EnumType.STRING)
     private Status status = Status.OPEN;
 
-    @Column(name= "especialidade", nullable = false)
+
     private String especialidade;
+
 
     @Column(name= "startedAt")
     private String startedAt;
@@ -57,6 +63,7 @@ public class Appointment{
 
     public Appointment(Calendar date, Doctor doctor, Utente utente, Status status, String especialidade) {
         this.date = date;
+        this.data = date;
         this.doctor = doctor;
         this.utente = utente;
         this.status = status;

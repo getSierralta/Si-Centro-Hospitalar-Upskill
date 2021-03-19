@@ -38,11 +38,11 @@ public class VagaService {
                     flag = false;
                     continue;
                 }
-                Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), getNextMonth().ordinal(),i);
                 for (int j = 8; j <= 18; j++){
                     if (j != 13){
                        String time = j+":00";
-                        vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade(), doctor));
+                        Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), getNextMonth().ordinal(),i, j, 0, 0);
+                       vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade().getEspecialidade(), doctor));
                     }
                 }
             }
@@ -64,11 +64,11 @@ public class VagaService {
                     flag = false;
                     continue;
                 }
-                Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), LocalDate.now().getMonth().ordinal(), i);
                 for (int j = 8; j < 17; j++){
                     if (j != 13){
                         String time = j+":00";
-                        vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade(), doctor));
+                        Calendar calendar = new GregorianCalendar(LocalDate.now().getYear(), LocalDate.now().getMonthValue()-1,i, j, 0, 0);
+                        vagaRepository.save(new Vaga(calendar, time, doctor.getEspecialidade().getEspecialidade(), doctor));
                     }
                 }
             }
@@ -99,7 +99,7 @@ public class VagaService {
         String[] d = split[2].split("");
         String month = m.length == 2 ? split[1] : "0"+split[1];
         String day = d.length == 2 ? split[2] : "0"+split[2];
-        return vagaRepository.findAllByEspecialidadeAndDate(especialidade, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
+        return vagaRepository.findAllByEspecialidadeAndData(especialidade, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
 
     }
 

@@ -24,6 +24,7 @@ public class DoctorService{
 
     private final DoctorRepository doctorRepository;
     private final ApplicationUserService applicationUserService;
+    private final EspecialidadeRepository especialidadeRepository;
 
     public Optional<Doctor> getUserById(Long id) {
         return doctorRepository.findById(id);
@@ -94,5 +95,9 @@ public class DoctorService{
         imageFile.transferTo(new File(String.valueOf(path)));
         doctor.setProfilePicture(imageFile.getOriginalFilename());
         return doctorRepository.save(doctor);
+    }
+
+    public Especialidade createEspecialidade(String osteopatia) {
+         return especialidadeRepository.save(new Especialidade(osteopatia));
     }
 }

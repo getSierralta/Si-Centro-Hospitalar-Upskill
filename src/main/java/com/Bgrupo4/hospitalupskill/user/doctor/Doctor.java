@@ -9,6 +9,7 @@ import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,10 +48,12 @@ public class Doctor extends ApplicationUser {
     @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Senha> senhas;
 
-    @Column(name= "especialidade", nullable = false, columnDefinition = "TEXT")
-    private String especialidade;
+    @ManyToOne
+    @JoinColumn(name = "especialidade_id", nullable = false)
+    @JsonManagedReference
+    private Especialidade especialidade;
 
-    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, String especialidade) {
+    public Doctor(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String cedula, Especialidade especialidade) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.MEDICO.name());
         this.cedula = cedula;
         this.especialidade = especialidade;

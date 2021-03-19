@@ -3,9 +3,7 @@ package com.Bgrupo4.hospitalupskill.user.admin;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
-import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.*;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -33,6 +31,7 @@ public class AdminService {
     private final EmployeeRepository employeeRepository;
     private final UtenteRepository utenteRepository;
     private final DoctorRepository doctorRepository;
+    private final EspecialidadeRepository especialidadeRepository;
 
     private final ApplicationUserService applicationUserService;
 
@@ -180,11 +179,20 @@ public class AdminService {
                         request.getTelemovel(),
                         new GregorianCalendar(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
                         request.getCedula(),
-                        request.getEspecialidade()
+                        getEspecialidade(request.getEspecialidade())
                         ));
         }catch (Exception e){
             throw new Exception();
         }
+    }
+
+    private Especialidade getEspecialidade(String especialidade) {
+        for (Especialidade esp: especialidadeRepository.findAll()) {
+            if(esp.getEspecialidade().equals(especialidade)){
+                return esp;
+            }
+        }
+        throw new IllegalArgumentException("Especialidade não existe");
     }
 
 

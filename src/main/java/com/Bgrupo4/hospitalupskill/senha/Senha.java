@@ -45,7 +45,7 @@ public class Senha {
     private Appointment appointment;
 
     @Column(name= "date", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @Column(name= "time", nullable = false)

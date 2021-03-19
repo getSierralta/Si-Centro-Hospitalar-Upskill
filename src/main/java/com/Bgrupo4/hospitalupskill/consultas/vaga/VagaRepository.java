@@ -20,11 +20,11 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
     List<Vaga> findAllByEspecialidade(String especialidade);
 
 
-    @Query("SELECT u FROM Vaga u WHERE u.especialidade = ?1 AND u.date = ?2 AND u.free = 1")
-    List<Vaga> findAllByEspecialidadeAndDate(String especialidade, GregorianCalendar date);
+    @Query("SELECT u FROM Vaga u WHERE u.especialidade = ?1 AND u.data = ?2 AND u.free = 1")
+    List<Vaga> findAllByEspecialidadeAndData(String especialidade, GregorianCalendar date);
 
 
-    List<Vaga> findAllByDate(GregorianCalendar time);
+    List<Vaga> findAllByData(GregorianCalendar time);
 
     Vaga findFirstByEspecialidadeAndDate(String especialidade, GregorianCalendar gregorianCalendar);
 
