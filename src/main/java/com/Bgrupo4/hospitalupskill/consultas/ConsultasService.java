@@ -207,7 +207,7 @@ public class ConsultasService {
         String[] d = split[2].split("");
         String month = m.length == 2 ? split[1] : "0" + split[1];
         String day = d.length == 2 ? split[2] : "0" + split[2];
-        return appointmentRepository.findAllByUtenteAndDate(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
+        return appointmentRepository.findAllByUtenteAndData(utente, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 
     public Appointment startConsulta(Senha senha) {
@@ -305,7 +305,7 @@ public class ConsultasService {
         String[] d = split[2].split("");
         String month = m.length == 2 ? split[1] : "0" + split[1];
         String day = d.length == 2 ? split[2] : "0" + split[2];
-        return appointmentRepository.findAllByDoctorAndDate(doctor, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
+        return appointmentRepository.findAllByDoctorAndData(doctor, new GregorianCalendar(Integer.parseInt(split[0]), Integer.parseInt(month), Integer.parseInt(day)));
     }
 }
 
