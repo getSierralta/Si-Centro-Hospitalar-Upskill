@@ -1,9 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
 
-import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
-import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
-import com.Bgrupo4.hospitalupskill.listadeespera.ListaDeEspera;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
@@ -18,7 +15,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity(name = "Especialidade")
-@Table(name = "especialidade", uniqueConstraints = {@UniqueConstraint(name = "especialidade_unique", columnNames = "especialidade")})
+@Table(name = "especialidade")
 public class Especialidade {
 
     @Id
@@ -32,9 +29,7 @@ public class Especialidade {
     @OneToMany(mappedBy = "especialidade",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Doctor> doctors;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "especialidade",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ListaDeEspera> listaDeEsperas;
+
 
 
     public Especialidade(String especialidade) {

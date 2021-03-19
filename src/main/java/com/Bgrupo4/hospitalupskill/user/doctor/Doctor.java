@@ -4,18 +4,15 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
-import com.Bgrupo4.hospitalupskill.listadeespera.ListaDeEspera;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
-import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @Getter

@@ -3,7 +3,6 @@ package com.Bgrupo4.hospitalupskill.user.utente;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
-import com.Bgrupo4.hospitalupskill.listadeespera.ListaDeEspera;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
@@ -21,9 +20,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "Utente")
-@Table(name = "utente",uniqueConstraints = {@UniqueConstraint(name = "utente_email_unique", columnNames = "email")})
-                                           // @UniqueConstraint(name = "utente_username_unique", columnNames = "username"),
-                                            //@UniqueConstraint(name = "utente_nif_unique", columnNames = "nif")})
+@Table(name = "utente",uniqueConstraints = {@UniqueConstraint(name = "utente_email_unique", columnNames = "email"),
+                                            @UniqueConstraint(name = "utente_username_unique", columnNames = "username"),
+                                            @UniqueConstraint(name = "utente_nif_unique", columnNames = "nif")})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Utente extends ApplicationUser {
@@ -48,9 +47,6 @@ public class Utente extends ApplicationUser {
     @OneToMany(mappedBy = "utente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Senha> senhas;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "utente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ListaDeEspera> listaDeEsperas;
 
     public Utente(String nif, String name, String username, String email, String password, String morada, String localidade, String phone, Calendar birthday, String apolice, String numUtente) {
         super(nif, name, username, email, password, morada, localidade, phone, birthday, UserRole.UTENTE.name());

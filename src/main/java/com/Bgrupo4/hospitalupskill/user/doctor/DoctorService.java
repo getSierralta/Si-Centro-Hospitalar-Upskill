@@ -97,7 +97,7 @@ public class DoctorService{
         return doctorRepository.save(doctor);
     }
 
-    public Especialidade createEspecialidade(String osteopatia) {
-         return especialidadeRepository.save(new Especialidade(osteopatia));
+    public Especialidade createEspecialidade(String especialidade) {
+         return especialidadeRepository.save(new Especialidade(especialidade));
     }
 }

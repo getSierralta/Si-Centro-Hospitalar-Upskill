@@ -15,9 +15,9 @@ import java.util.Collections;
 @Getter
 @Setter
 @Entity(name = "Employee")
-@Table(name = "employee",uniqueConstraints = {@UniqueConstraint(name = "employee_email_unique", columnNames = "email")})
-                                                // @UniqueConstraint(name = "user_username_unique", columnNames = "username"),
-                                                //@UniqueConstraint(name = "user_nif_unique", columnNames = "nif")})
+@Table(name = "employee",uniqueConstraints = {@UniqueConstraint(name = "employee_email_unique", columnNames = "email"),
+                                                 @UniqueConstraint(name = "user_username_unique", columnNames = "username"),
+                                                @UniqueConstraint(name = "user_nif_unique", columnNames = "nif")})
 public class Employee extends ApplicationUser {
 
 

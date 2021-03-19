@@ -28,13 +28,13 @@ public class ApplicationUser implements UserDetails {
     @Column(name = "id",updatable = false)
     private Long id;
 
-    @Column(name = "nif")
+    @Column(name = "nif", nullable = false)
     private String nif;
 
     @Column(name= "nome", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    @Column(name= "username", columnDefinition = "TEXT")
+    @Column(name= "username", nullable = false)
     private String username;
 
     //@Email
