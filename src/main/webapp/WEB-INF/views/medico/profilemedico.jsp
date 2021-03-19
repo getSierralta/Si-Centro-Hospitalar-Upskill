@@ -84,24 +84,6 @@
                         <p>Telemovel: &nbsp; ${medico.getPhone()} </p>
                 </div>
             </div>
-            <div class="card big profileutente__consulta client_info">
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-
-                    </div>
-
-                </div>
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-                    </div>
-                </div>
-             </div>
         </main>
 </body>
 

@@ -70,10 +70,6 @@
                     <p>Localidade:  &nbsp;${utente.getLocalidade()} </p>
                     <p>Telemovel: &nbsp; ${utente.getPhone()} </p>
             </div>
-            <div class="middle">
-                <a href="/utente/files" class="btn-green-small">Ficheiros</a>
-                <a href="/utente/bills" class="btn-green-small">Faturas</a>
-            </div>
         </div>
         <div class="card big profileutente__consulta client_info">
             <div class="card big profileutente__consulta">

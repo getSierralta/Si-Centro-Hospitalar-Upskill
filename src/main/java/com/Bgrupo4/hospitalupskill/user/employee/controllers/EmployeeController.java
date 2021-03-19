@@ -43,6 +43,14 @@ public class EmployeeController {
         return "/employee/profile";
     }
 
+    @GetMapping(path = "/chamar-proximo")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public RedirectView callNext() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Employee employee = employeeService.getLogged(auth);
+        employeeService.callNextClient(employee);
+        return new RedirectView("/employee/profile");
+    }
 
     //GET do formulário
     @GetMapping(value = "/check-in")

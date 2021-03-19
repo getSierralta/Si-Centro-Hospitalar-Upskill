@@ -4,13 +4,13 @@ import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -135,5 +135,13 @@ public class SenhaService {
 
     public List<Senha> getSenhasByStatus(String name, Doctor doctor) {
         return senhaRepository.getAllByDoctorAndStatus(doctor,name);
+    }
+
+    public List<Senha> getSenhasColaborador() {
+        return senhaRepository.getAllValidSenhasByCategoria(Calendar.getInstance().getTime(), SenhaCategoria.INFORMACAO.name());
+    }
+
+    public List<Senha> getSenhasByColaborador(Employee employee) {
+        return senhaRepository.getAllByEmployeeAndDate(employee, Calendar.getInstance().getTime());
     }
 }

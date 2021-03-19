@@ -92,11 +92,11 @@
                     </div>
                     <div class="tracknumberutente__ecra">
                         <c:forEach items="${salaDeEspera}" var="sala">
-                            <span>${sala.getNumeroSenha()}</span>
+                            <span>${sala}</span>
                         </c:forEach>
                     </div>
                     <div class="middle">
-                        <button class="btn-green-small">Chamar próximo utente</button>
+                        <a href="/employee/chamar-proximo" class="btn-green-small">Chamar próximo utente</a>
                     </div>
                 </div>
 

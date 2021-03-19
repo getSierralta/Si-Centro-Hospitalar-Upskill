@@ -60,4 +60,6 @@ public class EmployeeRestController {
     public RedirectView getEspecialidade(EspecialidadeRequest request){
         return new RedirectView("/employee/calendarioemployee/"+request.getEspecialidade());
     }
+
+
 }

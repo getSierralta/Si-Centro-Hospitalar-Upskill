@@ -1,5 +1,8 @@
 package com.Bgrupo4.hospitalupskill.user.employee;
 
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaRepository;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
@@ -17,6 +20,8 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
+
 @Service
 @AllArgsConstructor
 public class EmployeeService {
@@ -25,6 +30,8 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ApplicationUserService applicationUserService;
     private final UtenteService utenteService;
+    private final SenhaService senhaService;
+    private final SenhaRepository senhaRepository;
 
     public Optional<Employee> getEmployeeById(Long id) {
         return employeeRepository.findById(id);
@@ -82,5 +89,18 @@ public class EmployeeService {
             throw new Exception("There's no logged person");
         }
         return employee.get();
+    }
+
+    public void callNextClient(Employee employee) {
+        for (Senha senha: senhaService.getSenhasByColaborador(employee)) {
+            ECRA.remove(senha.getNumeroSenha());
+        }
+        if (!senhaService.getSenhasColaborador().isEmpty()){
+            Senha senha = senhaService.getSenhasColaborador().get(0);
+            senha.setFoiAtentido(true);
+            senha.setColaborador(employee);
+            ECRA.add(senha.getNumeroSenha());
+            senhaRepository.save(senha);
+        }
     }
 }

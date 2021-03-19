@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.senha;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -61,5 +62,10 @@ public class Senha {
     private String categoria;
 
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "colaborador_id")
+    @JsonManagedReference
+    private Employee colaborador;
 
 }

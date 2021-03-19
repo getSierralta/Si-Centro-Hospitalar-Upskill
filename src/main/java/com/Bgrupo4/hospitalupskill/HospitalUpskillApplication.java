@@ -37,7 +37,7 @@ public class HospitalUpskillApplication {
     private final SenhaService senhaService;
     private final ReceitaService receitaService;
     private final VagaService vagaService;
-    public static List<Senha> ECRA = new ArrayList<>();
+    public static List<String> ECRA = new ArrayList<>();
     private final DoctorService doctorService;
 
 
@@ -98,9 +98,6 @@ public class HospitalUpskillApplication {
 
             vagaService.createVagasThisMonth();
             //vagaService.createVagasNextMonth();
-
-
-           ECRA.add(senhaService.createSenha(appointment.getId()));
 
             for (int i = 8; i < 17; i++) {
                 Utente utente1 = new Utente(String.valueOf(i), "Utente " + (i), "Utente " + (i), "Utente " + (i)+"@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");

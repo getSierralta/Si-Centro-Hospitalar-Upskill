@@ -111,22 +111,23 @@ public class UtenteController {
     }
 
     @GetMapping(value = "/receitas/{id}")
-    @PreAuthorize("hasAuthority('utente:read')")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
     public ResponseEntity<List<Receita>> getReceita(@PathVariable("id") String id) {
         return ResponseEntity.ok(utenteService.getReceitasByUtente(Long.valueOf(id)));
     }
 
     @GetMapping(value = "/relatorios/{id}")
-    @PreAuthorize("hasAuthority('utente:read')")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
     public ResponseEntity<List<Relatorio>> getRelatorios(@PathVariable("id") String id) {
         return ResponseEntity.ok(utenteService.getRelatorioByUtente(Long.valueOf(id)));
     }
 
     @GetMapping(value = "/consultas/{id}")
-    @PreAuthorize("hasAuthority('utente:read')")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
     public ResponseEntity<List<Appointment>> getConsultas(@PathVariable("id") String id) {
         return ResponseEntity.ok(consultasService.getAppointmentsUtente(Long.valueOf(id)));
     }
+
 
 
 
