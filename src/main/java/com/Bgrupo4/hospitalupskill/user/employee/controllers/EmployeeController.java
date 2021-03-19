@@ -75,14 +75,14 @@ public class EmployeeController {
         return "/employee/utente-bills";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
+/*    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
     public ModelAndView getBill(@RequestParam String id){
         InvoiceRequest invoiceRequest = new InvoiceRequest();
         invoiceRequest.setId(id);
         System.out.println("EC: " + id);
         return invoiceController.getInvoice(invoiceRequest);
-    }
+    }*/
 
     @GetMapping(value = "/new-bill")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
