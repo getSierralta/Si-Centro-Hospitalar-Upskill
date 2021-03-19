@@ -101,6 +101,11 @@
                         <p><b>NIF </b>${invoice.getNif()}</p><br><br>
                         <p><b>DATA </b>${invoice.getIssuedDate()}</p>
                         <p><b>LIMITE </b>${invoice.getDueDate()}</p>
+                        <c:if test="${empty invoice.getPaidDate()}">
+                            <form action="/invoices/802244746/pay" method="POST">
+                                <button type="submit" class="greenbutt" name="id" value="${invoice.getId()}" />PAGAR</button>
+                            </form>
+                        </c:if>
                     </a>
             </c:forEach>
             <!--/Cards-->

@@ -56,8 +56,7 @@ public class InvoiceController {
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public void payInvoice(@RequestBody InvoiceRequest invoiceRequest) {
-        String requestUrl = "https://serro.pt/invoices/802244746/pay/" + invoiceRequest.getId();
-        // this doesn't work yet
+    public ResponseEntity payInvoice(String id) {
+        return ResponseEntity.ok(invoiceService.payInvoice(id));
     }
 }

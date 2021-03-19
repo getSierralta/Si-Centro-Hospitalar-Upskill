@@ -80,6 +80,11 @@ public class InvoiceService {
         return new ModelAndView("redirect:" + requestUrl);
     }
 
+    public ModelAndView payInvoice(String id) {
+        String requestUrl = external + "pay/" + id;
+        return new ModelAndView(requestUrl);
+    }
+
     public JSONObject createInvoice(Invoice invoice) {
         Optional<Utente> utente = utenteRepository.findById(Long.parseLong(invoice.getNif()));
         String date = invoice.getDueDate();
@@ -164,6 +169,4 @@ public class InvoiceService {
         InvoiceResponse invoiceResponse = responseEntity.getBody();
         return invoiceResponse.getInvoices();
     }
-
-
 }

@@ -67,30 +67,6 @@ public class EmployeeController {
         return "/employee/senha";
     }
 
-    @GetMapping(value = "/utente-bills")
-    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String showBills(ModelMap map, @RequestParam (required = false) String search,
-                            @RequestParam (required = false) String status){
-        map.put("invoiceList", invoiceController.getList(search, status));
-        return "/employee/utente-bills";
-    }
-
-/*    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public ModelAndView getBill(@RequestParam String id){
-        InvoiceRequest invoiceRequest = new InvoiceRequest();
-        invoiceRequest.setId(id);
-        System.out.println("EC: " + id);
-        return invoiceController.getInvoice(invoiceRequest);
-    }*/
-
-    @GetMapping(value = "/new-bill")
-    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String createBills(ModelMap map){
-        map.put("categorias", senhaService.getCategorias());
-        return "/employee/new-bill";
-    }
-
     @GetMapping(value = "/formularioCalendario")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public String showFormularioCalendario(ModelMap map){
@@ -103,4 +79,26 @@ public class EmployeeController {
     public String showCalendarioGeral(@PathVariable String especialidade){
         return "employee/calendarioemployee";
     }
+
+    //GET do invoice
+    @GetMapping(value = "/utente-bills")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status){
+        map.put("invoiceList", invoiceController.getList(search, status));
+        return "/employee/utente-bills";
+    }
+
+    @GetMapping(value = "/new-bill")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public String createBill(){
+        return "/employee/new-bill";
+    }
+/*    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
+    public ModelAndView getBill(@RequestParam String id){
+        InvoiceRequest invoiceRequest = new InvoiceRequest();
+        invoiceRequest.setId(id);
+        System.out.println("EC: " + id);
+        return invoiceController.getInvoice(invoiceRequest);
+    }*/
 }
