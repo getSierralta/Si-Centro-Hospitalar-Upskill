@@ -27,6 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -80,12 +83,21 @@ public class InvoiceService {
         return new ModelAndView("redirect:" + requestUrl);
     }
 
-    public ModelAndView payInvoice(String id) {
-        String requestUrl = external + "pay/" + id;
-        return new ModelAndView(requestUrl);
+    public ResponseEntity payInvoice(String id) {
+        String url = external + "pay/" + id;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+        ResponseEntity<InvoiceResponse> response = this.restTemplate.postForEntity(url, entity, InvoiceResponse.class);
+        return response;
     }
 
-    public JSONObject createInvoice(Invoice invoice) {
+    public JSONObject createInvoice(Invoice invoice) throws Exception {
         Optional<Utente> utente = utenteRepository.findById(Long.parseLong(invoice.getNif()));
         String date = invoice.getDueDate();
         try {
@@ -98,7 +110,7 @@ public class InvoiceService {
         return postInvoice(invoice);
     }
 
-    public JSONObject postInvoice(Invoice invoiceParam) {
+    public JSONObject postInvoice(Invoice invoiceParam) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         HttpHeaders headers = new HttpHeaders();
@@ -138,9 +150,11 @@ public class InvoiceService {
             e.printStackTrace();
             requestResponse.put("status", "error");
             requestResponse.put("error", "validationError");
+            throw new Exception();
         } catch (HttpClientErrorException.NotFound e) {
             requestResponse.put("status", "error");
             requestResponse.put("error", "Company with that nif not found");
+            throw new Exception();
         }
         return requestResponse;
     }

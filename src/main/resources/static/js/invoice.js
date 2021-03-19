@@ -31,23 +31,8 @@ function submitform(){
     xhr.send(JSON.stringify(formData));
 };
 
-// PAY
-/*$("#pay").on("click",function(){
-    $.ajax({
-        url: "http://localhost:8080/invoices/802244746/pay",
-        type: "POST",
-        data: "${invoice.getId()}",
-        success: function(response){
-            console.log( msg );
-        },
-        error: function(){
-          console.log( "Request failed: " + textStatus );
-        }
-    });
-});*/
-
 // INVOICE OVERLAY
-var $overlay = $('<div id="overlay"></div>');
+/*var $overlay = $('<div id="overlay"></div>');
 var $iframe = $('<iframe width="595" height="485" frameborder="0" marginwidth="0" margin="0" height="0" scrolling="no" allowfullscreen></iframe>');
 $overlay.append($iframe);
 
@@ -68,7 +53,7 @@ $('a.card.small.invoice').click(function(event) {
 $overlay.click(function() {
     $overlay.hide();
     $iframe.attr('src', '');
-});
+});*/
 // end invoice overlay
 
 /*

@@ -61,7 +61,7 @@
             <!--/Header-->
              <!--Info Box-->
             <div class="info_div">
-                <div class="info_text">
+                <div id="infoText" class="info_text">
                     <p>Aqui poderá encontar todas as faturas</p>
                 </div>
             </div>
@@ -78,6 +78,7 @@
                         </select>
                     </div>
                     <button class="greenbutt" type="submit">Pesquisar</button>
+                    <a href="/employee/new-bill" class="greenbutt">Criar fatura</a>
                 </form>
                 <div class="item_order light small">
                     <div class="select" style="width:200px;">
@@ -95,18 +96,15 @@
             <!--/Files Nav-->
             <!--Cards-->
             <c:forEach var="invoice" items="${invoiceList}">
-                    <a class="card small invoice">
-                        <p><b>ID </b>${invoice.getId()}</p><br><br>
-                        <p><b>UTENTE </b>${invoice.getName()}</p>
-                        <p><b>NIF </b>${invoice.getNif()}</p><br><br>
-                        <p><b>DATA </b>${invoice.getIssuedDate()}</p>
-                        <p><b>LIMITE </b>${invoice.getDueDate()}</p>
-                        <c:if test="${empty invoice.getPaidDate()}">
-                            <form action="/invoices/802244746/pay" method="POST">
-                                <button type="submit" class="greenbutt" name="id" value="${invoice.getId()}" />PAGAR</button>
-                            </form>
-                        </c:if>
-                    </a>
+                <a class="card small invoice">
+                    <p><b>UTENTE </b>${invoice.getName()}</p>
+                    <p><b>NIF </b>${invoice.getNif()}</p><br><br>
+                    <p><b>DATA </b>${invoice.getIssuedDateS()}</p>
+                    <p><b>LIMITE </b>${invoice.getDueDateS()}</p>
+                    <c:if test="${empty invoice.getPaidDate()}">
+                        <button class="greenbutt" onclick="pagar('${invoice.getId()}')" />PAGAR</button>
+                    </c:if>
+                </a>
             </c:forEach>
             <!--/Cards-->
         </div>
@@ -114,5 +112,6 @@
     </div>
     <script src="../js/buttlist.js"></script>
     <script src="../js/invoice.js"></script>
+    <script src="../js/pay.js"></script>
 </body>
 </html>
