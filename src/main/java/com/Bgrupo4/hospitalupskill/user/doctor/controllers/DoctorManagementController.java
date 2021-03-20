@@ -4,6 +4,7 @@ import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
@@ -27,8 +29,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class DoctorManagementController {
 
-    private DoctorService doctorService;
-    private ConsultasService consultasService;
+    private final DoctorService doctorService;
+    private final ConsultasService consultasService;
+    private final AdminService adminService;
 
     @GetMapping(path = "{id}")
     @PreAuthorize("hasAuthority('medico:read')")
@@ -102,5 +105,19 @@ public class DoctorManagementController {
             }
         }
         return appointments;
+    }
+
+
+    @PostMapping(path = "/register-doctor", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView doctorRegister(DoctorRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            adminService.registerNew(request);
+            modelAndView.setViewName("/medico/register-success");
+        } catch (Exception e) {
+            modelAndView.setViewName("/medico/register-error");
+        }
+        return modelAndView;
     }
 }

@@ -144,8 +144,16 @@ public class DoctorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
         map.put("medico", doctor);
-        System.out.println(doctor.getUserRole().toString());
         return "medico/settings";
+    }
+
+    @GetMapping(value = "/register-doctor")
+    @PreAuthorize("hasRole('ROLE_MEDICO_RESPONSAVEL')")
+    public String showRegisterDoctor(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        return "/medico/register-doctor";
     }
 
 }
