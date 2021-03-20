@@ -21,6 +21,7 @@ public class FakeAppointment {
 
     private Appointment appointment = new Appointment();
 
+    private String description = "";
 
     public String getDataString(){
         return "Não tem consultas marcadas";

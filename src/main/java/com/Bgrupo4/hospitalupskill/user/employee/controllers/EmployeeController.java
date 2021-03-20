@@ -7,6 +7,10 @@ import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeUpdateRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,10 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
@@ -31,6 +33,13 @@ public class EmployeeController {
     private final SenhaService senhaService;
     private final CalendarioService calendarioService;
     private final InvoiceController invoiceController;
+    private final UtenteManagementController utenteManagementController;
+
+    @GetMapping(value = "/show-all-utentes")
+    public String showUtentes(ModelMap map) {
+        map.put("utenteList", utenteManagementController.getAllUtentes());
+        return "/employee/show-all-utentes";
+    }
 
     @GetMapping(value = "/profile")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
@@ -42,7 +51,6 @@ public class EmployeeController {
         map.put("salaDeEspera", ECRA);
         return "/employee/profile";
     }
-
 
     //GET do formulário
     @GetMapping(value = "/check-in")
@@ -93,4 +101,14 @@ public class EmployeeController {
     public String showCalendarioGeral(@PathVariable String especialidade){
         return "employee/calendarioemployee";
     }
+
+    @GetMapping(value = "/settings")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showSetting(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Employee employee = employeeService.getLogged(auth);
+        map.put("employee", employee);
+        return "employee/settings";
+    }
+
 }

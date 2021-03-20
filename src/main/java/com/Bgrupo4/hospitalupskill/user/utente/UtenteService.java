@@ -12,6 +12,7 @@ import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.security.PasswordEncoder;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
+import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
 import lombok.RequiredArgsConstructor;
 import org.checkerframework.checker.nullness.Opt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,8 +164,7 @@ public class UtenteService {
     }
 
     public Utente updateUtente(Utente utente, MultipartFile imageFile) throws  Exception{
-        String folder = "/imagens/";
-        byte[] bytes = imageFile.getBytes();
+        String folder = "/imagens/utente/";
         String rootDir = System.getProperty("user.dir");
         Path path = Paths.get(rootDir + folder + imageFile.getOriginalFilename());
         imageFile.transferTo(new File(String.valueOf(path)));
@@ -183,4 +183,5 @@ public class UtenteService {
         }
         return relatorioRepository.findAllByUtente(utenteOptional.get());
     }
+
 }

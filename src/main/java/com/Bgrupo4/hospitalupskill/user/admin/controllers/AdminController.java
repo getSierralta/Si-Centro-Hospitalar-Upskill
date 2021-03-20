@@ -5,6 +5,7 @@ import com.Bgrupo4.hospitalupskill.Calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.controllers.DoctorManagementController;
+import com.Bgrupo4.hospitalupskill.user.employee.controllers.EmployeeManagementController;
 import com.Bgrupo4.hospitalupskill.user.employee.controllers.EmployeeRestController;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class AdminController {
     private final DoctorManagementController doctorManagementController;
     private final UtenteManagementController utenteManagementController;
     private final AdminManagementController adminManagementController;
-    private final EmployeeRestController employeeRestController;
+    private final EmployeeManagementController employeeManagementController;
 
     @Autowired
     AdminService adminService;
@@ -60,7 +61,7 @@ public class AdminController {
 
     @GetMapping(value = "/lista-employees")
     public String showEmployees(ModelMap map) {
-        map.put("employeeList", employeeRestController.getAllEmployees());
+        map.put("employeeList", employeeManagementController.getAllEmployees());
         return "/admin/lista-employees";
     }
 
