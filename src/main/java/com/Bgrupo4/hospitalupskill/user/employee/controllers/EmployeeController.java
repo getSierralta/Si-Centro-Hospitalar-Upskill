@@ -43,7 +43,6 @@ public class EmployeeController {
         return "/employee/profile";
     }
 
-
     //GET do formulário
     @GetMapping(value = "/check-in")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")

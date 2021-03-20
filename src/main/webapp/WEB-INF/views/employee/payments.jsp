@@ -96,7 +96,7 @@
             <!--/Files Nav-->
             <!--Cards-->
             <c:forEach var="invoice" items="${invoiceList}">
-                <a class="card small invoice">
+                <a class="card small invoice" onclick="getInvoice('${invoice.getId()}')">
                     <p><b>UTENTE </b>${invoice.getName()}</p>
                     <p><b>NIF </b>${invoice.getNif()}</p><br><br>
                     <p><b>DATA </b>${invoice.getIssuedDateS()}</p>

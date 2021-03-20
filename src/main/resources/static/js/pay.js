@@ -5,6 +5,7 @@ function pagar(id) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.responseType = 'json';
     xhr.send();
+    window.location.reload();
     xhr.onloadend = function() {
         const div = document.getElementById('infoText');
         div.innerHTML = "";

@@ -32,28 +32,29 @@ function submitform(){
 };
 
 // INVOICE OVERLAY
-/*var $overlay = $('<div id="overlay"></div>');
+var $overlay = $('<div id="overlay"></div>');
 var $iframe = $('<iframe width="595" height="485" frameborder="0" marginwidth="0" margin="0" height="0" scrolling="no" allowfullscreen></iframe>');
 $overlay.append($iframe);
 
 $('body').append($overlay);
 
-$('a.card.small.invoice').click(function(event) {
+function getInvoice(id) {
     event.preventDefault();
-    var id = $(this).attr("${invoice.getId()}");
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', id, true);
-    var src = null;
+    let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:8080/invoices/802244746/get?id=`+id, true);
+        xhr.send();
+
+    var src = xhr.response;
 
     $iframe.attr('src', src);
     $overlay.show();
-});
+};
 
 $overlay.click(function() {
     $overlay.hide();
     $iframe.attr('src', '');
-});*/
+});
 // end invoice overlay
 
 /*
