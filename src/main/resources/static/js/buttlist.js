@@ -4,10 +4,9 @@ $('.butts').click(function(){
   var $this = $(this);
   $siblings = $this.parent().children(),
   position = $siblings.index($this);
-  console.log (position);
-  
+
   $('.card.info div').removeClass('active').eq(position).addClass('active');
-  
+
   $siblings.removeClass('active');
   $this.addClass('active');
 })
@@ -15,13 +14,11 @@ $('.butts').click(function(){
 $(function() {
     $("<select />").appendTo(".button_group");
 
-    /* I DON'T KNOW
     $("<option />", {
       "selected": "selected",
       "value"   : "",
       "text"    : "Análises Clínicas"
     }).appendTo(".button_group select");
-    */
 
     $(".button_group a").each(function() {
       var el = $(this);
@@ -33,6 +30,8 @@ $(function() {
 
     $(".button_group select").change(function() {
       window.location = $(this).find("option:selected").val();
+      position = this.selectedIndex;
+      $('.card.info div').removeClass('active').eq(position).addClass('active');
     });
 });
 
@@ -54,7 +53,6 @@ $('.person_button').click(function(){
     var $this = $(this);
     $siblings = $this.parent().children(),
     position = $siblings.index($this);
-    console.log (position);
 
     $('.person_viewer > #thisone').removeClass('active').eq(position).addClass('active');
 
@@ -65,13 +63,11 @@ $('.person_button').click(function(){
 $(function() {
     $("<select />").appendTo(".person_list");
 
-    /* I DON'T KNOW
     $("<option />", {
       "selected": "selected",
       "value"   : "",
-      "text"    : "Análises Clínicas"
+      "text"    : "Utente"
     }).appendTo(".button_group select");
-    */
 
     $(".person_list a").each(function() {
       var el = $(this);
@@ -83,5 +79,7 @@ $(function() {
 
     $(".person_list select").change(function() {
       window.location = $(this).find("option:selected").val();
+      position = this.selectedIndex;
+      $('.person_viewer > #thisone').removeClass('active').eq(position).addClass('active');
     });
 });

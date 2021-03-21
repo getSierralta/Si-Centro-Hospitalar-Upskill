@@ -70,7 +70,7 @@ public class ApplicationUserService implements UserDetailsService {
 
     //Boiler Plate code
     //Salvar utilizador
-    public void enableAndSave(Utente user){
+    public Utente enableAndSave(Utente user){
         boolean userExist = utenteRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){
             throw new IllegalStateException("Este utilizador já se encontra registrado");
@@ -79,8 +79,9 @@ public class ApplicationUserService implements UserDetailsService {
         user.setPassword(encodedPassword);
         user.setEnabled(true);
         utenteRepository.save(user);
+        return user;
     }
-    public void enableAndSave(Doctor user){
+    public Doctor enableAndSave(Doctor user){
         boolean userExist = doctorRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist){
             throw new IllegalStateException("Este utilizador já se encontra registrado");
@@ -88,7 +89,7 @@ public class ApplicationUserService implements UserDetailsService {
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setEnabled(true);
-        doctorRepository.save(user);
+        return doctorRepository.save(user);
     }
     public void enableAndSave(Employee user){
         boolean userExist = employeeRepository.findByUsername(user.getUsername()).isPresent();
