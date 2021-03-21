@@ -93,15 +93,7 @@
                       </div>
              </div>
           </div>
-
-        <!--/Info Box-->
-        <!--Cards-->
-
-
-
-        <!--/Cards-->
     </main>
-    <!--/Main-->
 </body>
 
 </html>
