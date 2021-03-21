@@ -115,7 +115,6 @@ public class EmployeeService {
     }
 
     @PostMapping("/update-utente/{id}")
-    //@PreAuthorize
     public ResponseEntity<Utente> updateUtente(@RequestBody UtenteRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }

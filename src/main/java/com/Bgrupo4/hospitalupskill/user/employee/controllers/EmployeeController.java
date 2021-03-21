@@ -3,6 +3,7 @@ package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
+import com.Bgrupo4.hospitalupskill.senha.FakeSenha;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -77,30 +78,34 @@ public class EmployeeController {
     @PostMapping(path = "/check-in", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public RedirectView getSenha(SenhaRequest request){
-        Senha senha = senhaService.createSenha(request);
-        return new RedirectView("/employee/check-in/"+senha.getId());
+        try {
+            Senha senha = senhaService.createSenha(request);
+            return new RedirectView("/employee/check-in/"+senha.getId());
+        }catch (Exception e){
+            return new RedirectView("/employee/check-in/fake");
+        }
     }
 
     @GetMapping(value = "/check-in/{id}")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public String showSenha(@PathVariable("id") Long id, ModelMap map){
-        map.put("senha", senhaService.getSenhaById(id));
+        map.put("senha", senhaService.getSenhaById(id).get());
         return "/employee/senha";
     }
 
-    @GetMapping(value = "/utente-bills")
-    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String showBills(ModelMap map){
-        map.put("invoiceList", invoiceController.getList());
-        return "/employee/utente-bills";
+    @GetMapping(value = "/check-in/fake")
+    @PreAuthorize("hasRole('ROLE_COLABORADOR')")
+    public String showSenhaFake(ModelMap map){
+        map.put("senha", new FakeSenha());
+        return "/employee/senha";
     }
-
+/*
     @GetMapping(value = "/new-bill")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
     public String createBills(ModelMap map){
         map.put("categorias", senhaService.getCategorias());
         return "/employee/new-bill";
-    }
+    }*/
 
     @GetMapping(value = "/formularioCalendario")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")

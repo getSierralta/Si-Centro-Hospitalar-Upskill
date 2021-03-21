@@ -41,7 +41,6 @@ public class UtenteService {
     private final RegistrationService registrationService;
     private final ConsultasService consultasService;
     private final ReceitaService receitaService;
-    private final PasswordEncoder passwordEncoder;
     private final RelatorioRepository relatorioRepository;
 
 

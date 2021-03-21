@@ -29,22 +29,28 @@ public class SenhaService {
             throw new EntityNotFoundException(String.format("Appointment %s não foi encontrado", request.getAppointment()));
         }
         Appointment appointment = appointmentOptional.get();
-        Optional<Doctor> doctorOptional = doctorRepository.findByUsername(appointment.getDoctor().getUsername());
-        Optional<Utente> utenteOptional = utenteRepository.findByUsername(appointment.getUtente().getUsername());
-        if (doctorOptional.isEmpty() || utenteOptional.isEmpty()) {
-            throw new EntityNotFoundException(String.format("Doctor %s, utente %s não foi encontrado", appointment.getDoctor().getUsername(),
-                    appointment.getUtente().getUsername()));
+        if (appointment.getDataString().equals(getDataString())) {
+            if (senhaRepository.getAllByAppointment(appointment).isEmpty()) {
+                Optional<Doctor> doctorOptional = doctorRepository.findByUsername(appointment.getDoctor().getUsername());
+                Optional<Utente> utenteOptional = utenteRepository.findByUsername(appointment.getUtente().getUsername());
+                if (doctorOptional.isEmpty() || utenteOptional.isEmpty()) {
+                    throw new EntityNotFoundException(String.format("Doctor %s, utente %s não foi encontrado", appointment.getDoctor().getUsername(),
+                            appointment.getUtente().getUsername()));
+                }
+                Senha senha = new Senha();
+                senha.setDoctor(doctorOptional.get());
+                senha.setUtente(utenteOptional.get());
+                senha.setAppointment(appointmentOptional.get());
+                senha.setDate(Calendar.getInstance().getTime());
+                senha.setData(Calendar.getInstance().getTime());
+                senha.setTime(String.valueOf(LocalTime.now()));
+                senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
+                senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
+                return senhaRepository.save(senha);
+            }
+            throw new IllegalArgumentException("Já foi tirada a senha para a consulta: "+appointment.getId());
         }
-        Senha senha = new Senha();
-        senha.setDoctor(doctorOptional.get());
-        senha.setUtente(utenteOptional.get());
-        senha.setAppointment(appointmentOptional.get());
-        senha.setDate(Calendar.getInstance().getTime());
-        senha.setData(Calendar.getInstance().getTime());
-        senha.setTime(String.valueOf(LocalTime.now()));
-        senha.setNumeroSenha(getSenha(SenhaCategoria.REGISTAR_PRESENCA.name()));
-        senha.setCategoria(SenhaCategoria.REGISTAR_PRESENCA.name());
-        return senhaRepository.save(senha);
+        throw new IllegalArgumentException(String.format("A consulta %s é no dia %s", appointment.getId(), appointment.getDataString()));
     }
 
     public Senha createSenha(Long id) {

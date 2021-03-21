@@ -82,7 +82,7 @@
 
         <div class="card medium settings">
             <img class="settings_logo" src="/img/logo.svg" alt="logo">
-            <form action="/employee/update" method="POST" class="log-in">
+            <form action="/api/employee/update" method="POST" class="log-in">
                 <input type="text" name="name" placeholder="${employee.getName()}"/>
                 <textarea name="morada" rows="2" cols="30"  placeholder="${employee.getMorada()}"></textarea>
                 <input type="text" name="localidade" placeholder="${employee.getLocalidade()}" />
@@ -95,7 +95,7 @@
         </div>
         <div class="card medium settings">
             <div class="password ">
-                <form method="post" enctype="multipart/form-data" action="/employee/uploadImage" class="log-in">
+                <form method="post" enctype="multipart/form-data" action="/api/employee/uploadImage" class="log-in">
                     <input type="file" name="imageFile">
                     <button type="submit">Trocar foto de perfil</button>
                 </form>
