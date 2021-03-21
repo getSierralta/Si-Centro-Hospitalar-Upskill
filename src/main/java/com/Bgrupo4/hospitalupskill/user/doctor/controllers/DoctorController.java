@@ -179,17 +179,23 @@ public class DoctorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
         List<Senha> senha = consultasService.getSenhasOnGoingAppoinmentByMedico(doctor);
-        if (senha.isEmpty()){
-            map.put("medico", doctor);
+       try {
+           if (utenteService.getUserById(senha.get(0).getUtente().getId()).isEmpty()){
+               throw new EntityNotFoundException("Utente não existe: "+senha.get(0).getUtente().getId());
+           }
+           map.put("medico", doctor);
+           map.put("utente", utenteService.getUserById(senha.get(0).getUtente().getId()).get());
 
-        }else{
-            if (utenteService.getUserById(senha.get(0).getUtente().getId()).isEmpty()){
-                throw new EntityNotFoundException("Utente não existe: "+senha.get(0).getUtente().getId());
-            }
-            map.put("medico", doctor);
-            map.put("utente", utenteService.getUserById(senha.get(0).getUtente().getId()).get());
-        }
-        return "/medico/ongoing";
+           return "/medico/ongoing";
+       }catch (Exception e){
+           List<Senha> senhas = new ArrayList<>();
+           senhas.addAll(consultasService.getSenhasOnGoingAppoinmentByMedico(doctor));
+           senhas.addAll(consultasService.getSenhasLateAppoinmentByMedico(doctor));
+           senhas.addAll(senhaService.getSenhasByMedico(doctor));
+           map.put("utenteList", senhas);
+           map.put("medico", doctor);
+           return "/medico/salaDeEspera";
+       }
     }
 
     @GetMapping(value = "/calendarmedico")
