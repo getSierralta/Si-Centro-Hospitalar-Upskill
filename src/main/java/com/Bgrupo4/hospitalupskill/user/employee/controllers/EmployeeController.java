@@ -3,6 +3,8 @@ package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
 import com.Bgrupo4.hospitalupskill.senha.FakeSenha;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceService;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -34,10 +36,9 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final SenhaService senhaService;
     private final CalendarioService calendarioService;
-    private final InvoiceController invoiceController;
+    private final InvoiceService invoiceService;
     private final UtenteManagementController utenteManagementController;
     private final UtenteService utenteService;
-
 
     @GetMapping(value = "/show-all-utentes")
     public String showUtentes(ModelMap map) {
@@ -83,8 +84,6 @@ public class EmployeeController {
             return "/employee/show-all-utentes";
         }
     }
-
-
     @GetMapping(value = "/profile")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")
     public String showProfile(ModelMap map) throws Exception {
@@ -165,7 +164,7 @@ public class EmployeeController {
     @GetMapping(value = "/payments")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
     public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status){
-        map.put("invoiceList", invoiceController.getList(search, status));
+        map.put("invoiceList", invoiceService.getList(search, status));
         return "/employee/payments";
     }
 

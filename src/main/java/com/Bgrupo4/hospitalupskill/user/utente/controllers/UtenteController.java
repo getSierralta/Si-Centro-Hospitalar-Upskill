@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.FakeAppointment;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceService;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -33,6 +35,7 @@ public class UtenteController {
     private final UtenteService utenteService;
     private final CalendarioService calendarioService;
     private final SenhaService senhaService;
+    private final InvoiceService invoiceService;
     private final ConsultasService consultasService;
 
 
@@ -130,6 +133,13 @@ public class UtenteController {
 
 
 
-
-
+    @GetMapping(value = "/payments")
+    @PreAuthorize("hasRole('ROLE_UTENTE')")
+    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Utente utente = utenteService.getLogged(auth);
+        String nif = utente.getNif();
+        map.put("invoiceList", invoiceService.getMyList(nif, search, status));
+        return "/utente/payments";
+    }
 }
