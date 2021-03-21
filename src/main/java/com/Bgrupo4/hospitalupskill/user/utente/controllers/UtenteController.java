@@ -115,7 +115,6 @@ public class UtenteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Utente utente = utenteService.getLogged(auth);
         String nif = utente.getNif();
-        System.out.println(nif);
         map.put("invoiceList", invoiceService.getMyList(nif, search, status));
         return "/utente/payments";
     }
