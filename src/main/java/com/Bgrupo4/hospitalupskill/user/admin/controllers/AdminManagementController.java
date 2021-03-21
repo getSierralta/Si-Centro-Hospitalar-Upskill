@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
@@ -95,6 +97,24 @@ public class AdminManagementController {
         } catch (Exception e) {
             modelAndView.setViewName("/admin/register-error");
         }
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/new-especialidade", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView newEspecialidade(EspecialidadeRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        adminService.createEspecialidade(request.getEspecialidade());
+        modelAndView.setViewName("/admin/register-success");
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/delete-especialidade", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView deleteEspecialidade(EspecialidadeRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        adminService.deleteEspecialidade(request.getEspecialidade());
+        modelAndView.setViewName("/admin/register-success");
         return modelAndView;
     }
 

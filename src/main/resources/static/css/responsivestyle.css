@@ -1834,6 +1834,34 @@ textarea#message{
     opacity: 0.6;
 }
 
+.greenbutt_nonehover {
+    margin: auto;
+    display: block;
+    background: var(--color-secondary);
+    width: 70%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.greenbutt_nonehover button {
+    color: var(--color-white);
+    font-size: 85%;
+    text-align: center;
+    background-color: unset;
+}
+
+.whitebutt {
+    margin: auto;
+    display: block;
+    background: var(--color-white);
+    width: 70%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+}
 
 .custom-select {
   position: relative;

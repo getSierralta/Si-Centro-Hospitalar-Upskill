@@ -4,6 +4,8 @@ import com.Bgrupo4.hospitalupskill.user.ApplicationUser;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.UserRole;
 import com.Bgrupo4.hospitalupskill.user.doctor.*;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.EspecialidadeRepository;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
@@ -21,9 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -248,7 +248,7 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public Admin updateAdmin(Admin admin, AdminUpdateRequest request) {
+    public void updateAdmin(Admin admin, AdminUpdateRequest request) {
         if (!request.getLocalidade().isEmpty()){
             admin.setLocalidade(request.getLocalidade());
         }
@@ -261,6 +261,24 @@ public class AdminService {
         if (!request.getName().isEmpty()){
             admin.setName(request.getName());
         }
-        return adminRepository.save(admin);
+        adminRepository.save(admin);
+    }
+
+    public void createEspecialidade(String especialidade) {
+        for(Especialidade especialidade1 : especialidadeRepository.findAll()){
+            if (especialidade1.getEspecialidade().equals(especialidade)){
+                return;
+            }
+        }
+        Especialidade especialidade1 = new Especialidade(especialidade);
+        especialidadeRepository.save(especialidade1);
+    }
+
+    public void deleteEspecialidade(String especialidade) {
+        for(Especialidade especialidade1 : especialidadeRepository.findAll()){
+            if (especialidade1.getEspecialidade().equals(especialidade)){
+                especialidadeRepository.delete(especialidade1);
+            }
+        }
     }
 }

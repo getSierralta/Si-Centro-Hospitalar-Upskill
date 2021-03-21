@@ -1,11 +1,8 @@
 package com.Bgrupo4.hospitalupskill;
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
-import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
-import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
-import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
@@ -17,7 +14,7 @@ import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.Unidade;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

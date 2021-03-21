@@ -38,6 +38,7 @@ public class AdminController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         try {
             map.put("admin", adminService.getLogged(auth));
+            map.put("especialidades", calendarioService.getEspecialidades());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,8 +98,5 @@ public class AdminController {
     public String showRegisterSuccess() {
         return "/admin/register-success";
     }
-
-
-
 
 }
