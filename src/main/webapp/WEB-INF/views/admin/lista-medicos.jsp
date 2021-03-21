@@ -68,7 +68,7 @@
                     <input type="text" name="seguro" placeholder="Id, nome ou username">
                     <button type="submit" class="icon search"></button>
                 </form>
-                 <form class="person_form" id="searchPerson" action="#" method="POST">
+                 <form class="person_form" id="searchPersonEspecialidade" action="#" method="POST">
                      <input type="text" name="seguro" placeholder="Especialidade">
                      <button type="submit" class="icon search"></button>
                  </form>

@@ -85,30 +85,17 @@
                         <p>Telemovel: &nbsp; ${medico.getPhone()} </p>
                 </div>
             </div>
-            <div class="card big profileutente__consulta client_info">
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgbear.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-                        <c:if test = "${role == userRole}">
-                            <div class="btn-green">
-                                <a href="register-doctor">
-                                    <div class="icon medico"></div>
-                                    <span class="none">Registar Novo Médico</span>
-                                </a>
-                            </div>
-                        </c:if>
-                    </div>
-                </div>
-                <div class="card big profileutente__consulta">
-                    <div class="profileutente__consulta--img">
-                        <img width="100%" src="../img/imgpills.jpg" alt="consulta">
-                    </div>
-                    <div class="profileutente__consulta__header">
-                    </div>
-                </div>
-             </div>
+            <c:if test = "${role == userRole}">
+                <div class="card big profileutente__consulta client_info">
+                         <div class="greenbutt">
+                             <a href="register-doctor" id="marcarConsulta">
+                                 <div class="icon medico"></div>
+                                 <span class="none">Registar Novo Médico</span>
+                             </a>
+                         </div>
+                 </div>
+              </div>
+            </c:if>
         </main>
 </body>
 

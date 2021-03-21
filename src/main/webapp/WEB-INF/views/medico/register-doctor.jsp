@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -63,11 +64,9 @@
                 </a>
             </div>
         </nav>
-    <!--/Horizontal Nav-->
-    <!--Main-->
     <main class="main">
             <div class="object_container forms">
-                <form class="log-in column" action="register-doctor" method="POST">
+                <form class="log-in column" action="/api/doctors/register-doctor" method="POST">
                     <input type="text" name="username" placeholder="User Name" required="required" />
                         <input type="text" name="name" placeholder="Nome Completo" required="required" />
                         <input type="text" name="nif" placeholder="Nif" required="required" />
@@ -79,18 +78,13 @@
                         onblur="(this.type='text')" required="required" />
                         <input type="password" name="password" placeholder="Password" required="required" />
                         <input type="text" name="cedula" placeholder="Cedula" />
-                        <select class="greenbutt" name="especialidade" id="especialidade" required="required">
-                            <option disabled selected value> Especialidade: </option>
-                            <option value="GERAL">Geral</option>
-                            <option value="OSTEOPATIA">Osteopatia</option>
-                            <option value="CARDIOLOGIA">Cardiologia</option>
-                            <option value="ONCOLOGIA">Oncologia</option>
-                            <option value="GINECOLOGIA">Ginecologia</option>
-                            <option value="RADIOLOGIA">Radiologia</option>
-                            <option value="FISIOTERAPIA">Fisioterapia</option>
+                        <select name="especialidade" class="greenbutt" id="especialidade" required="required"><br>
+                          <c:forEach items="${especialidades}" var="especialidade">
+                            <option value="${especialidade}">${especialidade}</option>
+                          </c:forEach>
                         </select>
-                        select class="greenbutt" name="role" id="role" required="required">
-                             <option disabled selected value> Especialidade: </option>
+                        <select class="greenbutt" name="role" id="role" required="required">
+                             <option disabled selected value> role: </option>
                              <option value="medico">Médico</option>
                              <option value="responsavel">Médico Responsavel</option>
                         </select>

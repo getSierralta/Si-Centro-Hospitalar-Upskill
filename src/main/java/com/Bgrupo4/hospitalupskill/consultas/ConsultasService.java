@@ -225,7 +225,7 @@ public class ConsultasService {
         senha.setFoiAtentido(true);
         senha.setStatus(Status.GOING.name());
         senhaRepository.save(senha);
-        ECRA.remove(senha);
+        ECRA.add(senha.getNumeroSenha());
         return appointmentRepository.save(appointment);
     }
 
@@ -260,7 +260,10 @@ public class ConsultasService {
         }
         Appointment appointment = appointmentOptional.get();
         appointment.setStatus(Status.LATE);
-
+        List<Senha> senhaOptional = senhaRepository.getAllByAppointment(appointment);
+        for (Senha senha: senhaOptional) {
+            ECRA.remove(senha.getNumeroSenha());
+        }
         return appointmentRepository.save(appointment);
     }
 
@@ -276,6 +279,7 @@ public class ConsultasService {
             if (senha.getAppointment().getId().equals(appointment.getId())){
                 senha.setStatus(Status.CLOSED.name());
                 senhaRepository.save(senha);
+                ECRA.remove(senha.getNumeroSenha());
                 break;
             }
         }

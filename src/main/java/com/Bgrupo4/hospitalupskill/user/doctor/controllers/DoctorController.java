@@ -39,6 +39,20 @@ public class DoctorController {
         map.put("medico", doctor);
         return "/medico/profilemedico";
     }
+    @GetMapping(value = "/register-success")
+    public String showSuceess(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        return "/medico/register-success";
+    }
+    @GetMapping(value = "/register-error")
+    public String showError(ModelMap map) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("medico", doctor);
+        return "/medico/register-error";
+    }
 
     @GetMapping(value = "/formularioCalendario")
     @PreAuthorize("hasRole('ROLE_MEDICO') or hasRole('ROLE_MEDICO_RESPONSAVEL')")
@@ -119,11 +133,13 @@ public class DoctorController {
         Doctor doctor = doctorService.getLogged(auth);
         List<Senha> senha = consultasService.getSenhasOnGoingAppoinmentByMedico(doctor);
         if (senha.isEmpty()){
+            map.put("medico", doctor);
 
         }else{
             if (utenteService.getUserById(senha.get(0).getUtente().getId()).isEmpty()){
                 throw new EntityNotFoundException("Utente não existe: "+senha.get(0).getUtente().getId());
             }
+            map.put("medico", doctor);
             map.put("utente", utenteService.getUserById(senha.get(0).getUtente().getId()).get());
         }
         return "/medico/ongoing";
@@ -153,6 +169,7 @@ public class DoctorController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
         map.put("medico", doctor);
+        map.put("especialidades", calendarioService.getEspecialidades());
         return "/medico/register-doctor";
     }
 

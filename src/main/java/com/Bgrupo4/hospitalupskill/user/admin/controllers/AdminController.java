@@ -88,6 +88,7 @@ public class AdminController {
     @GetMapping(value = "/register-doctor")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String showRegisterDoctor(ModelMap map) {
+        map.put("especialidades", calendarioService.getEspecialidades());
         return "/admin/register-doctor";
     }
 

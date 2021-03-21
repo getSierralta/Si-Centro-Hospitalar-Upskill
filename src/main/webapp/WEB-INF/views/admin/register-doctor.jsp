@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -63,16 +64,11 @@
                         onblur="(this.type='text')" required="required" />
                         <input type="password" name="password" placeholder="Password" required="required" />
                         <input type="text" name="cedula" placeholder="Cedula" />
-                        <select class="greenbutt" name="especialidade" id="especialidade" required="required">
-                            <option disabled selected value> Especialidade: </option>
-                            <option value="GERAL">Geral</option>
-                            <option value="OSTEOPATIA">Osteopatia</option>
-                            <option value="CARDIOLOGIA">Cardiologia</option>
-                            <option value="ONCOLOGIA">Oncologia</option>
-                            <option value="GINECOLOGIA">Ginecologia</option>
-                            <option value="RADIOLOGIA">Radiologia</option>
-                            <option value="FISIOTERAPIA">Fisioterapia</option>
-                        </select>
+                        <select name="especialidade" class="greenbutt" id="especialidade" required="required"><br>
+                         <c:forEach items="${especialidades}" var="especialidade">
+                           <option value="${especialidade}">${especialidade}</option>
+                         </c:forEach>
+                       </select>
                         select class="greenbutt" name="role" id="role" required="required">
                              <option disabled selected value> Especialidade: </option>
                              <option value="medico">Médico</option>

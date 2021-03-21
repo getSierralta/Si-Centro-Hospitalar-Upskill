@@ -181,13 +181,12 @@ public class AdminService {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('medico:write')")
     public void registerNew(DoctorRequest request) throws Exception {
         UserRole userRole = UserRole.MEDICO;
         if(request.getRole().equals("responsavel")){
             userRole = UserRole.MEDICO_RESPONSAVEL;
         }
-
         try {
             String[] data = request.getDataDeNascimento().split("-");
                 applicationUserService.enableAndSave(new Doctor(
@@ -204,7 +203,10 @@ public class AdminService {
                         getEspecialidade(request.getEspecialidade()),
                         userRole
                         ));
+
+            System.out.println(request.getEspecialidade());
         }catch (Exception e){
+            e.printStackTrace();
             throw new Exception();
         }
     }

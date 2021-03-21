@@ -62,7 +62,7 @@ public class DoctorManagementController {
 
 
     @PostMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('medico:write')")
     public ResponseEntity<Doctor> updateEmployee(DoctorRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(doctorService.updateDoctor(id, request));
     }
@@ -112,22 +112,21 @@ public class DoctorManagementController {
     }
 
     @PostMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('medico:write')")
     public void apagarDoctor(@PathVariable Long id) {
         doctorService.deleteDoctor(id);
     }
 
 
-    @PostMapping(path = "/register-doctor", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView doctorRegister(DoctorRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
+    @PostMapping(path = "/register-doctor")
+    @PreAuthorize("hasAuthority('medico:write')")
+    public RedirectView doctorRegister(DoctorRequest request) {
         try {
             adminService.registerNew(request);
-            modelAndView.setViewName("/medico/register-success");
+            return new RedirectView("/medico/register-success");
         } catch (Exception e) {
-            modelAndView.setViewName("/medico/register-error");
+            e.printStackTrace();
+            return  new RedirectView("/medico/register-error");
         }
-        return modelAndView;
     }
 }
