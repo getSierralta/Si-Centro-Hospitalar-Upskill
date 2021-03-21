@@ -81,7 +81,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
-                                <img class="inversed" src="../../../imagens/${employee.getProfilePicture()}" alt="client">
+                                <img class="inversed" src="../../../imagens/colaborador/${employee.getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>User Name:</b> &nbsp;${employee.getUsername()}</p>

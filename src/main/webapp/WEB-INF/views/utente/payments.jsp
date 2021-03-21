@@ -85,9 +85,6 @@
                     </div>
                     <button class="greenbutt" type="submit">Pesquisar</button>
                 </form>
-                <div class="item_order light small">
-                    <a href="#/" class="item_toggle"><img src="../img/sort.png" style="height: 20px;" alt="sort"></a>
-                </div>
             </div>
             <!--/Files Nav-->
             <!--Cards-->

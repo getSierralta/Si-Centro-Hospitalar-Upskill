@@ -287,7 +287,6 @@ public class ConsultasService {
                 senha.setStatus(Status.CLOSED.name());
                 senhaRepository.save(senha);
                 ECRA.remove(senha.getNumeroSenha());
-                break;
             }
         }
         Invoice invoice = new Invoice();
