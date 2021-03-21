@@ -82,7 +82,7 @@ function sendFormEdit(id, tipo){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/success.gif";
+           img.src = " /img/boa-contrictor-36.svg";
 
         } 
         body.appendChild(img);  
@@ -114,7 +114,7 @@ function apagar(id, tipo){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/success.gif";
+           img.src = " /img/boa-contrictor-36.svg";
 
         } 
         body.appendChild(img);  

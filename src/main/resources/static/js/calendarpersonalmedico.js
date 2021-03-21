@@ -118,7 +118,7 @@ function abrirPopUp(appointment){
                     content.innerHTML = "";
                     const success = document.createElement('img'); 
                     success.classList.add('inversed');
-                    success.src = "/img/success.gif";
+                    success.src = "/img/boa-contrictor-36.svg";
                     success.style.maxHeight = "80%";
                     content.appendChild(success);
                 }

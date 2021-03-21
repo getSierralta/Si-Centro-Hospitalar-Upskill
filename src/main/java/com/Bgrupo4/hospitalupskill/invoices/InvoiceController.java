@@ -25,19 +25,19 @@ public class InvoiceController {
     UtenteService utenteService;
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR', 'UTENTE')")
     public ResponseEntity getInfo(@RequestParam String id) {
         return ResponseEntity.ok(invoiceService.getInfo(id));
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR', 'UTENTE')")
     public String getInvoice(@RequestParam String id) {
         return invoiceService.getInvoice(id);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR', 'UTENTE')")
     public RedirectView createInvoice(@ModelAttribute Invoice invoice) {
         try {
             invoiceService.createInvoice(invoice);
@@ -48,7 +48,7 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/pay/{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR', 'UTENTE')")
     public ResponseEntity payInvoice(@PathVariable String id) {
         return ResponseEntity.ok(invoiceService.payInvoice(id));
     }

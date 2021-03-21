@@ -206,7 +206,7 @@ function sendFormEdit(id){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/success.gif";
+           img.src = " /img/boa-contrictor-36.svg";
 
         } 
         body.appendChild(img);  
@@ -377,7 +377,7 @@ function sendFormRelatorio(id, body, boolean){
            img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-           img.src = " /img/success.gif";
+           img.src = " /img/boa-contrictor-36.svg";
 
         } 
         body.appendChild(img);  
@@ -404,7 +404,7 @@ function marcarAusencia(){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/success.gif";
+            img.src = " /img/boa-contrictor-36.svg";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   
@@ -428,7 +428,7 @@ function fecharConsulta(){
          img.src = " /img/lady-panda-bad-request-30.svg";
         }    
         if(xhr.status == 200){
-            img.src = " /img/success.gif";
+            img.src = " /img/boa-contrictor-36.svg";
             window.location.href = "/medico/salaDeEspera";
         } 
         body.appendChild(img);   

@@ -19,7 +19,7 @@ function pagar(id) {
             img.src = " /img/lady-panda-bad-request-30.svg";
         }
         if(xhr.status == 200){
-            img.src = " /img/lamma-del-rey-vaga-31.svg";
+            img.src = " /img/boa-contrictor-36.svg.svg";
         }
         div.appendChild(img);
     }

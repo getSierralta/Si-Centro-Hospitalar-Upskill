@@ -40,6 +40,12 @@
                     <span class="none">Calendario Pessoal</span>
                 </a>
             </div>
+            <div class="medium ">
+                  <a href="/utente/payments">
+                      <div class="icon bill"></div>
+                      <span class="none">Pagamentos</span>
+                  </a>
+              </div>
             <div class="medium">
                 <a href="/utente/settings">
                     <div class="icon tools"></div>

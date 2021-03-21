@@ -101,7 +101,7 @@ public class AdminManagementController {
     public ModelAndView newEspecialidade(EspecialidadeRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         adminService.createEspecialidade(request.getEspecialidade());
-        modelAndView.setViewName("/admin/register-success");
+        modelAndView.setViewName("/admin/success");
         return modelAndView;
     }
 

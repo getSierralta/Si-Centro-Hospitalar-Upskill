@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,39 +13,49 @@
 <body class="container">
     <nav class="nav-row">
         <div class="medium">
-            <a href="/employee/profile">
+            <a href="/medico/profilemedico">
                 <div class="icon home"></div>
                 <span class="none">Perfil</span>
             </a>
         </div>
-        <div class="medium ">
-            <a href="/employee/check-in">
-                <div class="icon medico"></div>
-                <span class="none">Check-in</span>
-            </a>
-        </div>
-        <div class="medium ">
-            <a href="/employee/formularioCalendario">
-                <div class="icon calendario"></div>
-                <span class="none">Calendário geral</span>
-            </a>
-        </div>
-        <div class="medium ">
-            <a href="/employee/show-all-utentes">
-                <div class="icon calendario"></div>
-                <span class="none">Utentes</span>
-            </a>
-        </div>
-        <div class="medium ">
-            <a href="/employee/payments">
-                <div class="icon bill"></div>
-                <span class="none">Pagamentos</span>
+        <div class="medium">
+            <a href="/medico/salaDeEspera">
+                <div class="icon notes"></div>
+                <span class="none">Lista de espera</span>
             </a>
         </div>
         <div class="medium">
-            <a href="/employee/settings">
+                <a href="/medico/ongoing">
+                    <div class="icon informacao"></div>
+                    <span class="none">Consulta</span>
+                </a>
+         </div>
+        <div class="medium ">
+            <a href="/medico/formularioCalendario">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario geral</span>
+            </a>
+        </div>
+        <div class="medium ">
+            <a href="/medico/calendarmedico">
+                <div class="icon calendario"></div>
+                <span class="none">Calendario Pessoal</span>
+            </a>
+        </div>
+        <c:set var = "role" value = "MEDICO_RESPONSAVEL"/>
+        <c:set var = "userRole" value = "${medico.getUserRole().toString()}"/>
+            <c:if test = "${role == userRole}">
+                <div class="medium ">
+                    <a href="/medico/lista-medicos">
+                        <div class="icon medico"></div>
+                        <span class="none">Lista Medicos</span>
+                    </a>
+                </div>
+            </c:if>
+        <div class="medium">
+            <a href="/medico/settings">
                 <div class="icon tools"></div>
-                <span class="none">Definições</span>
+                <span class="none">Settings</span>
             </a>
         </div>
         <div class="medium">
