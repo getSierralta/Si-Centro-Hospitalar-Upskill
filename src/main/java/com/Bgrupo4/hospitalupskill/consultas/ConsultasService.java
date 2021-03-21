@@ -262,7 +262,9 @@ public class ConsultasService {
         appointment.setStatus(Status.LATE);
         List<Senha> senhaOptional = senhaRepository.getAllByAppointment(appointment);
         for (Senha senha: senhaOptional) {
+            senha.setStatus(Status.LATE.name());
             ECRA.remove(senha.getNumeroSenha());
+            senhaRepository.save(senha);
         }
         return appointmentRepository.save(appointment);
     }

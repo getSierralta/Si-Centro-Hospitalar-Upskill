@@ -1927,6 +1927,13 @@ ul {list-style-type: none;}
   background: #1abc9c;
   color: white !important
 }
+
+.especialidade_selector{
+  justify-content:space-between;
+}
+.especialidade_selector select{
+  margin-left: 1rem;
+}
 /* end extra */
 
 /* viewer */
@@ -2173,6 +2180,11 @@ div[class*="info-"].active {
 .icon.notes{
     -webkit-mask-image: url("../img/notes.svg");
     mask-image: url("../img/notes.svg");
+}
+
+.icon.bill{
+    -webkit-mask-image: url("../img/bill.svg");
+    mask-image: url("../img/bill.svg");
 }
 
 .icon.left-arrow {

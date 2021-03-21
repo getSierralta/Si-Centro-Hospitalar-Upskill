@@ -4,6 +4,7 @@ import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.user.SearchRequest;
 import com.Bgrupo4.hospitalupskill.user.admin.AdminService;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
@@ -128,5 +129,37 @@ public class DoctorManagementController {
             e.printStackTrace();
             return  new RedirectView("/medico/register-error");
         }
+    }
+
+    @PostMapping("/username/{role}")
+    @PreAuthorize("hasAuthority('medico:write')")
+    public RedirectView searchUsername(SearchRequest request, @PathVariable String role) {
+        switch (role){
+            case "medico":
+                return new RedirectView("/medico/lista-medicos/username/"+request.getUser());
+            case "admin":
+                return new RedirectView("/admin/lista-medicos/username/"+request.getUser());
+            default:
+                return new RedirectView("/400");
+        }
+    }
+
+    @PostMapping("/nif/{role}")
+    @PreAuthorize("hasAuthority('medico:write')")
+    public RedirectView searchId(SearchRequest request, @PathVariable String role) {
+        switch (role){
+            case "medico":
+                return new RedirectView("/medico/lista-medicos/nif/"+request.getUser());
+            case "admin":
+                return new RedirectView("/admin/lista-medicos/nif/"+request.getUser());
+            default:
+                return new RedirectView("/400");
+        }
+    }
+
+    @PostMapping("/especialidade")
+    @PreAuthorize("hasAuthority('medico:write')")
+    public RedirectView searchEspecialidade(EspecialidadeRequest request) {
+        return new RedirectView("/medico/lista-medicos/especialidade/"+request.getEspecialidade());
     }
 }

@@ -41,17 +41,11 @@
                 </a>
             </div>
             <div class="medium ">
-                <a href="/employee/payments">
-                    <div class="icon contactos"></div>
-                    <span class="none">Pagamentos</span>
-                </a>
-            </div>
-            <div class="medium">
-                <a href="/employee/saladeespera">
-                    <div class="icon consulta"></div>
-                        <span class="none">Sala de Espera</span>
-                </a>
-            </div>
+                  <a href="/employee/payments">
+                      <div class="icon bill"></div>
+                      <span class="none">Pagamentos</span>
+                  </a>
+              </div>
             <div class="medium">
                 <a href="/employee/settings">
                     <div class="icon tools"></div>

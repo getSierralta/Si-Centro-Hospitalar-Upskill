@@ -2,6 +2,7 @@ package com.Bgrupo4.hospitalupskill.user.utente;
 
 
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
+import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaService;
@@ -11,6 +12,8 @@ import com.Bgrupo4.hospitalupskill.registration.email.EmailSender;
 import com.Bgrupo4.hospitalupskill.registration.EmailValidator;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.security.PasswordEncoder;
+import com.Bgrupo4.hospitalupskill.senha.Senha;
+import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +45,7 @@ public class UtenteService {
     private final ConsultasService consultasService;
     private final ReceitaService receitaService;
     private final RelatorioRepository relatorioRepository;
+    private final SenhaService senhaService;
 
 
     public Optional<Utente> getUserById(Long id) {
@@ -220,5 +224,42 @@ public class UtenteService {
         }
 
         return utenteRepository.save(utente);
+    }
+
+    public Utente getUserByNif(String nif) {
+        return utenteRepository.findByNif(nif);
+    }
+
+    public List<Utente> getAllUtentesAEspera() {
+        List<Utente> utentes = new ArrayList<>();
+        for (Senha se: senhaService.getSenhas()) {
+           if (utentes.contains(se.getUtente())){
+               continue;
+           }
+           utentes.add(se.getUtente());
+        }
+        return utentes;
+    }
+
+    public List<Utente> getAllUtentesAtrasados() {
+        List<Utente> utentes = new ArrayList<>();
+        for (Senha se: senhaService.getSenhasByStatus(Status.LATE.name())) {
+            if (utentes.contains(se.getUtente())){
+                continue;
+            }
+            utentes.add(se.getUtente());
+        }
+        return utentes;
+    }
+
+    public List<Utente> getAllUtentesAtendidos() {
+        List<Utente> utentes = new ArrayList<>();
+        for (Senha se: senhaService.getSenhasAtendidas()) {
+            if (utentes.contains(se.getUtente())){
+                continue;
+            }
+            utentes.add(se.getUtente());
+        }
+        return utentes;
     }
 }

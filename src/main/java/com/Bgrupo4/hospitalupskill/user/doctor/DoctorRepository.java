@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,4 +19,8 @@ public interface DoctorRepository  extends JpaRepository<Doctor, Long> {
     int enableUser(String email);
 
     Optional<Doctor> findByUsername(String username);
+
+    Doctor findByNif(String nif);
+
+    List<Doctor> findByEspecialidade(Especialidade especialidade1);
 }

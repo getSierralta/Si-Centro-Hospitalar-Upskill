@@ -1,9 +1,12 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
+import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
+import com.Bgrupo4.hospitalupskill.user.SearchRequest;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
@@ -116,6 +119,24 @@ public class AdminManagementController {
             return new RedirectView("/500");
         }
         return new RedirectView("/admin/settings");
+    }
+
+    @PostMapping("/username")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public RedirectView searchUsername(SearchRequest request) {
+        return new RedirectView("/admin/lista-admin/username/"+request.getUser());
+    }
+
+    @PostMapping("/nif")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public RedirectView searchId(SearchRequest request) {
+        return new RedirectView("/admin/lista-admin/nif/"+request.getUser());
+    }
+
+    @PostMapping("/especialidade")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public RedirectView searchEspecialidade(EspecialidadeRequest request) {
+        return new RedirectView("/admin/lista-medicos/especialidade/"+request.getEspecialidade());
     }
 
 }

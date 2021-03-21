@@ -263,4 +263,8 @@ public class AdminService {
         }
         return adminRepository.save(admin);
     }
+
+    public Admin getAdminByNif(String nif) {
+        return adminRepository.findByNif(nif);
+    }
 }

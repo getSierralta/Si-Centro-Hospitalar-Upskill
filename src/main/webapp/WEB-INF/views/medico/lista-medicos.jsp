@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/responsivestyle.css">
+    <link rel="stylesheet" href="../../../css/responsivestyle.css">
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
     <title>Lista de Médicos</title>
@@ -78,12 +78,20 @@
         <!--Viewer-->
         <div class="object_container full_grid">
             <div class="person_list_container">
-                <form class="person_form" id="searchPerson" action="#" method="POST">
-                    <input type="text" name="seguro" placeholder="Id, nome ou username">
-                    <button type="submit" class="icon search"></button>
-                </form>
-                 <form class="person_form" id="searchPerson" action="#" method="POST">
-                     <input type="text" name="seguro" placeholder="Especialidade">
+                <form class="person_form" id="searchPerson" action="/api/doctors/username/medico" method="POST">
+                   <input type="text" name="user" placeholder="Procurar username" required="required">
+                   <button type="submit" class="icon search"></button>
+               </form>
+               <form class="person_form" id="searchPersonid" action="/api/doctors/nif/medico" method="POST">
+                   <input type="text" name="user" placeholder="Procurar nif" required="required">
+                   <button type="submit" class="icon search"></button>
+               </form>
+                 <form class="person_form especialidade_selector" id="searchPersonEspecialidade" action="/api/doctors/especialidade" method="POST">
+                     <select name="especialidade" id="especialidade">
+                          <c:forEach items="${especialidades}" var="especialidade">
+                            <option value="${especialidade}">${especialidade}</option>
+                          </c:forEach>
+                        </select>
                      <button type="submit" class="icon search"></button>
                  </form>
                 <div class="person_list">
@@ -99,7 +107,7 @@
                     <div id="thisone" class="info-${loop.count}">
                         <div class="person_header">
                             <div class="client_photo">
-                                <img class="inversed" src="../imagens/${doctor.getProfilePicture()}" alt="client">
+                                <img class="inversed" src="../../../imagens/${doctor.getProfilePicture()}" alt="client">
                             </div>
                             <div class="client_details">
                                 <p><b>User Name:</b> &nbsp;${doctor.getUsername()}</p>
@@ -130,8 +138,8 @@
         <!--/Viewer-->
     </main>
     <!--/Main-->
-    <script src="../js/buttlist.js"></script>
-     <script src="../js/admin.js"></script>
+    <script src="../../../js/buttlist.js"></script>
+     <script src="../../../js/admin.js"></script>
 </body>
 
 </html>

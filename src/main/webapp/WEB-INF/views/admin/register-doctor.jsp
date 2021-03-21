@@ -9,47 +9,44 @@
     <title>Register New Doctor</title>
 </head>
 <body class="container blue ">
-    <!--Horizontal Nav-->
-       <nav class="nav-row">
-           <div class="medium">
-               <a href="profile">
-                   <div class="icon home"></div>
-                   <span class="none">Perfil</span>
-               </a>
-           </div>
-           <div class="medium">
-               <a href="lista-utentes">
-                   <div class="icon consulta"></div>
-                   <span class="none">Utentes</span>
-               </a>
-           </div>
-           <div class="medium ">
-               <a href="lista-employees">
-                   <div class="icon calendario"></div>
-                   <span class="none">Employees</span>
-               </a>
-           </div>
-           <div class="medium ">
-               <a href="lista-medicos">
-                   <div class="icon medico"></div>
-                   <span class="none">Medicos</span>
-               </a>
-           </div>
-           <div class="medium ">
-               <a href="lista-admin">
-                   <div class="icon support"></div>
-                   <span class="none">Administradores</span>
-               </a>
-           </div>
-           <div class="medium">
-               <a href="/logout">
-                   <div class="icon logout"></div>
-                   <span class="none">LogOut</span>
-               </a>
-           </div>
-       </nav>
-    <!--/Horizontal Nav-->
-    <!--Main-->
+<nav class="nav-row">
+   <div class="medium">
+       <a href="/admin/profile">
+           <div class="icon home"></div>
+           <span class="none">Perfil</span>
+       </a>
+   </div>
+   <div class="medium">
+       <a href="/admin/lista-utentes">
+           <div class="icon consulta"></div>
+           <span class="none">Utentes</span>
+       </a>
+   </div>
+   <div class="medium ">
+       <a href="/admin/lista-employees">
+           <div class="icon calendario"></div>
+           <span class="none">Employees</span>
+       </a>
+   </div>
+   <div class="medium ">
+       <a href="/admin/lista-medicos">
+           <div class="icon medico"></div>
+           <span class="none">Medicos</span>
+       </a>
+   </div>
+   <div class="medium ">
+       <a href="/admin/lista-admin">
+           <div class="icon support"></div>
+           <span class="none">Administradores</span>
+       </a>
+   </div>
+   <div class="medium">
+       <a href="/logout">
+           <div class="icon logout"></div>
+           <span class="none">LogOut</span>
+       </a>
+   </div>
+</nav>
     <main class="main">
             <div class="object_container forms">
                 <form class="log-in column" action="register-doctor" method="POST">

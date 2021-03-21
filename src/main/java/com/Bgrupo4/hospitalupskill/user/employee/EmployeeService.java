@@ -146,4 +146,8 @@ public class EmployeeService {
             senhaRepository.save(senha);
         }
     }
+
+    public Employee getEmployeeByNif(String nif) {
+        return employeeRepository.findByNif(nif);
+    }
 }

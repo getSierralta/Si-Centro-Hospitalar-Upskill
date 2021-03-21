@@ -13,31 +13,31 @@
 <body class="container">
         <nav class="nav-row">
             <div class="medium">
-                <a href="profile">
+                <a href="/admin/profile">
                     <div class="icon home"></div>
                     <span class="none">Perfil</span>
                 </a>
             </div>
             <div class="medium">
-                <a href="lista-utentes">
+                <a href="/admin/lista-utentes">
                     <div class="icon consulta"></div>
                     <span class="none">Utentes</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="lista-employees">
+                <a href="/admin/lista-employees">
                     <div class="icon calendario"></div>
                     <span class="none">Employees</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="lista-medicos">
+                <a href="/admin/lista-medicos">
                     <div class="icon medico"></div>
                     <span class="none">Medicos</span>
                 </a>
             </div>
             <div class="medium ">
-                <a href="lista-admin">
+                <a href="/admin/lista-admin">
                     <div class="icon support"></div>
                     <span class="none">Administradores</span>
                 </a>
@@ -49,9 +49,7 @@
                 </a>
             </div>
         </nav>
-    <!--Main-->
     <main class="main">
-        <!--Info Box-->
         <div class="card big profileutente__consulta client_info principal">
             <h1>Welcome back! &nbsp; ${admin.getName()}</h1>
             <div class="client_photo">

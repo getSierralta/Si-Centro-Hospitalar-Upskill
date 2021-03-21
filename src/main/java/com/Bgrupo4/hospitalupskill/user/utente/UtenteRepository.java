@@ -23,4 +23,6 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
     int enableUser(String email);
 
     Optional<Utente> findByUsername(String username);
+
+    Utente findByNif(String nif);
 }

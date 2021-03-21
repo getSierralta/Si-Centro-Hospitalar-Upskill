@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
+import com.Bgrupo4.hospitalupskill.user.SearchRequest;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeRequest;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,5 +52,17 @@ public class EmployeeManagementController {
     @PreAuthorize("hasAuthority('colaborador:write')")
     public ResponseEntity<Employee> updateEmployee(@RequestBody EmployeeRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(employeeService.updateEmployee(id, request));
+    }
+
+    @PostMapping("/username/")
+    @PreAuthorize("hasAuthority('colaborador:write')")
+    public RedirectView searchUsername(SearchRequest request) {
+        return new RedirectView("/admin/lista-employees/username/"+request.getUser());
+    }
+
+    @PostMapping("/nif/")
+    @PreAuthorize("hasAuthority('colaborador:write')")
+    public RedirectView searchId(SearchRequest request) {
+        return new RedirectView("/admin/lista-employees/nif/"+request.getUser());
     }
 }

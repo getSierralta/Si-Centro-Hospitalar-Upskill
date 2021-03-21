@@ -12,4 +12,5 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface EspecialidadeRepository extends JpaRepository<Especialidade, Long> {
 
+    Optional<Especialidade> findByEspecialidade(String especialidade);
 }

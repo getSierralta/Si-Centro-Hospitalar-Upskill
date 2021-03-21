@@ -2,16 +2,14 @@ package com.Bgrupo4.hospitalupskill.user.employee.controllers;
 
 import com.Bgrupo4.hospitalupskill.calendario.CalendarioService;
 import com.Bgrupo4.hospitalupskill.invoices.InvoiceController;
-import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
 import com.Bgrupo4.hospitalupskill.senha.FakeSenha;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRequest;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.user.employee.Employee;
 import com.Bgrupo4.hospitalupskill.user.employee.EmployeeService;
-import com.Bgrupo4.hospitalupskill.user.employee.EmployeeUpdateRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,13 +17,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.Bgrupo4.hospitalupskill.HospitalUpskillApplication.ECRA;
 
@@ -39,12 +36,54 @@ public class EmployeeController {
     private final CalendarioService calendarioService;
     private final InvoiceController invoiceController;
     private final UtenteManagementController utenteManagementController;
+    private final UtenteService utenteService;
+
 
     @GetMapping(value = "/show-all-utentes")
     public String showUtentes(ModelMap map) {
         map.put("utenteList", utenteManagementController.getAllUtentes());
         return "/employee/show-all-utentes";
     }
+    @GetMapping(value = "/show-all-utentes/espera")
+    public String showUtentesEspera(ModelMap map) {
+        map.put("utenteList", utenteService.getAllUtentesAEspera());
+        return "/employee/show-all-utentes";
+    }
+    @GetMapping(value = "/show-all-utentes/atrasados")
+    public String showUtentesAtrasados(ModelMap map) {
+        map.put("utenteList", utenteService.getAllUtentesAtrasados());
+        return "/employee/show-all-utentes";
+    }
+    @GetMapping(value = "/show-all-utentes/atendidos")
+    public String showUtentesAtendidos(ModelMap map) {
+        map.put("utenteList", utenteService.getAllUtentesAtendidos());
+        return "/employee/show-all-utentes";
+    }
+    @GetMapping(value = "/show-all-utentes/username/{username}")
+    public String showUtente(ModelMap map, @PathVariable String username) {
+        try {
+            List<Utente> utentes = new ArrayList<>();
+            utentes.add(utenteService.getUserByUsername(username).get());
+            map.put("utenteList", utentes);
+            return "/employee/show-all-utentes";
+        }catch (Exception e){
+            map.put("utenteList", utenteManagementController.getAllUtentes());
+            return "/employee/show-all-utentes";
+        }
+    }
+    @GetMapping(value = "/show-all-utentes/nif/{nif}")
+    public String showUtenteNif(ModelMap map, @PathVariable String nif) {
+        try {
+            List<Utente> utentes = new ArrayList<>();
+            utentes.add(utenteService.getUserByNif(nif));
+            map.put("utenteList", utentes);
+            return "/employee/show-all-utentes";
+        }catch (Exception e){
+            map.put("utenteList", utenteManagementController.getAllUtentes());
+            return "/employee/show-all-utentes";
+        }
+    }
+
 
     @GetMapping(value = "/profile")
     @PreAuthorize("hasRole('ROLE_COLABORADOR')")

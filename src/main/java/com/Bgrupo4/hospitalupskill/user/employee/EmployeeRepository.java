@@ -19,4 +19,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     int enableUser(String email);
 
     Optional<Employee> findByUsername(String username);
+
+    Employee findByNif(String nif);
 }

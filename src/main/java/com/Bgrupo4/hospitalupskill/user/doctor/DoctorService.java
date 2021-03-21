@@ -112,4 +112,17 @@ public class DoctorService{
     public Especialidade createEspecialidade(String especialidade) {
          return especialidadeRepository.save(new Especialidade(especialidade));
     }
+
+    public Doctor getDoctorByNif(String nif) {
+        return doctorRepository.findByNif(nif);
+    }
+
+    public List<Doctor> getDoctorByEspecialidade(String especialidade) {
+        Optional<Especialidade> especialidadeOptional =  especialidadeRepository.findByEspecialidade(especialidade);
+       if (especialidadeOptional.isEmpty()){
+           throw new EntityNotFoundException("Especialidade não esxiste: "+especialidade);
+       }
+       Especialidade especialidade1 = especialidadeOptional.get();
+       return doctorRepository.findByEspecialidade(especialidade1);
+    }
 }

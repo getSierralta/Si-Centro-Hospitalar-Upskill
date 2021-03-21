@@ -89,8 +89,55 @@ public class DoctorController {
     public String showMedicos(ModelMap map) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
+        map.put("especialidades", calendarioService.getEspecialidades());
         map.put("medico", doctor);
         map.put("doctorList", doctorService.getAllDoctors());
+        return "/medico/lista-medicos";
+    }
+    @GetMapping(value = "/lista-medicos/nif/{nif}")
+    @PreAuthorize("hasRole('ROLE_MEDICO_RESPONSAVEL')")
+    public String showMedicoNif(ModelMap map, @PathVariable String nif) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("especialidades", calendarioService.getEspecialidades());
+        map.put("medico", doctor);
+        try {
+            List<Doctor> doctors = new ArrayList<>();
+            doctors.add(doctorService.getDoctorByNif(nif));
+            map.put("doctorList", doctors);
+        }catch (Exception e){
+            map.put("doctorList", doctorService.getAllDoctors());
+        }
+        return "/medico/lista-medicos";
+    }
+    @GetMapping(value = "/lista-medicos/username/{username}")
+    @PreAuthorize("hasRole('ROLE_MEDICO_RESPONSAVEL')")
+    public String showMedico(ModelMap map, @PathVariable String username) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("especialidades", calendarioService.getEspecialidades());
+        map.put("medico", doctor);
+        try {
+            List<Doctor> doctors = new ArrayList<>();
+            doctors.add(doctorService.getUserByUsername(username).get());
+            map.put("doctorList", doctors);
+            return "/medico/lista-medicos";
+        }catch (Exception e){
+            map.put("doctorList", doctorService.getAllDoctors());
+            return "/medico/lista-medicos";
+        }
+
+    }
+
+
+    @GetMapping(value = "/lista-medicos/especialidade/{especialidade}")
+    @PreAuthorize("hasRole('ROLE_MEDICO_RESPONSAVEL')")
+    public String showMedicosEspecialidade(ModelMap map, @PathVariable String especialidade) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Doctor doctor = doctorService.getLogged(auth);
+        map.put("especialidades", calendarioService.getEspecialidades());
+        map.put("medico", doctor);
+        map.put("doctorList", doctorService.getDoctorByEspecialidade(especialidade));
         return "/medico/lista-medicos";
     }
 

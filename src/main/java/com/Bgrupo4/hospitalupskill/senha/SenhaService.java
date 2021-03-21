@@ -150,4 +150,12 @@ public class SenhaService {
     public List<Senha> getSenhasByColaborador(Employee employee) {
         return senhaRepository.getAllByEmployeeAndDate(employee, Calendar.getInstance().getTime());
     }
+
+    public List<Senha>  getSenhasByStatus(String name) {
+        return senhaRepository.findAllByStatusAndData(name, Calendar.getInstance().getTime());
+    }
+
+    public List<Senha>  getSenhasAtendidas() {
+        return senhaRepository.findAllAtendidas(Calendar.getInstance().getTime());
+    }
 }

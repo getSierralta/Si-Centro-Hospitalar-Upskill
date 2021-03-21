@@ -19,4 +19,6 @@ public interface AdminRepository extends JpaRepository<Admin, Long>{
     int enableUser(String email);
 
     Optional<Admin> findByUsername(String username);
+
+    Admin findByNif(String nif);
 }

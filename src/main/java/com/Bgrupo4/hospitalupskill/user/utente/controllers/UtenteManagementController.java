@@ -6,20 +6,19 @@ import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRequest;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.Relatorio;
 import com.Bgrupo4.hospitalupskill.consultas.relatorio.RelatorioRequest;
+import com.Bgrupo4.hospitalupskill.user.SearchRequest;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -46,14 +45,38 @@ public class UtenteManagementController {
         return utenteService.getAllUtentes();
     }
 
+    @PostMapping("/username/{role}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public RedirectView searchUsername(SearchRequest request, @PathVariable String role) {
+        switch (role){
+            case "colaborador":
+                return new RedirectView("/employee/show-all-utentes/username/"+request.getUser());
+            case "admin":
+                return new RedirectView("/admin/lista-utentes/username/"+request.getUser());
+            default:
+                return new RedirectView("/400");
+        }
+    }
 
+    @PostMapping("/nif/{role}")
+    @PreAuthorize("hasAuthority('utente:read')")
+    public RedirectView searchId(SearchRequest request, @PathVariable String role) {
+        switch (role){
+            case "colaborador":
+                return new RedirectView("/employee/show-all-utentes/nif/"+request.getUser());
+            case "admin":
+                return new RedirectView("/admin/lista-utentes/nif/"+request.getUser());
+            default:
+                return new RedirectView("/400");
+        }
+    }
     @PostMapping("/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
     public ResponseEntity<Utente> updateUtente(UtenteUpdateRequest request, @PathVariable Long id) {
         return ResponseEntity.ok(utenteService.updateUtente(id, request));
     }
     @PostMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('utente:write')")
     public ResponseEntity<Boolean> apagarUtente(@PathVariable Long id) {
         return ResponseEntity.ok(utenteService.deleteUtente(id));
     }
@@ -73,7 +96,7 @@ public class UtenteManagementController {
     @PostMapping("/relatorio/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
     public ResponseEntity<Relatorio> writeRelatorio(RelatorioRequest request, @PathVariable Long id) throws Exception {
-        Optional<Utente> utenteOptional = utenteService.getUserById(Long.valueOf(id));
+        Optional<Utente> utenteOptional = utenteService.getUserById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
         if (utenteOptional.isEmpty()){
