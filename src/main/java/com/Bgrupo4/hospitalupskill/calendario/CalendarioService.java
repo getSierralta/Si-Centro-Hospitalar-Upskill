@@ -1,7 +1,7 @@
 package com.Bgrupo4.hospitalupskill.calendario;
 
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
-import com.Bgrupo4.hospitalupskill.user.doctor.EspecialidadeRepository;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.EspecialidadeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

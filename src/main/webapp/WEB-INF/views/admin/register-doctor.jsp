@@ -62,12 +62,13 @@
                         <input type="password" name="password" placeholder="Password" required="required" />
                         <input type="text" name="cedula" placeholder="Cedula" />
                         <select name="especialidade" class="greenbutt" id="especialidade" required="required"><br>
-                         <c:forEach items="${especialidades}" var="especialidade">
-                           <option value="${especialidade}">${especialidade}</option>
-                         </c:forEach>
-                       </select>
-                        select class="greenbutt" name="role" id="role" required="required">
-                             <option disabled selected value> Especialidade: </option>
+                            <option disabled selected value> Especialidade: </option>
+                            <c:forEach items="${especialidades}" var="especialidade">
+                                <option value="${especialidade}">${especialidade}</option>
+                            </c:forEach>
+                        </select>
+                        <select class="greenbutt" name="role" id="role" required="required">
+                             <option disabled selected value> Posição: </option>
                              <option value="medico">Médico</option>
                              <option value="responsavel">Médico Responsavel</option>
                         </select>

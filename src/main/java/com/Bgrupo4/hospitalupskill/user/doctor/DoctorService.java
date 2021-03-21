@@ -1,16 +1,14 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
 import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
-import com.Bgrupo4.hospitalupskill.user.employee.Employee;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.EspecialidadeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
-import javax.print.Doc;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;

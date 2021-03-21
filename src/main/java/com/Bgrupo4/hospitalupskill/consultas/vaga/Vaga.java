@@ -1,7 +1,6 @@
 package com.Bgrupo4.hospitalupskill.consultas.vaga;
 
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +10,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 

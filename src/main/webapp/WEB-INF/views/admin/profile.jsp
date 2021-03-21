@@ -89,6 +89,12 @@
                              <span class="icon tools"></span>Settings
                           </a>
                       </div>
+                     <div class="greenbutt_nonehover">
+                          <form class="log-in column" action="new-especialidade" method="POST">
+                             <input type="text" name="especialidade" placeholder="Nova Especialidade" required="required" />
+                             <button type="submit">Create</button>
+                          </form>
+                     </div>
              </div>
           </div>
     </main>

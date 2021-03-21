@@ -2,7 +2,6 @@ package com.Bgrupo4.hospitalupskill.consultas.appointment;
 
 import com.Bgrupo4.hospitalupskill.consultas.Status;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -10,7 +9,6 @@ import lombok.*;
 import javax.persistence.*;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
