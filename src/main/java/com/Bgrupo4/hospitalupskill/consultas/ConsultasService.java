@@ -13,6 +13,10 @@ import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaCreationRequest;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaRepository;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.VagaService;
+import com.Bgrupo4.hospitalupskill.invoices.Invoice;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceItem;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceRequest;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceService;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaRepository;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
@@ -44,6 +48,7 @@ public class ConsultasService {
     private final SenhaRepository senhaRepository;
     private final RelatorioRepository relatorioRepository;
     private final ReceitaRepository receitaRepository;
+    private final InvoiceService invoiceService;
 
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
@@ -269,7 +274,7 @@ public class ConsultasService {
         return appointmentRepository.save(appointment);
     }
 
-    public Appointment fecharConsulta(Long id) {
+    public Appointment fecharConsulta(Long id) throws Exception {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
         if (appointmentOptional.isEmpty()){
             throw new EntityNotFoundException("Consulta não existe" + id);
@@ -285,6 +290,18 @@ public class ConsultasService {
                 break;
             }
         }
+        Invoice invoice = new Invoice();
+        invoice.setNif(appointment.getUtente().getNif());
+        invoice.setEmail(appointment.getUtente().getEmail());
+        invoice.setName(appointment.getUtente().getName());
+        invoice.setDueDate(LocalDate.now().plusMonths(2).toString());
+        InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setDescription("Consulta de "+appointment.getEspecialidade()+" Dx. "+appointment.getDoctor().getName());
+        invoiceItem.setValue("100");
+        List<InvoiceItem> items = new ArrayList<>();
+        items.add(invoiceItem);
+        invoice.setItems(items);
+        invoiceService.createInvoice(invoice);
         return appointmentRepository.save(appointment);
     }
 

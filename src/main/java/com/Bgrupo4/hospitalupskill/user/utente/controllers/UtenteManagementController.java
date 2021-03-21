@@ -83,7 +83,7 @@ public class UtenteManagementController {
 
     @PostMapping("/fecharconsulta/{id}")
     @PreAuthorize("hasAuthority('utente:write')")
-    public ResponseEntity<Appointment> fecharconsulta(@PathVariable Long id) {
+    public ResponseEntity<Appointment> fecharconsulta(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(consultasService.fecharConsulta(id));
     }
 

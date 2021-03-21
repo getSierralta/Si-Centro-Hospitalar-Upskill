@@ -200,7 +200,7 @@ function sendFormEdit(id){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/jenipurr-chile-29.svg";            
+            img.src = "/img/progrhamster-500-28.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
@@ -371,7 +371,7 @@ function sendFormRelatorio(id, body, boolean){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/jenipurr-chile-29.svg";            
+            img.src = "/img/progrhamster-500-28.svg";            
         }  
         if(xhr.status == 400){
            img.src = " /img/lady-panda-bad-request-30.svg";
@@ -398,7 +398,7 @@ function marcarAusencia(){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/progrhamster-500-28.svg";            
         }  
         if(xhr.status == 400){
          img.src = " /img/lady-panda-bad-request-30.svg";
@@ -422,7 +422,7 @@ function fecharConsulta(){
         img.style.maxWidth = "50%";
         
         if(xhr.status == 500){ 
-            img.src = "/img/britney-squirrels-booked-33.svg";            
+            img.src = "/img/progrhamster-500-28.svg";            
         }  
         if(xhr.status == 400){
          img.src = " /img/lady-panda-bad-request-30.svg";
@@ -440,7 +440,7 @@ function giveError(){
     const img = document.createElement('img'); 
     img.style.maxHeight = "50%";
     img.style.maxWidth = "50%";
-    img.src = "/img/jenipurr-chile-29.svg";            
+    img.src = "/img/progrhamster-500-28.svg";            
     body.appendChild(img);  
 }
 

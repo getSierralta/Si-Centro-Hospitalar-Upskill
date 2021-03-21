@@ -100,7 +100,7 @@ public class HospitalUpskillApplication {
             //vagaService.createVagasNextMonth();
 
             for (int i = 8; i < 17; i++) {
-                Utente utente1 = new Utente(String.valueOf(i), "Utente " + (i), "Utente " + (i), "Utente " + (i)+"@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");
+                Utente utente1 = new Utente(String.valueOf(i), "Utente " + (i), "Utente" + (i), "Utente" + (i)+"@utente.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "apolice", "123456789");
                 applicationUserService.enableAndSave(utente1);
                 Vaga vaga8 = consultasService.createVaga(new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), i, 0, 0 ), i+":00", cardiologia.getEspecialidade(), doctor));
                 Appointment appointment2 = consultasService.createAppointment(vaga8, utente1);
