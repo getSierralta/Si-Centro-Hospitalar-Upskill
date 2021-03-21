@@ -84,7 +84,7 @@
             </div>
             <div class="tracknumberutente__ecra">
                 <c:forEach items="${ecra}" var="sala">
-                    <span>${sala.getNumeroSenha()}</span>
+                    <span>${sala}</span>
                 </c:forEach>
             </div>
             <p class="tracknumberutente__tetris" onclick="startTetris()">Tetris</p>

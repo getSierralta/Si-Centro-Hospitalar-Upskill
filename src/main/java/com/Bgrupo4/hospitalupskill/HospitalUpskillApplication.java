@@ -63,7 +63,7 @@ public class HospitalUpskillApplication {
             utentes.add(applicationUserService.enableAndSave(new Utente("18", "Juan", "utente1", "utente1@utente.com", "123", "El Cabo", "Paraguana", "914789651", new GregorianCalendar(1970, Calendar.JULY, 15), "apo", "123456789")));
             utentes.add(applicationUserService.enableAndSave(new Utente("19", "Jesus", "utente2", "utente2@utente.com", "123", "San Juan", "Las Cumaraguas", "914789651", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), "lice", "123456789")));
             applicationUserService.enableAndSave(new Admin("1", "Max", "admin", "admin@admin.com", "123", "rua da joaquina", "Lisboa", "987654321", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), UserRole.ADMIN.name()));
-            applicationUserService.enableAndSave(new Admin("236", "José", "admin", "admin@admin.com", "123", "rua da joaquina", "Lisboa", "987654321", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), UserRole.ADMIN.name()));
+            applicationUserService.enableAndSave(new Admin("236", "José", "admin2", "admin2@admin.com", "123", "rua da joaquina", "Lisboa", "987654321", new GregorianCalendar(1958, Calendar.FEBRUARY, 20), UserRole.ADMIN.name()));
             List<Doctor> doctors = new ArrayList<>();
             Doctor doctor = new Doctor("3", "Thiago", "medico", "medico@medico.com", "123", "Sintra", "Lisboa", "914789651", new GregorianCalendar(1998, Calendar.JUNE, 10), "cedula", cardiologia, UserRole.MEDICO_RESPONSAVEL);
             doctors.add(applicationUserService.enableAndSave(doctor));
@@ -84,11 +84,13 @@ public class HospitalUpskillApplication {
             Vaga vaga1 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), 16, 0, 0), "16:00", cardiologia.getEspecialidade(), doctor);
             Vaga vaga2 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 17, 15, 0, 0), "15:00", cardiologia.getEspecialidade(), doctor);
             Vaga vaga3 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 31, 15, 0, 0), "13:30", cardiologia.getEspecialidade(), doctor);
+            Vaga vaga17 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), 16, 0, 0), "16:00", cardiologia.getEspecialidade(), doctor);
             consultasService.createVaga(vaga);
             consultasService.createVaga(vaga1);
             consultasService.createVaga(vaga2);
             consultasService.createVaga(vaga3);
             Appointment appointment = consultasService.createAppointment(vaga1, utente);
+            consultasService.createAppointment(vaga17, utente);
             consultasService.createAppointment(vaga, utente);
             Appointment appointment1 = consultasService.createAppointment(vaga2, utente);
             consultasService.cancelAppointment(appointment1.getId());
