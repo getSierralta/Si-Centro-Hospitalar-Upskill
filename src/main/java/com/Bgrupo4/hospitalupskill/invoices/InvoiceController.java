@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.net.URL;
 import java.util.*;
 
 @RestController
@@ -25,8 +27,8 @@ public class InvoiceController {
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public ResponseEntity getInvoice(@RequestParam String id) {
-        return ResponseEntity.ok(invoiceService.getInvoice(id));
+    public String getInvoice(@RequestParam String id) {
+        return invoiceService.getInvoice(id);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -42,8 +44,14 @@ public class InvoiceController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status) {
-        return invoiceService.getList(search, status);
+    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status,
+                                 @RequestParam (required = false) String issuedAfter,
+                                 @RequestParam (required = false) String issuedBefore,
+                                 @RequestParam (required = false) String paidAfter,
+                                 @RequestParam (required = false) String paidBefore,
+                                 @RequestParam (required = false) String dueAfter,
+                                 @RequestParam (required = false) String dueBefore) {
+        return invoiceService.getList(search, status, issuedAfter, issuedBefore, paidAfter, paidBefore, dueAfter, dueBefore);
     }
 
     @RequestMapping(value = "/pay/{id}", method = RequestMethod.POST)

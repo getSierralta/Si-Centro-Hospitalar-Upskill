@@ -2,8 +2,6 @@ package com.Bgrupo4.hospitalupskill.invoices;
 
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.Medicamento;
-import com.Bgrupo4.hospitalupskill.consultas.receitas.MedicamentoRepository;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
 import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
 import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -34,6 +33,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -71,7 +71,7 @@ public class InvoiceService {
         return requestResponse;
     }
 
-    public ModelAndView getInvoice(String id) {
+    public String getInvoice(String id) {
         URL requestUrl = null;
         try {
             requestUrl = new URL(external + "get/" + id);
@@ -80,7 +80,7 @@ public class InvoiceService {
             requestResponse.put("status", "error");
             requestResponse.put("error", "Invoice not found");
         }
-        return new ModelAndView("redirect:" + requestUrl);
+        return requestUrl.toString();
     }
 
     public ResponseEntity payInvoice(String id) {
@@ -159,7 +159,7 @@ public class InvoiceService {
         return requestResponse;
     }
 
-    public List<Invoice> getList(String search, String status) {
+    public List<Invoice> getList(String search, String status, String issuedAfter, String issuedBefore, String paidAfter, String paidBefore, String dueAfter, String dueBefore) {
         String requestUrl = external + "list";
         if (search != null) {
             System.out.println(search);
@@ -181,6 +181,32 @@ public class InvoiceService {
         }
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
         InvoiceResponse invoiceResponse = responseEntity.getBody();
-        return invoiceResponse.getInvoices();
+        List<Invoice> returnedList = invoiceResponse.getInvoices();
+
+        if (issuedAfter != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isBefore(LocalDate.parse(issuedAfter)));
+        }
+
+        if (issuedBefore != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isAfter(LocalDate.parse(issuedBefore)));
+        }
+
+        if (paidAfter != null) {
+            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isBefore(LocalDate.parse(paidAfter)));
+        }
+
+        if (paidBefore != null) {
+            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isAfter(LocalDate.parse(paidBefore)));
+        }
+
+        if (dueAfter != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isBefore(LocalDate.parse(dueAfter)));
+        }
+
+        if (dueBefore != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isAfter(LocalDate.parse(dueBefore)));
+        }
+
+        return returnedList;
     }
 }

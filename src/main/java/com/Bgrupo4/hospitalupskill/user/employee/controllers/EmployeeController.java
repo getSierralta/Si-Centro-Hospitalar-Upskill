@@ -82,8 +82,14 @@ public class EmployeeController {
     //GET do invoice
     @GetMapping(value = "/payments")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status){
-        map.put("invoiceList", invoiceController.getList(search, status));
+    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status,
+                            @RequestParam (required = false) String issuedAfter,
+                            @RequestParam (required = false) String issuedBefore,
+                            @RequestParam (required = false) String paidAfter,
+                            @RequestParam (required = false) String paidBefore,
+                            @RequestParam (required = false) String dueAfter,
+                            @RequestParam (required = false) String dueBefore){
+        map.put("invoiceList", invoiceController.getList(search, status, issuedAfter, issuedBefore, paidAfter, paidBefore, dueAfter, dueBefore));
         return "/employee/payments";
     }
 

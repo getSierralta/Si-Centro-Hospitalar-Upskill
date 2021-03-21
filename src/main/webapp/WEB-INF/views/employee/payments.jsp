@@ -77,25 +77,37 @@
                             <option value="unpaid">Por pagar</option>
                         </select>
                     </div>
+
+                    <div>
+                        <label for="issuedAfter">Issued After</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="issuedAfter" name="issuedAfter" placeholder="data" >
+                        <label for="issuedBefore">Issued Before</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="issuedBefore" name="issuedBefore" placeholder="data" >
+                        <label for="paidAfter">Paid After</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="paidAfter" name="paidAfter" placeholder="data" >
+                        <label for="paidBefore">Paid Before</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="paidBefore" name="paidBefore" placeholder="data" >
+                        <label for="dueAfter">Due After</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="dueAfter" name="dueAfter" placeholder="data" >
+                        <label for="dueBefore">Due Before</label>
+                        <input type="date" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" id="dueBefore" name="dueBefore" placeholder="data" >
+                    </div>
                     <button class="greenbutt" type="submit">Pesquisar</button>
                     <a href="/employee/new-bill" class="greenbutt">Criar fatura</a>
                 </form>
                 <div class="item_order light small">
-                    <div class="select" style="width:200px;">
-                        <select>
-                            <option value="ordenar">Ordenar por:</option>
-                            <option value="nomeASC">Nome ascendente </option>
-                            <option value="nomeDESC">Nome descendente </option>
-                            <option value="dateASC">Data ascendente  </option>
-                            <option value="dateDESC">Data descendente </option>
-                        </select>
-                    </div>
                     <a href="#/" class="item_toggle"><img src="../img/sort.png" style="height: 20px;" alt="sort"></a>
                 </div>
             </div>
             <!--/Files Nav-->
             <!--Cards-->
-            <c:forEach var="invoice" items="${invoiceList}">
+            <c:forEach var="invoice" items="${invoiceList}" >
                 <a class="card small invoice" onclick="getInvoice('${invoice.getId()}')">
                     <p><b>UTENTE </b>${invoice.getName()}</p>
                     <p><b>NIF </b>${invoice.getNif()}</p><br><br>
@@ -113,5 +125,6 @@
     <script src="../js/buttlist.js"></script>
     <script src="../js/invoice.js"></script>
     <script src="../js/pay.js"></script>
+    <script src="../js/calendarios.js"></script>
 </body>
 </html>
