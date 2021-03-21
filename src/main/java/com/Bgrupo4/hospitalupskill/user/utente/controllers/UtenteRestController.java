@@ -4,6 +4,8 @@ package com.Bgrupo4.hospitalupskill.user.utente.controllers;
 import com.Bgrupo4.hospitalupskill.Calendario.EspecialidadeRequest;
 import com.Bgrupo4.hospitalupskill.consultas.ConsultasService;
 import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.invoices.Invoice;
+import com.Bgrupo4.hospitalupskill.invoices.InvoiceService;
 import com.Bgrupo4.hospitalupskill.senha.Senha;
 import com.Bgrupo4.hospitalupskill.senha.SenhaService;
 import com.Bgrupo4.hospitalupskill.consultas.vaga.Vaga;
@@ -40,6 +42,7 @@ public class UtenteRestController {
     private final VagaService vagaService;
     private final SenhaService senhaService;
     private final ConsultasService consultasService;
+    private final InvoiceService invoiceService;
 
     @GetMapping(path = "{id}")
     public Optional<Utente> getUser(@PathVariable("id") Long id){
@@ -158,6 +161,5 @@ public class UtenteRestController {
         Utente utente = utenteService.getLogged(auth);
         return consultasService.getAppointmentsUtenteByDate(utente,dia);
     }
-
 
 }

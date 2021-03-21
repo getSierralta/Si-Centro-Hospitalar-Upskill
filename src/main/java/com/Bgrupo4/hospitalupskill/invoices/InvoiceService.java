@@ -184,4 +184,31 @@ public class InvoiceService {
 
         return invoiceResponse.getInvoices();
     }
+
+    public List<Invoice> getMyList(String nif, String search, String status) {
+        String requestUrl = external + "list?nif=" + nif;
+
+        if (search != null) {
+            System.out.println(search);
+            if (search.contains(":")) {
+                String[] token = search.split(":");
+                if (token.length > 0) {
+                    String att = token[0];
+                    String value = token[1];
+                    requestUrl += "&" + att + "=" + value;
+                }
+            } else {
+                requestUrl += "&search=" + search;
+            }
+        }
+        if (status == null || status.isEmpty()) {
+            requestUrl += "";
+        } else {
+            requestUrl += "&status=" + status;
+        }
+        ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
+        InvoiceResponse invoiceResponse = responseEntity.getBody();
+
+        return invoiceResponse.getInvoices();
+    }
 }

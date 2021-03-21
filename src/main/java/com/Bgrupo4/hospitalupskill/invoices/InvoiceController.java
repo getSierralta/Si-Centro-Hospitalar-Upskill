@@ -1,9 +1,13 @@
 package com.Bgrupo4.hospitalupskill.invoices;
 
+import com.Bgrupo4.hospitalupskill.user.utente.Utente;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -18,6 +22,7 @@ public class InvoiceController {
 
     @Autowired
     InvoiceService invoiceService;
+    UtenteService utenteService;
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
@@ -40,12 +45,6 @@ public class InvoiceController {
         } catch (Exception e) {
             return new RedirectView("/employee/error");
         }
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status) {
-        return invoiceService.getList(search, status);
     }
 
     @RequestMapping(value = "/pay/{id}", method = RequestMethod.POST)
