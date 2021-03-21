@@ -164,14 +164,8 @@ public class EmployeeController {
     //GET do invoice
     @GetMapping(value = "/payments")
     @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status,
-                            @RequestParam (required = false) String issuedAfter,
-                            @RequestParam (required = false) String issuedBefore,
-                            @RequestParam (required = false) String paidAfter,
-                            @RequestParam (required = false) String paidBefore,
-                            @RequestParam (required = false) String dueAfter,
-                            @RequestParam (required = false) String dueBefore){
-        map.put("invoiceList", invoiceController.getList(search, status, issuedAfter, issuedBefore, paidAfter, paidBefore, dueAfter, dueBefore));
+    public String showBills(ModelMap map, @RequestParam (required = false) String search, @RequestParam (required = false) String status){
+        map.put("invoiceList", invoiceController.getList(search, status));
         return "/employee/payments";
     }
 
@@ -193,13 +187,4 @@ public class EmployeeController {
         return "/employee/error";
     }
 
-/*
-    @RequestMapping(method = RequestMethod.GET, value = "/utente-bills/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_COLABORADOR', 'ROLE_ADMIN', 'ROLE_RESPONSAVEL')")
-    public ModelAndView getBill(@RequestParam String id){
-        InvoiceRequest invoiceRequest = new InvoiceRequest();
-        invoiceRequest.setId(id);
-        System.out.println("EC: " + id);
-        return invoiceController.getInvoice(invoiceRequest);
-    }*/
 }
