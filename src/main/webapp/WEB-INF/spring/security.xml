@@ -1,0 +1,7 @@
+<http auto-config="true">
+    <intercept-url pattern="/utente/**" access="ROLE_UTENTE" />
+    <form-login login-page='/login'
+                authentication-failure-url="/login?error=true"
+                authentication-success-handler-ref="AuthSuccessHandler"/>
+    <logout logout-url="/logout" logout-success-url="/" />
+</http>
