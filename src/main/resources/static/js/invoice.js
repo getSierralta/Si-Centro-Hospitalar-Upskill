@@ -31,49 +31,27 @@ function submitform(){
     xhr.send(JSON.stringify(formData));
 };
 
-// PAY
-/*$("#pay").on("click",function(){
-    $.ajax({
-        url: "http://localhost:8080/invoices/802244746/pay",
-        type: "POST",
-        data: "${invoice.getId()}",
-        success: function(response){
-            console.log( msg );
-        },
-        error: function(){
-          console.log( "Request failed: " + textStatus );
-        }
-    });
-});*/
-
 // INVOICE OVERLAY
-var $overlay = $('<div id="overlay"></div>');
-var $iframe = $('<iframe width="595" height="485" frameborder="0" marginwidth="0" margin="0" height="0" scrolling="no" allowfullscreen></iframe>');
-$overlay.append($iframe);
 
-$('body').append($overlay);
-
-$('a.card.small.invoice').click(function(event) {
+function getInvoice(id) {
     event.preventDefault();
-    var id = $(this).attr("${invoice.getId()}");
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', id, true);
-    var src = null;
+    let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:8080/invoices/802244746/get?id=`+id, false);
+        xhr.send();
 
-    $iframe.attr('src', src);
-    $overlay.show();
-});
+    var src = xhr.response;
+    console.log(id);
+    console.log(src);
 
-$overlay.click(function() {
-    $overlay.hide();
-    $iframe.attr('src', '');
-});
+    var win = window.open(src, "_blank");
+    win.focus();
+}
+
 // end invoice overlay
 
-/*
+
 $('#status').change(function(){
     event.preventDefault();
     $(this).closest('form').submit();
 });
-*/

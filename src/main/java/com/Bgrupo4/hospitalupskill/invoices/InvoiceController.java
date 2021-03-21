@@ -1,26 +1,15 @@
 package com.Bgrupo4.hospitalupskill.invoices;
 
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
-import com.Bgrupo4.hospitalupskill.user.utente.controllers.UtenteManagementController;
 import lombok.AllArgsConstructor;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/invoices/802244746")
@@ -38,25 +27,36 @@ public class InvoiceController {
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public ResponseEntity getInvoice(@RequestParam String id) {
-        return ResponseEntity.ok(invoiceService.getInvoice(id));
+    public String getInvoice(@RequestParam String id) {
+        return invoiceService.getInvoice(id);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public ResponseEntity createInvoice(@ModelAttribute Invoice invoice) {
-        return ResponseEntity.ok(invoiceService.createInvoice(invoice));
+    public RedirectView createInvoice(@ModelAttribute Invoice invoice) {
+        try {
+            invoiceService.createInvoice(invoice);
+            return new RedirectView("/employee/success");
+        } catch (Exception e) {
+            return new RedirectView("/employee/error");
+        }
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status) {
-        return invoiceService.getList(search, status);
+    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status,
+                                 @RequestParam (required = false) String issuedAfter,
+                                 @RequestParam (required = false) String issuedBefore,
+                                 @RequestParam (required = false) String paidAfter,
+                                 @RequestParam (required = false) String paidBefore,
+                                 @RequestParam (required = false) String dueAfter,
+                                 @RequestParam (required = false) String dueBefore) {
+        return invoiceService.getList(search, status, issuedAfter, issuedBefore, paidAfter, paidBefore, dueAfter, dueBefore);
     }
 
-    @RequestMapping(value = "/pay", method = RequestMethod.POST)
+    @RequestMapping(value = "/pay/{id}", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public ResponseEntity payInvoice(String id) {
+    public ResponseEntity payInvoice(@PathVariable String id) {
         return ResponseEntity.ok(invoiceService.payInvoice(id));
     }
 }

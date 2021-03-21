@@ -1,5 +1,11 @@
 package com.Bgrupo4.hospitalupskill.invoices;
 
+import com.Bgrupo4.hospitalupskill.consultas.appointment.Appointment;
+import com.Bgrupo4.hospitalupskill.consultas.appointment.AppointmentRepository;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.Receita;
+import com.Bgrupo4.hospitalupskill.consultas.receitas.ReceitaRepository;
+import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
+import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRepository;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +16,24 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -54,7 +71,7 @@ public class InvoiceService {
         return requestResponse;
     }
 
-    public ModelAndView getInvoice(String id) {
+    public String getInvoice(String id) {
         URL requestUrl = null;
         try {
             requestUrl = new URL(external + "get/" + id);
@@ -63,15 +80,24 @@ public class InvoiceService {
             requestResponse.put("status", "error");
             requestResponse.put("error", "Invoice not found");
         }
-        return new ModelAndView("redirect:" + requestUrl);
+        return requestUrl.toString();
     }
 
-    public ModelAndView payInvoice(String id) {
-        String requestUrl = external + "pay/" + id;
-        return new ModelAndView(requestUrl);
+    public ResponseEntity payInvoice(String id) {
+        String url = external + "pay/" + id;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+        ResponseEntity<InvoiceResponse> response = this.restTemplate.postForEntity(url, entity, InvoiceResponse.class);
+        return response;
     }
 
-    public JSONObject createInvoice(Invoice invoice) {
+    public JSONObject createInvoice(Invoice invoice) throws Exception {
         Optional<Utente> utente = utenteRepository.findById(Long.parseLong(invoice.getNif()));
         String date = invoice.getDueDate();
         try {
@@ -84,7 +110,7 @@ public class InvoiceService {
         return postInvoice(invoice);
     }
 
-    public JSONObject postInvoice(Invoice invoiceParam) {
+    public JSONObject postInvoice(Invoice invoiceParam) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         HttpHeaders headers = new HttpHeaders();
@@ -124,14 +150,16 @@ public class InvoiceService {
             e.printStackTrace();
             requestResponse.put("status", "error");
             requestResponse.put("error", "validationError");
+            throw new Exception();
         } catch (HttpClientErrorException.NotFound e) {
             requestResponse.put("status", "error");
             requestResponse.put("error", "Company with that nif not found");
+            throw new Exception();
         }
         return requestResponse;
     }
 
-    public List<Invoice> getList(String search, String status) {
+    public List<Invoice> getList(String search, String status, String issuedAfter, String issuedBefore, String paidAfter, String paidBefore, String dueAfter, String dueBefore) {
         String requestUrl = external + "list";
         if (search != null) {
             System.out.println(search);
@@ -153,6 +181,32 @@ public class InvoiceService {
         }
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
         InvoiceResponse invoiceResponse = responseEntity.getBody();
-        return invoiceResponse.getInvoices();
+        List<Invoice> returnedList = invoiceResponse.getInvoices();
+
+        if (issuedAfter != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isBefore(LocalDate.parse(issuedAfter)));
+        }
+
+        if (issuedBefore != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isAfter(LocalDate.parse(issuedBefore)));
+        }
+
+        if (paidAfter != null) {
+            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isBefore(LocalDate.parse(paidAfter)));
+        }
+
+        if (paidBefore != null) {
+            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isAfter(LocalDate.parse(paidBefore)));
+        }
+
+        if (dueAfter != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isBefore(LocalDate.parse(dueAfter)));
+        }
+
+        if (dueBefore != null) {
+            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isAfter(LocalDate.parse(dueBefore)));
+        }
+
+        return returnedList;
     }
 }
