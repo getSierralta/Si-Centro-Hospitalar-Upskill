@@ -1,5 +1,6 @@
 package com.Bgrupo4.hospitalupskill.user.doctor;
 
+import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

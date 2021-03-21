@@ -116,11 +116,6 @@ public class DoctorService{
     }
 
     public List<Doctor> getDoctorByEspecialidade(String especialidade) {
-        Optional<Especialidade> especialidadeOptional =  especialidadeRepository.findByEspecialidade(especialidade);
-       if (especialidadeOptional.isEmpty()){
-           throw new EntityNotFoundException("Especialidade não esxiste: "+especialidade);
-       }
-       Especialidade especialidade1 = especialidadeOptional.get();
-       return doctorRepository.findByEspecialidade(especialidade1);
+       return doctorRepository.findByEspecialidade(especialidadeRepository.findByEspecialidade(especialidade));
     }
 }

@@ -1,16 +1,9 @@
 package com.Bgrupo4.hospitalupskill.user.admin.controllers;
 
 import com.Bgrupo4.hospitalupskill.calendario.EspecialidadeRequest;
-import com.Bgrupo4.hospitalupskill.registration.RegistrationService;
 import com.Bgrupo4.hospitalupskill.user.SearchRequest;
 import com.Bgrupo4.hospitalupskill.user.admin.*;
-import com.Bgrupo4.hospitalupskill.user.doctor.Doctor;
 import com.Bgrupo4.hospitalupskill.user.doctor.DoctorRequest;
-import com.Bgrupo4.hospitalupskill.user.doctor.Especialidade;
-import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.Especialidade;
-import com.Bgrupo4.hospitalupskill.user.doctor.especialidade.EspecialidadeRequest;
-import com.Bgrupo4.hospitalupskill.user.utente.Utente;
-import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
