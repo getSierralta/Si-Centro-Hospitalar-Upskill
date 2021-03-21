@@ -7,6 +7,7 @@ import com.Bgrupo4.hospitalupskill.user.ApplicationUserService;
 import com.Bgrupo4.hospitalupskill.user.utente.Utente;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteRequest;
 import com.Bgrupo4.hospitalupskill.user.utente.UtenteService;
+import com.Bgrupo4.hospitalupskill.user.utente.UtenteUpdateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +72,34 @@ public class EmployeeService {
         if (!request.getName().isEmpty()){
             employee.setName(request.getName());
         }
+        return employeeRepository.save(employee);
+    }
+    public Employee updateEmployee(Employee employee, EmployeeUpdateRequest request) {
+        // if ( passwordEncoder.bCryptPasswordEncoder().encode(request.getPassword()).matches(utente.getPassword())){
+        if (!request.getLocalidade().isEmpty()){
+            employee.setLocalidade(request.getLocalidade());
+        }
+        if (!request.getMorada().isEmpty()){
+            employee.setMorada(request.getMorada());
+        }
+        if (!request.getTelemovel().isEmpty()){
+            employee.setPhone(request.getTelemovel());
+        }
+        if (!request.getName().isEmpty()){
+            employee.setName(request.getName());
+        }
+
+        return employeeRepository.save(employee);
+        //}
+        //throw new IllegalArgumentException("Palavra passe incorrect");
+    }
+
+    public Employee updateEmployee(Employee employee, MultipartFile imageFile) throws  Exception{
+        String folder = "/imagens/colaborador/";
+        String rootDir = System.getProperty("user.dir");
+        Path path = Paths.get(rootDir + folder + imageFile.getOriginalFilename());
+        imageFile.transferTo(new File(String.valueOf(path)));
+        employee.setProfilePicture(imageFile.getOriginalFilename());
         return employeeRepository.save(employee);
     }
 

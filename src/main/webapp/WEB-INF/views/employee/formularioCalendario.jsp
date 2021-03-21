@@ -12,7 +12,7 @@
 </head>
 
 <body>
-      <nav class="nav-row">
+     <nav class="nav-row">
                  <div class="medium">
                      <a href="/employee/profile">
                          <div class="icon home"></div>
@@ -62,7 +62,6 @@
                      </a>
                  </div>
              </nav>
-         <!--Main-->
     <main class="full_main">
         <div class="white_box">
             <img class="log-in_logo" src="/img/logo.svg" alt="logo">

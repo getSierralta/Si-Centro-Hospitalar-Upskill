@@ -11,7 +11,7 @@
 </head>
 
 <body class="container">
-     <nav class="nav-row">
+    <nav class="nav-row">
                 <div class="medium">
                     <a href="/employee/profile">
                         <div class="icon home"></div>
@@ -61,7 +61,6 @@
                     </a>
                 </div>
             </nav>
-        <!--Main-->
     <main class="main">
     <div style="opacity: 0" id="flag">true</div>
         <div class="card map calendar-contain--body">

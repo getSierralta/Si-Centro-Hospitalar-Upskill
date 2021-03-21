@@ -52,7 +52,7 @@
         <div class="object_container full_info">
             <div class="flex">
                 <div class="client_photo">
-                    <img class="inversed" src="../imagens/${utente.getProfilePicture()}" alt="client">
+                    <img class="inversed" src="../imagens/utente/${utente.getProfilePicture()}" alt="client">
                 </div>
                 <div class="client_details">
                       <p>${utente.getName()}</p>

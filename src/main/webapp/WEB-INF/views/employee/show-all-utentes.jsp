@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +9,11 @@
     <link rel="stylesheet" href="../css/responsivestyle.css">
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
     <script type='text/javascript' src='http://www.google.com/jsapi'></script>
-    <title>Upskill</title>
+    <title>Medico</title>
 </head>
 
-<body>
+<body class="container blue">
+    <!--Horizontal Nav-->
     <nav class="nav-row">
                 <div class="medium">
                     <a href="/employee/profile">
@@ -64,36 +64,63 @@
                     </a>
                 </div>
             </nav>
-        <div class="main">
-            <!--Header-->
-            <header class="header">
-                <h3 class="page_title">NEW BILL</h3>
-            </header>
-            <!--/Header-->
-             <!--Info Box-->
-            <div class="info_div">
-                <div class="info_text">
-                    <p>Aqui poderá encontar todas as faturas</p>
+    <!--/Horizontal Nav-->
+    <!--Main-->
+    <main class="main">
+        <!--Header-->
+        <header class="header">
+            <h3 class="page_title white">LISTA DE UTENTES</h3>
+        </header>
+        <!--/Header-->
+        <!--Viewer-->
+        <div class="object_container full_grid">
+            <div class="person_list_container">
+                <form class="person_form" id="searchPerson" action="#" method="POST">
+                    <input type="text" name="seguro" placeholder="utente">
+                    <button type="submit" class="icon search"></button>
+                </form>
+                <div class="person_list">
+                    <c:forEach var="utente" items="${utenteList}">
+                        <a href="#/" class="person_button">
+                            <p>${utente.getName()}</p>
+                            <p>${utente.getNif()}</p>
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
-            <!--/Info Box-->
-            <!--Form-->
-            <div class="object_container forms full">
-                <form class="log-in column" id="invoice" action="/invoices/802244746/create" method="POST" modelAttribute="Invoice" enctype="multipart/form-data">
-                    <input type="text" name="nif" placeholder="NIF" required="required" />
-                    <input type="date" name="dueDate" placeholder="Data Limite" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" />
-                    <div class="input_fields_wrap" name="items">
-                        <input type="text" name="items[0].description" placeholder="Descrição" required="required" >
-                        <input type="text" name="items[0].value" placeholder="Value" required="required" >
-                        <button class="add_field_button">Adicionar Item</button>
+            <div class="person_viewer">
+                <c:forEach var="utente" items="${utenteList}" varStatus="loop">
+                    <div id="thisone" class="info-${loop.count}">
+                        <div class="person_header">
+                            <div class="client_photo">
+                                <!--MUDAR SRC PARA "img/imgnome.jpg"-->
+                                <img class="inversed" src="../img/imgclient.jpeg" alt="client">
+                            </div>
+                            <div class="client_details">
+                                <p><b>${utente.getName()}</b><br>
+                                <b>${utente.getNif()}</b></p>
+                            </div>
+                            <div class="client_info">
+                                <p><b>Next appointment</b> N/A</p>
+                                <p><b>Last appointment</b> N/A</p>
+                                <p><b>Email</b> ${utente.getEmail()}</p>
+                            </div>
+                        </div>
+                        <div class="person_body">
+                            <p>CLIENT DETAILS AND OPTIONS GO HERE</p>
+                        </div>
+                        <div class="person_options">
+                            <button class="greenbutt" type="submit">EDIT</button>
+                            <button class="greenbutt" type="submit">DELETE</button>
+                        </div>
                     </div>
-                    <button class="greenbutt" type="submit">Submit</button>
-                </form>
+                </c:forEach>
             </div>
-            <!--/Form-->
         </div>
-        <!--/Main-->
-    </div>
-    <script src="../js/invoice.js"></script>
+        <!--/Viewer-->
+    </main>
+    <!--/Main-->
+    <script src="../js/buttlist.js"></script>
 </body>
+
 </html>

@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +39,7 @@ public class UtenteRestController {
     private final VagaService vagaService;
     private final SenhaService senhaService;
     private final ConsultasService consultasService;
+    private final UtenteManagementController utenteManagementController;
 
     @GetMapping(path = "{id}")
     public Optional<Utente> getUser(@PathVariable("id") Long id){
@@ -156,5 +158,10 @@ public class UtenteRestController {
         return consultasService.getAppointmentsUtenteByDate(utente,dia);
     }
 
+    @GetMapping(value = "/lista-utentes")
+    public String showUtentes(ModelMap map) {
+        map.put("utenteList", utenteManagementController.getAllUtentes());
+        return "/medico/lista-utentes";
+    }
 
 }
