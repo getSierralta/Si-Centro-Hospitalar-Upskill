@@ -159,7 +159,7 @@ public class InvoiceService {
         return requestResponse;
     }
 
-    public List<Invoice> getList(String search, String status, String issuedAfter, String issuedBefore, String paidAfter, String paidBefore, String dueAfter, String dueBefore) {
+    public List<Invoice> getList(String search, String status) {
         String requestUrl = external + "list";
         if (search != null) {
             System.out.println(search);
@@ -181,32 +181,7 @@ public class InvoiceService {
         }
         ResponseEntity<InvoiceResponse> responseEntity = restTemplate.getForEntity(requestUrl, InvoiceResponse.class);
         InvoiceResponse invoiceResponse = responseEntity.getBody();
-        List<Invoice> returnedList = invoiceResponse.getInvoices();
 
-        if (issuedAfter != null) {
-            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isBefore(LocalDate.parse(issuedAfter)));
-        }
-
-        if (issuedBefore != null) {
-            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getIssuedDateS()).isAfter(LocalDate.parse(issuedBefore)));
-        }
-
-        if (paidAfter != null) {
-            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isBefore(LocalDate.parse(paidAfter)));
-        }
-
-        if (paidBefore != null) {
-            returnedList.removeIf(invoice -> invoice.getPaidDate() == null || invoice.getPaidDate().isEmpty() || LocalDate.parse(invoice.getPaidDateS()).isAfter(LocalDate.parse(paidBefore)));
-        }
-
-        if (dueAfter != null) {
-            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isBefore(LocalDate.parse(dueAfter)));
-        }
-
-        if (dueBefore != null) {
-            returnedList.removeIf(invoice -> LocalDate.parse(invoice.getDueDateS()).isAfter(LocalDate.parse(dueBefore)));
-        }
-
-        return returnedList;
+        return invoiceResponse.getInvoices();
     }
 }

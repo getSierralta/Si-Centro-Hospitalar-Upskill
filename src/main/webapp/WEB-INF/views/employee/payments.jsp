@@ -77,27 +77,6 @@
                             <option value="unpaid">Por pagar</option>
                         </select>
                     </div>
-
-                    <div>
-                        <label for="issuedAfter">Issued After</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="issuedAfter" name="issuedAfter" placeholder="data" >
-                        <label for="issuedBefore">Issued Before</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="issuedBefore" name="issuedBefore" placeholder="data" >
-                        <label for="paidAfter">Paid After</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="paidAfter" name="paidAfter" placeholder="data" >
-                        <label for="paidBefore">Paid Before</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="paidBefore" name="paidBefore" placeholder="data" >
-                        <label for="dueAfter">Due After</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="dueAfter" name="dueAfter" placeholder="data" >
-                        <label for="dueBefore">Due Before</label>
-                        <input type="date" onfocus="(this.type='date')"
-                            onblur="(this.type='text')" id="dueBefore" name="dueBefore" placeholder="data" >
-                    </div>
                     <button class="greenbutt" type="submit">Pesquisar</button>
                     <a href="/employee/new-bill" class="greenbutt">Criar fatura</a>
                 </form>

@@ -44,14 +44,8 @@ public class InvoiceController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ADMIN', 'RESPONSAVEL', 'COLABORADOR')")
-    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status,
-                                 @RequestParam (required = false) String issuedAfter,
-                                 @RequestParam (required = false) String issuedBefore,
-                                 @RequestParam (required = false) String paidAfter,
-                                 @RequestParam (required = false) String paidBefore,
-                                 @RequestParam (required = false) String dueAfter,
-                                 @RequestParam (required = false) String dueBefore) {
-        return invoiceService.getList(search, status, issuedAfter, issuedBefore, paidAfter, paidBefore, dueAfter, dueBefore);
+    public List<Invoice> getList(@RequestParam ("search") String search, @RequestParam ("status") String status) {
+        return invoiceService.getList(search, status);
     }
 
     @RequestMapping(value = "/pay/{id}", method = RequestMethod.POST)
