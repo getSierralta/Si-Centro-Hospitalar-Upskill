@@ -84,13 +84,13 @@ public class HospitalUpskillApplication {
             Vaga vaga1 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), 16, 0, 0), "16:00", cardiologia.getEspecialidade(), doctor);
             Vaga vaga2 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 17, 15, 0, 0), "15:00", cardiologia.getEspecialidade(), doctor);
             Vaga vaga3 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, 31, 15, 0, 0), "13:30", cardiologia.getEspecialidade(), doctor);
-            Vaga vaga17 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), 16, 0, 0), "16:00", cardiologia.getEspecialidade(), doctor);
+            //Vaga vaga17 = new Vaga(new GregorianCalendar(2021, Calendar.MARCH, Calendar.getInstance().getTime().getDate(), 16, 0, 0), "16:00", cardiologia.getEspecialidade(), doctor);
             consultasService.createVaga(vaga);
             consultasService.createVaga(vaga1);
             consultasService.createVaga(vaga2);
             consultasService.createVaga(vaga3);
             Appointment appointment = consultasService.createAppointment(vaga1, utente);
-            consultasService.createAppointment(vaga17, utente);
+            //consultasService.createAppointment(vaga17, utente);
             consultasService.createAppointment(vaga, utente);
             Appointment appointment1 = consultasService.createAppointment(vaga2, utente);
             consultasService.cancelAppointment(appointment1.getId());
