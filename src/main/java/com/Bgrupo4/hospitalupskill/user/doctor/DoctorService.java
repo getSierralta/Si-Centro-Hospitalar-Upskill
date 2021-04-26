@@ -70,7 +70,7 @@ public class DoctorService{
         String[] split = principal.split("username='");
         String[] split2 = split[1].split("',");
         Optional<Doctor> doctor = getUserByUsername(split2[0]);
-        if (doctor.isEmpty()){
+        if (!doctor.isPresent()){
             throw new Exception("There's no logged person");
         }
         return doctor.get();

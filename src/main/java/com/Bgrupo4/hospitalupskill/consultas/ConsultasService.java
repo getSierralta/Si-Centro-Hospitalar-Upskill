@@ -122,7 +122,7 @@ public class ConsultasService {
         Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
         Optional<Utente> utenteOpt = utenteRepository.findById(utente.getId());
         Optional<Vaga> vagaOptional = vagaRepository.findById(vaga.getId());
-        if (doctor.isEmpty() || utenteOpt.isEmpty() || vagaOptional.isEmpty()) {
+        if (!doctor.isPresent() || !utenteOpt.isPresent() || !vagaOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Utente %s ou vaga %s não foi encontrado", utente.getUsername(), vaga.getId()));
         }
         Appointment appointment = new Appointment();
@@ -138,13 +138,13 @@ public class ConsultasService {
 
     public Appointment createAppointment(Long id, Utente utente) {
         Optional<Vaga> vagaOptional = vagaRepository.findById(id);
-        if (vagaOptional.isEmpty()) {
+        if (!vagaOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Vaga %s não foi encontrada", id));
         }
         Vaga vaga = vagaOptional.get();
         if (vaga.isFree()) {
             Optional<Doctor> doctor = doctorRepository.findById(vaga.getDoctor().getId());
-            if (doctor.isEmpty()) {
+            if (!doctor.isPresent()) {
                 throw new EntityNotFoundException(String.format("Medico %s não foi encontrada", vaga.getDoctor().getUsername()));
             }
             Appointment appointment = new Appointment();
@@ -162,7 +162,7 @@ public class ConsultasService {
 
     public Appointment cancelAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
-        if (appointment.isEmpty()) {
+        if (!appointment.isPresent()) {
             throw new EntityNotFoundException(String.format("A marcação %s nao foi encontrada", id));
         }
         if (appointment.get().getStatus() == Status.OPEN){
@@ -198,7 +198,7 @@ public class ConsultasService {
 
     public Vaga updateVaga(Long id, Boolean free) {
         Optional<Vaga> vaga = vagaRepository.findById(id);
-        if (vaga.isEmpty()) {
+        if (!vaga.isPresent()) {
             throw new EntityNotFoundException(String.format("A vaga %s não existe", id));
         }
         Vaga vaga1 = vaga.get();
@@ -217,7 +217,7 @@ public class ConsultasService {
 
     public Appointment startConsulta(Senha senha) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(senha.getAppointment().getId());
-        if (appointmentOptional.isEmpty()){
+        if (!appointmentOptional.isPresent()){
             throw new EntityNotFoundException("Consulta não encontrada: "+senha.getAppointment().getId());
         }
         Appointment appointment = appointmentOptional.get();
@@ -260,7 +260,7 @@ public class ConsultasService {
 
     public Appointment marcarAusencia(Long id) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
-        if (appointmentOptional.isEmpty()){
+        if (!appointmentOptional.isPresent()){
             throw new EntityNotFoundException("Consulta não existe" + id);
         }
         Appointment appointment = appointmentOptional.get();
@@ -276,7 +276,7 @@ public class ConsultasService {
 
     public Appointment fecharConsulta(Long id) throws Exception {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
-        if (appointmentOptional.isEmpty()){
+        if (!appointmentOptional.isPresent()){
             throw new EntityNotFoundException("Consulta não existe" + id);
         }
         Appointment appointment = appointmentOptional.get();

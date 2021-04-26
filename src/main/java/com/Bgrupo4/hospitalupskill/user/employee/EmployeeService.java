@@ -56,7 +56,7 @@ public class EmployeeService {
 
     public Employee updateEmployee(Long id, EmployeeRequest request) {
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
-        if (employeeOptional.isEmpty()) {
+        if (employeeOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Colaborador %s não foi encontrado", id));
         }
         Employee employee = employeeOptional.get();
@@ -128,7 +128,7 @@ public class EmployeeService {
         String[] split = principal.split("username='");
         String[] split2 = split[1].split("',");
         Optional<Employee> employee = getUserByUsername(split2[0]);
-        if (employee.isEmpty()){
+        if (!employee.isPresent()){
             throw new Exception("There's no logged person");
         }
         return employee.get();

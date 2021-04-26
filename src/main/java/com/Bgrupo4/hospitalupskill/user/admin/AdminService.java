@@ -58,7 +58,7 @@ public class AdminService {
 
     public Admin updateAdmin(Long id, AdminRequest request) {
         Optional<Admin> admin = adminRepository.findById(id);
-        if (admin.isEmpty()) {
+        if (!admin.isPresent()) {
             throw new EntityNotFoundException(String.format("Administrador %s não foi encontrado", id));
         }
         Admin admin1 = admin.get();
@@ -79,7 +79,7 @@ public class AdminService {
 
     public void updateEmployee(Long id, AdminRequest request) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        if (employee.isEmpty()) {
+        if (!employee.isPresent()) {
             throw new EntityNotFoundException(String.format("Colaborador %s não foi encontrado", id));
         }
         ApplicationUser user = requestProcess(employee.get(), request);
@@ -88,7 +88,7 @@ public class AdminService {
 
     public void updateUtente(Long id, AdminRequest request) {
         Optional<Utente> utente = utenteRepository.findById(id);
-        if (utente.isEmpty()) {
+        if (!utente.isPresent()) {
             throw new EntityNotFoundException(String.format("Utente %s não foi encontrado", id));
         }
         ApplicationUser user = requestProcess(utente.get(), request);
@@ -226,7 +226,7 @@ public class AdminService {
         String[] split = principal.split("username='");
         String[] split2 = split[1].split("',");
         Optional<Admin> admin = getUserByUsername(split2[0]);
-        if (admin.isEmpty()){
+        if (!admin.isPresent()){
             throw new Exception("There's no logged person");
         }
         return admin.get();

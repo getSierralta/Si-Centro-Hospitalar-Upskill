@@ -66,7 +66,7 @@ public class UtenteService {
         String[] split = principal.split("username='");
         String[] split2 = split[1].split("',");
         Optional<Utente> utente = getUserByUsername(split2[0]);
-        if (utente.isEmpty()){
+        if (!utente.isPresent()){
             throw new Exception("There's no logged person");
         }
         return utente.get();
@@ -181,7 +181,7 @@ public class UtenteService {
 
     public List<Relatorio> getRelatorioByUtente(Long id) {
         Optional<Utente> utenteOptional = utenteRepository.findById(id);
-        if (utenteOptional.isEmpty()){
+        if (!utenteOptional.isPresent()){
             throw new EntityNotFoundException("Utente not found: "+ id);
         }
         return relatorioRepository.findAllByUtente(utenteOptional.get());
@@ -189,7 +189,7 @@ public class UtenteService {
 
     public boolean deleteUtente(Long id) {
         Optional<Utente> utenteOptional = utenteRepository.findById(id);
-        if (utenteOptional.isEmpty()){
+        if (!utenteOptional.isPresent()){
             throw new EntityNotFoundException("Utente not found: "+ id);
         }
         try {
@@ -203,7 +203,7 @@ public class UtenteService {
 
     public Utente updateUtente(Long id, UtenteUpdateRequest request) {
         Optional<Utente> utenteOptional = utenteRepository.findById(id);
-        if (utenteOptional.isEmpty()){
+        if (!utenteOptional.isPresent()){
             throw new EntityNotFoundException("Utente nao encontrado: "+id);
         }
         Utente utente = utenteOptional.get();

@@ -25,7 +25,7 @@ public class SenhaService {
 
     public Senha createSenha(SenhaRequest request) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(Long.valueOf(request.getAppointment()));
-        if (appointmentOptional.isEmpty()) {
+        if (!appointmentOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Appointment %s não foi encontrado", request.getAppointment()));
         }
         Appointment appointment = appointmentOptional.get();
@@ -33,7 +33,7 @@ public class SenhaService {
             if (senhaRepository.getAllByAppointment(appointment).isEmpty()) {
                 Optional<Doctor> doctorOptional = doctorRepository.findByUsername(appointment.getDoctor().getUsername());
                 Optional<Utente> utenteOptional = utenteRepository.findByUsername(appointment.getUtente().getUsername());
-                if (doctorOptional.isEmpty() || utenteOptional.isEmpty()) {
+                if (!doctorOptional.isPresent() || !utenteOptional.isPresent()) {
                     throw new EntityNotFoundException(String.format("Doctor %s, utente %s não foi encontrado", appointment.getDoctor().getUsername(),
                             appointment.getUtente().getUsername()));
                 }
@@ -55,7 +55,7 @@ public class SenhaService {
 
     public Senha createSenha(Long id) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
-        if (appointmentOptional.isEmpty()) {
+        if (!appointmentOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Appointment %s não foi encontrado", id));
         }
         Appointment appointment = appointmentOptional.get();
@@ -63,7 +63,7 @@ public class SenhaService {
             if (senhaRepository.getAllByAppointment(appointment).isEmpty()) {
                 Optional<Doctor> doctorOptional = doctorRepository.findByUsername(appointment.getDoctor().getUsername());
                 Optional<Utente> utenteOptional = utenteRepository.findByUsername(appointment.getUtente().getUsername());
-                if (doctorOptional.isEmpty() || utenteOptional.isEmpty()) {
+                if (!doctorOptional.isPresent() || !utenteOptional.isPresent()) {
                     throw new EntityNotFoundException(String.format("Doctor %s, utente %s não foi encontrado", appointment.getDoctor().getUsername(),
                             appointment.getUtente().getUsername()));
                 }
@@ -85,7 +85,7 @@ public class SenhaService {
 
     public Senha createSenha(Utente utente) {
         Optional<Utente> utenteOptional = utenteRepository.findByUsername(utente.getUsername());
-        if (utenteOptional.isEmpty()) {
+        if (!utenteOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("Utente %s não foi encontrado", utente.getUsername()));
         }
         Senha senha = new Senha();

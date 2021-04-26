@@ -26,12 +26,12 @@ public class ReceitaService {
 
     public Receita createReceita(Appointment appointment, String s) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(appointment.getId());
-        if (appointmentOptional.isEmpty()) {
+        if (!appointmentOptional.isPresent()) {
             throw new EntityNotFoundException(String.format("A consulta %s não existe", appointment.getId()));
         }
         Optional<Doctor> doctor = doctorRepository.findById(appointmentOptional.get().getDoctor().getId());
         Optional<Utente> utente = utenteRepository.findById(appointmentOptional.get().getUtente().getId());
-        if (doctor.isEmpty() || utente.isEmpty()) {
+        if (!doctor.isPresent() || !utente.isPresent()) {
             throw new EntityNotFoundException(String.format("O medico %s ou o utente %s não existe", appointmentOptional.get().getDoctor().getId(), appointmentOptional.get().getUtente().getId()));
         }
 
