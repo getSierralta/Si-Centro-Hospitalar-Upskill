@@ -162,11 +162,11 @@ public class DoctorController {
         Doctor doctor = doctorService.getLogged(auth);
         map.put("medico", doctor);
 
-        if(senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
+        if(!senhaService.getSenhaById(Long.valueOf(id)).isPresent()){
             throw new EntityNotFoundException("Senha não existe: "+id);
         }
         Senha senha = senhaService.getSenhaById(Long.valueOf(id)).get();
-        if (utenteService.getUserById(senha.getUtente().getId()).isEmpty()){
+        if (!utenteService.getUserById(senha.getUtente().getId()).isPresent()){
             throw new EntityNotFoundException("Utente não existe: "+senha.getUtente().getId());
         }
         map.put("utente", utenteService.getUserById(senha.getUtente().getId()).get());
@@ -180,7 +180,7 @@ public class DoctorController {
         Doctor doctor = doctorService.getLogged(auth);
         List<Senha> senha = consultasService.getSenhasOnGoingAppoinmentByMedico(doctor);
        try {
-           if (utenteService.getUserById(senha.get(0).getUtente().getId()).isEmpty()){
+           if (!utenteService.getUserById(senha.get(0).getUtente().getId()).isPresent()){
                throw new EntityNotFoundException("Utente não existe: "+senha.get(0).getUtente().getId());
            }
            map.put("medico", doctor);

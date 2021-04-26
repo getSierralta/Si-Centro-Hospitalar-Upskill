@@ -99,7 +99,7 @@ public class UtenteManagementController {
         Optional<Utente> utenteOptional = utenteService.getUserById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
-        if (utenteOptional.isEmpty()){
+        if (!utenteOptional.isPresent()){
             throw new EntityNotFoundException("utente não existe: "+id);
         }
         return ResponseEntity.ok(consultasService.createRelatorio(doctor, utenteOptional.get(), request));
@@ -111,7 +111,7 @@ public class UtenteManagementController {
         Optional<Utente> utenteOptional = utenteService.getUserById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Doctor doctor = doctorService.getLogged(auth);
-        if (utenteOptional.isEmpty()){
+        if (!utenteOptional.isPresent()){
             throw new EntityNotFoundException("utente não existe: "+id);
         }
         return ResponseEntity.ok(consultasService.createReceita(doctor, utenteOptional.get(), request));

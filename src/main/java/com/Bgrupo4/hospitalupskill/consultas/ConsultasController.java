@@ -97,7 +97,7 @@ public class ConsultasController {
 
     @GetMapping("/senha/{id}")
     public ResponseEntity<Senha> getSenha(@PathVariable String id) {
-        if (senhaService.getSenhaById(Long.valueOf(id)).isEmpty()){
+        if (!senhaService.getSenhaById(Long.valueOf(id)).isPresent()){
             throw new EntityNotFoundException("Senha não existe: "+id);
         }
         return ResponseEntity.ok(senhaService.getSenhaById(Long.valueOf(id)).get());
@@ -126,7 +126,7 @@ public class ConsultasController {
     @PostMapping("/senha/{id}")
     public ResponseEntity<Appointment> startConsulta(@PathVariable String id) {
         Optional<Senha> senhaOptional = senhaService.getSenhaById(Long.valueOf(id));
-        if (senhaOptional.isEmpty()){
+        if (!senhaOptional.isPresent()){
             throw new EntityNotFoundException("Senha não existe: "+id);
         }
         return ResponseEntity.ok(consultasService.startConsulta(senhaOptional.get()));
