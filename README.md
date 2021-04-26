@@ -1,6 +1,6 @@
 # B-grupo4
 Java Turma B 
-- D. Sierralta 
+- Laura Sierralta 
 - Gabriel Warmann 
 - João Aires 
 - Thiago Hipólito 
